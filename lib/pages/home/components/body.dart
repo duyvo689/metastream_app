@@ -14,11 +14,11 @@ class Body extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const <Widget>[
         SizedBox(
-          height: 30,
+          height: 20,
         ),
         StreamSlide(),
         SizedBox(
-          height: 30,
+          height: 20,
         ),
         GameSlide(),
         // Expanded(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'title_home.dart';
-import '../pages/homee/components/section_title.dart';
 import 'stream_card.dart';
 
 class StreamSlide extends StatelessWidget {
@@ -13,6 +12,9 @@ class StreamSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(
+          height: 20,
+        ),
         const TitleHome(
           title_1: 'Live channels',
           title_2: 'we think you’ll like',

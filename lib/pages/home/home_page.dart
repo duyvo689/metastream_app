@@ -1,6 +1,6 @@
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
-import '../../components/bottom_navbar.dart';
+import '../stream/components/body.dart';
 import './components/body.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -15,14 +15,8 @@ class _MyHomePageState extends State<MyHomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    Body(),
+    BodyStreamPage(),
     Text(
       'Index 2: School',
       style: optionStyle,
@@ -47,8 +41,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: (Column(
+          children: [
+            Center(
+              child: _widgetOptions.elementAt(_selectedIndex),
+            ),
+          ],
+        )),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

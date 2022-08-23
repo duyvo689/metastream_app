@@ -14,6 +14,9 @@ class PopularList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const SizedBox(
+          height: 20,
+        ),
         const TitleHome(
           title_1: 'The Most',
           title_2: 'Popular',
