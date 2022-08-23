@@ -7,4 +7,5 @@ class AppColors {
   static const Color primaryColor = Color(0xFF2AFD92);
   static const Color textPrimaryColor = Color(0xFFFFFFFF);
   static const Color bgLiveColor = Color(0xFF20212B);
+  static const Color desColor = Color(0xFF606A71);
 }

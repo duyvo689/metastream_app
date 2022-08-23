@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../components/title_home.dart';
-import 'game_card.dart';
 
-class GameSlide extends StatelessWidget {
-  const GameSlide({
+import 'title_home.dart';
+import '../pages/homee/components/section_title.dart';
+import 'stream_card.dart';
+
+class StreamSlide extends StatelessWidget {
+  const StreamSlide({
     Key? key,
   }) : super(key: key);
 
@@ -12,7 +14,7 @@ class GameSlide extends StatelessWidget {
     return Column(
       children: [
         const TitleHome(
-          title_1: 'Categories',
+          title_1: 'Live channels',
           title_2: 'we think you’ll like',
         ),
         const SizedBox(
@@ -22,28 +24,29 @@ class GameSlide extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              GameCard(
-                img: 'assets/images/game2.png',
+              StreamCard(
+                category: 'Live',
+                img: 'assets/images/stream1.png',
                 press: () {},
               ),
-              GameCard(
-                img: 'assets/images/game1.png',
+              StreamCard(
+                category: 'Live',
+                img: 'assets/images/hinh2.jpeg',
                 press: () {},
               ),
-              GameCard(
-                img: 'assets/images/game3.png',
+              StreamCard(
+                category: 'Live',
+                img: 'assets/images/hinh3.png',
                 press: () {},
               ),
-              GameCard(
-                img: 'assets/images/game2.png',
+              StreamCard(
+                category: 'Live',
+                img: 'assets/images/hinh.jpeg',
                 press: () {},
               ),
-              GameCard(
-                img: 'assets/images/game1.png',
-                press: () {},
-              ),
-              GameCard(
-                img: 'assets/images/game3.png',
+              StreamCard(
+                category: 'Live',
+                img: 'assets/images/stream1.png',
                 press: () {},
               ),
               const SizedBox(

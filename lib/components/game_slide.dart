@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'title_home.dart';
+import 'game_card.dart';
 
-import '../../../components/title_home.dart';
-import 'section_title.dart';
-import 'stream_card.dart';
-
-class StreamSlide extends StatelessWidget {
-  const StreamSlide({
+class GameSlide extends StatelessWidget {
+  const GameSlide({
     Key? key,
   }) : super(key: key);
 
@@ -13,8 +11,8 @@ class StreamSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TitleHome(
-          title_1: 'Live channels',
+        const TitleHome(
+          title_1: 'Categories',
           title_2: 'we think you’ll like',
         ),
         const SizedBox(
@@ -24,29 +22,28 @@ class StreamSlide extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              StreamCard(
-                category: 'Live',
-                img: 'assets/images/stream1.png',
+              GameCard(
+                img: 'assets/images/game2.png',
                 press: () {},
               ),
-              StreamCard(
-                category: 'Live',
-                img: 'assets/images/hinh2.jpeg',
+              GameCard(
+                img: 'assets/images/game1.png',
                 press: () {},
               ),
-              StreamCard(
-                category: 'Live',
-                img: 'assets/images/hinh3.png',
+              GameCard(
+                img: 'assets/images/game3.png',
                 press: () {},
               ),
-              StreamCard(
-                category: 'Live',
-                img: 'assets/images/hinh.jpeg',
+              GameCard(
+                img: 'assets/images/game2.png',
                 press: () {},
               ),
-              StreamCard(
-                category: 'Live',
-                img: 'assets/images/stream1.png',
+              GameCard(
+                img: 'assets/images/game1.png',
+                press: () {},
+              ),
+              GameCard(
+                img: 'assets/images/game3.png',
                 press: () {},
               ),
               const SizedBox(

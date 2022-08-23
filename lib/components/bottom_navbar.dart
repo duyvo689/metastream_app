@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
 import '../pages/home/components/body.dart';
-import '../pages/home_page/home_page.dart';
+import '../pages/home/home_page.dart';
 import '../values/app_colors.dart';
 
-class BottomNavBarWidget extends StatefulWidget {
-  const BottomNavBarWidget({Key? key}) : super(key: key);
+class MyStatefulWidget extends StatefulWidget {
+  const MyStatefulWidget({Key? key}) : super(key: key);
 
   @override
-  State<BottomNavBarWidget> createState() => _BottomNavBarWidgetState();
+  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
 }
 
-class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
+class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    // MyHomePage(),
-    Body(),
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Business',
+      style: optionStyle,
+    ),
     Text(
       'Index 2: School',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 3: Settings',
       style: optionStyle,
     ),
   ];
@@ -35,7 +45,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
       appBar: AppBar(
         title: const Text('BottomNavigationBar Sample'),
       ),
-      body: Container(
+      body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -43,18 +53,26 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
+            backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
             label: 'Business',
+            backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
             label: 'School',
+            backgroundColor: Colors.purple,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+            backgroundColor: Colors.pink,
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: AppColors.primaryColor,
+        selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
     );
