@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'game_card.dart';
 
-import 'section_title.dart';
-import 'stream_card.dart';
-
-class StreamSlide extends StatelessWidget {
-  const StreamSlide({
+class GameSlide extends StatelessWidget {
+  const GameSlide({
     Key? key,
   }) : super(key: key);
 
@@ -12,10 +10,6 @@ class StreamSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionTitle(
-          text: 'Top streamers live',
-          press: () {},
-        ),
         const SizedBox(
           height: 20,
         ),
@@ -23,17 +17,17 @@ class StreamSlide extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              StreamCard(
+              GameCard(
                 category: 'hi',
                 img: 'assets/images/duyvo.jpg',
                 press: () {},
               ),
-              StreamCard(
+              GameCard(
                 category: 'hi',
                 img: 'assets/images/duyvo.jpg',
                 press: () {},
               ),
-              StreamCard(
+              GameCard(
                 category: 'hi',
                 img: 'assets/images/duyvo.jpg',
                 press: () {},
