@@ -11,10 +11,10 @@ class AppStyles {
       fontFamily: AppFonts.muli,
       fontSize: 20,
       color: AppColors.primaryColor,
-      fontWeight: FontWeight.bold);
+      fontWeight: FontWeight.w500);
   static const TextStyle TitleHome2 = TextStyle(
       fontFamily: AppFonts.muli,
       fontSize: 20,
       color: AppColors.textPrimaryColor,
-      fontWeight: FontWeight.bold);
+      fontWeight: FontWeight.w400);
 }

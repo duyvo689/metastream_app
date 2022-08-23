@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../components/title_home.dart';
 import 'game_card.dart';
 
 class GameSlide extends StatelessWidget {
@@ -10,6 +11,10 @@ class GameSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const TitleHome(
+          title_1: 'Categories',
+          title_2: 'we think you’ll like',
+        ),
         const SizedBox(
           height: 20,
         ),
@@ -18,18 +23,27 @@ class GameSlide extends StatelessWidget {
           child: Row(
             children: [
               GameCard(
-                category: 'hi',
-                img: 'assets/images/duyvo.jpg',
+                img: 'assets/images/game2.png',
                 press: () {},
               ),
               GameCard(
-                category: 'hi',
-                img: 'assets/images/duyvo.jpg',
+                img: 'assets/images/game1.png',
                 press: () {},
               ),
               GameCard(
-                category: 'hi',
-                img: 'assets/images/duyvo.jpg',
+                img: 'assets/images/game3.png',
+                press: () {},
+              ),
+              GameCard(
+                img: 'assets/images/game2.png',
+                press: () {},
+              ),
+              GameCard(
+                img: 'assets/images/game1.png',
+                press: () {},
+              ),
+              GameCard(
+                img: 'assets/images/game3.png',
                 press: () {},
               ),
               const SizedBox(

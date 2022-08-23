@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 class GameCard extends StatelessWidget {
   const GameCard({
     Key? key,
-    required this.category,
     required this.img,
     required this.press,
   }) : super(key: key);
-  final String category, img;
+  final String img;
   final GestureTapCallback press;
 
   @override
@@ -15,10 +14,10 @@ class GameCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 20),
       child: SizedBox(
-          width: 350,
-          height: 150,
+          width: 140,
+          height: 190,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(6),
             child: Stack(
               children: [
                 Image.asset(
@@ -35,17 +34,6 @@ class GameCard extends StatelessWidget {
                         Color(0xFF343434).withOpacity(0.15)
                       ])),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                  child: Text.rich(
-                      TextSpan(style: TextStyle(color: Colors.red), children: [
-                    TextSpan(
-                        text: category,
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold))
-                  ])),
-                )
               ],
             ),
           )),

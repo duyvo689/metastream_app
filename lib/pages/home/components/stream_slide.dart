@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../components/title_home.dart';
 import 'section_title.dart';
 import 'stream_card.dart';
 
@@ -12,9 +13,9 @@ class StreamSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionTitle(
-          text: 'Top streamers live',
-          press: () {},
+        TitleHome(
+          title_1: 'Live channels',
+          title_2: 'we think you’ll like',
         ),
         const SizedBox(
           height: 20,
@@ -24,18 +25,28 @@ class StreamSlide extends StatelessWidget {
           child: Row(
             children: [
               StreamCard(
-                category: 'hi',
-                img: 'assets/images/duyvo.jpg',
+                category: 'Live',
+                img: 'assets/images/stream1.png',
                 press: () {},
               ),
               StreamCard(
-                category: 'hi',
-                img: 'assets/images/duyvo.jpg',
+                category: 'Live',
+                img: 'assets/images/hinh2.jpeg',
                 press: () {},
               ),
               StreamCard(
-                category: 'hi',
-                img: 'assets/images/duyvo.jpg',
+                category: 'Live',
+                img: 'assets/images/hinh3.png',
+                press: () {},
+              ),
+              StreamCard(
+                category: 'Live',
+                img: 'assets/images/hinh.jpeg',
+                press: () {},
+              ),
+              StreamCard(
+                category: 'Live',
+                img: 'assets/images/stream1.png',
                 press: () {},
               ),
               const SizedBox(

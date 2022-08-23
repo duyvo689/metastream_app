@@ -50,21 +50,20 @@ class Body extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(20)),
-            child: Column(children: const [
-              TitleHome(
-                title_1: 'Categories',
-                title_2: 'we think you’ll like',
-              )
-            ]),
-          ),
-          Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(20)),
               child: SafeArea(
                   child: SingleChildScrollView(
-                child: Column(children: const [GameSlide()]),
+                child: Column(children: const [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  StreamSlide(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  GameSlide()
+                ]),
               ))),
         ],
       ),
