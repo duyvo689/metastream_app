@@ -1,6 +1,8 @@
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
 import '../stream/components/body.dart';
+import '../video/df_player.dart';
+import '../video_player/components/body.dart';
 import './components/body.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -14,13 +16,11 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     Body(),
+    // PlayerVideo(),
     BodyStreamPage(),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    DefaultPlayer(),
     Text(
       'Index 3: Settings',
       style: optionStyle,
