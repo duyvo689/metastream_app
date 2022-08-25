@@ -5,6 +5,7 @@ import 'package:app_metastream/values/app_colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../home/components/body.dart';
+import '../home/components/body2.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.bgrHeaderColor,
+        backgroundColor: AppColors.bgrMainColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -46,13 +47,12 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
         actions: <Widget>[
-          Container(
-            width: 40,
-            height: 40,
-            margin: const EdgeInsets.only(right: 20),
-            child: RawMaterialButton(
-              onPressed: () {},
-              child: Image.asset(AppAssets.icPhantom),
+          RawMaterialButton(
+            onPressed: () {},
+            child: Image.asset(
+              AppAssets.icPhantom,
+              height: 40,
+              width: 40,
             ),
           ),
         ],
@@ -61,10 +61,10 @@ class _MainPageState extends State<MainPage> {
         context,
         controller: _controller,
         screens: const [
-          Body(),
-          Body(),
-          Body(),
-          Body(),
+          Body2(),
+          Text("index 2"),
+          Text("index 2"),
+          Text("index 2"),
         ],
         items: _navBarsItems(),
         navBarStyle: NavBarStyle.style9,

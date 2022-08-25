@@ -3,7 +3,9 @@ class AppAssets {
   static final String iconPath = "assets/icons/";
 
 // Image
-  static final String imgDuy = imagePath + "duyvo.jpg";
+  static final String imgavt1 = iconPath + "avt1.png";
+  static final String imgavt2 = imagePath + "avt2.jpeg";
+  static final String imgavt3 = imagePath + "avt3.jpeg";
 
   // Icon
   static final String icPhantom = iconPath + "ic_phantom.png";
