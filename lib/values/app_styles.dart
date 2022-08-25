@@ -10,14 +10,14 @@ class AppStyles {
   static const TextStyle TitleHome1 = TextStyle(
       fontFamily: AppFonts.muli,
       fontSize: 20,
-      color: AppColors.primaryColor,
-      fontWeight: FontWeight.w500);
+      color: AppColors.thirdColor,
+      fontWeight: FontWeight.bold);
 
   static const TextStyle TitleHome2 = TextStyle(
       fontFamily: AppFonts.muli,
       fontSize: 20,
       color: AppColors.textPrimaryColor,
-      fontWeight: FontWeight.w400);
+      fontWeight: FontWeight.bold);
 
   static const TextStyle nameCard = TextStyle(
       fontFamily: AppFonts.muli,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'title_home.dart';
+import '../pages/home/components/section_title.dart';
 import 'game_card.dart';
 import 'popular_card.dart';
 import 'stream_card.dart';
@@ -17,7 +17,7 @@ class PopularList extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        const TitleHome(
+        const SectionTitle(
           title_1: 'The Most',
           title_2: 'Popular',
         ),

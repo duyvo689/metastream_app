@@ -1,8 +1,8 @@
 import 'package:app_metastream/values/app_styles.dart';
 import 'package:flutter/material.dart';
 
-class TitleHome extends StatelessWidget {
-  const TitleHome({
+class SectionTitle extends StatelessWidget {
+  const SectionTitle({
     Key? key,
     required this.title_1,
     required this.title_2,
@@ -28,9 +28,3 @@ class TitleHome extends StatelessWidget {
     );
   }
 }
-
-// Text(
-//       text_1,
-//       style: AppStyles.TitleHome,
-//       textAlign: TextAlign.left,
-//     );

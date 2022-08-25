@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'title_home.dart';
+import '../pages/home/components/section_title.dart';
 import 'game_card.dart';
 
 class GameSlide extends StatelessWidget {
@@ -11,7 +11,7 @@ class GameSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const TitleHome(
+        const SectionTitle(
           title_1: 'Categories',
           title_2: 'we think you’ll like',
         ),
