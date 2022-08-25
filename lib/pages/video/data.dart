@@ -2,7 +2,7 @@ Map<String, dynamic> mockData = {
   "items": [
     {
       "title": "Rio from Above",
-      "image": "images/rio_from_above_poster.jpg",
+      "image": "assets/images/game1.png",
       "trailer_url":
           "https://metastream-static.s3.ap-southeast-1.amazonaws.com/category/coverVideo/metaverse-on-mobox-io-momoverse.mp4",
     },
