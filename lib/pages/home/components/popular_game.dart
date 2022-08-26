@@ -41,8 +41,8 @@ class PopularGames extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: getProportionateScreenWidth(20),
+                const SizedBox(
+                  width: 20,
                 ),
               ],
             ),

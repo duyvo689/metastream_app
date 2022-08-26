@@ -39,7 +39,7 @@ class GameCard extends StatelessWidget {
             ),
           ),
           Container(
-            width: getProportionateScreenWidth(isFullCard ? 238 : 150),
+            width: getProportionateScreenWidth(150),
             padding: const EdgeInsets.only(top: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

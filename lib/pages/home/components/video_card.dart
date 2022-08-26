@@ -10,71 +10,78 @@ class VideoCard extends StatelessWidget {
   const VideoCard({
     Key? key,
     required this.videosItem,
-    this.isFullCard = false,
     required this.press,
   }) : super(key: key);
 
   final VideosItem videosItem;
-  final bool isFullCard;
   final GestureTapCallback press;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: getProportionateScreenWidth(300),
+      width: getProportionateScreenWidth(470),
       child: Column(
         children: [
+          const SizedBox(
+            height: 26,
+          ),
           AspectRatio(
-            aspectRatio: isFullCard ? 1.09 : 1.7,
+            aspectRatio: 2.01,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
+                  topLeft: Radius.circular(4),
+                  topRight: Radius.circular(4),
+                  bottomLeft: Radius.circular(4),
+                  bottomRight: Radius.circular(4),
                 ),
                 image: DecorationImage(
-                    image: AssetImage(videosItem.thumbnail), fit: BoxFit.cover),
+                  image: AssetImage(videosItem.thumbnail),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
           Container(
-            width: getProportionateScreenWidth(isFullCard ? 238 : 150),
-            padding: const EdgeInsets.only(top: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            margin: const EdgeInsets.only(top: 10),
+            child: Row(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(AppAssets.imgavt1),
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          videosItem.nameVideo,
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                Container(
+                  child: CircleAvatar(
+                    radius: 24,
+                    backgroundImage: AssetImage(videosItem.avatar),
+                  ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        videosItem.nameVideo,
+                        textAlign: TextAlign.start,
+                        maxLines: 2,
+                        style: const TextStyle(
+                          overflow: TextOverflow.ellipsis,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
-                        Text(
-                          videosItem.nameVideo,
-                          textAlign: TextAlign.start,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            overflow: TextOverflow.ellipsis,
-                            color: AppColors.textSecondColor,
-                          ),
+                      ),
+                      Text(
+                        videosItem.nameVideo,
+                        textAlign: TextAlign.start,
+                        maxLines: 1,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          overflow: TextOverflow.ellipsis,
+                          color: AppColors.textSecondColor,
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

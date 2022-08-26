@@ -23,17 +23,13 @@ class PopularVideos extends StatelessWidget {
             children: [
               ...List.generate(
                 videosItem.length,
-                (index) => Padding(
-                  padding:
-                      EdgeInsets.only(right: getProportionateScreenWidth(20)),
-                  child: VideoCard(
-                    videosItem: videosItem[index],
-                    press: () {},
-                  ),
+                (index) => VideoCard(
+                  videosItem: videosItem[index],
+                  press: () {},
                 ),
               ),
-              SizedBox(
-                width: getProportionateScreenWidth(20),
+              const SizedBox(
+                width: 20,
               ),
             ],
           ),
