@@ -14,7 +14,14 @@ class PopularVideos extends StatelessWidget {
     return Column(
       children: [
         const SizedBox(
-          height: 20,
+          height: 30,
+        ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: SectionTitle(
+            title_1: "Videos",
+            title_2: "we think you’ll like",
+          ),
         ),
         SingleChildScrollView(
           clipBehavior: Clip.none,

@@ -5,10 +5,10 @@ import 'package:app_metastream/models/video.dart';
 
 import '../../../values/app_size.dart';
 import './carousel_slider.dart';
+import 'popular_short.dart';
 import 'popular_video.dart';
 import 'categories.dart';
 import 'popular_game.dart';
-import 'video_card.dart';
 
 class Body2 extends StatelessWidget {
   const Body2({Key? key}) : super(key: key);
@@ -49,6 +49,7 @@ class Body2 extends StatelessWidget {
               child: CarouselWithIndicatorDemo(),
             ),
             Categories(),
+            const PopularShorts(),
             const PopularVideos(),
             const PopularGames()
           ],

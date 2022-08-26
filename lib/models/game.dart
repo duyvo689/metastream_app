@@ -17,7 +17,7 @@ List<TravelSpot> travelSpots = [
     name: "Mountains  Mountains Mountains",
     tag: "Red",
     follower: 12093,
-    image: "assets/images/game1.png",
+    image: "assets/images/avt1.png",
   ),
   TravelSpot(
     name: "Megical World",

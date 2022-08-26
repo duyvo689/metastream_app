@@ -91,35 +91,3 @@ class VideoCard extends StatelessWidget {
     );
   }
 }
-
-class Travelers extends StatelessWidget {
-  const Travelers({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    int totalUser = 0;
-    return SizedBox(
-      width: double.infinity,
-      height: getProportionateScreenWidth(30),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Positioned(
-            left: (22 * totalUser).toDouble(),
-            child: Container(
-              height: getProportionateScreenWidth(28),
-              width: getProportionateScreenWidth(28),
-              decoration: const BoxDecoration(
-                color: Colors.red,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.add, color: Colors.white),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}

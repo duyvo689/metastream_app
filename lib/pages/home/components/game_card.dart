@@ -20,11 +20,11 @@ class GameCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: getProportionateScreenWidth(isFullCard ? 158 : 150),
+      width: getProportionateScreenWidth(150),
       child: Column(
         children: [
           AspectRatio(
-            aspectRatio: isFullCard ? 1.09 : 0.8,
+            aspectRatio: 0.8,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(

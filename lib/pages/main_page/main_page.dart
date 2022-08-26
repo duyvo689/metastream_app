@@ -67,7 +67,7 @@ class _MainPageState extends State<MainPage> {
           Text("index 2"),
         ],
         items: _navBarsItems(),
-        navBarStyle: NavBarStyle.style9,
+        navBarStyle: NavBarStyle.style12,
         backgroundColor: AppColors.bgrBottomBarColor,
       ),
     );
