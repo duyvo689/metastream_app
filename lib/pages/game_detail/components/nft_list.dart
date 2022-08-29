@@ -13,6 +13,7 @@ class NFTList extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: GridView.builder(
+          padding: const EdgeInsets.only(top: 10),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisSpacing: 20,
             crossAxisCount: 2,

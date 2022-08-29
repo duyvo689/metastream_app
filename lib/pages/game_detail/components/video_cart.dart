@@ -22,7 +22,7 @@ class VideoCard extends StatelessWidget {
       children: [
         Row(
           children: [
-            Container(
+            SizedBox(
               width: 180,
               child: AspectRatio(
                 aspectRatio: 2.01,
@@ -42,55 +42,57 @@ class VideoCard extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.only(left: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    videosItem.nameVideo,
-                    textAlign: TextAlign.start,
-                    maxLines: 2,
-                    style: const TextStyle(
-                      overflow: TextOverflow.ellipsis,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text(
-                    videosItem.nameVideo,
-                    textAlign: TextAlign.start,
-                    maxLines: 1,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      overflow: TextOverflow.ellipsis,
-                      color: AppColors.textSecondColor,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.remove_red_eye_rounded,
-                        size: 16,
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      videosItem.nameVideo,
+                      textAlign: TextAlign.start,
+                      maxLines: 2,
+                      style: const TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
                       ),
-                      const SizedBox(
-                        width: 10,
+                    ),
+                    Text(
+                      videosItem.nameVideo,
+                      textAlign: TextAlign.start,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        overflow: TextOverflow.ellipsis,
+                        color: AppColors.textSecondColor,
                       ),
-                      Text(
-                        videosItem.views.toString(),
-                        textAlign: TextAlign.start,
-                        maxLines: 1,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                          overflow: TextOverflow.ellipsis,
-                          color: AppColors.textSecondColor,
+                    ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.remove_red_eye_rounded,
+                          size: 16,
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          videosItem.views.toString(),
+                          textAlign: TextAlign.start,
+                          maxLines: 1,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            overflow: TextOverflow.ellipsis,
+                            color: AppColors.textSecondColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             )
           ],
