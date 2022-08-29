@@ -3,6 +3,7 @@ import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'categories.dart';
 import 'header_game_detail.dart';
+import 'nft_list.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -25,14 +26,18 @@ class Body extends StatelessWidget {
                 //   right: 20,
                 // ),
                 decoration: const BoxDecoration(
-                  color: AppColors.bgrCardColor,
+                  color: AppColors.bgrCardColor, // video
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
                   ),
                 ),
                 child: Column(
-                  children: <Widget>[Categories(), const VideoList()],
+                  children: <Widget>[
+                    Categories(),
+                    const VideoList(),
+                    // const NFTList(),
+                  ],
                 ),
               ),
             ],

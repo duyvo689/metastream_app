@@ -31,7 +31,7 @@ class _CategoriesState extends State<Categories> {
               left: 20,
               right: 20,
             ),
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
               border: index == selectedIndex
                   ? Border.all(color: AppColors.primaryColor)
@@ -41,6 +41,10 @@ class _CategoriesState extends State<Categories> {
             child: Text(
               categories[index],
               style: TextStyle(
+                  fontWeight: selectedIndex == index
+                      ? FontWeight.w600
+                      : FontWeight.w500,
+                  fontSize: 18,
                   color: index == selectedIndex
                       ? AppColors.primaryColor
                       : Colors.white),
