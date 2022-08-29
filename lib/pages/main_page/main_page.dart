@@ -5,7 +5,9 @@ import 'package:app_metastream/values/app_colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../home/components/body.dart';
-import '../home/components/body2.dart';
+import '../home/components/body.dart';
+import '../home/home_page.dart';
+import '../watch/components/default_player.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -22,47 +24,12 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.bgrMainColor,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'Discover',
-                  style: TextStyle(
-                      color: AppColors.textPrimaryColor,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Find your favourite streamer.',
-                  style:
-                      TextStyle(color: AppColors.textSecondColor, fontSize: 14),
-                ),
-              ],
-            ),
-          ],
-        ),
-        actions: <Widget>[
-          RawMaterialButton(
-            onPressed: () {},
-            child: Image.asset(
-              AppAssets.icPhantom,
-              height: 40,
-              width: 40,
-            ),
-          ),
-        ],
-      ),
       body: PersistentTabView(
         context,
         controller: _controller,
-        screens: const [
-          Body2(),
-          Text("index 2"),
+        screens: [
+          MyHomePage(),
+          DefaultPlayer(),
           Text("index 2"),
           Text("index 2"),
         ],

@@ -1,11 +1,11 @@
-import 'package:app_metastream/pages/video/data.dart';
+import 'package:app_metastream/pages/watch/components/data.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:video_player/video_player.dart';
 
 class DefaultPlayer extends StatefulWidget {
-  DefaultPlayer({Key? key}) : super(key: key);
+  const DefaultPlayer({Key? key}) : super(key: key);
 
   @override
   _DefaultPlayerState createState() => _DefaultPlayerState();
@@ -44,7 +44,7 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
   //     print('Failed to get subtitles for ${e}');
   //     return SubRipCaptionFile('');
   //   }
-  //}
+  // }
 
   @override
   void dispose() {
@@ -66,11 +66,11 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
       child: Container(
         child: FlickVideoPlayer(
           flickManager: flickManager,
-          flickVideoWithControls: FlickVideoWithControls(
+          flickVideoWithControls: const FlickVideoWithControls(
             closedCaptionTextStyle: TextStyle(fontSize: 8),
             controls: FlickPortraitControls(),
           ),
-          flickVideoWithControlsFullscreen: FlickVideoWithControls(
+          flickVideoWithControlsFullscreen: const FlickVideoWithControls(
             controls: FlickLandscapeControls(),
           ),
         ),

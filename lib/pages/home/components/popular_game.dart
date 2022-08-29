@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../models/game.dart';
 import '../../../values/app_size.dart';
+import '../../game_detail/game_detail.dart';
 import 'game_card.dart';
 import 'section_title.dart';
 
@@ -37,7 +38,12 @@ class PopularGames extends StatelessWidget {
                         EdgeInsets.only(right: getProportionateScreenWidth(20)),
                     child: GameCard(
                       travelSport: travelSpots[index],
-                      press: () {},
+                      press: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => GameDetail(
+                                    travelSport: travelSpots[index],
+                                  ))),
                     ),
                   ),
                 ),
