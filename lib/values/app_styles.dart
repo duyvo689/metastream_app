@@ -10,7 +10,7 @@ class AppStyles {
   static const TextStyle TitleHome1 = TextStyle(
       fontFamily: AppFonts.muli,
       fontSize: 20,
-      color: AppColors.thirdColor,
+      color: AppColors.primaryColor,
       fontWeight: FontWeight.bold);
 
   static const TextStyle TitleHome2 = TextStyle(

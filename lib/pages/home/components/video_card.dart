@@ -68,17 +68,18 @@ class VideoCard extends StatelessWidget {
                             maxLines: 2,
                             style: const TextStyle(
                               overflow: TextOverflow.ellipsis,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
                             ),
                           ),
+                          const SizedBox(height: 6),
                           Text(
                             videosItem.nameVideo,
                             textAlign: TextAlign.start,
                             maxLines: 1,
                             style: const TextStyle(
                               fontWeight: FontWeight.w500,
-                              fontSize: 16,
+                              fontSize: 14,
                               overflow: TextOverflow.ellipsis,
                               color: AppColors.textSecondColor,
                             ),

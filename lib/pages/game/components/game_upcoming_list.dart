@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../models/game.dart';
 import 'game_card.dart';
 
-class GameList extends StatelessWidget {
-  const GameList({
+class GameUpcomingList extends StatelessWidget {
+  const GameUpcomingList({
     Key? key,
   }) : super(key: key);
 

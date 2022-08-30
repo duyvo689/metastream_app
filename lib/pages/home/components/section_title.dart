@@ -19,7 +19,7 @@ class SectionTitle extends StatelessWidget {
             text: title_1,
             style: AppStyles.TitleHome1,
           ),
-          TextSpan(text: ' '),
+          const TextSpan(text: ' '),
           TextSpan(
             text: title_2,
           ),
