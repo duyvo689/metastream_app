@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../models/nft.dart';
+import '../../nft_detail/nft_detail.dart';
 import 'nft_cart.dart';
 
 class NFTList extends StatelessWidget {
@@ -23,7 +24,6 @@ class NFTList extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return NFTCard(
               nftList: nftList[index],
-              press: () {},
               //  product: products[index],
               //           press: () => Navigator.push(
               //               context,
@@ -33,6 +33,12 @@ class NFTList extends StatelessWidget {
               //                 ),
               //               )),
               //         )),
+              press: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NFTDetail(
+                            nftList: nftList[index],
+                          ))),
             );
           },
         ),

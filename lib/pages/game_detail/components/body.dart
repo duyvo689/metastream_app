@@ -33,10 +33,10 @@ class Body extends StatelessWidget {
                   ),
                 ),
                 child: Column(
-                  children: <Widget>[
+                  children: const <Widget>[
                     Categories(),
-                    // const VideoList(),
-                    const NFTList(),
+                    VideoList(),
+                    NFTList(),
                   ],
                 ),
               ),

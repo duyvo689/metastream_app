@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 // We need statefull widget because we are gonna change some state on our category
 class Categories extends StatefulWidget {
+  const Categories({Key? key}) : super(key: key);
+
   @override
   _CategoriesState createState() => _CategoriesState();
 }
@@ -14,7 +16,7 @@ class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 30),
+      margin: const EdgeInsets.symmetric(vertical: 30),
       height: 30,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

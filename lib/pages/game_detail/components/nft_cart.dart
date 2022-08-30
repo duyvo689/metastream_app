@@ -64,7 +64,7 @@ class NFTCard extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                       overflow: TextOverflow.ellipsis,
                       fontSize: 16,
-                      color: AppColors.thirdColor,
+                      color: AppColors.primaryColor,
                     ),
                   ),
                   const SizedBox(height: 10),

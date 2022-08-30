@@ -47,10 +47,3 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
-
-//  body: SingleChildScrollView(
-//         scrollDirection: Axis.vertical,
-//         child: (Column(
-//           children: const [Body()],
-//         )),
-//       ),
