@@ -59,7 +59,7 @@ class GameCard extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.fiber_manual_record,
-                        color: AppColors.thirdColor,
+                        color: AppColors.primaryColor,
                         size: 13,
                       ),
                       Text(
@@ -67,53 +67,17 @@ class GameCard extends StatelessWidget {
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 16,
+                          fontSize: 14,
                           color: AppColors.textSecondColor,
                         ),
                       ),
                     ],
                   ),
-                  Chip(
-                    backgroundColor: AppColors.bgrChipColor,
-                    label: Text(travelSport.tag),
-                  )
                 ],
               ),
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class Travelers extends StatelessWidget {
-  const Travelers({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    int totalUser = 0;
-    return SizedBox(
-      width: double.infinity,
-      height: getProportionateScreenWidth(30),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Positioned(
-            left: (22 * totalUser).toDouble(),
-            child: Container(
-              height: getProportionateScreenWidth(28),
-              width: getProportionateScreenWidth(28),
-              decoration: const BoxDecoration(
-                color: Colors.red,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(Icons.add, color: Colors.white),
-            ),
-          )
-        ],
       ),
     );
   }

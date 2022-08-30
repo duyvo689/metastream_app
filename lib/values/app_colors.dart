@@ -13,6 +13,7 @@ class AppColors {
   static const Color bgrChipColor = Color(0xFF20212B);
   static const Color bgrCardColor = Color(0xFF212121);
   static const Color bgrBottomBarColor = Color(0xFF141414);
+  static const Color bgrButtonColor = Color(0xFF171717);
 
 //====old//
   static const Color borderGrayColor = Color(0xFFFF1456);

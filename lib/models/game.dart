@@ -14,45 +14,39 @@ class TravelSpot {
 
 List<TravelSpot> travelSpots = [
   TravelSpot(
-    name: "Mountains  Mountains Mountains",
+    name: "Tiny Colony",
     tag: "Red",
     follower: 12093,
-    image: "assets/images/avt1.png",
+    image: "assets/images/game1.jpeg",
   ),
   TravelSpot(
-    name: "Megical World",
+    name: "ev.io",
     tag: "black",
     follower: 123243,
     image: "assets/images/game2.png",
   ),
   TravelSpot(
-    name: "Megical World",
+    name: "Legends of Aria",
     tag: "black",
     follower: 3214321,
-    image: "assets/images/game3.png",
+    image: "assets/images/game3.jpeg",
   ),
   TravelSpot(
-    name: "Megical World",
+    name: "Milton on Mars",
     tag: "black",
     follower: 123243,
-    image: "assets/images/game2.png",
+    image: "assets/images/game4.jpeg",
   ),
   TravelSpot(
-    name: "Red Mountains",
+    name: "Neoland",
     tag: "Red",
     follower: 12093,
-    image: "assets/images/game1.png",
+    image: "assets/images/game5.jpeg",
   ),
   TravelSpot(
-    name: "Megical World",
+    name: "Psyker",
     tag: "black",
     follower: 123243,
-    image: "assets/images/game2.png",
-  ),
-  TravelSpot(
-    name: "Megical World",
-    tag: "black",
-    follower: 3214321,
-    image: "assets/images/game3.png",
+    image: "assets/images/game6.jpeg",
   ),
 ];

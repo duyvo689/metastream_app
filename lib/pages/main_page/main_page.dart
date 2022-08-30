@@ -1,13 +1,9 @@
-import 'package:app_metastream/values/app_assets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-
-import '../home/components/body.dart';
-import '../home/components/body.dart';
+import '../game/game_page.dart';
 import '../home/home_page.dart';
-import '../watch/components/default_player.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -29,7 +25,7 @@ class _MainPageState extends State<MainPage> {
         controller: _controller,
         screens: [
           MyHomePage(),
-          DefaultPlayer(),
+          GamePage(),
           Text("index 2"),
           Text("index 2"),
         ],

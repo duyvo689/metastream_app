@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../models/video_full.dart';
 import '../../../values/app_size.dart';
+import '../../video_detail/watch_page.dart';
 import 'section_title.dart';
 import 'video_card.dart';
 
@@ -32,7 +33,12 @@ class PopularVideos extends StatelessWidget {
                 videosItem.length,
                 (index) => VideoCard(
                   videosItem: videosItem[index],
-                  press: () {},
+                  press: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => StreamPage(
+                                videosItem: videosItem[index],
+                              ))),
                 ),
               ),
               const SizedBox(

@@ -1,4 +1,4 @@
-import 'package:app_metastream/pages/watch/components/data.dart';
+import 'package:app_metastream/pages/video_detail/components/data.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';

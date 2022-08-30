@@ -16,7 +16,8 @@ class Body extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(30),
+          padding:
+              const EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 20),
           child: AspectRatio(
             aspectRatio: 1,
             child: Container(

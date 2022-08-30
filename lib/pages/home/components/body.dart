@@ -1,4 +1,3 @@
-import 'package:app_metastream/values/app_assets.dart';
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:app_metastream/models/video.dart';
@@ -51,7 +50,10 @@ class Body extends StatelessWidget {
             Categories(),
             const PopularShorts(),
             const PopularVideos(),
-            const PopularGames()
+            const PopularGames(),
+            const SizedBox(
+              height: 30,
+            ),
           ],
         ),
       ),
