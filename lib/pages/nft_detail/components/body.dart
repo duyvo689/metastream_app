@@ -1,3 +1,4 @@
+import 'package:app_metastream/pages/nft_detail/components/table_nft.dart';
 import 'package:flutter/material.dart';
 
 import '../../../values/app_colors.dart';
@@ -168,6 +169,8 @@ class Body extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         const ExpansionCart(),
+        const SizedBox(height: 20),
+        const TableNFT(),
         const SizedBox(height: 20),
       ],
     ));
