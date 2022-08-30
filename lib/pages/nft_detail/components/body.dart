@@ -166,7 +166,9 @@ class Body extends StatelessWidget {
             ],
           ),
         ),
-        const ExpansionCart()
+        const SizedBox(height: 20),
+        const ExpansionCart(),
+        const SizedBox(height: 20),
       ],
     ));
   }

@@ -25,9 +25,16 @@ class AppStyles {
       color: AppColors.textPrimaryColor,
       fontWeight: FontWeight.w400);
 
-  static const TextStyle desCard = TextStyle(
+//DETAIL NFT
+  static const TextStyle details_cart_left_nft_style = TextStyle(
       fontFamily: AppFonts.muli,
+      fontWeight: FontWeight.w500,
       fontSize: 14,
-      color: AppColors.desColor,
-      fontWeight: FontWeight.w400);
+      color: AppColors.textPrimaryColor);
+
+  static const TextStyle details_cart_right_nft_style = TextStyle(
+      fontFamily: AppFonts.muli,
+      fontWeight: FontWeight.w400,
+      fontSize: 14,
+      color: AppColors.textSecondColor);
 }

@@ -9,4 +9,7 @@ class AppAssets {
 
   // Icon
   static final String icPhantom = iconPath + "ic_phantom.png";
+  static final String icSol = iconPath + "sol.png";
+  static final String icEth = iconPath + "eth.jpeg";
+  static final String icBsc = iconPath + "bsc.jpeg";
 }
