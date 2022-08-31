@@ -7,12 +7,12 @@ import '../../../values/app_size.dart';
 class GameCard extends StatelessWidget {
   const GameCard({
     Key? key,
-    required this.travelSport,
+    required this.game,
     this.isFullCard = false,
     required this.press,
   }) : super(key: key);
 
-  final TravelSpot travelSport;
+  final Game game;
   final bool isFullCard;
   final GestureTapCallback press;
 
@@ -45,8 +45,7 @@ class GameCard extends StatelessWidget {
                       bottomRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                        image: AssetImage(travelSport.image),
-                        fit: BoxFit.cover),
+                        image: AssetImage(game.image), fit: BoxFit.cover),
                   ),
                 ),
               ),
@@ -57,7 +56,7 @@ class GameCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      travelSport.name,
+                      game.name,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,

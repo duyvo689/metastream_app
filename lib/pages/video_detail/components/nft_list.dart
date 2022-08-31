@@ -17,16 +17,16 @@ class NFTList extends StatelessWidget {
       child: Row(
         children: [
           ...List.generate(
-            nftList.length,
+            nfts.length,
             (index) => Padding(
               padding: EdgeInsets.only(right: getProportionateScreenWidth(10)),
               child: NFTCard(
-                nftList: nftList[index],
+                nft: nfts[index],
                 press: () => Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => NFTDetail(
-                              nftList: nftList[index],
+                              nft: nfts[index],
                             ))),
               ),
             ),

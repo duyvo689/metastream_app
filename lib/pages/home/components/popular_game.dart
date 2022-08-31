@@ -32,17 +32,17 @@ class PopularGames extends StatelessWidget {
             child: Row(
               children: [
                 ...List.generate(
-                  travelSpots.length,
+                  games.length,
                   (index) => Padding(
                     padding:
                         EdgeInsets.only(right: getProportionateScreenWidth(20)),
                     child: GameCard(
-                      travelSport: travelSpots[index],
+                      game: games[index],
                       press: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => GameDetail(
-                                    travelSport: travelSpots[index],
+                                    game: games[index],
                                   ))),
                     ),
                   ),

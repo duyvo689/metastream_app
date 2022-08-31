@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:app_metastream/values/app_colors.dart';
+import '../../../models/game.dart';
 import '../../../values/app_size.dart';
 
 class HeaderGameDetail extends StatelessWidget {
-  const HeaderGameDetail({
-    Key? key,
-  }) : super(key: key);
-
+  const HeaderGameDetail({Key? key, required this.game}) : super(key: key);
+  final Game game;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,14 +14,24 @@ class HeaderGameDetail extends StatelessWidget {
           AspectRatio(
             aspectRatio: 1,
             child: Container(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(
-                      'https://sm.ign.com/ign_in/cover/a/avatar-rec/avatar-reckoning_36ct.jpg'),
+                  // NetworkImage
+                  image: AssetImage(game.image),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.topCenter,
+                    colors: [
+                  Colors.black.withOpacity(1),
+                  Colors.black.withOpacity(0.01)
+                ])),
           ),
           Positioned(
             top: 40,
@@ -34,9 +43,9 @@ class HeaderGameDetail extends StatelessWidget {
             ),
           ),
           Positioned(
+            top: getProportionateScreenHeight(220),
             left: 0,
             right: 0,
-            bottom: getProportionateScreenHeight(90),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -45,12 +54,12 @@ class HeaderGameDetail extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Teamfight Tactics",
+                      Text(
+                        game.name,
                         textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 24,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 26,
                           overflow: TextOverflow.ellipsis,
                           color: AppColors.textPrimaryColor,
                         ),

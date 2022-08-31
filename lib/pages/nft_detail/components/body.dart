@@ -1,13 +1,15 @@
 import 'package:app_metastream/components/table_nft.dart';
 import 'package:flutter/material.dart';
 
+import '../../../models/nft.dart';
 import '../../../values/app_colors.dart';
 import '../../../values/app_size.dart';
 import 'dropdown_price.dart';
 import 'expansion_cart.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({Key? key, required this.nft}) : super(key: key);
+  final NFT nft;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -21,55 +23,43 @@ class Body extends StatelessWidget {
           child: AspectRatio(
             aspectRatio: 1,
             child: Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(6),
                   topRight: Radius.circular(6),
                   bottomLeft: Radius.circular(6),
                   bottomRight: Radius.circular(6),
                 ),
                 image: DecorationImage(
-                  image: AssetImage('assets/images/nft1.png'),
+                  image: AssetImage(nft.image),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
         ),
-        const Text(
-          'Double Jump #567',
+        Text(
+          nft.name,
           textAlign: TextAlign.start,
           maxLines: 2,
-          style: TextStyle(
+          style: const TextStyle(
             overflow: TextOverflow.ellipsis,
             fontWeight: FontWeight.w500,
             fontSize: 26,
           ),
         ),
-        Row(
-          children: [
-            const Text(
-              'Double Jump',
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                  color: AppColors.primaryColor),
-            ),
-            TextButton.icon(
-              onPressed: () {
-                // Respond to button press
-              },
-              icon: const Icon(
-                Icons.share,
-                size: 16,
-                color: AppColors.primaryColor,
-              ),
-              label: const Text("Share",
-                  style: TextStyle(color: AppColors.primaryColor)),
-            )
-          ],
+        const SizedBox(
+          height: 8,
         ),
+        Text(
+          nft.name,
+          textAlign: TextAlign.start,
+          style: const TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 14,
+              color: AppColors.primaryColor),
+        ),
+        const SizedBox(height: 20),
         Container(
           padding: EdgeInsets.all(getProportionateScreenWidth(20)),
           decoration: BoxDecoration(
@@ -88,17 +78,17 @@ class Body extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Row(
-                children: const [
-                  Icon(
+                children: [
+                  const Icon(
                     Icons.local_offer,
                     color: AppColors.primaryColor,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 8,
                   ),
                   Text(
-                    '3 sol',
-                    style: TextStyle(
+                    '${nft.price} sol',
+                    style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 24,
                         color: AppColors.textPrimaryColor),

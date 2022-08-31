@@ -5,8 +5,8 @@ import '../../values/app_colors.dart';
 import 'components/body.dart';
 
 class NFTDetail extends StatelessWidget {
-  const NFTDetail({Key? key, required NFTlist nftList}) : super(key: key);
-
+  const NFTDetail({Key? key, required this.nft}) : super(key: key);
+  final NFT nft;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class NFTDetail extends StatelessWidget {
           ),
         ],
       ),
-      body: const Body(),
+      body: Body(nft: nft),
     );
   }
 }

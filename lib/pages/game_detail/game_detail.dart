@@ -5,14 +5,14 @@ import './components/body.dart';
 import '../../models/game.dart';
 
 class GameDetail extends StatelessWidget {
-  const GameDetail({Key? key, required TravelSpot travelSport})
-      : super(key: key);
+  const GameDetail({Key? key, required this.game}) : super(key: key);
+  final Game game;
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.bgrMainColor,
-      body: Body(),
+      body: Body(game: game),
     );
   }
 }

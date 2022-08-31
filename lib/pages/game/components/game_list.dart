@@ -22,15 +22,15 @@ class GameList extends StatelessWidget {
           crossAxisCount: 2,
           childAspectRatio: 0.66,
         ),
-        itemCount: travelSpots.length,
+        itemCount: games.length,
         itemBuilder: (BuildContext context, int index) {
           return GameCard(
-            travelSport: travelSpots[index],
+            game: games[index],
             press: () => Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => GameDetail(
-                          travelSport: travelSpots[index],
+                          game: games[index],
                         ))),
           );
         },

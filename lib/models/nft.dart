@@ -1,7 +1,7 @@
-class NFTlist {
+class NFT {
   final String name, image, chain, price;
 
-  NFTlist({
+  NFT({
     required this.name,
     required this.image,
     required this.chain,
@@ -9,41 +9,29 @@ class NFTlist {
   });
 }
 
-List<NFTlist> nftList = [
-  NFTlist(
-    name: "Funny Bird NFT",
-    chain: "Soulofox",
-    price: "2.4",
-    image: "assets/images/nft1.png",
-  ),
-  NFTlist(
-    name: "Funny Bird NFT",
+List<NFT> nfts = [
+  NFT(
+    name: "Primate #4160",
     chain: "Solana",
-    price: "4.1",
-    image: "assets/images/nft3.png",
-  ),
-  NFTlist(
-    name: "Funny Bird NFT",
-    chain: "Soulofox",
-    price: "2.4",
+    price: "0.6",
     image: "assets/images/nft1.png",
   ),
-  NFTlist(
-    name: "Megical World",
-    chain: "Ethereum",
-    price: "4.1",
-    image: "assets/images/nft3.png",
-  ),
-  NFTlist(
-    name: "Funny Bird NFT",
+  NFT(
+    name: "Smetanas #239",
     chain: "Solana",
-    price: "4.1",
-    image: "assets/images/nft3.png",
+    price: "0.4",
+    image: "assets/images/nft2.webp",
   ),
-  NFTlist(
-    name: "Funny Bird NFT",
-    chain: "Soulofox",
-    price: "2.4",
-    image: "assets/images/nft1.png",
+  NFT(
+    name: "DeMobs #51",
+    chain: "Solana",
+    price: "0.3",
+    image: "assets/images/nft3.webp",
+  ),
+  NFT(
+    name: "infected Mob #1151",
+    chain: "Solana",
+    price: "0.9",
+    image: "assets/images/nft4.png",
   ),
 ];

@@ -21,15 +21,15 @@ class NFTList extends StatelessWidget {
             crossAxisCount: 2,
             childAspectRatio: 0.63,
           ),
-          itemCount: nftList.length,
+          itemCount: nfts.length,
           itemBuilder: (BuildContext context, int index) {
             return NFTCard(
-              nftList: nftList[index],
+              nft: nfts[index],
               press: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => NFTDetail(
-                            nftList: nftList[index],
+                            nft: nfts[index],
                           ))),
             );
           },

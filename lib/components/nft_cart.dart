@@ -8,12 +8,12 @@ import '../values/app_size.dart';
 class NFTCard extends StatelessWidget {
   const NFTCard({
     Key? key,
-    required this.nftList,
+    required this.nft,
     this.isFullCard = false,
     required this.press,
   }) : super(key: key);
 
-  final NFTlist nftList;
+  final NFT nft;
   final bool isFullCard;
   final GestureTapCallback press;
 
@@ -46,7 +46,7 @@ class NFTCard extends StatelessWidget {
                       bottomRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                        image: AssetImage(nftList.image), fit: BoxFit.cover),
+                        image: AssetImage(nft.image), fit: BoxFit.cover),
                   ),
                 ),
               ),
@@ -58,7 +58,7 @@ class NFTCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      nftList.name,
+                      nft.name,
                       textAlign: TextAlign.start,
                       maxLines: 1,
                       style: const TextStyle(
@@ -69,7 +69,7 @@ class NFTCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      nftList.chain,
+                      nft.chain,
                       textAlign: TextAlign.start,
                       maxLines: 1,
                       style: const TextStyle(
@@ -89,7 +89,7 @@ class NFTCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          nftList.price,
+                          nft.price,
                           textAlign: TextAlign.start,
                           maxLines: 1,
                           style: const TextStyle(
