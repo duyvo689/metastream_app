@@ -25,9 +25,6 @@ class VideoCard extends StatelessWidget {
         child: GestureDetector(
           child: Column(
             children: [
-              const SizedBox(
-                height: 26,
-              ),
               AspectRatio(
                 aspectRatio: 2.01,
                 child: Container(
@@ -46,7 +43,7 @@ class VideoCard extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 15, left: 2, right: 2),
                 child: Row(
                   children: [
                     Container(
@@ -89,7 +86,10 @@ class VideoCard extends StatelessWidget {
                     ),
                   ],
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 30,
+              ),
             ],
           ),
         ),

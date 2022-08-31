@@ -92,7 +92,6 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicatorDemo> {
             items: imageSliders,
             carouselController: _controller,
             options: CarouselOptions(
-                height: 220,
                 autoPlay: true,
                 viewportFraction: 0.8,
                 enableInfiniteScroll: true,

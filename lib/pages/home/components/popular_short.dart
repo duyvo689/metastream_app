@@ -17,14 +17,14 @@ class PopularShorts extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 20,
+            height: 30,
           ),
           const SectionTitle(
             title_1: "Videos",
             title_2: "Short",
           ),
           const SizedBox(
-            height: 26,
+            height: 30,
           ),
           SingleChildScrollView(
             clipBehavior: Clip.none,

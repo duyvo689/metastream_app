@@ -1,4 +1,4 @@
-import 'package:app_metastream/pages/nft_detail/components/table_nft.dart';
+import 'package:app_metastream/components/table_nft.dart';
 import 'package:flutter/material.dart';
 
 import '../../../values/app_colors.dart';

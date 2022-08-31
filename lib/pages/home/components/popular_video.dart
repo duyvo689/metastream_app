@@ -24,6 +24,9 @@ class PopularVideos extends StatelessWidget {
             title_2: "we think you’ll like",
           ),
         ),
+        const SizedBox(
+          height: 30,
+        ),
         SingleChildScrollView(
           clipBehavior: Clip.none,
           scrollDirection: Axis.vertical,
@@ -40,9 +43,6 @@ class PopularVideos extends StatelessWidget {
                                 videosItem: videosItem[index],
                               ))),
                 ),
-              ),
-              const SizedBox(
-                width: 20,
               ),
             ],
           ),

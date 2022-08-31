@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:app_metastream/models/video.dart';
 
 import '../../../values/app_size.dart';
+import '../../game/components/game_list.dart';
 import './carousel_slider.dart';
 import 'popular_short.dart';
 import 'popular_video.dart';
@@ -17,7 +18,6 @@ class Body extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Container(
-        color: AppColors.bgrMainColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

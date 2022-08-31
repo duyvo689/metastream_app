@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../models/game.dart';
 import '../../../values/app_size.dart';
+import '../../game/components/game_card.dart';
 import '../../game_detail/game_detail.dart';
-import 'game_card.dart';
 import 'section_title.dart';
 
 class PopularGames extends StatelessWidget {
@@ -17,14 +17,14 @@ class PopularGames extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(
-            height: 20,
+            height: 30,
           ),
           const SectionTitle(
             title_1: "Games",
             title_2: "we think you’ll like",
           ),
           const SizedBox(
-            height: 26,
+            height: 30,
           ),
           SingleChildScrollView(
             clipBehavior: Clip.none,

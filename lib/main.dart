@@ -1,7 +1,5 @@
 import 'package:app_metastream/pages/main_page/main_page.dart';
 import 'package:flutter/material.dart';
-import './pages/home/home_page.dart';
-import 'values/app_colors.dart';
 
 void main() => runApp(const MyApp());
 

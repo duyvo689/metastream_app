@@ -25,7 +25,7 @@ class _MainPageState extends State<MainPage> {
         controller: _controller,
         screens: [
           MyHomePage(),
-          GamePage(),
+          const GamePage(),
           Text("index 2"),
           Text("index 2"),
         ],
