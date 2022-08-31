@@ -1,5 +1,6 @@
-import 'package:app_metastream/pages/main_page/main_page.dart';
 import 'package:flutter/material.dart';
+
+import 'pages/splash_page/splash_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.dark,
       ),
-      home: MainPage(),
+      home: SplashPage(),
     );
   }
 }

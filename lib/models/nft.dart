@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class NFTlist {
   final String name, image, chain, price;
 

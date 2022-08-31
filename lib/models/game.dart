@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class TravelSpot {
   final String name, image, tag;
   final int follower;

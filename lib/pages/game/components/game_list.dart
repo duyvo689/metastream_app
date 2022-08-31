@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../models/game.dart';
-import '../../../values/app_size.dart';
 import '../../game_detail/game_detail.dart';
 import 'game_card.dart';
 

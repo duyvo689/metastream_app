@@ -1,7 +1,5 @@
-import 'package:app_metastream/values/app_assets.dart';
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../models/short.dart';
 import '../../../values/app_size.dart';

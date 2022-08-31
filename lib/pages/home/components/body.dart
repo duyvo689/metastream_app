@@ -1,9 +1,7 @@
-import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:app_metastream/models/video.dart';
 
 import '../../../values/app_size.dart';
-import '../../game/components/game_list.dart';
 import './carousel_slider.dart';
 import 'popular_short.dart';
 import 'popular_video.dart';

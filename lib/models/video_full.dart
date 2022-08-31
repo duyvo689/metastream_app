@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class VideosItem {
   final String nameVideo, avatar, nameChannel, thumbnail;
   final int views;

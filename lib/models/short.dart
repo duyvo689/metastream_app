@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ShortItem {
   final String name, image, tag;
   final int views;
