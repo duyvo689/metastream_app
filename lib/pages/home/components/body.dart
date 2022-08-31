@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app_metastream/models/video.dart';
-
+import '../../../models/video.dart';
 import '../../../values/app_size.dart';
 import './carousel_slider.dart';
 import 'popular_short.dart';
@@ -30,9 +29,9 @@ class Body extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     ...List.generate(
-                      topTravelers.length,
+                      videos.length,
                       (index) => CircleVideoCard(
-                        video: topTravelers[index],
+                        video: videos[index],
                       ),
                     ),
                   ],
@@ -64,7 +63,6 @@ class CircleVideoCard extends StatelessWidget {
     required this.video,
     Key? key,
   }) : super(key: key);
-
   final Video video;
   @override
   Widget build(BuildContext context) {
@@ -73,7 +71,7 @@ class CircleVideoCard extends StatelessWidget {
         const Padding(padding: EdgeInsets.only(right: 20)),
         ClipOval(
           child: Image.asset(
-            video.image,
+            video.avatar,
             height: getProportionateScreenHeight(60),
             width: getProportionateScreenWidth(60),
             fit: BoxFit.cover,

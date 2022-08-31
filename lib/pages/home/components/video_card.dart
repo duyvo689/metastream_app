@@ -1,17 +1,17 @@
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/video_full.dart';
+import '../../../models/video.dart';
 import '../../../values/app_size.dart';
 
 class VideoCard extends StatelessWidget {
   const VideoCard({
     Key? key,
-    required this.videosItem,
+    required this.video,
     required this.press,
   }) : super(key: key);
 
-  final VideosItem videosItem;
+  final Video video;
   final GestureTapCallback press;
 
   @override
@@ -34,7 +34,7 @@ class VideoCard extends StatelessWidget {
                       bottomRight: Radius.circular(4),
                     ),
                     image: DecorationImage(
-                      image: AssetImage(videosItem.thumbnail),
+                      image: AssetImage(video.thumbnail),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -47,7 +47,7 @@ class VideoCard extends StatelessWidget {
                     Container(
                       child: CircleAvatar(
                         radius: 24,
-                        backgroundImage: AssetImage(videosItem.avatar),
+                        backgroundImage: AssetImage(video.avatar),
                       ),
                     ),
                     const SizedBox(
@@ -58,7 +58,7 @@ class VideoCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            videosItem.nameVideo,
+                            video.nameVideo,
                             textAlign: TextAlign.start,
                             maxLines: 2,
                             style: const TextStyle(
@@ -69,7 +69,7 @@ class VideoCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            videosItem.nameVideo,
+                            video.nameVideo,
                             textAlign: TextAlign.start,
                             maxLines: 1,
                             style: const TextStyle(

@@ -1,12 +1,12 @@
-import 'package:app_metastream/pages/video_detail/components/data.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:video_player/video_player.dart';
+import '../../../models/video.dart';
 
 class DefaultPlayer extends StatefulWidget {
-  const DefaultPlayer({Key? key}) : super(key: key);
-
+  const DefaultPlayer({Key? key, required this.video}) : super(key: key);
+  final Video video;
   @override
   _DefaultPlayerState createState() => _DefaultPlayerState();
 }
@@ -18,7 +18,7 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
     super.initState();
     flickManager = FlickManager(
       videoPlayerController: VideoPlayerController.network(
-        mockData["items"][0]["trailer_url"],
+        videos[2].playUrl,
         closedCaptionFile: _loadCaptions(),
       ),
     );

@@ -74,7 +74,6 @@ flutter:
     - assets/videos/
     - assets/fonts/
     - assets/icons/
-    - videos/IntroVideo.mp4
     - images/bumble_bee_captions.srt
 
   # An image asset can refer to one or more resolution-specific "variants", see

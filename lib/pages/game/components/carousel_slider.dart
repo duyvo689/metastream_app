@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import '../../../values/app_size.dart';
 
 final List<String> imgList = [
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+  'https://vcdn-sohoa.vnecdn.net/2021/08/02/axie-screen1-1536x960-5711-162-8512-4162-1627846443.png',
+  'https://gamek.mediacdn.vn/133514250583805952/2021/7/31/photo-1-16277436623992136072459.png',
+  'https://www.bravestars.com/uploads/anh-banner-down-size.png',
+  'https://media.yeah1.com/files/uploads/editors/59/2021/11/05/064eSI7Xkz5l4TkDsUy6Rq5UrLxLydNxTwlIIrSQ.jpg',
+  'https://lh4.googleusercontent.com/j2Az0tpcfFDGtrvN7zEepFR6B53AKk99CtIt2U92LGXRYAjvptcR_xESnr4QDfgvyfGZXQcC5qxX9I_62U5QeYTf004IMbrAALYK3uroMu93dworgip5zDmyeB-bhYA9DfgLdFf-HOGXUb5MOg'
 ];
 
 final List<Widget> imageSliders = imgList
@@ -43,7 +43,7 @@ final List<Widget> imageSliders = imgList
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: const [
                             Text(
-                              'Tales of Soulofox',
+                              'Metastream Nextwork',
                               style: TextStyle(
                                 color: AppColors.textPrimaryColor,
                                 fontSize: 24,
@@ -54,7 +54,7 @@ final List<Widget> imageSliders = imgList
                               height: 10,
                             ),
                             Text(
-                              'Tales of Soulofox takes your Foxian characters on a lore-driven adventure as you ',
+                              'The platform also features Gamefi elements since it allows users to engage to earn.',
                               style: TextStyle(
                                 color: AppColors.textSecondColor,
                                 fontSize: 14,

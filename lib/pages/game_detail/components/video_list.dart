@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../models/video_full.dart';
-import '../../../values/app_size.dart';
+import '../../../models/video.dart';
 import 'video_cart.dart';
 
 class VideoList extends StatelessWidget {
@@ -18,13 +17,13 @@ class VideoList extends StatelessWidget {
           child: ListView.builder(
               scrollDirection: Axis.vertical,
               padding: const EdgeInsets.all(8),
-              itemCount: videosItem.length,
+              itemCount: videos.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
                   alignment: Alignment.center,
                   child: Center(
                     child: VideoCard(
-                      videosItem: videosItem[index],
+                      video: videos[index],
                       press: () {},
                     ),
                   ),

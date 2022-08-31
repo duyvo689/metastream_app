@@ -1,19 +1,16 @@
-import 'package:app_metastream/values/app_assets.dart';
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import '../../../models/video_full.dart';
-import '../../../values/app_size.dart';
+import '../../../models/video.dart';
 
 class VideoCard extends StatelessWidget {
   const VideoCard({
     Key? key,
-    required this.videosItem,
+    required this.video,
     required this.press,
   }) : super(key: key);
 
-  final VideosItem videosItem;
+  final Video video;
   final GestureTapCallback press;
 
   @override
@@ -35,7 +32,7 @@ class VideoCard extends StatelessWidget {
                       bottomRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                      image: AssetImage(videosItem.thumbnail),
+                      image: AssetImage(video.thumbnail),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -49,7 +46,7 @@ class VideoCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      videosItem.nameVideo,
+                      video.nameVideo,
                       textAlign: TextAlign.start,
                       maxLines: 2,
                       style: const TextStyle(
@@ -59,7 +56,7 @@ class VideoCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      videosItem.nameVideo,
+                      video.nameVideo,
                       textAlign: TextAlign.start,
                       maxLines: 1,
                       style: const TextStyle(
@@ -79,7 +76,7 @@ class VideoCard extends StatelessWidget {
                           width: 10,
                         ),
                         Text(
-                          videosItem.views.toString(),
+                          video.views.toString(),
                           textAlign: TextAlign.start,
                           maxLines: 1,
                           style: const TextStyle(

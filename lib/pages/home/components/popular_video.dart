@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../models/video_full.dart';
-import '../../../values/app_size.dart';
-import '../../video_detail/watch_page.dart';
+import '../../../models/video.dart';
+import '../../video_detail/video_page.dart';
 import 'section_title.dart';
 import 'video_card.dart';
 
@@ -33,14 +32,14 @@ class PopularVideos extends StatelessWidget {
           child: Column(
             children: [
               ...List.generate(
-                videosItem.length,
+                videos.length,
                 (index) => VideoCard(
-                  videosItem: videosItem[index],
+                  video: videos[index],
                   press: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => StreamPage(
-                                videosItem: videosItem[index],
+                          builder: (context) => VideoPage(
+                                video: videos[index],
                               ))),
                 ),
               ),

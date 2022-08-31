@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-
+import '../../../models/video.dart';
 import '../../../values/app_colors.dart';
-import 'comment_box.dart';
 import 'default_player.dart';
 import 'nft_list.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({Key? key, required this.video}) : super(key: key);
+  final Video video;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -14,44 +15,35 @@ class Body extends StatelessWidget {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SafeArea(child: DefaultPlayer()),
+        SafeArea(child: DefaultPlayer(video: video)),
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Sınıfında en iyisi | Yeni Macbook Air M2 inceleme',
+              Text(
+                video.nameVideo,
                 textAlign: TextAlign.start,
                 maxLines: 2,
-                style: TextStyle(
+                style: const TextStyle(
                   overflow: TextOverflow.ellipsis,
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
                 ),
               ),
+              const SizedBox(height: 8),
               Row(
-                children: const [
+                children: [
                   Text(
-                    '4.2K viewers',
+                    '${video.views.toString()} views',
                     textAlign: TextAlign.start,
                     maxLines: 2,
-                    style: TextStyle(
-                      overflow: TextOverflow.ellipsis,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 13,
-                    ),
-                  ),
-                  Text(
-                    ' Axies Infinity',
-                    textAlign: TextAlign.start,
-                    maxLines: 2,
-                    style: TextStyle(
+                    style: const TextStyle(
                         overflow: TextOverflow.ellipsis,
                         fontWeight: FontWeight.w400,
-                        fontSize: 13,
-                        color: AppColors.primaryColor),
+                        fontSize: 14,
+                        color: AppColors.textSecondColor),
                   ),
                 ],
               ),
@@ -66,7 +58,7 @@ class Body extends StatelessWidget {
                       ),
                       SizedBox(height: 8),
                       Text(
-                        '542',
+                        '542 like',
                         textAlign: TextAlign.start,
                         maxLines: 2,
                         style: TextStyle(
@@ -123,26 +115,26 @@ class Body extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/avt3.jpeg'),
+                      CircleAvatar(
+                        backgroundImage: AssetImage(video.avatar),
                       ),
                       const SizedBox(width: 16),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
-                            'Kevin Duong',
+                            video.nameChannel,
                             textAlign: TextAlign.start,
                             maxLines: 1,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 overflow: TextOverflow.ellipsis,
                                 fontWeight: FontWeight.w400,
                                 fontSize: 17,
                                 color: AppColors.textPrimaryColor),
                           ),
-                          SizedBox(height: 2),
-                          Text(
-                            '314K followers',
+                          const SizedBox(height: 2),
+                          const Text(
+                            '0 followers',
                             textAlign: TextAlign.start,
                             style: TextStyle(
                                 overflow: TextOverflow.ellipsis,
