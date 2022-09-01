@@ -4,6 +4,7 @@ import '../../../models/game.dart';
 import 'categories.dart';
 import 'header_game_detail.dart';
 import 'nft_list.dart';
+import 'video_list.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key, required this.game}) : super(key: key);
@@ -31,8 +32,8 @@ class Body extends StatelessWidget {
                 child: Column(
                   children: const <Widget>[
                     Categories(),
-                    // VideoList(),
-                    NFTList(),
+                    VideoList(),
+                    // NFTList(),
                   ],
                 ),
               ),

@@ -68,14 +68,10 @@ class CircleVideoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Padding(padding: EdgeInsets.only(right: 20)),
-        ClipOval(
-          child: Image.asset(
-            video.avatar,
-            height: getProportionateScreenHeight(60),
-            width: getProportionateScreenWidth(60),
-            fit: BoxFit.cover,
-          ),
+        const Padding(padding: EdgeInsets.only(right: 15)),
+        CircleAvatar(
+          radius: 34,
+          backgroundImage: AssetImage(video.avatar),
         ),
       ],
     );
