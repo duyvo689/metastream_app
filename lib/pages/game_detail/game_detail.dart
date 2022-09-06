@@ -11,7 +11,7 @@ class GameDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgrMainColor,
-      body: Body(game: game),
+      body: Body(gameId: game.id!),
     );
   }
 }

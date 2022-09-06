@@ -50,29 +50,6 @@ class GameList extends StatelessWidget {
           },
         ),
       ]),
-      // child: GridView.builder(
-      //   shrinkWrap: true,
-      //   physics: const NeverScrollableScrollPhysics(),
-      //   padding: const EdgeInsets.only(top: 10),
-      //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      //     crossAxisSpacing: 15,
-      //     mainAxisSpacing: 15,
-      //     crossAxisCount: 2,
-      //     childAspectRatio: 0.66,
-      //   ),
-      //   itemCount: games.length,
-      //   itemBuilder: (BuildContext context, int index) {
-      //     return GameCard(
-      //       game: games[index],
-      //       press: () => Navigator.push(
-      //           context,
-      //           MaterialPageRoute(
-      //               builder: (context) => GameDetail(
-      //                     game: games[index],
-      //                   ))),
-      //     );
-      //   },
-      // ),
     );
   }
 }

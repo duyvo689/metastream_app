@@ -7,8 +7,8 @@ import 'nft_list.dart';
 import 'video_list.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key, required this.game}) : super(key: key);
-  final Game game;
+  const Body({Key? key, required this.gameId}) : super(key: key);
+  final String gameId;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
           height: size.height,
           child: Stack(
             children: <Widget>[
-              HeaderGameDetail(game: game),
+              HeaderGameDetail(gameId: gameId),
               Container(
                 margin: EdgeInsets.only(top: size.height * 0.4),
                 decoration: const BoxDecoration(

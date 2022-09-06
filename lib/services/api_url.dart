@@ -1,5 +1,7 @@
-class ApiUrls {
-  final Uri API_GAME_LIST = Uri.parse('http://localhost:3000/api/v1/game');
+var url = 'http://localhost:3000/api/v1';
 
-  final Uri API_USER_LIST = Uri.parse('https://api.randomuser.me/?results=100');
+class ApiUrls {
+  final Uri API_GAME_LIST = Uri.parse('${url}/game');
+
+  final Uri API_GAME_BY_ID = Uri.parse('${url}/game/');
 }

@@ -20,4 +20,24 @@ class ApiServices {
       return games.map((contactRaw) => new Game.fromJson(contactRaw)).toList();
     });
   }
+
+  Future<Game> fetchGameById(String id) {
+    return http
+        .get(Uri.parse('http://localhost:3000/api/v1/game/${id}'))
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200 || jsonBody == null) {
+        print(response.reasonPhrase);
+        throw new Exception("Error load api");
+      }
+
+      final JsonDecoder _decoder = new JsonDecoder();
+      final gameContainer = _decoder.convert(jsonBody);
+      final game = gameContainer['data'];
+
+      return Game.fromJson(game);
+    });
+  }
 }
