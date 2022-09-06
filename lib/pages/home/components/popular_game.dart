@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import '../../../models/game.dart';
+import '../../../services/api_service.dart';
 import '../../../values/app_size.dart';
-import '../../game/components/game_card.dart';
+import '../../../components/game_card.dart';
 import '../../game_detail/game_detail.dart';
 import 'section_title.dart';
 
-class PopularGames extends StatelessWidget {
-  const PopularGames({
-    Key? key,
-  }) : super(key: key);
+class PopularGames extends StatefulWidget {
+  const PopularGames({Key? key}) : super(key: key);
+
+  @override
+  State<PopularGames> createState() => _PopularGamesState();
+}
+
+class _PopularGamesState extends State<PopularGames> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,32 +35,44 @@ class PopularGames extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          SingleChildScrollView(
-            clipBehavior: Clip.none,
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                ...List.generate(
-                  games.length,
-                  (index) => Padding(
-                    padding:
-                        EdgeInsets.only(right: getProportionateScreenWidth(20)),
-                    child: GameCard(
-                      game: games[index],
-                      press: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => GameDetail(
-                                    game: games[index],
-                                  ))),
-                    ),
+          FutureBuilder<List<Game>>(
+            future: ApiServices().fetchGame(),
+            builder: (context, snapshot) {
+              if ((snapshot.hasError) || (!snapshot.hasData))
+                return Container(
+                  child: Center(
+                    child: CircularProgressIndicator(),
                   ),
+                );
+              List<Game>? games = snapshot.data;
+              return SingleChildScrollView(
+                clipBehavior: Clip.none,
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    ...List.generate(
+                      games!.length,
+                      (index) => Padding(
+                        padding: EdgeInsets.only(
+                            right: getProportionateScreenWidth(20)),
+                        child: GameCard(
+                          game: games[index],
+                          press: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => GameDetail(
+                                        game: games[index],
+                                      ))),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  width: 20,
-                ),
-              ],
-            ),
+              );
+            },
           ),
         ],
       ),

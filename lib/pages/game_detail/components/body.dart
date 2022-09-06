@@ -9,6 +9,7 @@ import 'video_list.dart';
 class Body extends StatelessWidget {
   const Body({Key? key, required this.game}) : super(key: key);
   final Game game;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

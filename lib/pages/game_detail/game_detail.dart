@@ -1,7 +1,7 @@
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
-import './components/body.dart';
 import '../../models/game.dart';
+import './components/body.dart';
 
 class GameDetail extends StatelessWidget {
   const GameDetail({Key? key, required this.game}) : super(key: key);

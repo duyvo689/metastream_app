@@ -1,8 +1,8 @@
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/game.dart';
-import '../../../values/app_size.dart';
+import '../models/game.dart';
+import '../values/app_size.dart';
 
 class GameCard extends StatelessWidget {
   const GameCard({
@@ -45,7 +45,7 @@ class GameCard extends StatelessWidget {
                       bottomRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                        image: AssetImage(game.logo!), fit: BoxFit.cover),
+                        image: NetworkImage(game.logo!), fit: BoxFit.cover),
                   ),
                 ),
               ),
