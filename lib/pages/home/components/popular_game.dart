@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../models/game.dart';
-import '../../../services/api_service.dart';
+import '../../../services/api_game_service.dart';
 import '../../../values/app_size.dart';
 import '../../../components/game_card.dart';
 import '../../game_detail/game_detail.dart';
@@ -36,7 +36,7 @@ class _PopularGamesState extends State<PopularGames> {
             height: 30,
           ),
           FutureBuilder<List<Game>>(
-            future: ApiServices().fetchGame(),
+            future: ApiGameServices().fetchGame(),
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
                 return Container(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../models/video.dart';
+import '../../../models/user.dart';
 import '../../../values/app_size.dart';
+import '../../profile/profile.dart';
 import './carousel_slider.dart';
 import 'popular_short.dart';
 import 'popular_video.dart';
@@ -29,9 +30,15 @@ class Body extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     ...List.generate(
-                      videos.length,
+                      users.length,
                       (index) => CircleVideoCard(
-                        video: videos[index],
+                        user: users[index],
+                        press: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Profile(
+                                      user: users[index],
+                                    ))),
                       ),
                     ),
                   ],
@@ -60,20 +67,25 @@ class Body extends StatelessWidget {
 
 class CircleVideoCard extends StatelessWidget {
   const CircleVideoCard({
-    required this.video,
+    required this.user,
     Key? key,
+    required this.press,
   }) : super(key: key);
-  final Video video;
+  final User user;
+  final GestureTapCallback press;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Padding(padding: EdgeInsets.only(right: 15)),
-        CircleAvatar(
-          radius: 34,
-          backgroundImage: AssetImage(video.avatar),
-        ),
-      ],
+    return GestureDetector(
+      onTap: press,
+      child: Row(
+        children: [
+          const Padding(padding: EdgeInsets.only(right: 15)),
+          CircleAvatar(
+            radius: 34,
+            backgroundImage: AssetImage(user.avatar),
+          ),
+        ],
+      ),
     );
   }
 }

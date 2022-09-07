@@ -28,7 +28,8 @@ class GameCard extends StatelessWidget {
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10),
             ),
-            border: Border.all(color: AppColors.textSecondColor),
+            border:
+                Border.all(width: 2, color: Color.fromARGB(255, 35, 35, 35)),
             color: AppColors.bgrCardColor),
         child: SizedBox(
           width: getProportionateScreenWidth(160),
@@ -41,8 +42,8 @@ class GameCard extends StatelessWidget {
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
+                      // bottomLeft: Radius.circular(10),
+                      // bottomRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
                         image: NetworkImage(game.logo!), fit: BoxFit.cover),

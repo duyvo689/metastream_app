@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../components/game_card.dart';
 import '../../../models/game.dart';
-import '../../../services/api_service.dart';
+import '../../../services/api_game_service.dart';
 
 class GameUpcomingList extends StatelessWidget {
   const GameUpcomingList({
@@ -15,7 +15,7 @@ class GameUpcomingList extends StatelessWidget {
       child: Column(
         children: [
           FutureBuilder<List<Game>>(
-            future: ApiServices().fetchGame(),
+            future: ApiGameServices().fetchGame(),
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
                 return Container(

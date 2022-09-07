@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../components/game_card.dart';
 import '../../../models/game.dart';
-import '../../../services/api_service.dart';
+import '../../../services/api_game_service.dart';
 import '../../game_detail/game_detail.dart';
 
 class GameList extends StatelessWidget {
@@ -15,7 +15,7 @@ class GameList extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 6),
       child: Column(children: [
         FutureBuilder<List<Game>>(
-          future: ApiServices().fetchGame(),
+          future: ApiGameServices().fetchGame(),
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
               return Container(

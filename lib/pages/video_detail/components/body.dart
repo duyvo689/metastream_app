@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../models/video.dart';
+import '../../../models/video2.dart';
 import '../../../values/app_colors.dart';
 import 'default_player.dart';
 import 'nft_list.dart';
@@ -23,7 +23,7 @@ class Body extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                video.nameVideo,
+                video.name!,
                 textAlign: TextAlign.start,
                 maxLines: 2,
                 style: const TextStyle(
@@ -34,12 +34,12 @@ class Body extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Row(
-                children: [
+                children: const [
                   Text(
-                    '${video.views.toString()} views',
+                    '0 views',
                     textAlign: TextAlign.start,
                     maxLines: 2,
-                    style: const TextStyle(
+                    style: TextStyle(
                         overflow: TextOverflow.ellipsis,
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
@@ -116,14 +116,14 @@ class Body extends StatelessWidget {
                   Row(
                     children: [
                       CircleAvatar(
-                        backgroundImage: AssetImage(video.avatar),
+                        backgroundImage: AssetImage(video.userId!.avatar!),
                       ),
                       const SizedBox(width: 16),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            video.nameChannel,
+                            "${video.userId!.lastName!} ${video!.userId!.firstName!}",
                             textAlign: TextAlign.start,
                             maxLines: 1,
                             style: const TextStyle(

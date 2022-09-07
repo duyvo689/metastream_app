@@ -2,7 +2,7 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:video_player/video_player.dart';
-import '../../../models/video.dart';
+import '../../../models/video2.dart';
 
 class DefaultPlayer extends StatefulWidget {
   const DefaultPlayer({Key? key, required this.video}) : super(key: key);
@@ -13,12 +13,14 @@ class DefaultPlayer extends StatefulWidget {
 
 class _DefaultPlayerState extends State<DefaultPlayer> {
   late FlickManager flickManager;
+
   @override
   void initState() {
     super.initState();
     flickManager = FlickManager(
-      videoPlayerController: VideoPlayerController.network(
-        videos[2].playUrl,
+      videoPlayerController: VideoPlayerController.asset(
+        'assets/videos/demovideo.mp4',
+        // videos[0].playUrl,
         closedCaptionFile: _loadCaptions(),
       ),
     );

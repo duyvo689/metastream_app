@@ -1,7 +1,7 @@
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/video.dart';
+import '../../../models/video2.dart';
 import '../../../values/app_size.dart';
 
 class VideoCard extends StatelessWidget {
@@ -34,7 +34,10 @@ class VideoCard extends StatelessWidget {
                       bottomRight: Radius.circular(4),
                     ),
                     image: DecorationImage(
-                      image: AssetImage(video.thumbnail),
+                      image: NetworkImage(video != null &&
+                              video.coverImage != null
+                          ? video.coverImage!
+                          : 'https://toquoc.mediacdn.vn/280518851207290880/2022/7/3/photo-1-16564884870661953523091-1656818526769-1656818526969356939449.jpg'),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -47,7 +50,11 @@ class VideoCard extends StatelessWidget {
                     Container(
                       child: CircleAvatar(
                         radius: 24,
-                        backgroundImage: AssetImage(video.avatar),
+                        backgroundImage: NetworkImage(video != null &&
+                                video.userId != null &&
+                                video.userId!.avatar != null
+                            ? video.userId!.avatar!
+                            : 'https://ecdn.game4v.com/g4v-content/uploads/2016/07/lmht_kute-1-480x480.jpg'),
                       ),
                     ),
                     const SizedBox(
@@ -58,7 +65,7 @@ class VideoCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            video.nameVideo,
+                            video.name!,
                             textAlign: TextAlign.start,
                             maxLines: 2,
                             style: const TextStyle(
@@ -69,7 +76,7 @@ class VideoCard extends StatelessWidget {
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            video.nameVideo,
+                            video.name!,
                             textAlign: TextAlign.start,
                             maxLines: 1,
                             style: const TextStyle(

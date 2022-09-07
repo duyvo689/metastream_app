@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:app_metastream/values/app_colors.dart';
 import '../../../models/game.dart';
-import '../../../services/api_service.dart';
+import '../../../services/api_game_service.dart';
 import '../../../values/app_size.dart';
 
 class HeaderGameDetail extends StatelessWidget {
@@ -13,7 +13,7 @@ class HeaderGameDetail extends StatelessWidget {
       child: Stack(
         children: [
           FutureBuilder<Game>(
-            future: ApiServices().fetchGameById(gameId),
+            future: ApiGameServices().fetchGameById(gameId),
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
                 return Container(
