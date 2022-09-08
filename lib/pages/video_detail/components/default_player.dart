@@ -21,7 +21,6 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
     super.initState();
     videoplay(play_url);
     playurl(widget.videoId);
-    print("initState: " + play_url);
   }
 
   Future<void> playurl(String id) async {
@@ -30,7 +29,6 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
     setState(() {
       play_url = url;
     });
-    print("playurl: " + play_url);
     videoplay(play_url);
   }
 
@@ -63,22 +61,6 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
   //     print('Failed to get subtitles for ${e}');
   //     return SubRipCaptionFile('');
   //   }
-  // }
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   playurl(videoId);
-
-  //   print("didChangeDependencies: " + play_url);
-  // }
-
-  // @override
-  // void didUpdateWidget(DefaultPlayer oldWidget) {
-  //   // TODO: implement didUpdateWidget
-  //   super.didUpdateWidget(oldWidget);
-  //   print("didUpdateWidget: " + play_url);
-  //   videoplay(play_url);
   // }
 
   @override

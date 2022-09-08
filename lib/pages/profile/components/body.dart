@@ -5,6 +5,7 @@ import '../../../values/app_colors.dart';
 import '../../game_detail/components/categories.dart';
 import '../../game_detail/components/nft_list.dart';
 import 'header_profile.dart';
+import 'video_list.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key, required this.user}) : super(key: key);
@@ -31,9 +32,10 @@ class Body extends StatelessWidget {
                   ),
                 ),
                 child: Column(
-                  children: const <Widget>[
+                  children: <Widget>[
                     Categories(),
-                    NFTList(),
+                    // NFTList(),
+                    VideoList(user: user),
                   ],
                 ),
               ),
