@@ -25,7 +25,7 @@ class ApiVideoServices {
 
   Future<Video> fetchVideoById(String id) {
     return http
-        .get(Uri.parse('http://localhost:3000/api/v1/video/${id}'))
+        .get(Uri.parse('${URL().API_URL}/${id}'))
         .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -45,7 +45,7 @@ class ApiVideoServices {
 
   Future<List<Video>> fetchVideosOfUser(String id) {
     return http
-        .get(Uri.parse('http://localhost:3000/api/v1/video/user/${id}'))
+        .get(Uri.parse('${url}/user/${id}'))
         .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -66,7 +66,7 @@ class ApiVideoServices {
 
   Future<List<Video>> fetchVideosOfGame(String id) {
     return http
-        .get(Uri.parse('http://localhost:3000/api/v1/video/game/${id}'))
+        .get(Uri.parse('${URL().API_URL}/game/${id}'))
         .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;

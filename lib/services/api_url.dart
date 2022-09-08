@@ -1,4 +1,9 @@
-var url = 'http://localhost:3000/api/v1';
+// var url = 'http://localhost:3000/api/v1';
+var url = 'https://api-staging.metastream.network';
+
+class URL {
+  final String API_URL = url;
+}
 
 class ApiUrls {
   final Uri API_GAME_LIST = Uri.parse('${url}/game');
