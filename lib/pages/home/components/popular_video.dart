@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../models/video2.dart';
+import '../../../models/video.dart';
 import '../../../services/api_video_service.dart';
 import '../../video_detail/video_page.dart';
 import 'section_title.dart';
@@ -35,7 +35,7 @@ class PopularVideos extends StatelessWidget {
                 child: CircularProgressIndicator(),
               ),
             );
-          List<Video>? videos = snapshot.data;
+          List<Video>? videos = snapshot.data!.sublist(0, 6);
           return (SingleChildScrollView(
             clipBehavior: Clip.none,
             scrollDirection: Axis.vertical,

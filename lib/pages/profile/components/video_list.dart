@@ -1,7 +1,7 @@
 import 'package:app_metastream/models/user.dart';
 import 'package:flutter/material.dart';
 import '../../../components/video_cart.dart';
-import '../../../models/video2.dart';
+import '../../../models/video.dart';
 import '../../../services/api_video_service.dart';
 import '../../video_detail/video_page.dart';
 

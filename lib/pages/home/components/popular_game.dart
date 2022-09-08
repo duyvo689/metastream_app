@@ -44,7 +44,7 @@ class _PopularGamesState extends State<PopularGames> {
                     child: CircularProgressIndicator(),
                   ),
                 );
-              List<Game>? games = snapshot.data;
+              List<Game>? games = snapshot.data!.sublist(0, 6);
               return SingleChildScrollView(
                 clipBehavior: Clip.none,
                 scrollDirection: Axis.horizontal,

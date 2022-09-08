@@ -1,5 +1,5 @@
 import 'package:http/http.dart' as http;
-import '../models/video2.dart';
+import '../models/video.dart';
 import 'api_url.dart';
 import 'dart:convert';
 

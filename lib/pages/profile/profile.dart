@@ -1,4 +1,3 @@
-import 'package:app_metastream/models/video.dart';
 import 'package:flutter/material.dart';
 import '../../models/user.dart';
 import '../../values/app_colors.dart';

@@ -3,7 +3,7 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:video_player/video_player.dart';
-import '../../../models/video2.dart';
+import '../../../models/video.dart';
 
 class DefaultPlayer extends StatefulWidget {
   const DefaultPlayer({Key? key, required this.videoId}) : super(key: key);
@@ -35,7 +35,9 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
   Future<void> videoplay(String url) async {
     flickManager = FlickManager(
       videoPlayerController: VideoPlayerController.network(
-        url,
+        url != ''
+            ? url
+            : 'https://metastream-static.s3.ap-southeast-1.amazonaws.com/category/coverVideo/mini+royale+battles.mp4',
         closedCaptionFile: _loadCaptions(),
       ),
     );

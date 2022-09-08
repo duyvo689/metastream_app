@@ -35,13 +35,13 @@ class Body extends StatelessWidget {
                         child: CircularProgressIndicator(),
                       ),
                     );
-                  List<User>? users = snapshot.data;
+                  List<User>? users = snapshot.data!.sublist(0, 10);
                   return (SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
                         ...List.generate(
-                          users!.length,
+                          users.length,
                           (index) => CircleVideoCard(
                             user: users[index],
                             press: () => Navigator.push(

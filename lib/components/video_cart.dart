@@ -1,7 +1,7 @@
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../models/video2.dart';
+import '../models/video.dart';
 
 class VideoCard extends StatelessWidget {
   const VideoCard({
