@@ -23,7 +23,7 @@ class ApiGameServices {
 
   Future<Game> fetchGameById(String id) {
     return http
-        .get(Uri.parse('${URL().API_URL}/${id}'))
+        .get(Uri.parse('${URL().API_URL}/api/v1/game/${id}'))
         .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;

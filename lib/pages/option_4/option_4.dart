@@ -44,14 +44,14 @@ class Option4 extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Text(
-          'Developing...',
-          style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
-              color: AppColors.textPrimaryColor),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/developing.gif"),
+            fit: BoxFit.cover,
+          ),
         ),
+        child: null /* add child content here */,
       ),
     );
   }
