@@ -16,7 +16,9 @@ class HeaderProflie extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(user.avatar),
+                  image: NetworkImage(user != null && user.avatar != null
+                      ? user.avatar!
+                      : 'https://ecdn.game4v.com/g4v-content/uploads/2016/07/lmht_kute-1-480x480.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -54,7 +56,11 @@ class HeaderProflie extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        user.name,
+                        user != null &&
+                                user.firstName != null &&
+                                user.lastName != null
+                            ? "${user.firstName!} ${user.lastName!}"
+                            : "Metastream",
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,

@@ -1,11 +1,11 @@
 import 'package:http/http.dart' as http;
-import '../models/user.dart';
+import '../models/banner.dart';
 import 'api_url.dart';
 import 'dart:convert';
 
-class ApiUserServices {
-  Future<List<User>> fetchUsers() {
-    return http.get(ApiUrls().API_USER_LIST).then((http.Response response) {
+class ApiVideoServices {
+  Future<List<Banner>> fetchBanner() {
+    return http.get(ApiUrls().API_BANNER).then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
@@ -15,9 +15,11 @@ class ApiUserServices {
       }
 
       final JsonDecoder _decoder = new JsonDecoder();
-      final userListContainer = _decoder.convert(jsonBody);
-      final List users = userListContainer['data'];
-      return users.map((contactRaw) => new User.fromJson(contactRaw)).toList();
+      final bannerListContainer = _decoder.convert(jsonBody);
+      final List banners = bannerListContainer['data'];
+      return banners
+          .map((contactRaw) => new Banner.fromJson(contactRaw))
+          .toList();
     });
   }
 }

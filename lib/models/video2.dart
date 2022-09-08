@@ -17,6 +17,7 @@ class Video {
   List<dynamic>? tagsId;
   UserId? userId;
   String? slug;
+  String? playUrl;
 
   Video(
       {this.isActive,
@@ -36,7 +37,8 @@ class Video {
       this.gameId,
       this.tagsId,
       this.userId,
-      this.slug});
+      this.slug,
+      this.playUrl});
 
   Video.fromJson(Map<String, dynamic> json) {
     if (json["isActive"] is bool) this.isActive = json["isActive"];
@@ -61,6 +63,7 @@ class Video {
       this.userId =
           json["user_id"] == null ? null : UserId.fromJson(json["user_id"]);
     if (json["slug"] is String) this.slug = json["slug"];
+    if (json["play_url"] is String) this.playUrl = json["play_url"];
   }
 
   Map<String, dynamic> toJson() {
@@ -83,6 +86,7 @@ class Video {
     if (this.tagsId != null) data["tags_id"] = this.tagsId;
     if (this.userId != null) data["user_id"] = this.userId?.toJson();
     data["slug"] = this.slug;
+    data["play_url"] = this.playUrl;
     return data;
   }
 }

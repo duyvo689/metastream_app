@@ -1,3 +1,4 @@
+import 'package:app_metastream/services/api_video_service.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -5,22 +6,38 @@ import 'package:video_player/video_player.dart';
 import '../../../models/video2.dart';
 
 class DefaultPlayer extends StatefulWidget {
-  const DefaultPlayer({Key? key, required this.video}) : super(key: key);
-  final Video video;
+  const DefaultPlayer({Key? key, required this.videoId}) : super(key: key);
+  final String videoId;
   @override
   _DefaultPlayerState createState() => _DefaultPlayerState();
 }
 
 class _DefaultPlayerState extends State<DefaultPlayer> {
+  String play_url = '';
   late FlickManager flickManager;
 
   @override
   void initState() {
     super.initState();
+    videoplay(play_url);
+    playurl(widget.videoId);
+    print("initState: " + play_url);
+  }
+
+  Future<void> playurl(String id) async {
+    var response = await ApiVideoServices().fetchVideoById(id);
+    String url = response.playUrl!;
+    setState(() {
+      play_url = url;
+    });
+    print("playurl: " + play_url);
+    videoplay(play_url);
+  }
+
+  Future<void> videoplay(String url) async {
     flickManager = FlickManager(
-      videoPlayerController: VideoPlayerController.asset(
-        'assets/videos/demovideo.mp4',
-        // videos[0].playUrl,
+      videoPlayerController: VideoPlayerController.network(
+        url,
         closedCaptionFile: _loadCaptions(),
       ),
     );
@@ -46,6 +63,22 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
   //     print('Failed to get subtitles for ${e}');
   //     return SubRipCaptionFile('');
   //   }
+  // }
+
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   playurl(videoId);
+
+  //   print("didChangeDependencies: " + play_url);
+  // }
+
+  // @override
+  // void didUpdateWidget(DefaultPlayer oldWidget) {
+  //   // TODO: implement didUpdateWidget
+  //   super.didUpdateWidget(oldWidget);
+  //   print("didUpdateWidget: " + play_url);
+  //   videoplay(play_url);
   // }
 
   @override

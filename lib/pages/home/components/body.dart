@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../models/user.dart';
+import '../../../services/api_user_service.dart';
 import '../../../values/app_size.dart';
 import '../../profile/profile.dart';
 import './carousel_slider.dart';
@@ -25,24 +26,36 @@ class Body extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: getProportionateScreenWidth(0)),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: <Widget>[
-                    ...List.generate(
-                      users.length,
-                      (index) => CircleVideoCard(
-                        user: users[index],
-                        press: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Profile(
-                                      user: users[index],
-                                    ))),
+              child: FutureBuilder<List<User>>(
+                future: ApiUserServices().fetchUsers(),
+                builder: (context, snapshot) {
+                  if ((snapshot.hasError) || (!snapshot.hasData))
+                    return Container(
+                      child: Center(
+                        child: CircularProgressIndicator(),
                       ),
+                    );
+                  List<User>? users = snapshot.data;
+                  return (SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ...List.generate(
+                          users!.length,
+                          (index) => CircleVideoCard(
+                            user: users[index],
+                            press: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Profile(
+                                          user: users[index],
+                                        ))),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ));
+                },
               ),
             ),
             const SizedBox(
@@ -82,7 +95,9 @@ class CircleVideoCard extends StatelessWidget {
           const Padding(padding: EdgeInsets.only(right: 15)),
           CircleAvatar(
             radius: 34,
-            backgroundImage: AssetImage(user.avatar),
+            backgroundImage: NetworkImage(user != null && user.avatar != null
+                ? user.avatar!
+                : 'https://ecdn.game4v.com/g4v-content/uploads/2016/07/lmht_kute-1-480x480.jpg'),
           ),
         ],
       ),

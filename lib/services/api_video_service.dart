@@ -23,23 +23,25 @@ class ApiVideoServices {
     });
   }
 
-  // Future<Video> fetchGameById(String id) {
-  //   return http
-  //       .get(Uri.parse('http://localhost:3000/api/v1/game/${id}'))
-  //       .then((http.Response response) {
-  //     final String jsonBody = response.body;
-  //     final int statusCode = response.statusCode;
+  Future<Video> fetchVideoById(String id) {
+    print(id);
 
-  //     if (statusCode != 200 || jsonBody == null) {
-  //       print(response.reasonPhrase);
-  //       throw new Exception("Error load api");
-  //     }
+    return http
+        .get(Uri.parse('http://localhost:3000/api/v1/video/${id}'))
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
 
-  //     final JsonDecoder _decoder = new JsonDecoder();
-  //     final gameContainer = _decoder.convert(jsonBody);
-  //     final game = gameContainer['data'];
+      if (statusCode != 200 || jsonBody == null) {
+        print(response.reasonPhrase);
+        throw new Exception("Error load api");
+      }
 
-  //     return Video.fromJson(game);
-  //   });
-  // }
+      final JsonDecoder _decoder = new JsonDecoder();
+      final videoContainer = _decoder.convert(jsonBody);
+      final video = videoContainer['data'];
+
+      return Video.fromJson(video);
+    });
+  }
 }

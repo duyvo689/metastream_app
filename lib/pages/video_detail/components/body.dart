@@ -15,7 +15,7 @@ class Body extends StatelessWidget {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SafeArea(child: DefaultPlayer(video: video)),
+        SafeArea(child: DefaultPlayer(videoId: video.id!)),
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -116,7 +116,7 @@ class Body extends StatelessWidget {
                   Row(
                     children: [
                       CircleAvatar(
-                        backgroundImage: AssetImage(video.userId!.avatar!),
+                        backgroundImage: NetworkImage(video.userId!.avatar!),
                       ),
                       const SizedBox(width: 16),
                       Column(
