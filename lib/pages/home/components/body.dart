@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:skeletons/skeletons.dart';
+import '../../../components/skeleton.dart';
 import '../../../models/user.dart';
 import '../../../services/api_user_service.dart';
 import '../../../values/app_size.dart';
@@ -30,9 +32,15 @@ class Body extends StatelessWidget {
                 future: ApiUserServices().fetchUsers(),
                 builder: (context, snapshot) {
                   if ((snapshot.hasError) || (!snapshot.hasData))
-                    return Container(
-                      child: Center(
-                        child: CircularProgressIndicator(),
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Container(
+                        height: 65,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 6,
+                          itemBuilder: (context, index) => UserCardSkelton(),
+                        ),
                       ),
                     );
                   List<User>? users = snapshot.data!.sublist(0, 10);
@@ -100,6 +108,25 @@ class CircleVideoCard extends StatelessWidget {
                 : 'https://ecdn.game4v.com/g4v-content/uploads/2016/07/lmht_kute-1-480x480.jpg'),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class UserCardSkelton extends StatelessWidget {
+  const UserCardSkelton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(right: 5),
+      height: 70,
+      child: const SkeletonItem(
+        child: CircleSkeleton(
+          size: 70,
+        ),
       ),
     );
   }

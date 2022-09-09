@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import '../../../components/skeleton.dart';
 import '../../../models/video.dart';
 import '../../../services/api_video_service.dart';
 import '../../short_video_page/short_page.dart';
+import '../../../components/card_skeleton.dart';
 import 'section_title.dart';
 import 'short_card.dart';
+import 'package:skeletons/skeletons.dart';
 
 class PopularShorts extends StatelessWidget {
   const PopularShorts({
@@ -31,8 +34,11 @@ class PopularShorts extends StatelessWidget {
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
                 return Container(
-                  child: Center(
-                    child: CircularProgressIndicator(),
+                  height: 260,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 6,
+                    itemBuilder: (context, index) => CardSkeleton(),
                   ),
                 );
               List<Video>? videos = snapshot.data;

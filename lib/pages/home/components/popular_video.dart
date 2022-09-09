@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import '../../../components/skeleton.dart';
 import '../../../models/video.dart';
 import '../../../services/api_video_service.dart';
+import '../../../values/app_size.dart';
 import '../../video_detail/video_page.dart';
 import 'section_title.dart';
 import 'video_card.dart';
+import 'package:skeletons/skeletons.dart';
 
 class PopularVideos extends StatelessWidget {
   const PopularVideos({
@@ -30,9 +33,13 @@ class PopularVideos extends StatelessWidget {
         future: ApiVideoServices().fetchVideos(),
         builder: (context, snapshot) {
           if ((snapshot.hasError) || (!snapshot.hasData))
-            return Container(
-              child: Center(
-                child: CircularProgressIndicator(),
+            return ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 3,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: VideoCardSkelton(),
               ),
             );
           List<Video>? videos = snapshot.data!.sublist(0, 6);
@@ -59,5 +66,29 @@ class PopularVideos extends StatelessWidget {
         },
       ),
     ]);
+  }
+}
+
+class VideoCardSkelton extends StatelessWidget {
+  const VideoCardSkelton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SkeletonItem(
+        child: Column(
+      children: [
+        square_skeleton(height: 5),
+        SizedBox(height: 8),
+        Row(
+          children: [
+            CircleSkeleton(size: 50),
+            SizedBox(width: 8),
+            paragraph_skeleton(line: 2, height: 16)
+          ],
+        ),
+      ],
+    ));
   }
 }

@@ -5,7 +5,9 @@ import 'dart:convert';
 
 class ApiGameServices {
   Future<List<Game>> fetchGame() {
-    return http.get(ApiUrls().API_GAME_LIST).then((http.Response response) {
+    return http
+        .get(Uri.parse('${URL().API_URL}/api/v1/game'))
+        .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 

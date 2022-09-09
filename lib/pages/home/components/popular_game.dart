@@ -4,6 +4,7 @@ import '../../../services/api_game_service.dart';
 import '../../../values/app_size.dart';
 import '../../../components/game_card.dart';
 import '../../game_detail/game_detail.dart';
+import '../../../components/card_skeleton.dart';
 import 'section_title.dart';
 
 class PopularGames extends StatefulWidget {
@@ -40,8 +41,11 @@ class _PopularGamesState extends State<PopularGames> {
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
                 return Container(
-                  child: Center(
-                    child: CircularProgressIndicator(),
+                  height: 260,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 6,
+                    itemBuilder: (context, index) => CardSkeleton(),
                   ),
                 );
               List<Game>? games = snapshot.data!.sublist(0, 6);

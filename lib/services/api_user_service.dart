@@ -5,7 +5,9 @@ import 'dart:convert';
 
 class ApiUserServices {
   Future<List<User>> fetchUsers() {
-    return http.get(ApiUrls().API_USER_LIST).then((http.Response response) {
+    return http
+        .get(Uri.parse('${URL().API_URL}/api/v1/user'))
+        .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 

@@ -5,7 +5,9 @@ import 'dart:convert';
 
 class ApiVideoServices {
   Future<List<Banner>> fetchBanner() {
-    return http.get(ApiUrls().API_BANNER).then((http.Response response) {
+    return http
+        .get(Uri.parse('${URL().API_URL}/api/v1/banner'))
+        .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../components/game_card.dart';
+import '../../../components/list_game_skeleton.dart';
 import '../../../models/game.dart';
 import '../../../services/api_game_service.dart';
 
@@ -18,11 +19,7 @@ class GameUpcomingList extends StatelessWidget {
             future: ApiGameServices().fetchGame(),
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
-                return Container(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return ListGameSkeleton();
               List<Game>? games = snapshot.data;
               return GridView.builder(
                 shrinkWrap: true,

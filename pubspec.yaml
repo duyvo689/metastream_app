@@ -46,6 +46,7 @@ dependencies:
   easy_splash_screen: ^1.0.4
   http: ^0.13.5
   connectivity_plus: ^2.3.6+1
+  skeletons: ^0.0.3
 
 
 dev_dependencies:
