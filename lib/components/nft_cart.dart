@@ -1,18 +1,17 @@
+import 'package:app_metastream/models/nft_solana.dart';
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
-
-import '../models/nft.dart';
 import '../values/app_size.dart';
 
 class NFTCard extends StatelessWidget {
   const NFTCard({
     Key? key,
-    required this.nft,
+    required this.nftSolana,
     this.isFullCard = false,
     required this.press,
   }) : super(key: key);
 
-  final NFT nft;
+  final NftSolana nftSolana;
   final bool isFullCard;
   final GestureTapCallback press;
 
@@ -45,7 +44,8 @@ class NFTCard extends StatelessWidget {
                       bottomRight: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                        image: AssetImage(nft.image), fit: BoxFit.cover),
+                        image: NetworkImage(nftSolana.image!),
+                        fit: BoxFit.cover),
                   ),
                 ),
               ),
@@ -57,7 +57,7 @@ class NFTCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      nft.name,
+                      nftSolana.name!,
                       textAlign: TextAlign.start,
                       maxLines: 1,
                       style: const TextStyle(
@@ -67,11 +67,11 @@ class NFTCard extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 4),
-                    Text(
-                      nft.chain,
+                    const Text(
+                      "solana",
                       textAlign: TextAlign.start,
                       maxLines: 1,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w500,
                         overflow: TextOverflow.ellipsis,
                         fontSize: 16,
@@ -88,7 +88,7 @@ class NFTCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          nft.price,
+                          nftSolana.price.toString(),
                           textAlign: TextAlign.start,
                           maxLines: 1,
                           style: const TextStyle(

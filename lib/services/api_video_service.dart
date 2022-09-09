@@ -53,7 +53,6 @@ class ApiVideoServices {
       final int statusCode = response.statusCode;
 
       if (statusCode != 200 || jsonBody == null) {
-        print(response.reasonPhrase);
         throw new Exception("Error load api");
       }
 
@@ -74,7 +73,6 @@ class ApiVideoServices {
       final int statusCode = response.statusCode;
 
       if (statusCode != 200 || jsonBody == null) {
-        print(response.reasonPhrase);
         throw new Exception("Error load api");
       }
 

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../values/app_colors.dart';
 import '../../game_detail/components/categories.dart';
-import '../../game_detail/components/nft_list.dart';
 import 'header_profile.dart';
+import 'nft_list.dart';
 import 'video_list.dart';
 
 class Body extends StatelessWidget {
@@ -34,8 +34,8 @@ class Body extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Categories(),
-                    // NFTList(),
-                    VideoList(user: user),
+                    NFTList(addressWallet: user.addressWallet!),
+                    // VideoList(user: user),
                   ],
                 ),
               ),

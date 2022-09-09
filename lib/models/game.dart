@@ -39,55 +39,54 @@ class Game {
       this.chainId});
 
   Game.fromJson(Map<String, dynamic> json) {
-    this.background = json["background"] == null
+    background = json["background"] == null
         ? null
         : Background.fromJson(json["background"]);
-    this.id = json["_id"];
-    this.name = json["name"];
-    this.logo = json["logo"];
-    this.featureImg = json["featureImg"];
-    this.description = json["description"];
-    this.websiteUrl = json["websiteUrl"];
-    this.views = json["views"];
-    this.follows = json["follows"];
-    this.tags = json["tags"] == null
+    id = json["_id"];
+    name = json["name"];
+    logo = json["logo"];
+    featureImg = json["featureImg"];
+    description = json["description"];
+    websiteUrl = json["websiteUrl"];
+    views = json["views"];
+    follows = json["follows"];
+    tags = json["tags"] == null
         ? null
         : (json["tags"] as List).map((e) => Tags.fromJson(e)).toList();
-    this.public = json["public"];
-    this.isActive = json["isActive"];
-    this.genresId = json["genres_id"] == null
+    public = json["public"];
+    isActive = json["isActive"];
+    genresId = json["genres_id"] == null
         ? null
         : (json["genres_id"] as List).map((e) => GenresId.fromJson(e)).toList();
-    this.slug = json["slug"];
-    this.createdAt = json["createdAt"];
-    this.updatedAt = json["updatedAt"];
-    this.v = json["__v"];
-    this.chainId =
+    slug = json["slug"];
+    createdAt = json["createdAt"];
+    updatedAt = json["updatedAt"];
+    v = json["__v"];
+    chainId =
         json["chain_id"] == null ? null : ChainId.fromJson(json["chain_id"]);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.background != null) data["background"] = this.background?.toJson();
-    data["_id"] = this.id;
-    data["name"] = this.name;
-    data["logo"] = this.logo;
-    data["featureImg"] = this.featureImg;
-    data["description"] = this.description;
-    data["websiteUrl"] = this.websiteUrl;
-    data["views"] = this.views;
-    data["follows"] = this.follows;
-    if (this.tags != null)
-      data["tags"] = this.tags?.map((e) => e.toJson()).toList();
-    data["public"] = this.public;
-    data["isActive"] = this.isActive;
-    if (this.genresId != null)
-      data["genres_id"] = this.genresId?.map((e) => e.toJson()).toList();
-    data["slug"] = this.slug;
-    data["createdAt"] = this.createdAt;
-    data["updatedAt"] = this.updatedAt;
-    data["__v"] = this.v;
-    if (this.chainId != null) data["chain_id"] = this.chainId?.toJson();
+    if (background != null) data["background"] = background?.toJson();
+    data["_id"] = id;
+    data["name"] = name;
+    data["logo"] = logo;
+    data["featureImg"] = featureImg;
+    data["description"] = description;
+    data["websiteUrl"] = websiteUrl;
+    data["views"] = views;
+    data["follows"] = follows;
+    if (tags != null) data["tags"] = tags?.map((e) => e.toJson()).toList();
+    data["public"] = public;
+    data["isActive"] = isActive;
+    if (genresId != null)
+      data["genres_id"] = genresId?.map((e) => e.toJson()).toList();
+    data["slug"] = slug;
+    data["createdAt"] = createdAt;
+    data["updatedAt"] = updatedAt;
+    data["__v"] = v;
+    if (chainId != null) data["chain_id"] = chainId?.toJson();
     return data;
   }
 }
@@ -100,16 +99,16 @@ class ChainId {
   ChainId({this.id, this.name, this.code});
 
   ChainId.fromJson(Map<String, dynamic> json) {
-    this.id = json["_id"];
-    this.name = json["name"];
-    this.code = json["code"];
+    id = json["_id"];
+    name = json["name"];
+    code = json["code"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data["_id"] = this.id;
-    data["name"] = this.name;
-    data["code"] = this.code;
+    data["_id"] = id;
+    data["name"] = name;
+    data["code"] = code;
     return data;
   }
 }

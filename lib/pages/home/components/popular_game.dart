@@ -55,7 +55,7 @@ class _PopularGamesState extends State<PopularGames> {
                 child: Row(
                   children: [
                     ...List.generate(
-                      games!.length,
+                      games.length,
                       (index) => Padding(
                         padding: EdgeInsets.only(
                             right: getProportionateScreenWidth(20)),

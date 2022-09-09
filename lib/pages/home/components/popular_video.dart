@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../components/skeleton.dart';
 import '../../../models/video.dart';
 import '../../../services/api_video_service.dart';
-import '../../../values/app_size.dart';
 import '../../video_detail/video_page.dart';
 import 'section_title.dart';
 import 'video_card.dart';
@@ -49,7 +48,7 @@ class PopularVideos extends StatelessWidget {
             child: Column(
               children: [
                 ...List.generate(
-                  videos!.length,
+                  videos.length,
                   (index) => VideoCard(
                     video: videos[index],
                     press: () => Navigator.push(

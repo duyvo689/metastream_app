@@ -123,7 +123,7 @@ class Body extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "${video.userId!.lastName!} ${video!.userId!.firstName!}",
+                            "${video.userId!.lastName!} ${video.userId!.firstName!}",
                             textAlign: TextAlign.start,
                             maxLines: 1,
                             style: const TextStyle(

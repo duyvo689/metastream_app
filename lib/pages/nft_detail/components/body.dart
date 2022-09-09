@@ -1,15 +1,15 @@
 import 'package:app_metastream/components/table_nft.dart';
+import 'package:app_metastream/models/nft_solana.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/nft.dart';
 import '../../../values/app_colors.dart';
 import '../../../values/app_size.dart';
 import 'dropdown_price.dart';
 import 'expansion_cart.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key, required this.nft}) : super(key: key);
-  final NFT nft;
+  const Body({Key? key, required this.nftSolana}) : super(key: key);
+  final NftSolana nftSolana;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
                   bottomRight: Radius.circular(6),
                 ),
                 image: DecorationImage(
-                  image: AssetImage(nft.image),
+                  image: NetworkImage(nftSolana.image!),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -39,7 +39,7 @@ class Body extends StatelessWidget {
           ),
         ),
         Text(
-          nft.name,
+          nftSolana.name!,
           textAlign: TextAlign.start,
           maxLines: 2,
           style: const TextStyle(
@@ -52,7 +52,7 @@ class Body extends StatelessWidget {
           height: 8,
         ),
         Text(
-          nft.name,
+          nftSolana.name!,
           textAlign: TextAlign.start,
           style: const TextStyle(
               fontWeight: FontWeight.w400,
@@ -87,7 +87,7 @@ class Body extends StatelessWidget {
                     width: 8,
                   ),
                   Text(
-                    '${nft.price} sol',
+                    '${nftSolana.price} sol',
                     style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 24,

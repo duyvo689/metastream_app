@@ -89,7 +89,7 @@ class _Home extends State<ShortVideo> with SingleTickerProviderStateMixin {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.only(left: 10, bottom: 10),
+                          padding: const EdgeInsets.only(left: 10, bottom: 10),
                           child: Text(
                             widget.video != null &&
                                     widget.video.userId != null &&
@@ -97,7 +97,7 @@ class _Home extends State<ShortVideo> with SingleTickerProviderStateMixin {
                                     widget.video.userId!.lastName != null
                                 ? "${widget.video.userId!.firstName} ${widget.video.userId!.lastName}"
                                 : "Metastream",
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),

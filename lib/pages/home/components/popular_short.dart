@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../components/skeleton.dart';
 import '../../../models/video.dart';
 import '../../../services/api_video_service.dart';
 import '../../short_video_page/short_page.dart';
 import '../../../components/card_skeleton.dart';
 import 'section_title.dart';
 import 'short_card.dart';
-import 'package:skeletons/skeletons.dart';
 
 class PopularShorts extends StatelessWidget {
   const PopularShorts({

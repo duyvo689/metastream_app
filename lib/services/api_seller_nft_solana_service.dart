@@ -1,12 +1,12 @@
 import 'package:http/http.dart' as http;
-import '../models/banner.dart';
+import '../models/nft_solana.dart';
 import 'api_url.dart';
 import 'dart:convert';
 
-class ApiVideoServices {
-  Future<List<Banner>> fetchBanner() {
+class ApiNftSolanaServices {
+  Future<List<NftSolana>> fetchSellerByAddress(String id) {
     return http
-        .get(Uri.parse('${URL().API_URL}/api/v1/banner'))
+        .get(Uri.parse('${URL().API_URL}/api/v1/nftSolana/seller/${id}'))
         .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
@@ -16,10 +16,10 @@ class ApiVideoServices {
       }
 
       final JsonDecoder _decoder = new JsonDecoder();
-      final bannerListContainer = _decoder.convert(jsonBody);
-      final List banners = bannerListContainer['data'];
-      return banners
-          .map((contactRaw) => new Banner.fromJson(contactRaw))
+      final nftSolanaListContainer = _decoder.convert(jsonBody);
+      final List nftSolanas = nftSolanaListContainer['data'];
+      return nftSolanas
+          .map((contactRaw) => new NftSolana.fromJson(contactRaw))
           .toList();
     });
   }

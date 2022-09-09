@@ -1,7 +1,5 @@
 import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../../main.dart';
 import '../main_page/main_page.dart';
 
 class SplashPage extends StatefulWidget {

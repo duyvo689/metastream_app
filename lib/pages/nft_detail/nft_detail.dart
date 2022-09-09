@@ -1,12 +1,12 @@
-import 'package:app_metastream/models/nft.dart';
+import 'package:app_metastream/models/nft_solana.dart';
 import 'package:flutter/material.dart';
 import '../../values/app_assets.dart';
 import '../../values/app_colors.dart';
 import 'components/body.dart';
 
 class NFTDetail extends StatelessWidget {
-  const NFTDetail({Key? key, required this.nft}) : super(key: key);
-  final NFT nft;
+  const NFTDetail({Key? key, required this.nftSolana}) : super(key: key);
+  final NftSolana nftSolana;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class NFTDetail extends StatelessWidget {
           ),
         ],
       ),
-      body: Body(nft: nft),
+      body: Body(nftSolana: nftSolana),
     );
   }
 }
