@@ -6,6 +6,10 @@ import '../game/game_page.dart';
 import '../home/home_page.dart';
 import '../option_3/option_3.dart';
 import '../option_4/option_4.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'dart:async';
+import 'package:flutter/services.dart';
+import 'dart:developer' as developer;
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -19,6 +23,51 @@ class _MainPageState extends State<MainPage> {
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 
+  ConnectivityResult _connectionStatus = ConnectivityResult.none;
+  final Connectivity _connectivity = Connectivity();
+  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    initConnectivity();
+
+    _connectivitySubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+  }
+
+  @override
+  void dispose() {
+    _connectivitySubscription.cancel();
+    super.dispose();
+  }
+
+  Future<void> initConnectivity() async {
+    late ConnectivityResult result;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result = await _connectivity.checkConnectivity();
+    } on PlatformException catch (e) {
+      developer.log('Couldn\'t check connectivity status', error: e);
+      return;
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) {
+      return Future.value(null);
+    }
+
+    return _updateConnectionStatus(result);
+  }
+
+  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    setState(() {
+      _connectionStatus = result;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +77,9 @@ class _MainPageState extends State<MainPage> {
         screens: [
           MyHomePage(),
           const GamePage(),
-          const Option3(),
+          Center(
+              child:
+                  Text('Connection Status: ${_connectionStatus.toString()}')),
           const Option4(),
         ],
         items: _navBarsItems(),
