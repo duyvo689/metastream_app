@@ -78,13 +78,13 @@ class VideoCardSkelton extends StatelessWidget {
     return SkeletonItem(
         child: Column(
       children: [
-        square_skeleton(height: 5),
+        SquareSkeleton(height: 5),
         SizedBox(height: 8),
         Row(
           children: [
             CircleSkeleton(size: 50),
             SizedBox(width: 8),
-            paragraph_skeleton(line: 2, height: 16)
+            ParagraphSkeleton(line: 2, height: 16)
           ],
         ),
       ],

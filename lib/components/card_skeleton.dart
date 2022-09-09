@@ -15,7 +15,7 @@ class CardSkeleton extends StatelessWidget {
       width: 180,
       height: 260,
       child: const SkeletonItem(
-        child: square_skeleton(
+        child: SquareSkeleton(
           height: 2,
           width: 220,
         ),

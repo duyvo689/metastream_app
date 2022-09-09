@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
-class square_skeleton extends StatelessWidget {
-  const square_skeleton({Key? key, this.width, required this.height})
+class SquareSkeleton extends StatelessWidget {
+  const SquareSkeleton({Key? key, this.width, required this.height})
       : super(key: key);
   final int height;
   final double? width;
@@ -29,8 +29,8 @@ class CircleSkeleton extends StatelessWidget {
   }
 }
 
-class paragraph_skeleton extends StatelessWidget {
-  const paragraph_skeleton(
+class ParagraphSkeleton extends StatelessWidget {
+  const ParagraphSkeleton(
       {Key? key, required this.line, this.height, this.width})
       : super(key: key);
   final double? height, width;

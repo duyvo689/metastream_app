@@ -76,11 +76,11 @@ class VideoSmallCardSkeleton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               Expanded(
-                child: square_skeleton(
+                child: SquareSkeleton(
                   height: 8,
                 ),
               ),
-              paragraph_skeleton(
+              ParagraphSkeleton(
                 height: 16,
                 width: 100,
                 line: 3,
