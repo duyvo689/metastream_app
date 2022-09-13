@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../values/app_assets.dart';
 import '../../values/app_colors.dart';
+import '../phantom_wallet/phantom.dart';
 import './components/body.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -32,16 +33,7 @@ class MyHomePage extends StatelessWidget {
             ),
           ],
         ),
-        actions: <Widget>[
-          RawMaterialButton(
-            onPressed: () {},
-            child: Image.asset(
-              AppAssets.icPhantom,
-              height: 40,
-              width: 40,
-            ),
-          ),
-        ],
+        actions: const <Widget>[PhanTomWallet()],
       ),
       body: Body(),
     );

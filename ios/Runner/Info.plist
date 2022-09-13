@@ -22,15 +22,50 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<!-- Deeplink Phantom start -->
+	<array>
+		<!-- <dict>
+			<key>NSAllowsArbitraryLoads</key>
+			<true/>
+		</dict> -->
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>deeplink.connect</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>metastreamphantom</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>deeplink.disconnect</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>metastreamphantom</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>None</string>
+			<key>CFBundleURLName</key>
+			<string>deeplink.onSignAndSendTransaction</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>metastreamphantom</string>
+			</array>
+		</dict>
+	</array>
+	<!-- Deeplink Phantom start -->
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
+	<!-- <key>NSAppTransportSecurity</key> -->
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

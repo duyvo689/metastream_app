@@ -48,14 +48,14 @@ class _PopularGamesState extends State<PopularGames> {
                     itemBuilder: (context, index) => CardSkeleton(),
                   ),
                 );
-              List<Game>? games = snapshot.data!.sublist(0, 6);
+              List<Game>? games = snapshot.data;
               return SingleChildScrollView(
                 clipBehavior: Clip.none,
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
                     ...List.generate(
-                      games.length,
+                      games!.length,
                       (index) => Padding(
                         padding: EdgeInsets.only(
                             right: getProportionateScreenWidth(20)),

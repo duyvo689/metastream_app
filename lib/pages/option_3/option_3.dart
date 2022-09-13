@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../values/app_assets.dart';
 import '../../values/app_colors.dart';
+import '../phantom_wallet/phantom.dart';
+import '../phantom_wallet/phantom2.dart';
 
 class Option3 extends StatelessWidget {
   const Option3({Key? key}) : super(key: key);
@@ -44,15 +46,16 @@ class Option3 extends StatelessWidget {
           ),
         ],
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/developing.gif"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: null /* add child content here */,
-      ),
+      // body: Container(
+      //   decoration: BoxDecoration(
+      //     image: DecorationImage(
+      //       image: AssetImage("assets/images/developing.gif"),
+      //       fit: BoxFit.cover,
+      //     ),
+      //   ),
+      //   child: null /* add child content here */,
+      // ),
+      body: WalletPhanTom(),
     );
   }
 }
