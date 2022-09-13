@@ -1,6 +1,7 @@
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import '../pages/game_detail/game_detail.dart';
 import 'card_skeleton.dart';
 
 import '../models/banner.dart';
@@ -62,70 +63,83 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
             return Container(
               child: CarouselSlider(
                 items: banners
-                    .map((item) => Container(
+                    .map((item) => InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => GameDetail(
+                                          gameId: item.gameId,
+                                        )));
+                          },
                           child: Container(
-                            margin: const EdgeInsets.all(5.0),
-                            child: ClipRRect(
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(5.0)),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Image.network(
-                                      item.assetUrl.toString(),
-                                      fit: BoxFit.cover,
-                                      width: 1000.0,
-                                      height: getProportionateScreenHeight(190),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                              begin: Alignment.centerLeft,
-                                              end: Alignment.centerRight,
-                                              colors: [
-                                            Colors.black.withOpacity(1),
-                                            Colors.black.withOpacity(0.01)
-                                          ])),
-                                    ),
-                                    Positioned(
-                                      left: 0.0,
-                                      right: 0.0,
-                                      top: getProportionateScreenHeight(50),
-                                      bottom: getProportionateScreenHeight(50),
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 10.0, horizontal: 20.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              item.name.toString(),
-                                              style: const TextStyle(
-                                                color:
-                                                    AppColors.textPrimaryColor,
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold,
+                            child: Container(
+                              margin: const EdgeInsets.all(5.0),
+                              child: ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5.0)),
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Image.network(
+                                        item.assetUrl.toString(),
+                                        fit: BoxFit.cover,
+                                        width: 1000.0,
+                                        height:
+                                            getProportionateScreenHeight(190),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                begin: Alignment.centerLeft,
+                                                end: Alignment.centerRight,
+                                                colors: [
+                                              Colors.black.withOpacity(1),
+                                              Colors.black.withOpacity(0.01)
+                                            ])),
+                                      ),
+                                      Positioned(
+                                        left: 0.0,
+                                        right: 0.0,
+                                        top: getProportionateScreenHeight(50),
+                                        bottom:
+                                            getProportionateScreenHeight(50),
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10.0, horizontal: 20.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                item.name.toString(),
+                                                style: const TextStyle(
+                                                  color: AppColors
+                                                      .textPrimaryColor,
+                                                  fontSize: 24,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Text(
-                                              item.description.toString(),
-                                              maxLines: 3,
-                                              style: const TextStyle(
-                                                overflow: TextOverflow.ellipsis,
-                                                color:
-                                                    AppColors.textSecondColor,
-                                                fontSize: 14,
+                                              const SizedBox(
+                                                height: 10,
                                               ),
-                                            ),
-                                          ],
+                                              Text(
+                                                item.description.toString(),
+                                                maxLines: 3,
+                                                style: const TextStyle(
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  color:
+                                                      AppColors.textSecondColor,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                )),
+                                    ],
+                                  )),
+                            ),
                           ),
                         ))
                     .toList(),

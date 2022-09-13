@@ -65,7 +65,7 @@ class _PopularGamesState extends State<PopularGames> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => GameDetail(
-                                        game: games[index],
+                                        gameId: games[index].id,
                                       ))),
                         ),
                       ),

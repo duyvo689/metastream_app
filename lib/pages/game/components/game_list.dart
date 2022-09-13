@@ -40,7 +40,7 @@ class GameList extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => GameDetail(
-                                game: games[index],
+                                gameId: games[index].id,
                               ))),
                 );
               },
