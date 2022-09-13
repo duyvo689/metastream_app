@@ -1,4 +1,4 @@
-class Banner {
+class Carousel {
   String? id;
   String? description;
   String? createdAt;
@@ -12,7 +12,7 @@ class Banner {
   String? gameId;
   String? websiteUrl;
 
-  Banner(
+  Carousel(
       {this.id,
       this.description,
       this.createdAt,
@@ -26,7 +26,7 @@ class Banner {
       this.gameId,
       this.websiteUrl});
 
-  Banner.fromJson(Map<String, dynamic> json) {
+  Carousel.fromJson(Map<String, dynamic> json) {
     if (json["_id"] is String) id = json["_id"];
     if (json["description"] is String) description = json["description"];
     if (json["createdAt"] is String) createdAt = json["createdAt"];

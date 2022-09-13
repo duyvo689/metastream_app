@@ -22,7 +22,7 @@ class _CategoriesState extends State<Categories> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
-      height: 40,
+      height: 36,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
@@ -49,7 +49,7 @@ class _CategoriesState extends State<Categories> {
               style: TextStyle(
                 fontWeight:
                     selectedIndex == index ? FontWeight.w600 : FontWeight.w500,
-                fontSize: 18,
+                fontSize: 16,
                 color: selectedIndex == index ? Colors.black : Colors.white,
               ),
             ),

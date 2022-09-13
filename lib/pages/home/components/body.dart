@@ -5,7 +5,7 @@ import '../../../models/user.dart';
 import '../../../services/api_user_service.dart';
 import '../../../values/app_size.dart';
 import '../../profile/profile.dart';
-import './carousel_slider.dart';
+import '../../../components/carousel_slider.dart';
 import 'popular_short.dart';
 import 'popular_video.dart';
 import 'categories.dart';
@@ -69,10 +69,13 @@ class Body extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Container(
-              child: CarouselWithIndicatorDemo(),
+            const CarouselWithIndicator(
+              viewport: 1,
+              width: 30,
+              height: 3,
+              style: 'start',
             ),
-            Categories(),
+            const Categories(),
             const PopularShorts(),
             const PopularVideos(),
             const PopularGames(),

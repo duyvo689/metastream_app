@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../components/carousel_slider.dart';
 import '../../../values/app_size.dart';
 import '../../../components/table_nft.dart';
-import 'carousel_slider.dart';
 import 'game_list.dart';
 import 'game_upcoming_list.dart';
 import 'section_title.dart';
@@ -17,7 +17,8 @@ class Body extends StatelessWidget {
       child: Container(
         child: Column(
           children: const <Widget>[
-            CarouselWithIndicatorDemo(),
+            CarouselWithIndicator(
+                viewport: 0.82, width: 36, height: 3, style: 'center'),
             SizedBox(height: 20),
             SectionTitle(
               title: "Trending Games",

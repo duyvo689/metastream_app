@@ -3,8 +3,8 @@ import '../models/banner.dart';
 import 'api_url.dart';
 import 'dart:convert';
 
-class ApiVideoServices {
-  Future<List<Banner>> fetchBanner() {
+class ApiBannerServices {
+  Future<List<Carousel>> fetchBanner() {
     return http
         .get(Uri.parse('${URL().API_URL}/api/v1/banner'))
         .then((http.Response response) {
@@ -17,9 +17,9 @@ class ApiVideoServices {
 
       final JsonDecoder _decoder = new JsonDecoder();
       final bannerListContainer = _decoder.convert(jsonBody);
-      final List banners = bannerListContainer['data'];
+      List banners = bannerListContainer['data'];
       return banners
-          .map((contactRaw) => new Banner.fromJson(contactRaw))
+          .map((contactRaw) => new Carousel.fromJson(contactRaw))
           .toList();
     });
   }
