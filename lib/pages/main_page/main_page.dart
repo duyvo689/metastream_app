@@ -98,13 +98,14 @@ class _MainPageState extends State<MainPage> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.time_solid),
+        icon: const Icon(CupertinoIcons.rectangle_grid_3x2_fill),
         title: ("Game"),
         activeColorPrimary: mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.bookmark_solid),
+        icon:
+            const Icon(CupertinoIcons.rectangle_fill_on_rectangle_angled_fill),
         title: ("Wallet"),
         activeColorPrimary: mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
