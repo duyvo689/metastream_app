@@ -83,7 +83,7 @@ class _MainPageState extends State<MainPage> {
           // const Option4(),
         ],
         items: _navBarsItems(),
-        navBarStyle: NavBarStyle.style12,
+        navBarStyle: NavBarStyle.style6,
         backgroundColor: AppColors.bgrBottomBarColor,
       ),
     );
@@ -99,13 +99,13 @@ class _MainPageState extends State<MainPage> {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.time_solid),
-        title: ("Time"),
+        title: ("Game"),
         activeColorPrimary: mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.bookmark_solid),
-        title: ("Bookmark"),
+        title: ("Wallet"),
         activeColorPrimary: mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),

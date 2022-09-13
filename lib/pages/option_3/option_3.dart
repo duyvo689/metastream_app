@@ -13,48 +13,14 @@ class Option3 extends StatelessWidget {
       backgroundColor: AppColors.bgrMainColor,
       appBar: AppBar(
         backgroundColor: AppColors.bgrMainColor,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'Discover',
-                  style: TextStyle(
-                      color: AppColors.textPrimaryColor,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Find your favourite streamer.',
-                  style:
-                      TextStyle(color: AppColors.textSecondColor, fontSize: 14),
-                ),
-              ],
-            ),
-          ],
+        title: const Text(
+          'Wallet',
+          style: TextStyle(
+              color: AppColors.textPrimaryColor,
+              fontSize: 22,
+              fontWeight: FontWeight.bold),
         ),
-        actions: <Widget>[
-          RawMaterialButton(
-            onPressed: () {},
-            child: Image.asset(
-              AppAssets.icPhantom,
-              height: 40,
-              width: 40,
-            ),
-          ),
-        ],
       ),
-      // body: Container(
-      //   decoration: BoxDecoration(
-      //     image: DecorationImage(
-      //       image: AssetImage("assets/images/developing.gif"),
-      //       fit: BoxFit.cover,
-      //     ),
-      //   ),
-      //   child: null /* add child content here */,
-      // ),
       body: WalletPhanTom(),
     );
   }

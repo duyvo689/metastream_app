@@ -1,11 +1,11 @@
 import 'dart:convert';
-
 import 'package:bs58/bs58.dart';
 import 'package:flutter/material.dart';
 import 'package:pinenacl/x25519.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../values/app_colors.dart';
 import 'deep_link_provider.dart';
 
 class WalletPhanTom extends StatefulWidget {
@@ -17,6 +17,7 @@ class WalletPhanTom extends StatefulWidget {
 
 class _MainAppState extends State<WalletPhanTom> {
   final List<Widget> logs = [];
+
   late PrivateKey sk;
   late PublicKey pk;
   String walletAddr = "";
@@ -66,18 +67,19 @@ class _MainAppState extends State<WalletPhanTom> {
     );
 
     Map data = const JsonDecoder().convert(String.fromCharCodes(decryptedData));
-
-    session = data["session"];
-    walletAddr = data["public_key"];
-
-    logs.add(
-      Text(
-        "Wallet address: ${data["public_key"].toString()}",
-        style: const TextStyle(
-          color: Colors.white,
-        ),
-      ),
-    );
+    setState(() {
+      session = data["session"];
+      walletAddr =
+          '${data["public_key"].toString().substring(0, 4)}...${data["public_key"].toString().substring(data["public_key"].toString().length - 4, data["public_key"].toString().length)}';
+    });
+    // logs.add(
+    //   Text(
+    //     "Wallet address: ${data["public_key"].toString()}",
+    //     style: const TextStyle(
+    //       color: Colors.white,
+    //     ),
+    //   ),
+    // );
   }
 
   void _disconnect() async {
@@ -118,11 +120,8 @@ class _MainAppState extends State<WalletPhanTom> {
   @override
   Widget build(BuildContext context) {
     DeepLinkProvider provider = DeepLinkProvider();
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Flutter Phantom Deeplinking"),
-      ),
-      body: StreamBuilder<String>(
+    return SafeArea(
+      child: StreamBuilder<String>(
         stream: provider.state,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -142,51 +141,87 @@ class _MainAppState extends State<WalletPhanTom> {
               }
             }
           }
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 300,
-                decoration: const BoxDecoration(
-                  color: Colors.black,
-                ),
-                child: SingleChildScrollView(
+          return walletAddr == ''
+              ? Center(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      const Image(
+                        image: AssetImage(
+                          'assets/images/logo-metastream.png',
+                        ),
+                        height: 100,
+                        width: 100,
+                      ),
+                      const SizedBox(height: 10),
                       const Text(
-                        "LOGS:",
+                        'No wallets found',
+                        textAlign: TextAlign.start,
                         style: TextStyle(
-                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                          overflow: TextOverflow.ellipsis,
+                          color: AppColors.textPrimaryColor,
                         ),
                       ),
-                      ...logs,
+                      TextButton(
+                          onPressed: _connect,
+                          style: TextButton.styleFrom(
+                            primary: AppColors.textSecondColor,
+                          ),
+                          child: const Text('Connect Phantom',
+                              style: TextStyle(fontSize: 16))),
                     ],
                   ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: _connect,
-                child: const Text("Connect Phantom"),
-              ),
-              ElevatedButton(
-                onPressed: () => walletAddr == ""
-                    ? ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            "Please connect wallet first",
+                )
+              : Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 10),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                walletAddr,
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  overflow: TextOverflow.ellipsis,
+                                  color: AppColors.textPrimaryColor,
+                                ),
+                              ),
+                              const Icon(
+                                Icons.delete_outline,
+                                size: 28,
+                                color: AppColors.textSecondColor,
+                              ),
+                            ],
                           ),
-                          duration: Duration(seconds: 2),
-                        ),
-                      )
-                    : _disconnect(),
-                child: const Text("Disconnect"),
-              ),
-            ],
-          );
+                        ],
+                      ),
+                    ),
+                  ],
+                );
         },
       ),
     );
   }
 }
+
+ // ElevatedButton(
+                      //   onPressed: () => walletAddr == ""
+                      //       ? ScaffoldMessenger.of(context).showSnackBar(
+                      //           const SnackBar(
+                      //             content: Text(
+                      //               "Please connect wallet first",
+                      //             ),
+                      //             duration: Duration(seconds: 2),
+                      //           ),
+                      //         )
+                      //       : _disconnect(),
+                      //   child: const Text("Disconnect"),
+                      // ),
