@@ -12,47 +12,50 @@ class VideoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: SizedBox(
-        height: 500,
-        child: FutureBuilder<List<Video>>(
-          future: ApiVideoServices().fetchVideosOfUser(userId),
-          builder: (context, snapshot) {
-            if ((snapshot.hasError) || (!snapshot.hasData))
-              return Container(
-                height: 100,
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  itemCount: 4,
-                  itemBuilder: (context, index) => VideoSmallCardSkeleton(),
-                ),
-              );
-            List<Video>? videos = snapshot.data;
-            return ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              padding: const EdgeInsets.all(8),
-              itemCount: videos!.length,
-              itemBuilder: (BuildContext context, int index) {
+    return Expanded(
+      flex: 1,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: SizedBox(
+          height: 500,
+          child: FutureBuilder<List<Video>>(
+            future: ApiVideoServices().fetchVideosOfUser(userId),
+            builder: (context, snapshot) {
+              if ((snapshot.hasError) || (!snapshot.hasData))
                 return Container(
-                  alignment: Alignment.center,
-                  child: Center(
-                    child: VideoCard(
-                      video: videos[index],
-                      press: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => VideoPage(
-                                    video: videos[index],
-                                  ))),
-                    ),
+                  height: 100,
+                  child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount: 4,
+                    itemBuilder: (context, index) => VideoSmallCardSkeleton(),
                   ),
                 );
-              },
-            );
-          },
+              List<Video>? videos = snapshot.data;
+              return ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                padding: const EdgeInsets.all(8),
+                itemCount: videos!.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    alignment: Alignment.center,
+                    child: Center(
+                      child: VideoCard(
+                        video: videos[index],
+                        press: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => VideoPage(
+                                      video: videos[index],
+                                    ))),
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );

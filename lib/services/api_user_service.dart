@@ -21,4 +21,24 @@ class ApiUserServices {
       return users.map((contactRaw) => new User.fromJson(contactRaw)).toList();
     });
   }
+
+  Future<User> fetchUserById(String id) {
+    return http
+        .get(Uri.parse('${URL().API_URL}/api/v1/user/${id}'))
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200 || jsonBody == null) {
+        print(response.reasonPhrase);
+        throw new Exception("Error load api");
+      }
+
+      final JsonDecoder _decoder = new JsonDecoder();
+      final videoContainer = _decoder.convert(jsonBody);
+      final video = videoContainer['data'];
+
+      return User.fromJson(video);
+    });
+  }
 }

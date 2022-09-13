@@ -37,4 +37,15 @@ class AppStyles {
       fontWeight: FontWeight.w400,
       fontSize: 14,
       color: AppColors.textSecondColor);
+
+  static const TextStyle about_profile_label_style = TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: 18,
+      overflow: TextOverflow.ellipsis,
+      color: AppColors.textSecondColor);
+
+  static const TextStyle about_profile_title_style = TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 18,
+      color: AppColors.textPrimaryColor);
 }

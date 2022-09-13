@@ -120,8 +120,18 @@ class _MainAppState extends State<WalletPhanTom> {
   @override
   Widget build(BuildContext context) {
     DeepLinkProvider provider = DeepLinkProvider();
-    return SafeArea(
-      child: StreamBuilder<String>(
+    return Scaffold(
+      backgroundColor: AppColors.bgrMainColor,
+      appBar: AppBar(
+          backgroundColor: AppColors.bgrMainColor,
+          title: const Text(
+            'Wallet',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
+            ),
+          )),
+      body: StreamBuilder<String>(
         stream: provider.state,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -150,8 +160,8 @@ class _MainAppState extends State<WalletPhanTom> {
                         image: AssetImage(
                           'assets/images/logo-metastream.png',
                         ),
-                        height: 100,
-                        width: 100,
+                        height: 90,
+                        width: 90,
                       ),
                       const SizedBox(height: 10),
                       const Text(

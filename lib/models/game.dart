@@ -120,14 +120,14 @@ class GenresId {
   GenresId({this.id, this.name});
 
   GenresId.fromJson(Map<String, dynamic> json) {
-    this.id = json["_id"];
-    this.name = json["name"];
+    id = json["_id"];
+    name = json["name"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data["_id"] = this.id;
-    data["name"] = this.name;
+    data["_id"] = id;
+    data["name"] = name;
     return data;
   }
 }
@@ -140,16 +140,16 @@ class Tags {
   Tags({this.title, this.url, this.id});
 
   Tags.fromJson(Map<String, dynamic> json) {
-    this.title = json["title"];
-    this.url = json["url"];
-    this.id = json["_id"];
+    title = json["title"];
+    url = json["url"];
+    id = json["_id"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data["title"] = this.title;
-    data["url"] = this.url;
-    data["_id"] = this.id;
+    data["title"] = title;
+    data["url"] = url;
+    data["_id"] = id;
     return data;
   }
 }
@@ -161,14 +161,14 @@ class Background {
   Background({this.type, this.url});
 
   Background.fromJson(Map<String, dynamic> json) {
-    this.type = json["type"];
-    this.url = json["url"];
+    type = json["type"];
+    url = json["url"];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data["type"] = this.type;
-    data["url"] = this.url;
+    data["type"] = type;
+    data["url"] = url;
     return data;
   }
 }
