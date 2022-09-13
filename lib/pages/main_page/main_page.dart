@@ -4,11 +4,12 @@ import 'package:app_metastream/values/app_colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../game/game_page.dart';
 import '../home/home_page.dart';
-import '../option_3/option_3.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'dart:developer' as developer;
+
+import '../phantom_wallet/phantom2.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -76,11 +77,7 @@ class _MainPageState extends State<MainPage> {
         screens: [
           MyHomePage(),
           const GamePage(),
-          // Center(
-          //     child:
-          //         Text('Connection Status: ${_connectionStatus.toString()}')),
-          const Option3(),
-          // const Option4(),
+          const WalletPhanTom(),
         ],
         items: _navBarsItems(),
         navBarStyle: NavBarStyle.style6,
