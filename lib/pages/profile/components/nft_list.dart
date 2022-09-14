@@ -22,7 +22,7 @@ class NFTList extends StatelessWidget {
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
               return Container(
-                height: 260,
+                height: 200,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 6,

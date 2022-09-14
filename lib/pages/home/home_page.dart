@@ -3,8 +3,19 @@ import '../../values/app_assets.dart';
 import '../../values/app_colors.dart';
 import '../phantom_wallet/phantom.dart';
 import './components/body.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyHomePage extends StatelessWidget {
+  _launchURLApp() async {
+    const url =
+        'https://phantom.app/ul/browse/https://beta.metastream.network/NFT/solana/3bqfzDUBhoa1rq6nw2DPbjXzvhzZbBswHMcN1fgyfjXk';
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: false, forceWebView: false);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +44,18 @@ class MyHomePage extends StatelessWidget {
             ),
           ],
         ),
-        actions: const <Widget>[PhanTomWallet()],
+        actions: <Widget>[
+          RawMaterialButton(
+            onPressed: _launchURLApp,
+            child: Image.asset(
+              AppAssets.icPhantom,
+              height: 40,
+              width: 40,
+            ),
+          ),
+        ],
       ),
-      body: Body(),
+      body: const Body(),
     );
   }
 }

@@ -180,7 +180,7 @@ class _MainAppState extends State<WalletPhanTom> {
                             primary: AppColors.textSecondColor,
                           ),
                           child: const Text('Connect Phantom',
-                              style: TextStyle(fontSize: 16))),
+                              style: TextStyle(fontSize: 15))),
                     ],
                   ),
                 )

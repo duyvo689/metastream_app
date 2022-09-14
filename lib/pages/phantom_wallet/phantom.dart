@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:bs58/bs58.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,8 @@ class _PhanTomWalletState extends State<PhanTomWallet> {
         'dapp_encryption_public_key': base58.encode(pk.asTypedList),
         'cluster': "mainnet-beta",
         'app_url': "https://phantom.app",
-        'redirect_link': 'metastreamphantom://deeplink.connect',
+        'redirect_link': '',
+        // 'https://phantom.app/ul/browse/https://magiceden.io/item-details/ED8Psf2Zk2HyVGAimSQpFHVDFRGDAkPjQhkfAqbN5h7d',
       },
     );
     launchUrl(
@@ -106,7 +108,8 @@ class _PhanTomWalletState extends State<PhanTomWallet> {
         'dapp_encryption_public_key': base58.encode(pk.asTypedList),
         'nonce': base58.encode(encryptedMsg.nonce.toUint8List()),
         'payload': base58.encode(encryptedMsg.toUint8List()),
-        'redirect_link': 'metastreamphantom://deeplink.disconnect',
+        'redirect_link':
+            'https://beta.metastream.network/NFT/solana/3bqfzDUBhoa1rq6nw2DPbjXzvhzZbBswHMcN1fgyfjXk',
       },
     );
     launchUrl(
