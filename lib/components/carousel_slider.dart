@@ -83,8 +83,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                                         item.assetUrl.toString(),
                                         fit: BoxFit.cover,
                                         width: 1000.0,
-                                        height:
-                                            getProportionateScreenHeight(190),
+                                        height: 220,
                                       ),
                                       Container(
                                         decoration: BoxDecoration(

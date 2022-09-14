@@ -71,6 +71,9 @@ class _CategoriesState extends State<Categories> {
           NFTList(addressWallet: widget.addressWallet),
         ],
         if (selectedIndex == 2) ...[AboutProfile(userId: widget.userId)],
+        SizedBox(
+          height: 120,
+        )
       ]),
     );
   }

@@ -33,7 +33,7 @@ class VideoList extends StatelessWidget {
               List<Video>? videos = snapshot.data;
               return ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                // physics: NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 padding: const EdgeInsets.all(8),
                 itemCount: videos!.length,

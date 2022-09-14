@@ -27,55 +27,55 @@ class AboutProfile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 10),
-                    Row(
-                      children: [
-                        const Text("First name: ",
-                            style: AppStyles.about_profile_label_style),
-                        SizedBox(width: 10),
-                        Text(
-                          user!.firstName.toString(),
-                          style: AppStyles.about_profile_title_style,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        const Text("Last name: ",
-                            style: AppStyles.about_profile_label_style),
-                        const SizedBox(width: 10),
-                        Text(
-                          user.lastName.toString(),
-                          style: AppStyles.about_profile_title_style,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        const Text("User Name: ",
-                            style: AppStyles.about_profile_label_style),
-                        SizedBox(width: 10),
-                        Text(
-                          user.userName.toString(),
-                          style: AppStyles.about_profile_title_style,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        const Text("Email: ",
-                            style: AppStyles.about_profile_label_style),
-                        const SizedBox(width: 10),
-                        Text(
-                          user.email.toString(),
-                          style: AppStyles.about_profile_title_style,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 10),
+                    // Row(
+                    //   children: [
+                    //     const Text("First name: ",
+                    //         style: AppStyles.about_profile_label_style),
+                    //     const SizedBox(width: 10),
+                    //     Text(
+                    //       user!.firstName.toString(),
+                    //       style: AppStyles.about_profile_title_style,
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(height: 20),
+                    // Row(
+                    //   children: [
+                    //     const Text("Last name: ",
+                    //         style: AppStyles.about_profile_label_style),
+                    //     const SizedBox(width: 10),
+                    //     Text(
+                    //       user.lastName.toString(),
+                    //       style: AppStyles.about_profile_title_style,
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(height: 20),
+                    // Row(
+                    //   children: [
+                    //     const Text("User Name: ",
+                    //         style: AppStyles.about_profile_label_style),
+                    //     const SizedBox(width: 10),
+                    //     Text(
+                    //       user.userName.toString(),
+                    //       style: AppStyles.about_profile_title_style,
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(height: 20),
+                    // Row(
+                    //   children: [
+                    //     const Text("Email: ",
+                    //         style: AppStyles.about_profile_label_style),
+                    //     const SizedBox(width: 10),
+                    //     Text(
+                    //       user.email.toString(),
+                    //       style: AppStyles.about_profile_title_style,
+                    //     ),
+                    //   ],
+                    // ),
+                    // SizedBox(height: 20),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +84,7 @@ class AboutProfile extends StatelessWidget {
                             style: AppStyles.about_profile_label_style),
                         const SizedBox(height: 10),
                         Text(
-                          user.descriptions.toString(),
+                          user!.descriptions.toString(),
                           style: AppStyles.about_profile_title_style,
                         ),
                       ],

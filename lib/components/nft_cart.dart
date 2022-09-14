@@ -33,19 +33,22 @@ class NFTCard extends StatelessWidget {
           width: getProportionateScreenWidth(150),
           child: Column(
             children: [
-              AspectRatio(
-                aspectRatio: 0.94,
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
+              Expanded(
+                flex: 1,
+                child: AspectRatio(
+                  aspectRatio: 0.94,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      image: DecorationImage(
+                          image: NetworkImage(nftSolana.image!),
+                          fit: BoxFit.cover),
                     ),
-                    image: DecorationImage(
-                        image: NetworkImage(nftSolana.image!),
-                        fit: BoxFit.cover),
                   ),
                 ),
               ),
