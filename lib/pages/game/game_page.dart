@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../values/app_assets.dart';
 import '../../values/app_colors.dart';
 import './components/body.dart';
 
 class GamePage extends StatelessWidget {
   const GamePage({Key? key}) : super(key: key);
+
+  _launchURLApp() async {
+    const url =
+        'https://phantom.app/ul/browse/https://beta.metastream.network/NFT/solana/3bqfzDUBhoa1rq6nw2DPbjXzvhzZbBswHMcN1fgyfjXk';
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: false, forceWebView: false);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +47,7 @@ class GamePage extends StatelessWidget {
         ),
         actions: <Widget>[
           RawMaterialButton(
-            onPressed: () {},
+            onPressed: _launchURLApp,
             child: Image.asset(
               AppAssets.icPhantom,
               height: 40,

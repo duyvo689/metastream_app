@@ -11,28 +11,30 @@ class AboutProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         flex: 1,
-        child: FutureBuilder<User>(
-            future: ApiUserServices().fetchUserById(userId),
-            builder: (context, snapshot) {
-              if ((snapshot.hasError) || (!snapshot.hasData))
-                return ParagraphSkeleton(
-                  line: 7,
-                  height: 30,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: FutureBuilder<User>(
+              future: ApiUserServices().fetchUserById(userId),
+              builder: (context, snapshot) {
+                if ((snapshot.hasError) || (!snapshot.hasData))
+                  return ParagraphSkeleton(
+                    line: 7,
+                    height: 30,
+                  );
+                User? user = snapshot.data;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Description: ",
+                        style: AppStyles.about_profile_label_style),
+                    const SizedBox(height: 10),
+                    Text(
+                      user!.descriptions.toString(),
+                      style: AppStyles.about_profile_title_style,
+                    ),
+                  ],
                 );
-              User? user = snapshot.data;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 10),
-                  const Text("Description: ",
-                      style: AppStyles.about_profile_label_style),
-                  const SizedBox(height: 10),
-                  Text(
-                    user!.descriptions.toString(),
-                    style: AppStyles.about_profile_title_style,
-                  ),
-                ],
-              );
-            }));
+              }),
+        ));
   }
 }

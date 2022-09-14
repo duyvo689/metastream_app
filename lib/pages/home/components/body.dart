@@ -76,7 +76,7 @@ class Body extends StatelessWidget {
               style: 'start',
             ),
             const Categories(),
-            const PopularShorts(),
+            // const PopularShorts(),
             const PopularVideos(),
             const PopularGames(),
             const SizedBox(

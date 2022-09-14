@@ -25,7 +25,7 @@ class _CategoriesState extends State<Categories> {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 1,
-      child: Column(children: [
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Container(
           margin: const EdgeInsets.symmetric(vertical: 30),
           height: 30,
