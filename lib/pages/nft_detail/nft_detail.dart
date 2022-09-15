@@ -11,7 +11,7 @@ class NFTDetail extends StatelessWidget {
 
   _launchURLApp() async {
     var url =
-        'https://phantom.app/ul/browse/https://staging.metastream.network/NFT/solana/${nftSolana.id}';
+        'https://phantom.app/ul/browse/https://staging.metastream.network/NFT/solana/${nftSolana.mintAddress}';
     if (await canLaunch(url)) {
       await launch(url, forceSafariVC: false, forceWebView: false);
     } else {

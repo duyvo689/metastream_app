@@ -41,4 +41,17 @@ class ApiUserServices {
       return User.fromJson(video);
     });
   }
+
+  // Future FollowUser(String id, String userId, bool isFollow) {
+  //   return http.put(
+  //     Uri.parse('${URL().API_URL}/api/v1/user/follow/${id}'),
+  //     headers: <String, String>{
+  //       'Content-Type': 'application/json; charset=UTF-8',
+  //     },
+  //     body: jsonEncode(<String, dynamic>{
+  //       'idUser': userId,
+  //       'isFollow': isFollow,
+  //     }),
+  //   );
+  // }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'pages/game_detail/game_detail.dart';
 import 'pages/splash_page/splash_page.dart';
 
 void main() => runApp(const MyApp());
@@ -15,6 +16,11 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       home: SplashPage(),
+      // initialRoute: '/',
+      // routes: {
+      //   '/': (context) => SplashPage(),
+      //   'GameDetail': (context) => GameDetail(),
+      // },
     );
   }
 }

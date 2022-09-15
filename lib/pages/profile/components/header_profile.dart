@@ -1,4 +1,5 @@
 import 'package:app_metastream/models/user.dart';
+import 'package:app_metastream/services/api_user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:app_metastream/values/app_colors.dart';
 import '../../../values/app_size.dart';
@@ -78,7 +79,7 @@ class HeaderProflie extends StatelessWidget {
                             textStyle: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w600)),
                         onPressed: () {},
-                        child: const Text('following'),
+                        child: Text('following'),
                       ),
                     ],
                   ),
@@ -91,13 +92,13 @@ class HeaderProflie extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         RichText(
-                          text: const TextSpan(
-                            text: '0',
-                            style: TextStyle(
+                          text: TextSpan(
+                            text: user.follow.toString(),
+                            style: const TextStyle(
                                 color: AppColors.primaryColor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
-                            children: <TextSpan>[
+                            children: const <TextSpan>[
                               TextSpan(
                                   text: ' Followers',
                                   style: TextStyle(
