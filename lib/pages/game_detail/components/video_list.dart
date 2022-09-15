@@ -34,7 +34,7 @@ class VideoList extends StatelessWidget {
                   ? ListView.builder(
                       scrollDirection: Axis.vertical,
                       padding: const EdgeInsets.all(8),
-                      itemCount: videos!.length,
+                      itemCount: videos.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Column(
                           children: [

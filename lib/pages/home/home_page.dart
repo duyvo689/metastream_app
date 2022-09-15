@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../values/app_assets.dart';
 import '../../values/app_colors.dart';
-import '../phantom_wallet/phantom.dart';
 import './components/body.dart';
 import 'package:url_launcher/url_launcher.dart';
 

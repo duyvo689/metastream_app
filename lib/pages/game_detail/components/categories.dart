@@ -1,5 +1,6 @@
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
+import '../../../components/no_content_profile.dart';
 import 'about.dart';
 import 'video_list.dart';
 
@@ -65,6 +66,9 @@ class _CategoriesState extends State<Categories> {
           // if (selectedIndex == 1) ...[
           //   NFTList(addressWallet: widget.addressWallet),
           // ],
+          if (selectedIndex == 1) ...[
+            const NoContentProfile(title: "Game don't have nft!")
+          ],
           if (selectedIndex == 2) ...[AboutProfile(gameId: widget.gameId)],
         ],
       ),

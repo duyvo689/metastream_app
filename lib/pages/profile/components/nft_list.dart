@@ -38,7 +38,7 @@ class NFTList extends StatelessWidget {
                       crossAxisCount: 2,
                       childAspectRatio: 0.63,
                     ),
-                    itemCount: nftSolanas!.length,
+                    itemCount: nftSolanas.length,
                     itemBuilder: (BuildContext context, int index) {
                       return NFTCard(
                         nftSolana: nftSolanas[index],

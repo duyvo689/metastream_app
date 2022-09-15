@@ -91,13 +91,13 @@ class HeaderProflie extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         RichText(
-                          text: TextSpan(
-                            text: '1909k',
-                            style: const TextStyle(
+                          text: const TextSpan(
+                            text: '0',
+                            style: TextStyle(
                                 color: AppColors.primaryColor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
-                            children: const <TextSpan>[
+                            children: <TextSpan>[
                               TextSpan(
                                   text: ' Followers',
                                   style: TextStyle(
@@ -117,13 +117,13 @@ class HeaderProflie extends StatelessWidget {
                               width: 10,
                             ),
                             RichText(
-                              text: TextSpan(
-                                text: '169',
-                                style: const TextStyle(
+                              text: const TextSpan(
+                                text: '0',
+                                style: TextStyle(
                                     color: AppColors.primaryColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold),
-                                children: const <TextSpan>[
+                                children: <TextSpan>[
                                   TextSpan(
                                       text: ' viewers',
                                       style: TextStyle(
