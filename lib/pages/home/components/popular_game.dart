@@ -26,9 +26,6 @@ class _PopularGamesState extends State<PopularGames> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          const SizedBox(
-            height: 30,
-          ),
           const SectionTitle(
             title_1: "Games",
             title_2: "we think you’ll like",

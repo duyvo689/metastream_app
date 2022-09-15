@@ -15,9 +15,6 @@ class PopularVideos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      const SizedBox(
-        height: 30,
-      ),
       const Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: SectionTitle(
