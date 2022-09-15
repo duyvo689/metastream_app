@@ -1,3 +1,4 @@
+import 'package:app_metastream/models/nft_solana.dart';
 import 'package:app_metastream/values/app_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -5,8 +6,8 @@ import '../../../values/app_assets.dart';
 import '../../../values/app_colors.dart';
 
 class ExpansionCart extends StatefulWidget {
-  const ExpansionCart({Key? key}) : super(key: key);
-
+  const ExpansionCart({Key? key, required this.nftSolana}) : super(key: key);
+  final NftSolana nftSolana;
   @override
   State<ExpansionCart> createState() => _MyStatefulWidgetState();
 }
@@ -28,7 +29,7 @@ class _MyStatefulWidgetState extends State<ExpansionCart> {
               children: const [
                 Icon(
                   Icons.description,
-                  size: 26,
+                  size: 24,
                   color: AppColors.primaryColor,
                 ),
                 SizedBox(
@@ -38,8 +39,8 @@ class _MyStatefulWidgetState extends State<ExpansionCart> {
                   'Details',
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
                       color: AppColors.textPrimaryColor),
                 ),
               ],
@@ -62,21 +63,11 @@ class _MyStatefulWidgetState extends State<ExpansionCart> {
                           children: [
                             CircleAvatar(
                               backgroundImage: AssetImage(AppAssets.icSol),
-                              radius: 12,
-                            ),
-                            const SizedBox(width: 2),
-                            CircleAvatar(
-                              backgroundImage: AssetImage(AppAssets.icEth),
                               radius: 10,
                             ),
-                            const SizedBox(width: 2),
-                            CircleAvatar(
-                              backgroundImage: AssetImage(AppAssets.icBsc),
-                              radius: 14,
-                            ),
-                            const SizedBox(width: 2),
-                            const Text(
-                              'GgQQ1 ... uBy',
+                            const SizedBox(width: 5),
+                            Text(
+                              '${widget.nftSolana.mintAddress.toString().substring(0, 6)}...${widget.nftSolana.mintAddress.toString().substring(widget.nftSolana.mintAddress.toString().length - 6, widget.nftSolana.mintAddress.toString().length)}',
                               textAlign: TextAlign.start,
                               style: AppStyles.details_cart_right_nft_style,
                             ),
@@ -89,29 +80,14 @@ class _MyStatefulWidgetState extends State<ExpansionCart> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'Token address',
+                          'Seller address',
                           textAlign: TextAlign.start,
                           style: AppStyles.details_cart_left_nft_style,
                         ),
                         Row(
                           children: [
-                            CircleAvatar(
-                              backgroundImage: AssetImage(AppAssets.icSol),
-                              radius: 12,
-                            ),
-                            const SizedBox(width: 2),
-                            CircleAvatar(
-                              backgroundImage: AssetImage(AppAssets.icEth),
-                              radius: 10,
-                            ),
-                            const SizedBox(width: 2),
-                            CircleAvatar(
-                              backgroundImage: AssetImage(AppAssets.icBsc),
-                              radius: 14,
-                            ),
-                            const SizedBox(width: 2),
-                            const Text(
-                              '63Wuy ... MHS',
+                            Text(
+                              '${widget.nftSolana.sellerAddress.toString().substring(0, 6)}...${widget.nftSolana.sellerAddress.toString().substring(widget.nftSolana.sellerAddress.toString().length - 6, widget.nftSolana.sellerAddress.toString().length)}',
                               textAlign: TextAlign.start,
                               style: AppStyles.details_cart_right_nft_style,
                             ),
@@ -124,81 +100,18 @@ class _MyStatefulWidgetState extends State<ExpansionCart> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'Owner',
+                          'Token Account',
                           textAlign: TextAlign.start,
                           style: AppStyles.details_cart_left_nft_style,
                         ),
                         Row(
                           children: [
-                            CircleAvatar(
-                              backgroundImage: AssetImage(AppAssets.icSol),
-                              radius: 12,
-                            ),
-                            const SizedBox(width: 2),
-                            CircleAvatar(
-                              backgroundImage: AssetImage(AppAssets.icEth),
-                              radius: 10,
-                            ),
-                            const SizedBox(width: 2),
-                            CircleAvatar(
-                              backgroundImage: AssetImage(AppAssets.icBsc),
-                              radius: 14,
-                            ),
-                            const SizedBox(width: 2),
-                            const Text(
-                              'Br1qa ... RpX',
+                            Text(
+                              '${widget.nftSolana.tokenAccount.toString().substring(0, 6)}...${widget.nftSolana.tokenAccount.toString().substring(widget.nftSolana.tokenAccount.toString().length - 6, widget.nftSolana.tokenAccount.toString().length)}',
                               textAlign: TextAlign.start,
                               style: AppStyles.details_cart_right_nft_style,
                             ),
                           ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          'Artist Royalties',
-                          textAlign: TextAlign.start,
-                          style: AppStyles.details_cart_left_nft_style,
-                        ),
-                        Text(
-                          '5%',
-                          textAlign: TextAlign.start,
-                          style: AppStyles.details_cart_right_nft_style,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          'Transaction Fee',
-                          textAlign: TextAlign.start,
-                          style: AppStyles.details_cart_left_nft_style,
-                        ),
-                        Text(
-                          '2%',
-                          textAlign: TextAlign.start,
-                          style: AppStyles.details_cart_right_nft_style,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text(
-                          'Listing/Bidding/Cancel',
-                          textAlign: TextAlign.start,
-                          style: AppStyles.details_cart_left_nft_style,
-                        ),
-                        Text(
-                          'Free',
-                          textAlign: TextAlign.start,
-                          style: AppStyles.details_cart_right_nft_style,
                         ),
                       ],
                     ),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../../../values/app_colors.dart';
 import '../../../values/app_size.dart';
-import 'dropdown_price.dart';
 import 'expansion_cart.dart';
 
 class Body extends StatelessWidget {
@@ -21,7 +20,7 @@ class Body extends StatelessWidget {
           padding:
               const EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 20),
           child: AspectRatio(
-            aspectRatio: 1,
+            aspectRatio: 1.1,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
@@ -72,8 +71,8 @@ class Body extends StatelessWidget {
               const Text(
                 'Current Price',
                 style: TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
                     color: AppColors.textSecondColor),
               ),
               const SizedBox(height: 8),
@@ -90,76 +89,16 @@ class Body extends StatelessWidget {
                     '${nftSolana.price} sol',
                     style: const TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: 24,
+                        fontSize: 26,
                         color: AppColors.textPrimaryColor),
                   ),
                 ],
-              ),
-              const SizedBox(height: 20),
-              const DropdownPrice(),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      // Respond to button press
-                    },
-                    child: Text('Buy now'),
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4)),
-                        primary: AppColors.primaryColor,
-                        onPrimary: AppColors.firstColor,
-                        textStyle: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
-                        padding: EdgeInsets.only(
-                            left: getProportionateScreenWidth(50),
-                            right: getProportionateScreenWidth(50))),
-                  ),
-                  OutlinedButton(
-                    onPressed: () {
-                      // Respond to button press
-                    },
-                    child: Text("Make an offer"),
-                    style: OutlinedButton.styleFrom(
-                        primary: AppColors.primaryColor,
-                        side: const BorderSide(
-                            color: AppColors.primaryColor, width: 1),
-                        textStyle: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600),
-                        padding: EdgeInsets.only(
-                            left: getProportionateScreenWidth(30),
-                            right: getProportionateScreenWidth(30))),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              RichText(
-                text: const TextSpan(
-                  text:
-                      'By clicking "Buy now" or "Make an offer", you agree to the',
-                  style: TextStyle(
-                      color: AppColors.textSecondColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: ' Magic Eden Terms of Service.',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.textPrimaryColor,
-                            fontSize: 14)),
-                  ],
-                ),
               ),
             ],
           ),
         ),
         const SizedBox(height: 20),
-        const ExpansionCart(),
+        ExpansionCart(nftSolana: nftSolana),
         const SizedBox(height: 20),
         const TableNFT(),
         const SizedBox(height: 20),

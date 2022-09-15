@@ -7,16 +7,6 @@ import './components/body.dart';
 class GamePage extends StatelessWidget {
   const GamePage({Key? key}) : super(key: key);
 
-  _launchURLApp() async {
-    const url =
-        'https://phantom.app/ul/browse/https://beta.metastream.network/NFT/solana/3bqfzDUBhoa1rq6nw2DPbjXzvhzZbBswHMcN1fgyfjXk';
-    if (await canLaunch(url)) {
-      await launch(url, forceSafariVC: false, forceWebView: false);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,16 +35,7 @@ class GamePage extends StatelessWidget {
             ),
           ],
         ),
-        actions: <Widget>[
-          RawMaterialButton(
-            onPressed: _launchURLApp,
-            child: Image.asset(
-              AppAssets.icPhantom,
-              height: 40,
-              width: 40,
-            ),
-          ),
-        ],
+        actions: const <Widget>[],
       ),
       body: Body(),
     );
