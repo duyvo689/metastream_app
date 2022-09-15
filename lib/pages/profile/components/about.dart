@@ -17,16 +17,15 @@ class AboutProfile extends StatelessWidget {
               future: ApiUserServices().fetchUserById(userId),
               builder: (context, snapshot) {
                 if ((snapshot.hasError) || (!snapshot.hasData))
-                  return ParagraphSkeleton(
-                    line: 7,
-                    height: 30,
+                  return Container(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   );
                 User? user = snapshot.data;
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Description: ",
-                        style: AppStyles.about_profile_label_style),
                     const SizedBox(height: 10),
                     Text(
                       user!.descriptions.toString(),

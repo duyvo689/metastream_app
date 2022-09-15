@@ -2,8 +2,6 @@ import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'categories.dart';
 import 'header_game_detail.dart';
-import 'nft_list.dart';
-import 'video_list.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key, required this.gameId}) : super(key: key);
@@ -31,9 +29,7 @@ class Body extends StatelessWidget {
                 ),
                 child: Column(
                   children: <Widget>[
-                    Categories(),
-                    VideoList(gameId: gameId),
-                    // NFTList(),
+                    Categories(gameId: gameId),
                   ],
                 ),
               ),

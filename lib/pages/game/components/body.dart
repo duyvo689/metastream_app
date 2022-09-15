@@ -26,16 +26,13 @@ class Body extends StatelessWidget {
             SizedBox(height: 20),
             GameList(),
             SizedBox(height: 20),
-            SectionTitle(
-              title: "Current and Upcoming Mints",
-            ),
+            // SectionTitle(
+            //   title: "Current and Upcoming Mints",
+            // ),
             SizedBox(height: 20),
-            GameUpcomingList(),
-            SizedBox(height: 20),
-            SectionTitle(
-              title: "Current and Upcoming Mints",
-            ),
-            SizedBox(height: 20),
+            // GameUpcomingList(),
+            // SizedBox(height: 20),
+
             TableNFT(),
             SizedBox(height: 30),
           ],

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../components/card_skeleton.dart';
+import '../../../components/no_content_profile.dart';
 import '../../../models/nft_solana.dart';
 import '../../../services/api_seller_nft_solana_service.dart';
 import '../../nft_detail/nft_detail.dart';
@@ -22,36 +22,36 @@ class NFTList extends StatelessWidget {
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
               return Container(
-                height: 200,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 6,
-                  itemBuilder: (context, index) => CardSkeleton(),
+                child: Center(
+                  child: CircularProgressIndicator(),
                 ),
               );
             List<NftSolana>? nftSolanas = snapshot.data;
-            return GridView.builder(
-              shrinkWrap: true,
-              padding: const EdgeInsets.only(top: 10),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisSpacing: 15,
-                mainAxisSpacing: 15,
-                crossAxisCount: 2,
-                childAspectRatio: 0.63,
-              ),
-              itemCount: nftSolanas!.length,
-              itemBuilder: (BuildContext context, int index) {
-                return NFTCard(
-                  nftSolana: nftSolanas[index],
-                  press: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NFTDetail(
-                                nftSolana: nftSolanas[index],
-                              ))),
-                );
-              },
-            );
+            return nftSolanas!.length > 0
+                ? GridView.builder(
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.only(top: 10),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 15,
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.63,
+                    ),
+                    itemCount: nftSolanas!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return NFTCard(
+                        nftSolana: nftSolanas[index],
+                        press: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NFTDetail(
+                                      nftSolana: nftSolanas[index],
+                                    ))),
+                      );
+                    },
+                  )
+                : const NoContentProfile(title: "You don't have nft!");
           },
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../components/no_content_profile.dart';
 import '../../../models/video.dart';
 import '../../../components/video_cart.dart';
 import '../../../services/api_video_service.dart';
@@ -13,6 +14,7 @@ class VideoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      flex: 1,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: SizedBox(
@@ -27,31 +29,34 @@ class VideoList extends StatelessWidget {
                   ),
                 );
               List<Video>? videos = snapshot.data;
-              return ListView.builder(
-                scrollDirection: Axis.vertical,
-                padding: const EdgeInsets.all(8),
-                itemCount: videos!.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        child: Center(
-                          child: VideoCard(
-                            video: videos[index],
-                            press: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => VideoPage(
-                                          video: videos[index],
-                                        ))),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              );
+
+              return videos!.length > 0
+                  ? ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      padding: const EdgeInsets.all(8),
+                      itemCount: videos!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              child: Center(
+                                child: VideoCard(
+                                  video: videos[index],
+                                  press: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => VideoPage(
+                                                video: videos[index],
+                                              ))),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    )
+                  : const NoContentProfile(title: "Game don't have video!");
             },
           ),
         ),
