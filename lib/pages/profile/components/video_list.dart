@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../components/circle_loading.dart';
 import '../../../components/no_content_profile.dart';
 import '../../../components/video_cart.dart';
 import '../../../models/video.dart';
@@ -21,11 +22,7 @@ class VideoList extends StatelessWidget {
             future: ApiVideoServices().fetchVideosOfUser(userId),
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
-                return Container(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return CircleLoading();
               List<Video>? videos = snapshot.data;
               return videos!.length > 0
                   ? ListView.builder(

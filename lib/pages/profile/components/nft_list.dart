@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../components/circle_loading.dart';
 import '../../../components/no_content_profile.dart';
 import '../../../models/nft_solana.dart';
 import '../../../services/api_seller_nft_solana_service.dart';
@@ -21,11 +22,7 @@ class NFTList extends StatelessWidget {
           future: ApiNftSolanaServices().fetchSellerByAddress(addressWallet),
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
-              return Container(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
+              return CircleLoading();
             List<NftSolana>? nftSolanas = snapshot.data;
             return nftSolanas!.length > 0
                 ? GridView.builder(

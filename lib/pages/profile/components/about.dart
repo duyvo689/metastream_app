@@ -2,7 +2,7 @@ import 'package:app_metastream/models/user.dart';
 import 'package:app_metastream/services/api_user_service.dart';
 import 'package:app_metastream/values/app_styles.dart';
 import 'package:flutter/material.dart';
-import '../../../components/skeleton.dart';
+import '../../../components/circle_loading.dart';
 
 class AboutProfile extends StatelessWidget {
   const AboutProfile({Key? key, required this.userId}) : super(key: key);
@@ -17,11 +17,7 @@ class AboutProfile extends StatelessWidget {
               future: ApiUserServices().fetchUserById(userId),
               builder: (context, snapshot) {
                 if ((snapshot.hasError) || (!snapshot.hasData))
-                  return Container(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
+                  return CircleLoading();
                 User? user = snapshot.data;
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

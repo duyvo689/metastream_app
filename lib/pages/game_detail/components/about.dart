@@ -1,6 +1,7 @@
 import 'package:app_metastream/values/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../components/circle_loading.dart';
 import '../../../models/game.dart';
 import '../../../services/api_game_service.dart';
 
@@ -17,11 +18,7 @@ class AboutProfile extends StatelessWidget {
             future: ApiGameServices().fetchGameById(gameId),
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
-                return Container(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return CircleLoading();
               Game? game = snapshot.data;
               return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
