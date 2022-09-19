@@ -117,10 +117,6 @@ class _MainAppState extends State<WalletPhanTom> {
     );
   }
 
-  // Future<void> AddWalletAdress(String walletAddress) async {
-  //   context.read<WalletAddressProvider>().assignValue(walletAddress);
-  // }
-
   @override
   Widget build(BuildContext context) {
     DeepLinkProvider provider = DeepLinkProvider();

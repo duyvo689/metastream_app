@@ -51,12 +51,6 @@ class Body extends StatelessWidget {
                         users.length,
                         (index) => CircleVideoCard(
                           user: users[index],
-                          // press: (() =>
-                          //     Navigator.of(context, rootNavigator: true)
-                          //         .pushReplacement(MaterialPageRoute(
-                          //             builder: (context) => new Profile(
-                          //                   user: users[index],
-                          //                 )))),
                           press: () => Navigator.push(
                               context,
                               MaterialPageRoute(

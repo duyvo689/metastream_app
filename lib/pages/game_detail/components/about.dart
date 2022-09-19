@@ -34,21 +34,16 @@ class AboutProfile extends StatelessWidget {
                         const Text("Website: ",
                             style: AppStyles.about_profile_label_style),
                         const SizedBox(width: 10),
-                        InkWell(
-                            child: const Text(
-                              'Open Website',
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            onTap: () => launch(game.websiteUrl.toString())),
+                        Text(
+                          game.websiteUrl.toString(),
+                          style: AppStyles.about_profile_title_style,
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
                     Row(
                       children: [
-                        const Text("Chain: ",
+                        const Text("Network: ",
                             style: AppStyles.about_profile_label_style),
                         const SizedBox(width: 10),
                         Text(
@@ -58,23 +53,46 @@ class AboutProfile extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 20),
-                    const Text("Contact: ",
-                        style: AppStyles.about_profile_label_style),
-                    const SizedBox(height: 10),
                     Row(
-                      children: game.tags!
-                          .map((item) => Padding(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: InkWell(
-                                  child: CircleAvatar(
-                                    backgroundImage: AssetImage(
-                                        'assets/images/${item.title!.toLowerCase()}.jpeg'),
-                                  ),
-                                  onTap: () => launch(item.url.toString()),
-                                ),
-                              ))
-                          .toList(),
+                      children: [
+                        const Text("Developer: ",
+                            style: AppStyles.about_profile_label_style),
+                        const SizedBox(width: 10),
+                        Text(
+                          game.developer!.name.toString(),
+                          style: AppStyles.about_profile_title_style,
+                        ),
+                      ],
                     ),
+                    const SizedBox(height: 20),
+                    Row(
+                      children: [
+                        const Text("Release Status: ",
+                            style: AppStyles.about_profile_label_style),
+                        const SizedBox(width: 10),
+                        Text(
+                          game.release!.toString(),
+                          style: AppStyles.about_profile_title_style,
+                        ),
+                      ],
+                    ),
+                    // const Text("Contact: ",
+                    //     style: AppStyles.about_profile_label_style),
+                    // const SizedBox(height: 10),
+                    // Row(
+                    //   children: game.tags!
+                    //       .map((item) => Padding(
+                    //             padding: const EdgeInsets.only(right: 10),
+                    //             child: InkWell(
+                    //               child: CircleAvatar(
+                    //                 backgroundImage: AssetImage(
+                    //                     'assets/images/${item.title!.toLowerCase()}.jpeg'),
+                    //               ),
+                    //               onTap: () => launch(item.url.toString()),
+                    //             ),
+                    //           ))
+                    //       .toList(),
+                    // ),
                   ]);
             }),
       ),
