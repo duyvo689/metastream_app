@@ -43,10 +43,6 @@ class ApiUserServices {
   }
 
   Future<User> fetchUserByWalletAddress(String address) {
-    print("===================================================");
-    print(address);
-    print("===================================================");
-
     return http
         .get(Uri.parse('${URL().API_URL}/api/v1/user/address/${address}'))
         .then((http.Response response) {

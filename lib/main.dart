@@ -1,15 +1,7 @@
 import 'package:app_metastream/pages/pages.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-void main() => runApp(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: (_) => WalletAddressProvider()),
-        ],
-        child: const MyApp(),
-      ),
-    );
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -23,22 +15,17 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       home: SplashPage(),
-      // initialRoute: '/',
-      // routes: {
-      //   '/': (context) => SplashPage(),
-      //   'GameDetail': (context) => GameDetail(),
-      // },
     );
   }
 }
 
-class WalletAddressProvider extends ChangeNotifier {
-  String _walletAddress = '';
+// class WalletAddressProvider extends ChangeNotifier {
+//   String _walletAddress = '';
 
-  String get walletAddress => _walletAddress;
+//   String get walletAddress => _walletAddress;
 
-  void assignValue(String address) {
-    _walletAddress = address;
-    notifyListeners();
-  }
-}
+//   void assignValue(String address) {
+//     _walletAddress = address;
+//     notifyListeners();
+//   }
+// }

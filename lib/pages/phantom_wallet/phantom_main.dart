@@ -4,10 +4,8 @@ import 'package:app_metastream/values/values.dart';
 import 'package:bs58/bs58.dart';
 import 'package:flutter/material.dart';
 import 'package:pinenacl/x25519.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../main.dart';
 import 'deep_link_provider.dart';
 
 class WalletPhanTom extends StatefulWidget {
@@ -119,9 +117,9 @@ class _MainAppState extends State<WalletPhanTom> {
     );
   }
 
-  Future<void> AddWalletAdress(String walletAddress) async {
-    context.read<WalletAddressProvider>().assignValue(walletAddress);
-  }
+  // Future<void> AddWalletAdress(String walletAddress) async {
+  //   context.read<WalletAddressProvider>().assignValue(walletAddress);
+  // }
 
   @override
   Widget build(BuildContext context) {

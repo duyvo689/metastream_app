@@ -17,7 +17,8 @@ class AboutProfile extends StatelessWidget {
               future: ApiUserServices().fetchUserById(userId),
               builder: (context, snapshot) {
                 if ((snapshot.hasError) || (!snapshot.hasData))
-                  return CircleLoading();
+                  // ignore: curly_braces_in_flow_control_structures
+                  return const CircleLoading();
                 User? user = snapshot.data;
                 return user != null
                     ? Column(
@@ -25,7 +26,7 @@ class AboutProfile extends StatelessWidget {
                         children: [
                           const SizedBox(height: 10),
                           Text(
-                            user!.descriptions.toString(),
+                            user.descriptions.toString(),
                             style: AppStyles.about_profile_title_style,
                           ),
                         ],

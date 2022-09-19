@@ -42,7 +42,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   visibility_detector: ^0.3.3
   persistent_bottom_nav_bar: ^4.0.2
-  comment_box: ^0.0.15
+  comment_box: ^0.0.17
   easy_splash_screen: ^1.0.4
   http: ^0.13.5
   connectivity_plus: ^2.3.6+1

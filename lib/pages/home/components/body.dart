@@ -22,47 +22,47 @@ class Body extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(0)),
-            child: FutureBuilder<List<User>>(
-              future: ApiUserServices().fetchUsers(),
-              builder: (context, snapshot) {
-                if ((snapshot.hasError) || (!snapshot.hasData))
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
-                      height: 65,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 6,
-                        itemBuilder: (context, index) => UserCardSkelton(),
-                      ),
-                    ),
-                  );
-                List<User>? users = snapshot.data!.sublist(0, 10);
-                return (SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ...List.generate(
-                        users.length,
-                        (index) => CircleVideoCard(
-                          user: users[index],
-                          press: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Profile(
-                                        user: users[index],
-                                      ))),
-                        ),
-                      ),
-                    ],
-                  ),
-                ));
-              },
-            ),
-          ),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(
+          //       horizontal: getProportionateScreenWidth(0)),
+          //   child: FutureBuilder<List<User>>(
+          //     future: ApiUserServices().fetchUsers(),
+          //     builder: (context, snapshot) {
+          //       if ((snapshot.hasError) || (!snapshot.hasData))
+          //         return Padding(
+          //           padding: EdgeInsets.symmetric(horizontal: 20),
+          //           child: SizedBox(
+          //             height: 65,
+          //             child: ListView.builder(
+          //               scrollDirection: Axis.horizontal,
+          //               itemCount: 6,
+          //               itemBuilder: (context, index) => UserCardSkelton(),
+          //             ),
+          //           ),
+          //         );
+          //       List<User>? users = snapshot.data!.sublist(0, 10);
+          //       return (SingleChildScrollView(
+          //         scrollDirection: Axis.horizontal,
+          //         child: Row(
+          //           children: [
+          //             ...List.generate(
+          //               users.length,
+          //               (index) => CircleVideoCard(
+          //                 user: users[index],
+          //                 press: () => Navigator.push(
+          //                     context,
+          //                     MaterialPageRoute(
+          //                         builder: (context) => Profile(
+          //                               user: users[index],
+          //                             ))),
+          //               ),
+          //             ),
+          //           ],
+          //         ),
+          //       ));
+          //     },
+          //   ),
+          // ),
           const SizedBox(
             height: 20,
           ),

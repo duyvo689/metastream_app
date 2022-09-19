@@ -1,6 +1,5 @@
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import '../values/app_colors.dart';
-import '../values/app_size.dart';
 
 class SearchField extends StatelessWidget {
   const SearchField({
