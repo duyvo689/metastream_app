@@ -1,16 +1,12 @@
+import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:app_metastream/values/app_colors.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import '../game/game_page.dart';
-import '../home/home_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'dart:developer' as developer;
-
-import '../phantom_wallet/phantom2.dart';
-import '../profile_me/profile_me.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

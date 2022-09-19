@@ -1,10 +1,10 @@
+import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import '../pages/game_detail/game_detail.dart';
 
 import '../models/banner.dart';
-import '../services/api_banner_service.dart';
 import '../values/app_size.dart';
 import 'skeleton.dart';
 

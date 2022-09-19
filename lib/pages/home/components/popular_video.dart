@@ -1,11 +1,12 @@
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
-import '../../../components/skeleton.dart';
-import '../../../models/video.dart';
-import '../../../services/api_video_service.dart';
-import '../../video_detail/video_page.dart';
 import 'section_title.dart';
-import 'video_card.dart';
 import 'package:skeletons/skeletons.dart';
+
+import 'video_card.dart';
 
 class PopularVideos extends StatelessWidget {
   const PopularVideos({
@@ -29,13 +30,15 @@ class PopularVideos extends StatelessWidget {
         future: ApiVideoServices().fetchVideos(),
         builder: (context, snapshot) {
           if ((snapshot.hasError) || (!snapshot.hasData))
+            // ignore: curly_braces_in_flow_control_structures
             return ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: 3,
+              // ignore: prefer_const_constructors
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: VideoCardSkelton(),
+                child: const VideoCardSkelton(),
               ),
             );
           List<Video>? videos = snapshot.data!.sublist(0, 6);

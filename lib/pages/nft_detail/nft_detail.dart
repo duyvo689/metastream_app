@@ -1,8 +1,8 @@
-import 'package:app_metastream/models/nft_solana.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../values/app_assets.dart';
-import '../../values/app_colors.dart';
+
 import 'components/body.dart';
 
 class NFTDetail extends StatelessWidget {

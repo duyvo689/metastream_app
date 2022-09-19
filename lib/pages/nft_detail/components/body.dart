@@ -1,9 +1,7 @@
-import 'package:app_metastream/components/table_nft.dart';
-import 'package:app_metastream/models/nft_solana.dart';
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-
-import '../../../values/app_colors.dart';
-import '../../../values/app_size.dart';
 import 'expansion_cart.dart';
 
 class Body extends StatelessWidget {

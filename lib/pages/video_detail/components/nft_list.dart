@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../models/nft.dart';
-import '../../../values/app_size.dart';
-import '../../../components/nft_cart.dart';
-import '../../nft_detail/nft_detail.dart';
 
 class NFTList extends StatelessWidget {
   const NFTList({

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../models/video.dart';
 
-class VideoCard extends StatelessWidget {
-  const VideoCard({
+class VideoCardSmall extends StatelessWidget {
+  const VideoCardSmall({
     Key? key,
     required this.video,
     required this.press,

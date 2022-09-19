@@ -1,10 +1,9 @@
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/services/services.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import '../../../models/game.dart';
-import '../../../services/api_game_service.dart';
-import '../../../values/app_size.dart';
-import '../../../components/game_card.dart';
-import '../../game_detail/game_detail.dart';
-import '../../../components/card_skeleton.dart';
 import 'section_title.dart';
 
 class PopularGames extends StatefulWidget {

@@ -1,9 +1,6 @@
-import 'package:app_metastream/models/nft_solana.dart';
-import 'package:app_metastream/values/app_styles.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-
-import '../../../values/app_assets.dart';
-import '../../../values/app_colors.dart';
 
 class ExpansionCart extends StatefulWidget {
   const ExpansionCart({Key? key, required this.nftSolana}) : super(key: key);

@@ -1,8 +1,7 @@
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
-import '../../../components/carousel_slider.dart';
-import '../../../values/app_size.dart';
-import '../../../components/table_nft.dart';
 import 'game_list.dart';
 import 'game_upcoming_list.dart';
 import 'section_title.dart';

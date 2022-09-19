@@ -1,6 +1,5 @@
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-
-import '../../../values/app_colors.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({

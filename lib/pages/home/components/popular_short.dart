@@ -1,8 +1,8 @@
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
-import '../../../models/video.dart';
-import '../../../services/api_video_service.dart';
-import '../../short_video_page/short_page.dart';
-import '../../../components/card_skeleton.dart';
 import 'section_title.dart';
 import 'short_card.dart';
 

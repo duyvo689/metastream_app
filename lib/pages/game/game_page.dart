@@ -1,7 +1,5 @@
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../../values/app_assets.dart';
-import '../../values/app_colors.dart';
 import './components/body.dart';
 
 class GamePage extends StatelessWidget {

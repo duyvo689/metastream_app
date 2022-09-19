@@ -1,8 +1,7 @@
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
-import '../../../components/game_card.dart';
-import '../../../components/list_game_skeleton.dart';
-import '../../../models/game.dart';
-import '../../../services/api_game_service.dart';
 
 class GameUpcomingList extends StatelessWidget {
   const GameUpcomingList({

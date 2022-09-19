@@ -1,4 +1,4 @@
-import 'package:app_metastream/values/app_colors.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'categories.dart';
 import 'header_game_detail.dart';

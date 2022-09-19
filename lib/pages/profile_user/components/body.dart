@@ -1,7 +1,6 @@
-import 'package:app_metastream/models/user.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-
-import '../../../values/app_colors.dart';
 import 'categories.dart';
 import 'header_profile.dart';
 

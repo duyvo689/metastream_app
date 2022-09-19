@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'package:app_metastream/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'pages/splash_page/splash_page.dart';
 
 void main() => runApp(
       MultiProvider(

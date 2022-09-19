@@ -1,7 +1,6 @@
-import 'package:app_metastream/values/app_colors.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
-import '../../../components/card_skeleton.dart';
 import 'about.dart';
 import 'nft_list.dart';
 import 'video_list.dart';

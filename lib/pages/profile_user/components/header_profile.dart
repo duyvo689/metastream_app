@@ -1,8 +1,6 @@
-import 'package:app_metastream/models/user.dart';
-import 'package:app_metastream/services/api_user_service.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import 'package:app_metastream/values/app_colors.dart';
-import '../../../values/app_size.dart';
 
 class HeaderProflie extends StatelessWidget {
   const HeaderProflie({Key? key, required this.user}) : super(key: key);

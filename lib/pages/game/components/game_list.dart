@@ -1,10 +1,8 @@
-import 'package:app_metastream/components/card_skeleton.dart';
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
-import '../../../components/game_card.dart';
-import '../../../components/list_game_skeleton.dart';
-import '../../../models/game.dart';
-import '../../../services/api_game_service.dart';
-import '../../game_detail/game_detail.dart';
 
 class GameList extends StatelessWidget {
   const GameList({

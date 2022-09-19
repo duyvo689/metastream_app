@@ -1,6 +1,6 @@
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import '../../../models/video.dart';
-import '../../../values/app_colors.dart';
 import 'default_player.dart';
 import 'nft_list.dart';
 

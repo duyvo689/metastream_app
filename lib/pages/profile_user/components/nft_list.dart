@@ -1,10 +1,8 @@
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
-import '../../../components/circle_loading.dart';
-import '../../../components/no_content_profile.dart';
-import '../../../models/nft_solana.dart';
-import '../../../services/api_seller_nft_solana_service.dart';
-import '../../nft_detail/nft_detail.dart';
-import '../../../components/nft_cart.dart';
 
 class NFTList extends StatelessWidget {
   const NFTList({

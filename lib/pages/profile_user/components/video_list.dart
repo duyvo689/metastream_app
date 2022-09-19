@@ -1,10 +1,8 @@
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
-import '../../../components/circle_loading.dart';
-import '../../../components/no_content_profile.dart';
-import '../../../components/video_cart.dart';
-import '../../../models/video.dart';
-import '../../../services/api_video_service.dart';
-import '../../video_detail/video_page.dart';
 
 class VideoList extends StatelessWidget {
   const VideoList({Key? key, required this.userId}) : super(key: key);
@@ -35,7 +33,7 @@ class VideoList extends StatelessWidget {
                         return Container(
                           alignment: Alignment.center,
                           child: Center(
-                            child: VideoCard(
+                            child: VideoCardSmall(
                               video: videos[index],
                               press: () => Navigator.push(
                                   context,

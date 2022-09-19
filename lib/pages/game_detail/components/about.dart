@@ -1,9 +1,9 @@
-import 'package:app_metastream/values/app_styles.dart';
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/services/services.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../components/circle_loading.dart';
-import '../../../models/game.dart';
-import '../../../services/api_game_service.dart';
 
 class AboutProfile extends StatelessWidget {
   const AboutProfile({Key? key, required this.gameId}) : super(key: key);

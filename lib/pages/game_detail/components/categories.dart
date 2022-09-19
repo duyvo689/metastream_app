@@ -1,6 +1,6 @@
-import 'package:app_metastream/values/app_colors.dart';
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import '../../../components/no_content_profile.dart';
 import 'about.dart';
 import 'video_list.dart';
 

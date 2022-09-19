@@ -1,9 +1,8 @@
-import 'package:app_metastream/models/user.dart';
-import 'package:app_metastream/services/api_user_service.dart';
-import 'package:app_metastream/values/app_styles.dart';
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/services/services.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import '../../../components/circle_loading.dart';
-import '../../../components/no_content_profile.dart';
 
 class AboutProfile extends StatelessWidget {
   const AboutProfile({Key? key, required this.userId}) : super(key: key);

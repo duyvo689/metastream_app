@@ -1,11 +1,10 @@
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/services/services.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
-import '../../../components/skeleton.dart';
-import '../../../models/user.dart';
-import '../../../services/api_user_service.dart';
-import '../../../values/app_size.dart';
-import '../../profile_user/profile_user.dart';
-import '../../../components/carousel_slider.dart';
 import 'popular_video.dart';
 import 'categories.dart';
 import 'popular_game.dart';

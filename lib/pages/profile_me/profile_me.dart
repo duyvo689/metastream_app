@@ -1,5 +1,5 @@
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import '../../values/app_colors.dart';
 import 'components/body.dart';
 
 class ProfileMe extends StatelessWidget {
