@@ -61,7 +61,7 @@ class HeaderProflie extends StatelessWidget {
                                 user.firstName != null &&
                                 user.lastName != null
                             ? "${user.firstName!} ${user.lastName!}"
-                            : "Metastream",
+                            : "Unknow",
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,

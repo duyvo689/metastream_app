@@ -53,7 +53,7 @@ class VideoCard extends StatelessWidget {
                       Text(
                         video != null && video.name != null
                             ? video.name!
-                            : "Metastream",
+                            : "Unknow",
                         textAlign: TextAlign.start,
                         maxLines: 2,
                         style: const TextStyle(

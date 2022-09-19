@@ -8,6 +8,14 @@ import '../services/api_banner_service.dart';
 import '../values/app_size.dart';
 import 'skeleton.dart';
 
+final List<String> imgList = [
+  'https://vcdn-sohoa.vnecdn.net/2021/08/02/axie-screen1-1536x960-5711-162-8512-4162-1627846443.png',
+  'https://gamek.mediacdn.vn/133514250583805952/2021/7/31/photo-1-16277436623992136072459.png',
+  'https://www.bravestars.com/uploads/anh-banner-down-size.png',
+  'https://media.yeah1.com/files/uploads/editors/59/2021/11/05/064eSI7Xkz5l4TkDsUy6Rq5UrLxLydNxTwlIIrSQ.jpg',
+  'https://lh4.googleusercontent.com/j2Az0tpcfFDGtrvN7zEepFR6B53AKk99CtIt2U92LGXRYAjvptcR_xESnr4QDfgvyfGZXQcC5qxX9I_62U5QeYTf004IMbrAALYK3uroMu93dworgip5zDmyeB-bhYA9DfgLdFf-HOGXUb5MOg'
+];
+
 class CarouselWithIndicator extends StatefulWidget {
   const CarouselWithIndicator(
       {Key? key,
@@ -159,7 +167,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
           mainAxisAlignment: widget.style == 'start'
               ? MainAxisAlignment.start
               : MainAxisAlignment.center,
-          children: banners.asMap().entries.map((entry) {
+          children: imgList.asMap().entries.map((entry) {
             return GestureDetector(
               onTap: () => _controller.animateToPage(entry.key),
               child: Container(

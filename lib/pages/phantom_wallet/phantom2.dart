@@ -128,25 +128,32 @@ class _MainAppState extends State<WalletPhanTom> {
     DeepLinkProvider provider = DeepLinkProvider();
     return Scaffold(
       backgroundColor: AppColors.bgrMainColor,
-      appBar: walletAddrFull == ''
-          ? AppBar(
-              backgroundColor: AppColors.bgrMainColor,
-              title: const Text(
-                'Wallet',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
+      appBar: AppBar(
+        backgroundColor: AppColors.bgrMainColor,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'Discover',
+                  style: TextStyle(
+                      color: AppColors.textPrimaryColor,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
                 ),
-              ))
-          : AppBar(
-              backgroundColor: AppColors.bgrMainColor,
-              title: const Text(
-                'Profile',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
+                Text(
+                  'Find your favourite streamer.',
+                  style:
+                      TextStyle(color: AppColors.textSecondColor, fontSize: 14),
                 ),
-              )),
+              ],
+            ),
+          ],
+        ),
+        actions: const <Widget>[],
+      ),
       body: StreamBuilder<String>(
         stream: provider.state,
         builder: (context, snapshot) {

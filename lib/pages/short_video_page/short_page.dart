@@ -96,7 +96,7 @@ class _Home extends State<ShortVideo> with SingleTickerProviderStateMixin {
                                     widget.video.userId!.firstName != null &&
                                     widget.video.userId!.lastName != null
                                 ? "${widget.video.userId!.firstName} ${widget.video.userId!.lastName}"
-                                : "Metastream",
+                                : "Unknow",
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
