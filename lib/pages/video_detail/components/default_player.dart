@@ -34,9 +34,7 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
   Future<void> videoplay(String url) async {
     flickManager = FlickManager(
       videoPlayerController: VideoPlayerController.network(
-        url != ''
-            ? url
-            : 'https://metastream-static.s3.ap-southeast-1.amazonaws.com/category/coverVideo/mini+royale+battles.mp4',
+        url,
         closedCaptionFile: _loadCaptions(),
       ),
     );
@@ -49,20 +47,6 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
     flickManager.flickControlManager!.toggleSubtitle();
     return SubRipCaptionFile(fileContents);
   }
-
-  ///If you have subtitle urls
-  // Future<ClosedCaptionFile> _loadCaptions() async {
-  //   final url = Uri.parse('SUBTITLE URL LINK');
-  //   try {
-  //     final data = await http.get(url);
-  //     final srtContent = data.body.toString();
-  //     print(srtContent);
-  //     return SubRipCaptionFile(srtContent);
-  //   } catch (e) {
-  //     print('Failed to get subtitles for ${e}');
-  //     return SubRipCaptionFile('');
-  //   }
-  // }
 
   @override
   void dispose() {

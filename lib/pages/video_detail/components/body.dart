@@ -4,6 +4,7 @@ import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'default_player.dart';
 import 'nft_list.dart';
+import 'player.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key, required this.video}) : super(key: key);
@@ -17,6 +18,7 @@ class Body extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SafeArea(child: DefaultPlayer(videoId: video.id!)),
+        // SafeArea(child: DefaultPlayer2()),
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
