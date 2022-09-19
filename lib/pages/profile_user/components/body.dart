@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import '../../../values/app_colors.dart';
 import 'categories.dart';
 import 'header_profile.dart';
-import 'nft_list.dart';
-import 'video_list.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key, required this.user}) : super(key: key);

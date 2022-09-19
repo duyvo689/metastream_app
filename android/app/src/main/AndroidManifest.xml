@@ -32,16 +32,6 @@
                     android:scheme="metastreamphantom"
                     android:host="deeplink.connect" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <!-- Accepts URIs that begin with YOUR_SCHEME://YOUR_HOST -->
-                <data
-                    android:host="deeplink.disconnect"
-                    android:scheme="metastreamphantom" />
-            </intent-filter>
             <!-- Deeplink phantom end -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

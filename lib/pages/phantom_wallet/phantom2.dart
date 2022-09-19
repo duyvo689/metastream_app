@@ -5,7 +5,9 @@ import 'package:pinenacl/x25519.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../main.dart';
 import '../../values/app_colors.dart';
+import '../profile_me/profile_me.dart';
 import 'deep_link_provider.dart';
 
 class WalletPhanTom extends StatefulWidget {
@@ -20,8 +22,9 @@ class _MainAppState extends State<WalletPhanTom> {
 
   late PrivateKey sk;
   late PublicKey pk;
-  String walletAddr = "";
-  String session = "";
+  String walletAddr = '';
+  String walletAddrFull = '';
+  String session = '';
   late Box sharedSecret;
 
   @override
@@ -67,11 +70,10 @@ class _MainAppState extends State<WalletPhanTom> {
     );
 
     Map data = const JsonDecoder().convert(String.fromCharCodes(decryptedData));
-    setState(() {
-      session = data["session"];
-      walletAddr =
-          '${data["public_key"].toString().substring(0, 4)}...${data["public_key"].toString().substring(data["public_key"].toString().length - 4, data["public_key"].toString().length)}';
-    });
+    // walletAddr =
+    //     '${data["public_key"].toString().substring(0, 4)}...${data["public_key"].toString().substring(data["public_key"].toString().length - 4, data["public_key"].toString().length)}';
+    walletAddrFull = data["public_key"].toString();
+
     // logs.add(
     //   Text(
     //     "Wallet address: ${data["public_key"].toString()}",
@@ -117,20 +119,34 @@ class _MainAppState extends State<WalletPhanTom> {
     );
   }
 
+  Future<void> AddWalletAdress(String walletAddress) async {
+    context.read<WalletAddressProvider>().assignValue(walletAddress);
+  }
+
   @override
   Widget build(BuildContext context) {
     DeepLinkProvider provider = DeepLinkProvider();
     return Scaffold(
       backgroundColor: AppColors.bgrMainColor,
-      appBar: AppBar(
-          backgroundColor: AppColors.bgrMainColor,
-          title: const Text(
-            'Wallet',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
-            ),
-          )),
+      appBar: walletAddrFull == ''
+          ? AppBar(
+              backgroundColor: AppColors.bgrMainColor,
+              title: const Text(
+                'Wallet',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                ),
+              ))
+          : AppBar(
+              backgroundColor: AppColors.bgrMainColor,
+              title: const Text(
+                'Profile',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                ),
+              )),
       body: StreamBuilder<String>(
         stream: provider.state,
         builder: (context, snapshot) {
@@ -151,7 +167,7 @@ class _MainAppState extends State<WalletPhanTom> {
               }
             }
           }
-          return walletAddr == ''
+          return walletAddrFull == ''
               ? Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -184,45 +200,44 @@ class _MainAppState extends State<WalletPhanTom> {
                     ],
                   ),
                 )
-              : Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                walletAddr,
-                                textAlign: TextAlign.start,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
-                                  overflow: TextOverflow.ellipsis,
-                                  color: AppColors.textPrimaryColor,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.delete_outline,
-                                size: 28,
-                                color: AppColors.textSecondColor,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
+              : ProfileMe(walletAddr: walletAddrFull);
+
+          // : Padding(
+          //     padding: const EdgeInsets.symmetric(horizontal: 20),
+          //     child: Column(
+          //       children: [
+          //         const SizedBox(height: 10),
+          //         Row(
+          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+          //             Text(
+          //               walletAddrFull,
+          //               textAlign: TextAlign.start,
+          //               style: const TextStyle(
+          //                 fontWeight: FontWeight.w500,
+          //                 fontSize: 20,
+          //                 overflow: TextOverflow.ellipsis,
+          //                 color: AppColors.textPrimaryColor,
+          //               ),
+          //             ),
+          //             const Icon(
+          //               Icons.delete_outline,
+          //               size: 28,
+          //               color: AppColors.textSecondColor,
+          //             ),
+          //           ],
+          //         ),
+          //       ],
+          //     ),
+          //   );
         },
       ),
     );
   }
 }
 
- // ElevatedButton(
+
+                      // ElevatedButton(
                       //   onPressed: () => walletAddr == ""
                       //       ? ScaffoldMessenger.of(context).showSnackBar(
                       //           const SnackBar(
@@ -235,3 +250,4 @@ class _MainAppState extends State<WalletPhanTom> {
                       //       : _disconnect(),
                       //   child: const Text("Disconnect"),
                       // ),
+

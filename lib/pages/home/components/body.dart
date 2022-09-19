@@ -4,7 +4,7 @@ import '../../../components/skeleton.dart';
 import '../../../models/user.dart';
 import '../../../services/api_user_service.dart';
 import '../../../values/app_size.dart';
-import '../../profile/profile.dart';
+import '../../profile_user/profile_user.dart';
 import '../../../components/carousel_slider.dart';
 import 'popular_video.dart';
 import 'categories.dart';

@@ -35,10 +35,34 @@ class ApiUserServices {
       }
 
       final JsonDecoder _decoder = new JsonDecoder();
-      final videoContainer = _decoder.convert(jsonBody);
-      final video = videoContainer['data'];
+      final userContainer = _decoder.convert(jsonBody);
+      final user = userContainer['data'];
 
-      return User.fromJson(video);
+      return User.fromJson(user);
+    });
+  }
+
+  Future<User> fetchUserByWalletAddress(String address) {
+    print("===================================================");
+    print(address);
+    print("===================================================");
+
+    return http
+        .get(Uri.parse('${URL().API_URL}/api/v1/user/address/${address}'))
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200 || jsonBody == null) {
+        print(response.reasonPhrase);
+        throw new Exception("Error load api");
+      }
+
+      final JsonDecoder _decoder = new JsonDecoder();
+      final userContainer = _decoder.convert(jsonBody);
+      final user = userContainer['data'];
+
+      return User.fromJson(user);
     });
   }
 

@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'dart:developer' as developer;
 
 import '../phantom_wallet/phantom2.dart';
+import '../profile_me/profile_me.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -100,19 +101,19 @@ class _MainPageState extends State<MainPage> {
         activeColorPrimary: mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
-      PersistentBottomNavBarItem(
-        icon:
-            const Icon(CupertinoIcons.rectangle_fill_on_rectangle_angled_fill),
-        title: ("Wallet"),
-        activeColorPrimary: mainColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
       // PersistentBottomNavBarItem(
-      //   icon: const Icon(CupertinoIcons.chart_bar_square_fill),
-      //   title: ("Chart"),
+      //   icon:
+      //       const Icon(CupertinoIcons.rectangle_fill_on_rectangle_angled_fill),
+      //   title: ("Wallet"),
       //   activeColorPrimary: mainColor,
       //   inactiveColorPrimary: CupertinoColors.systemGrey,
       // ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(CupertinoIcons.profile_circled),
+        title: ("Profile"),
+        activeColorPrimary: mainColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
     ];
   }
 }
