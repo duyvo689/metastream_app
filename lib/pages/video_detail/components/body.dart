@@ -1,4 +1,5 @@
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'default_player.dart';
@@ -166,7 +167,8 @@ class Body extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 20),
-              const NFTList(),
+              // const NFTList(),
+              const CommentContainer(),
             ],
           ),
         ),

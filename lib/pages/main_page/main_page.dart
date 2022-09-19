@@ -97,6 +97,12 @@ class _MainPageState extends State<MainPage> {
         activeColorPrimary: mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(CupertinoIcons.profile_circled),
+        title: ("Profile"),
+        activeColorPrimary: mainColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
       // PersistentBottomNavBarItem(
       //   icon:
       //       const Icon(CupertinoIcons.rectangle_fill_on_rectangle_angled_fill),
@@ -104,12 +110,6 @@ class _MainPageState extends State<MainPage> {
       //   activeColorPrimary: mainColor,
       //   inactiveColorPrimary: CupertinoColors.systemGrey,
       // ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.profile_circled),
-        title: ("Profile"),
-        activeColorPrimary: mainColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
     ];
   }
 }

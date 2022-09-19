@@ -14,7 +14,7 @@ class VideoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgrMainColor,
-      body: Body(video: video),
+      body: SafeArea(child: Body(video: video)),
     );
   }
 }

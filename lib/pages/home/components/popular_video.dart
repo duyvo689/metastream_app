@@ -32,7 +32,7 @@ class PopularVideos extends StatelessWidget {
           if ((snapshot.hasError) || (!snapshot.hasData))
             // ignore: curly_braces_in_flow_control_structures
             return ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: 3,
               // ignore: prefer_const_constructors
@@ -78,10 +78,10 @@ class VideoCardSkelton extends StatelessWidget {
     return SkeletonItem(
         child: Column(
       children: [
-        SquareSkeleton(height: 5),
-        SizedBox(height: 8),
+        const SquareSkeleton(height: 5),
+        const SizedBox(height: 8),
         Row(
-          children: [
+          children: const [
             CircleSkeleton(size: 50),
             SizedBox(width: 8),
             ParagraphSkeleton(line: 2, height: 16)
