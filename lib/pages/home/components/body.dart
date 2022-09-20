@@ -68,12 +68,12 @@ class Body extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          // const CarouselWithIndicator(
-          //   viewport: 1,
-          //   width: 30,
-          //   height: 3,
-          //   style: 'start',
-          // ),
+          const CarouselWithIndicator(
+            viewport: 1,
+            width: 30,
+            height: 3,
+            style: 'start',
+          ),
 
           const SizedBox(
             height: 10,

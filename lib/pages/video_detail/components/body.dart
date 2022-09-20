@@ -3,8 +3,6 @@ import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'default_player.dart';
-import 'nft_list.dart';
-import 'player.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key, required this.video}) : super(key: key);
@@ -170,7 +168,7 @@ class Body extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               // const NFTList(),
-              const CommentContainer(),
+              // const CommentContainer(),
             ],
           ),
         ),

@@ -62,7 +62,7 @@ class _CommentContainerState extends State<CommentContainer> {
                 ),
                 title: Text(
                   data[i]['name'],
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 subtitle: Text(data[i]['message']),
               ),

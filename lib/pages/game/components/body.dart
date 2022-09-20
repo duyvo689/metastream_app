@@ -16,8 +16,8 @@ class Body extends StatelessWidget {
       child: Container(
         child: Column(
           children: const <Widget>[
-            // CarouselWithIndicator(
-            //     viewport: 0.82, width: 36, height: 3, style: 'center'),
+            CarouselWithIndicator(
+                viewport: 0.82, width: 36, height: 3, style: 'center'),
             SizedBox(height: 20),
             SectionTitle(
               title: "Trending Games",
