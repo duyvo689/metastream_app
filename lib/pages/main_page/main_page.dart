@@ -75,7 +75,7 @@ class _MainPageState extends State<MainPage> {
           MyHomePage(),
           const GamePage(),
           const WalletPhanTom(),
-          const CommentContainer()
+          // const CommentContainer()
         ],
         items: _navBarsItems(),
         navBarStyle: NavBarStyle.style6,
@@ -104,13 +104,13 @@ class _MainPageState extends State<MainPage> {
         activeColorPrimary: mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
-      PersistentBottomNavBarItem(
-        icon:
-            const Icon(CupertinoIcons.rectangle_fill_on_rectangle_angled_fill),
-        title: ("Wallet"),
-        activeColorPrimary: mainColor,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
+      // PersistentBottomNavBarItem(
+      //   icon:
+      //       const Icon(CupertinoIcons.rectangle_fill_on_rectangle_angled_fill),
+      //   title: ("Wallet"),
+      //   activeColorPrimary: mainColor,
+      //   inactiveColorPrimary: CupertinoColors.systemGrey,
+      // ),
     ];
   }
 }

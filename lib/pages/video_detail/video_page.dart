@@ -1,7 +1,8 @@
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import 'components/body.dart';
+// import 'components/body.dart';
+import 'components/comment_box.dart';
 
 class VideoPage extends StatelessWidget {
   const VideoPage({
@@ -14,7 +15,7 @@ class VideoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgrMainColor,
-      body: SafeArea(child: Body(video: video)),
+      body: SafeArea(child: CommentContainer(video: video)),
     );
   }
 }

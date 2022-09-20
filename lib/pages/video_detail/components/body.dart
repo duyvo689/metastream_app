@@ -3,6 +3,8 @@ import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'default_player.dart';
+import 'info_user_video.dart';
+import 'video_states.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key, required this.video}) : super(key: key);
@@ -16,7 +18,6 @@ class Body extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SafeArea(child: DefaultPlayer(videoId: video.id!)),
-        // SafeArea(child: DefaultPlayer2()),
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -49,123 +50,9 @@ class Body extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: const [
-                      Icon(
-                        Icons.thumb_up_off_alt,
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        '542 like',
-                        textAlign: TextAlign.start,
-                        maxLines: 2,
-                        style: TextStyle(
-                            overflow: TextOverflow.ellipsis,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13,
-                            color: AppColors.textPrimaryColor),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(width: 30),
-                  Column(
-                    children: const [
-                      Icon(
-                        Icons.thumb_down_off_alt,
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Dislike',
-                        textAlign: TextAlign.start,
-                        maxLines: 2,
-                        style: TextStyle(
-                            overflow: TextOverflow.ellipsis,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13,
-                            color: AppColors.textPrimaryColor),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(width: 30),
-                  Column(
-                    children: const [
-                      Icon(
-                        Icons.share_outlined,
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Share',
-                        textAlign: TextAlign.start,
-                        maxLines: 2,
-                        style: TextStyle(
-                            overflow: TextOverflow.ellipsis,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13,
-                            color: AppColors.textPrimaryColor),
-                      ),
-                    ],
-                  )
-                ],
-              ),
+              const VideoStates(),
               const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(video.userId!.avatar!),
-                      ),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${video.userId!.lastName!} ${video.userId!.firstName!}",
-                            textAlign: TextAlign.start,
-                            maxLines: 1,
-                            style: const TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 17,
-                                color: AppColors.textPrimaryColor),
-                          ),
-                          const SizedBox(height: 2),
-                          const Text(
-                            '0 followers',
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                                overflow: TextOverflow.ellipsis,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 13,
-                                color: AppColors.textSecondColor),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      // Respond to button press
-                    },
-                    icon: const Icon(
-                      Icons.notifications_outlined,
-                      size: 20,
-                    ),
-                    label: const Text("Following"),
-                    style: ElevatedButton.styleFrom(
-                        primary: AppColors.secondColor,
-                        onPrimary: AppColors.textSecondColor,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                        textStyle: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w600)),
-                  )
-                ],
-              ),
+              InfoUserVideo(video: video),
               const SizedBox(height: 20),
               // const NFTList(),
               // const CommentContainer(),
