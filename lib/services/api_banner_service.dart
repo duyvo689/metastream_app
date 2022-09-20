@@ -4,8 +4,8 @@ import 'api_url.dart';
 import 'dart:convert';
 
 class ApiBannerServices {
-  Future<List<Carousel>> fetchBanner() {
-    return http
+  Future<List<Carousel>> fetchBanner() async {
+    return await http
         .get(Uri.parse('${URL().API_URL}/api/v1/banner'))
         .then((http.Response response) {
       final String jsonBody = response.body;

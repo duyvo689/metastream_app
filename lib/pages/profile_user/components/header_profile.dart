@@ -34,7 +34,7 @@ class HeaderProflie extends StatelessWidget {
                 ])),
           ),
           Positioned(
-            top: 40,
+            top: 25,
             left: 0,
             child: IconButton(
               iconSize: 36,

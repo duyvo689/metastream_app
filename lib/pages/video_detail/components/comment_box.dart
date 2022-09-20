@@ -18,26 +18,26 @@ class _CommentContainerState extends State<CommentContainer> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController commentController = TextEditingController();
   List filedata = [
-    {
-      'name': 'Adeleye Ayodeji',
-      'pic': 'https://picsum.photos/300/30',
-      'message': 'I love to code'
-    },
-    {
-      'name': 'Biggi Man',
-      'pic': 'https://picsum.photos/300/30',
-      'message': 'Very cool'
-    },
-    {
-      'name': 'Biggi Man',
-      'pic': 'https://picsum.photos/300/30',
-      'message': 'Very cool'
-    },
-    {
-      'name': 'Biggi Man',
-      'pic': 'https://picsum.photos/300/30',
-      'message': 'Very cool'
-    },
+    // {
+    //   'name': 'Adeleye Ayodeji',
+    //   'pic': 'https://picsum.photos/300/30',
+    //   'message': 'I love to code'
+    // },
+    // {
+    //   'name': 'Biggi Man',
+    //   'pic': 'https://picsum.photos/300/30',
+    //   'message': 'Very cool'
+    // },
+    // {
+    //   'name': 'Biggi Man',
+    //   'pic': 'https://picsum.photos/300/30',
+    //   'message': 'Very cool'
+    // },
+    // {
+    //   'name': 'Biggi Man',
+    //   'pic': 'https://picsum.photos/300/30',
+    //   'message': 'Very cool'
+    // },
   ];
 
   Widget commentChild(data) {

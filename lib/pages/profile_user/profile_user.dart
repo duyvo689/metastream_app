@@ -10,7 +10,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgrMainColor,
-      body: SafeArea(child: Body(user: user)),
+      body: Body(user: user),
     );
   }
 }
