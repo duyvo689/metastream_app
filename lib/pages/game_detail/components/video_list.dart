@@ -19,13 +19,16 @@ class VideoList extends StatelessWidget {
         child: SizedBox(
           height: 500,
           child: FutureBuilder<List<Video>>(
-            future: ApiVideoServices().fetchVideosOfGame(gameId),
+            future: gameId != null
+                ? ApiVideoServices().fetchVideosOfGame(gameId)
+                : null,
             builder: (context, snapshot) {
-              if ((snapshot.hasError) || (!snapshot.hasData))
-                // ignore: curly_braces_in_flow_control_structures
+              if ((snapshot.hasError) || (!snapshot.hasData)) {
                 return const CircleLoading();
+              }
+              // ignore: curly_braces_in_flow_control_structures
               List<Video>? videos = snapshot.data;
-              return videos!.length > 0
+              return videos != null && videos.length > 0
                   ? ListView.builder(
                       scrollDirection: Axis.vertical,
                       padding: const EdgeInsets.all(8),

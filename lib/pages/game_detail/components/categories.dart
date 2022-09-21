@@ -1,13 +1,14 @@
-import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'about.dart';
+import 'nft_list.dart';
 import 'video_list.dart';
 
 // We need statefull widget because we are gonna change some state on our category
 class Categories extends StatefulWidget {
-  const Categories({Key? key, required this.gameId}) : super(key: key);
-  final String gameId;
+  const Categories({Key? key, required this.gameId, required this.collection})
+      : super(key: key);
+  final String gameId, collection;
   @override
   _CategoriesState createState() => _CategoriesState();
 }
@@ -63,12 +64,12 @@ class _CategoriesState extends State<Categories> {
             ),
           ),
           if (selectedIndex == 0) ...[VideoList(gameId: widget.gameId)],
-          // if (selectedIndex == 1) ...[
-          //   NFTList(addressWallet: widget.addressWallet),
-          // ],
           if (selectedIndex == 1) ...[
-            const NoContentProfile(title: "Game don't have nft!")
+            NFTList(collection: widget.collection),
           ],
+          // if (selectedIndex == 1) ...[
+          //   const NoContentProfile(title: "Game don't have nft!")
+          // ],
           if (selectedIndex == 2) ...[AboutProfile(gameId: widget.gameId)],
         ],
       ),

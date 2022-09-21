@@ -3,7 +3,6 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class AboutProfile extends StatelessWidget {
   const AboutProfile({Key? key, required this.gameId}) : super(key: key);
@@ -18,82 +17,85 @@ class AboutProfile extends StatelessWidget {
             future: ApiGameServices().fetchGameById(gameId),
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
-                return CircleLoading();
+                // ignore: curly_braces_in_flow_control_structures
+                return const CircleLoading();
               Game? game = snapshot.data;
-              return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 20),
-                    Text(
-                      game!.description.toString(),
-                      style: AppStyles.about_profile_title_style,
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
+              return game != null
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Website: ",
-                            style: AppStyles.about_profile_label_style),
-                        const SizedBox(width: 10),
-                        Text(
-                          game.websiteUrl.toString(),
-                          style: AppStyles.about_profile_title_style,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        const Text("Network: ",
-                            style: AppStyles.about_profile_label_style),
-                        const SizedBox(width: 10),
-                        Text(
-                          game.chainId!.name.toString(),
-                          style: AppStyles.about_profile_title_style,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        const Text("Developer: ",
-                            style: AppStyles.about_profile_label_style),
-                        const SizedBox(width: 10),
-                        Text(
-                          game.developer!.name.toString(),
-                          style: AppStyles.about_profile_title_style,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      children: [
-                        const Text("Release Status: ",
-                            style: AppStyles.about_profile_label_style),
-                        const SizedBox(width: 10),
-                        Text(
-                          game.release!.toString(),
-                          style: AppStyles.about_profile_title_style,
-                        ),
-                      ],
-                    ),
-                    // const Text("Contact: ",
-                    //     style: AppStyles.about_profile_label_style),
-                    // const SizedBox(height: 10),
-                    // Row(
-                    //   children: game.tags!
-                    //       .map((item) => Padding(
-                    //             padding: const EdgeInsets.only(right: 10),
-                    //             child: InkWell(
-                    //               child: CircleAvatar(
-                    //                 backgroundImage: AssetImage(
-                    //                     'assets/images/${item.title!.toLowerCase()}.jpeg'),
-                    //               ),
-                    //               onTap: () => launch(item.url.toString()),
-                    //             ),
-                    //           ))
-                    //       .toList(),
-                    // ),
-                  ]);
+                          const SizedBox(height: 20),
+                          Text(
+                            game.description.toString(),
+                            style: AppStyles.about_profile_title_style,
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              const Text("Website: ",
+                                  style: AppStyles.about_profile_label_style),
+                              const SizedBox(width: 10),
+                              Text(
+                                game.websiteUrl.toString(),
+                                style: AppStyles.about_profile_title_style,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              const Text("Network: ",
+                                  style: AppStyles.about_profile_label_style),
+                              const SizedBox(width: 10),
+                              Text(
+                                game.chainId!.name.toString(),
+                                style: AppStyles.about_profile_title_style,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              const Text("Developer: ",
+                                  style: AppStyles.about_profile_label_style),
+                              const SizedBox(width: 10),
+                              Text(
+                                game.developer!.name.toString(),
+                                style: AppStyles.about_profile_title_style,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            children: [
+                              const Text("Release Status: ",
+                                  style: AppStyles.about_profile_label_style),
+                              const SizedBox(width: 10),
+                              Text(
+                                game.release!.toString(),
+                                style: AppStyles.about_profile_title_style,
+                              ),
+                            ],
+                          ),
+                          // const Text("Contact: ",
+                          //     style: AppStyles.about_profile_label_style),
+                          // const SizedBox(height: 10),
+                          // Row(
+                          //   children: game.tags!
+                          //       .map((item) => Padding(
+                          //             padding: const EdgeInsets.only(right: 10),
+                          //             child: InkWell(
+                          //               child: CircleAvatar(
+                          //                 backgroundImage: AssetImage(
+                          //                     'assets/images/${item.title!.toLowerCase()}.jpeg'),
+                          //               ),
+                          //               onTap: () => launch(item.url.toString()),
+                          //             ),
+                          //           ))
+                          //       .toList(),
+                          // ),
+                        ])
+                  : const NoContentProfile(title: "Game don't have about!");
             }),
       ),
     );

@@ -4,8 +4,9 @@ import 'categories.dart';
 import 'header_game_detail.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key, required this.gameId}) : super(key: key);
-  final String gameId;
+  const Body({Key? key, required this.gameId, required this.collection})
+      : super(key: key);
+  final String gameId, collection;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class Body extends StatelessWidget {
                 ),
                 child: Column(
                   children: <Widget>[
-                    Categories(gameId: gameId),
+                    Categories(gameId: gameId, collection: collection),
                   ],
                 ),
               ),
