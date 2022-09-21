@@ -3,6 +3,9 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../main.dart';
 
 class AboutProfile extends StatelessWidget {
   const AboutProfile({Key? key, required this.userId}) : super(key: key);

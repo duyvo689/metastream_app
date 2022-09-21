@@ -1,7 +1,27 @@
+import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => UserInfo()),
+        ],
+        child: const MyApp(),
+      ),
+    );
+
+class UserInfo extends ChangeNotifier {
+  User? _userInfo;
+
+  User? get userInfo => _userInfo;
+
+  void increment(User user) {
+    _userInfo = user;
+    notifyListeners();
+  }
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

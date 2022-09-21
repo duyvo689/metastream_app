@@ -1,8 +1,10 @@
-import 'package:app_metastream/models/video.dart';
+import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../main.dart';
 import 'default_player.dart';
 import 'info_user_video.dart';
 import 'video_states.dart';
@@ -15,24 +17,13 @@ class CommentContainer extends StatefulWidget {
 }
 
 class _CommentContainerState extends State<CommentContainer> {
+  // void ffff() {
+  //   user = context.watch<UserInfo>().userInfo;
+  // }
+
   final formKey = GlobalKey<FormState>();
   final TextEditingController commentController = TextEditingController();
   List filedata = [
-    // {
-    //   'name': 'Adeleye Ayodeji',
-    //   'pic': 'https://picsum.photos/300/30',
-    //   'message': 'I love to code'
-    // },
-    // {
-    //   'name': 'Biggi Man',
-    //   'pic': 'https://picsum.photos/300/30',
-    //   'message': 'Very cool'
-    // },
-    // {
-    //   'name': 'Biggi Man',
-    //   'pic': 'https://picsum.photos/300/30',
-    //   'message': 'Very cool'
-    // },
     // {
     //   'name': 'Biggi Man',
     //   'pic': 'https://picsum.photos/300/30',
@@ -100,10 +91,7 @@ class _CommentContainerState extends State<CommentContainer> {
             padding: const EdgeInsets.fromLTRB(3.0, 8.0, 2.0, 0.0),
             child: ListTile(
               leading: GestureDetector(
-                onTap: () async {
-                  // Display the image in large form.
-                  print("Comment Clicked");
-                },
+                onTap: () async {},
                 child: Container(
                   height: 40.0,
                   width: 40.0,
@@ -111,7 +99,7 @@ class _CommentContainerState extends State<CommentContainer> {
                       color: Colors.blue,
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   child: CircleAvatar(
-                      radius: 10,
+                      radius: 40,
                       backgroundImage: NetworkImage(data[i]['pic'] + "$i")),
                 ),
               ),
@@ -134,15 +122,15 @@ class _CommentContainerState extends State<CommentContainer> {
   @override
   Widget build(BuildContext context) {
     return CommentBox(
-      userImage:
-          "https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400",
+      userImage: context.watch<UserInfo>().userInfo != null
+          ? context.watch<UserInfo>().userInfo!.avatar
+          : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg',
       child: commentChild(filedata),
       labelText: 'Write a comment...',
       withBorder: false,
       errorText: 'Comment cannot be blank',
       sendButtonMethod: () {
         if (formKey.currentState!.validate()) {
-          print(commentController.text);
           setState(() {
             var value = {
               'name': 'Me',

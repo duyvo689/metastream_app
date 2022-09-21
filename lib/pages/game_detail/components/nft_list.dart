@@ -48,7 +48,7 @@ class NFTList extends StatelessWidget {
                       );
                     },
                   )
-                : const NoContentProfile(title: "You don't have nft!");
+                : const NoContentProfile(title: "Game don't have nft!");
           },
         ),
       ),
