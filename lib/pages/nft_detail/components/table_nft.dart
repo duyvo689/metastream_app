@@ -75,7 +75,7 @@ class TableNFT extends StatelessWidget {
   Text _TextHeaderDataColumn({required String name}) {
     return Text(
       name,
-      style: PrimaryFont.medium(14).copyWith(color: dGreyLightColor),
+      style: PrimaryFont.medium(16).copyWith(color: dGreyLightColor),
     );
   }
 

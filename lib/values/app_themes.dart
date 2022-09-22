@@ -11,6 +11,16 @@ const dWhileColor = Color(0xFFFFFFFF);
 const dGreyLightColor = Color(0xFF8A8A8A);
 const dGreyDarkColor = Color(0xFF212121);
 
+double getHeight(double sysVar, double size) {
+  double calc = size / 1000;
+  return sysVar * calc;
+}
+
+double getTextSize(double sysVar, double size) {
+  double calc = size / 10;
+  return sysVar * calc;
+}
+
 // 30/26/22/18/16/14
 class PrimaryFont {
   static String fontFamily = 'HelveticaNeue';

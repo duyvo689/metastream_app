@@ -9,24 +9,58 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-        child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _ImageNFT(nftSolana: nftSolana),
-          _NameNFT(nftSolana: nftSolana),
-          const SizedBox(height: 20),
-          _CurrentPrice(nftSolana: nftSolana),
-          const SizedBox(height: 20),
-          _DetailInfoNFT(nftSolana: nftSolana),
-          const SizedBox(height: 20),
-          TableNFT(mintAddress: nftSolana.mintAddress.toString()),
-          const SizedBox(height: 20),
-        ],
-      ),
-    ));
+    return size.width < 600
+        ? SingleChildScrollView(
+            child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _ImageNFT(nftSolana: nftSolana),
+                _NameNFT(nftSolana: nftSolana),
+                const SizedBox(height: 20),
+                _CurrentPrice(nftSolana: nftSolana),
+                const SizedBox(height: 20),
+                _DetailInfoNFT(nftSolana: nftSolana),
+                const SizedBox(height: 20),
+                TableNFT(mintAddress: nftSolana.mintAddress.toString()),
+                const SizedBox(height: 20),
+              ],
+            ),
+          ))
+        : SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                          child: Align(
+                        // ignore: sort_child_properties_last
+                        child: _ImageNFT(nftSolana: nftSolana),
+                        alignment: Alignment.topCenter,
+                      )),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            _NameNFT(nftSolana: nftSolana),
+                            const SizedBox(height: 20),
+                            _CurrentPrice(nftSolana: nftSolana),
+                            const SizedBox(height: 20),
+                            _DetailInfoNFT(nftSolana: nftSolana),
+                            const SizedBox(height: 20),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  TableNFT(mintAddress: nftSolana.mintAddress.toString()),
+                ],
+              ),
+            ),
+          );
   }
 }
 
@@ -106,7 +140,8 @@ class _DetailInfoNFT extends StatelessWidget {
             Text(
               info,
               textAlign: TextAlign.start,
-              style: PrimaryFont.light(18).copyWith(color: dGreyLightColor),
+              style: PrimaryFont.light(18).copyWith(
+                  color: dGreyLightColor, overflow: TextOverflow.ellipsis),
             ),
           ],
         ),
@@ -171,7 +206,7 @@ class _ImageNFT extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 20),
       child: AspectRatio(
         aspectRatio: 1.1,
         child: Container(
@@ -223,6 +258,11 @@ class _NameNFT extends StatelessWidget {
           textAlign: TextAlign.start,
           style: PrimaryFont.light(22.0).copyWith(color: dPrimaryColor),
         ),
+        // AutoSizeText(
+        //   'The text to display',
+        //   style: TextStyle(fontSize: 20),
+        //   maxLines: 2,
+        // )
       ],
     );
   }

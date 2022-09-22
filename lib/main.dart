@@ -53,3 +53,36 @@ class MyApp extends StatelessWidget {
 //     notifyListeners();
 //   }
 // }
+
+// void main() => runApp(
+//       MultiProvider(providers: [
+//         ChangeNotifierProvider(create: (_) => UserInfo()),
+//       ], child: const MyApp()),
+//     );
+
+// class UserInfo extends ChangeNotifier {
+//   User? _userInfo;
+
+//   User? get userInfo => _userInfo;
+
+//   void increment(User user) {
+//     _userInfo = user;
+//     notifyListeners();
+//   }
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Flutter Demo',
+//       theme: ThemeData(
+//         brightness: Brightness.dark,
+//       ),
+//       home: SplashPage(),
+//     );
+//   }
+// }
