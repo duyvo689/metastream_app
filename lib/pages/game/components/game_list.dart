@@ -12,7 +12,6 @@ class GameList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(children: [
@@ -21,7 +20,9 @@ class GameList extends StatelessWidget {
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
               // ignore: curly_braces_in_flow_control_structures
-              return const ListGameSkeleton();
+              return ListGameSkeleton(
+                columnCount: size.width < 600 ? 2 : 3,
+              );
             List<Game>? games = snapshot.data;
             return GridView.builder(
               shrinkWrap: true,

@@ -5,17 +5,18 @@ import 'card_skeleton.dart';
 class ListGameSkeleton extends StatelessWidget {
   const ListGameSkeleton({
     Key? key,
+    required this.columnCount,
   }) : super(key: key);
-
+  final int columnCount;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.only(top: 10),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisSpacing: 15,
-        crossAxisCount: 2,
+        crossAxisCount: columnCount,
         childAspectRatio: 0.8,
       ),
       itemCount: 6,

@@ -17,7 +17,8 @@ class ButtonBuyNft extends StatelessWidget {
               onPressed: () {
                 // Respond to button press
               },
-              child: Text('Buy now'),
+              // ignore: sort_child_properties_last
+              child: const Text('Buy now'),
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4)),

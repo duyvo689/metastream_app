@@ -21,6 +21,7 @@ class _PopularGamesState extends State<PopularGames> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -30,7 +31,7 @@ class _PopularGamesState extends State<PopularGames> {
             title_2: "we think you’ll like",
           ),
           const SizedBox(
-            height: 30,
+            height: 20,
           ),
           FutureBuilder<List<Game>>(
             future: ApiGameServices().fetchGame(),
@@ -46,33 +47,59 @@ class _PopularGamesState extends State<PopularGames> {
                   ),
                 );
               List<Game>? games = snapshot.data;
-              return SingleChildScrollView(
-                clipBehavior: Clip.none,
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ...List.generate(
-                      games!.length,
-                      (index) => Padding(
-                        padding: EdgeInsets.only(
-                            right: getProportionateScreenWidth(20)),
-                        child: GameCard(
+              return size.width < 600
+                  ? SingleChildScrollView(
+                      clipBehavior: Clip.none,
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          ...List.generate(
+                            games!.length,
+                            (index) => Padding(
+                              padding: EdgeInsets.only(
+                                  right: getProportionateScreenWidth(20)),
+                              child: GameCard(
+                                game: games[index],
+                                press: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => GameDetail(
+                                              gameId: games[index].id,
+                                            ))),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                        ],
+                      ),
+                    )
+                  : GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: const EdgeInsets.only(top: 10),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                        crossAxisCount: 3,
+                        childAspectRatio: 0.66,
+                      ),
+                      itemCount: games!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return GameCard(
                           game: games[index],
                           press: () => Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => GameDetail(
-                                        gameId: games[index].id,
-                                      ))),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                  ],
-                ),
-              );
+                                      gameId: games[index].id,
+                                      collection:
+                                          games[index].addressCollection))),
+                        );
+                      },
+                    );
             },
           ),
         ],

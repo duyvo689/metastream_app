@@ -48,6 +48,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
       child: Column(children: [
         FutureBuilder<List<Carousel>>(
@@ -55,8 +56,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
               // ignore: curly_braces_in_flow_control_structures
-              return const SquareSkeleton(
-                height: 5,
+              return SquareSkeleton(
+                height: size.width < 600 ? 5 : 3,
               );
             List<Carousel>? Carousels = snapshot.data;
             if (banners.length <= 0) {

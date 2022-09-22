@@ -6,7 +6,6 @@ import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 import 'popular_video.dart';
-import 'categories.dart';
 import 'popular_game.dart';
 
 class Body extends StatelessWidget {
@@ -18,77 +17,19 @@ class Body extends StatelessWidget {
       scrollDirection: Axis.vertical,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
+        children: const [
+          SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getProportionateScreenWidth(0)),
-            child: FutureBuilder<List<User>>(
-              future: ApiUserServices().fetchUsers(),
-              builder: (context, snapshot) {
-                if ((snapshot.hasError) || (!snapshot.hasData))
-                  // ignore: curly_braces_in_flow_control_structures
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
-                      height: 65,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 6,
-                        itemBuilder: (context, index) =>
-                            const UserCardSkelton(),
-                      ),
-                    ),
-                  );
-                List<User>? users = snapshot.data!;
-                return (SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      ...List.generate(
-                        users.length,
-                        (index) => CircleVideoCard(
-                          user: users[index],
-                          press: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Profile(
-                                        user: users[index],
-                                      ))),
-                        ),
-                      ),
-                    ],
-                  ),
-                ));
-              },
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const CarouselWithIndicator(
-            viewport: 1,
-            width: 30,
-            height: 3,
-            style: 'start',
-          ),
-
-          const SizedBox(
-            height: 10,
-          ),
-          const Categories(),
-          const SizedBox(
-            height: 20,
-          ),
-          // const PopularShorts(),
-          // const PopularVideos(),
-          const SizedBox(
-            height: 10,
-          ),
-          const PopularGames(),
-          const SizedBox(
+          _ListUser(),
+          SizedBox(height: 20),
+          CarouselWithIndicator(
+              viewport: 1, width: 30, height: 3, style: 'start'),
+          SizedBox(height: 20),
+          PopularVideos(),
+          SizedBox(height: 20),
+          PopularGames(),
+          SizedBox(
             height: 30,
           ),
         ],
@@ -97,8 +38,59 @@ class Body extends StatelessWidget {
   }
 }
 
-class CircleVideoCard extends StatelessWidget {
-  const CircleVideoCard({
+class _ListUser extends StatelessWidget {
+  const _ListUser({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(0)),
+      child: FutureBuilder<List<User>>(
+        future: ApiUserServices().fetchUsers(),
+        builder: (context, snapshot) {
+          if ((snapshot.hasError) || (!snapshot.hasData))
+            // ignore: curly_braces_in_flow_control_structures
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: SizedBox(
+                height: 65,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 6,
+                  itemBuilder: (context, index) => const _UserCardSkelton(),
+                ),
+              ),
+            );
+          List<User>? users = snapshot.data!;
+          return (SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                ...List.generate(
+                  users.length,
+                  (index) => _CircleVideoCard(
+                    user: users[index],
+                    press: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Profile(
+                                  user: users[index],
+                                ))),
+                  ),
+                ),
+              ],
+            ),
+          ));
+        },
+      ),
+    );
+  }
+}
+
+class _CircleVideoCard extends StatelessWidget {
+  const _CircleVideoCard({
     required this.user,
     Key? key,
     required this.press,
@@ -124,8 +116,8 @@ class CircleVideoCard extends StatelessWidget {
   }
 }
 
-class UserCardSkelton extends StatelessWidget {
-  const UserCardSkelton({
+class _UserCardSkelton extends StatelessWidget {
+  const _UserCardSkelton({
     Key? key,
   }) : super(key: key);
 
