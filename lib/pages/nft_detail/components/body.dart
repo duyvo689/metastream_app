@@ -1,7 +1,6 @@
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import 'expansion_cart.dart';
 import 'table_nft.dart';
 
 class Body extends StatelessWidget {
@@ -11,103 +10,220 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-        child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding:
-              const EdgeInsets.only(left: 30, right: 30, top: 10, bottom: 20),
-          child: AspectRatio(
-            aspectRatio: 1.1,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(6),
-                  topRight: Radius.circular(6),
-                  bottomLeft: Radius.circular(6),
-                  bottomRight: Radius.circular(6),
-                ),
-                image: DecorationImage(
-                  image: NetworkImage(nftSolana.image!),
-                  fit: BoxFit.cover,
-                ),
+        child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _ImageNFT(nftSolana: nftSolana),
+          _NameNFT(nftSolana: nftSolana),
+          const SizedBox(height: 20),
+          _CurrentPrice(nftSolana: nftSolana),
+          const SizedBox(height: 20),
+          _DetailInfoNFT(nftSolana: nftSolana),
+          const SizedBox(height: 20),
+          TableNFT(mintAddress: nftSolana.mintAddress.toString()),
+          const SizedBox(height: 20),
+        ],
+      ),
+    ));
+  }
+}
+
+class _DetailInfoNFT extends StatelessWidget {
+  const _DetailInfoNFT({
+    Key? key,
+    required this.nftSolana,
+  }) : super(key: key);
+
+  final NftSolana nftSolana;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+      decoration: BoxDecoration(
+        color: AppColors.bgrCardColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Icons.description,
+                size: 24,
+                color: dPrimaryColor,
               ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                'Details',
+                textAlign: TextAlign.start,
+                style: PrimaryFont.light(22).copyWith(color: dGreyLightColor),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          _RowDetailInfoNFT(
+              name: 'Mint address',
+              info:
+                  '${nftSolana.mintAddress.toString().substring(0, 6)}...${nftSolana.mintAddress.toString().substring(nftSolana.mintAddress.toString().length - 6, nftSolana.mintAddress.toString().length)}'),
+          const SizedBox(height: 10),
+          _RowDetailInfoNFT(
+              name: 'Seller address',
+              info:
+                  '${nftSolana.sellerAddress.toString().substring(0, 6)}...${nftSolana.sellerAddress.toString().substring(nftSolana.sellerAddress.toString().length - 6, nftSolana.sellerAddress.toString().length)}'),
+          const SizedBox(height: 10),
+          _RowDetailInfoNFT(
+              name: 'Token Account',
+              info:
+                  '${nftSolana.tokenAccount.toString().substring(0, 6)}...${nftSolana.tokenAccount.toString().substring(nftSolana.tokenAccount.toString().length - 6, nftSolana.tokenAccount.toString().length)}'),
+          const SizedBox(height: 10),
+        ],
+      ),
+    );
+  }
+
+  Row _RowDetailInfoNFT({required String name, required String info}) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          name,
+          textAlign: TextAlign.start,
+          style: PrimaryFont.light(18).copyWith(color: dWhileColor),
+        ),
+        Row(
+          children: [
+            CircleAvatar(
+              backgroundImage: AssetImage(AppAssets.icSol),
+              radius: 10,
+            ),
+            const SizedBox(width: 5),
+            Text(
+              info,
+              textAlign: TextAlign.start,
+              style: PrimaryFont.light(18).copyWith(color: dGreyLightColor),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _CurrentPrice extends StatelessWidget {
+  const _CurrentPrice({
+    Key? key,
+    required this.nftSolana,
+  }) : super(key: key);
+
+  final NftSolana nftSolana;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+      decoration: BoxDecoration(
+        color: AppColors.bgrCardColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Current Price',
+            style: PrimaryFont.light(22).copyWith(color: dGreyLightColor),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              const Icon(
+                Icons.local_offer,
+                color: dPrimaryColor,
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Text(
+                '${nftSolana.price} sol',
+                style: PrimaryFont.medium(26).copyWith(color: dWhileColor),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ImageNFT extends StatelessWidget {
+  const _ImageNFT({
+    Key? key,
+    required this.nftSolana,
+  }) : super(key: key);
+
+  final NftSolana nftSolana;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
+      child: AspectRatio(
+        aspectRatio: 1.1,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(6),
+              topRight: Radius.circular(6),
+              bottomLeft: Radius.circular(6),
+              bottomRight: Radius.circular(6),
+            ),
+            image: DecorationImage(
+              image: NetworkImage(nftSolana.image!),
+              fit: BoxFit.cover,
             ),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              Text(
-                nftSolana.name!,
-                textAlign: TextAlign.start,
-                maxLines: 2,
-                style: const TextStyle(
-                  overflow: TextOverflow.ellipsis,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 26,
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                nftSolana.name!,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
-                    color: AppColors.primaryColor),
-              ),
-            ],
+      ),
+    );
+  }
+}
+
+class _NameNFT extends StatelessWidget {
+  const _NameNFT({
+    Key? key,
+    required this.nftSolana,
+  }) : super(key: key);
+
+  final NftSolana nftSolana;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          nftSolana.name!,
+          textAlign: TextAlign.start,
+          maxLines: 2,
+          style: PrimaryFont.medium(28.0).copyWith(
+            color: dWhileColor,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
-        const SizedBox(height: 20),
-        Container(
-          padding: EdgeInsets.all(getProportionateScreenWidth(20)),
-          decoration: BoxDecoration(
-            color: AppColors.bgrCardColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Current Price',
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: AppColors.textSecondColor),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.local_offer,
-                    color: AppColors.primaryColor,
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    '${nftSolana.price} sol',
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 26,
-                        color: AppColors.textPrimaryColor),
-                  ),
-                ],
-              ),
-            ],
-          ),
+        const SizedBox(
+          height: 10,
         ),
-        const SizedBox(height: 20),
-        ExpansionCart(nftSolana: nftSolana),
-        const SizedBox(height: 20),
-        TableNFT(mintAddress: nftSolana.mintAddress.toString()),
-        const SizedBox(height: 20),
+        Text(
+          nftSolana.name!,
+          textAlign: TextAlign.start,
+          style: PrimaryFont.light(22.0).copyWith(color: dPrimaryColor),
+        ),
       ],
-    ));
+    );
   }
 }

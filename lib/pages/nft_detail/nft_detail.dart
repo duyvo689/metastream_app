@@ -36,7 +36,7 @@ class NFTDetail extends StatelessWidget {
           ),
         ],
       ),
-      body: Body(nftSolana: nftSolana),
+      body: SafeArea(child: Body(nftSolana: nftSolana)),
     );
   }
 }

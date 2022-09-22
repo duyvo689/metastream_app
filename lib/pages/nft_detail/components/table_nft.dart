@@ -11,7 +11,7 @@ class TableNFT extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: AppColors.bgrCardColor,
+        color: dGreyDarkColor,
         borderRadius: BorderRadius.circular(8),
       ),
       child: FutureBuilder<List<SolanaTx>>(
@@ -29,53 +29,32 @@ class TableNFT extends StatelessWidget {
             );
           List<SolanaTx>? solanaTx = snapshot.data;
           return SingleChildScrollView(
-            clipBehavior: Clip.none,
+            clipBehavior: Clip.hardEdge,
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
                 DataTable(
-                  columns: const <DataColumn>[
+                  columns: <DataColumn>[
                     DataColumn(
-                      label: Text(
-                        'TYPE',
-                        style: TextStyle(color: AppColors.textSecondColor),
-                      ),
+                      label: _TextHeaderDataColumn(name: 'TYPE'),
                     ),
                     DataColumn(
-                      label: Text(
-                        'TRANSACTION',
-                        style: TextStyle(color: AppColors.textSecondColor),
-                      ),
+                      label: _TextHeaderDataColumn(name: 'TRANSACTION'),
                     ),
                     DataColumn(
-                      label: Text(
-                        'SELLER',
-                        style: TextStyle(color: AppColors.textSecondColor),
-                      ),
+                      label: _TextHeaderDataColumn(name: 'SELLER'),
                     ),
                     DataColumn(
-                      label: Text(
-                        'BUYER',
-                        style: TextStyle(color: AppColors.textSecondColor),
-                      ),
+                      label: _TextHeaderDataColumn(name: 'BUYER'),
                     ),
                     DataColumn(
-                      label: Text(
-                        'PRICE',
-                        style: TextStyle(color: AppColors.textSecondColor),
-                      ),
+                      label: _TextHeaderDataColumn(name: 'PRICE'),
                     ),
                     DataColumn(
-                      label: Text(
-                        'TIME',
-                        style: TextStyle(color: AppColors.textSecondColor),
-                      ),
+                      label: _TextHeaderDataColumn(name: 'TIME'),
                     ),
                     DataColumn(
-                      label: Text(
-                        'ACTIONS',
-                        style: TextStyle(color: AppColors.textSecondColor),
-                      ),
+                      label: _TextHeaderDataColumn(name: 'ACTIONS'),
                     ),
                   ],
                   rows: <DataRow>[
@@ -93,16 +72,23 @@ class TableNFT extends StatelessWidget {
     );
   }
 
+  Text _TextHeaderDataColumn({required String name}) {
+    return Text(
+      name,
+      style: PrimaryFont.medium(14).copyWith(color: dGreyLightColor),
+    );
+  }
+
   DataRow TableCell({required SolanaTx solanaTx}) {
     return DataRow(
       cells: <DataCell>[
         DataCell(
           Text(solanaTx.type.toString(),
               style: solanaTx.type.toString() == 'Listing'
-                  ? TextStyle(color: AppColors.primaryColor.withOpacity(0.6))
+                  ? TextStyle(color: dPrimaryColor.withOpacity(0.6))
                   : solanaTx.type.toString() == 'Cancel'
                       ? const TextStyle(color: Colors.red)
-                      : const TextStyle(color: AppColors.textPrimaryColor)),
+                      : const TextStyle(color: Colors.white)),
         ),
         DataCell(Text(
             '${solanaTx.transaction.toString().substring(0, 4)}...${solanaTx.transaction.toString().substring(solanaTx.transaction.toString().length - 4, solanaTx.transaction.toString().length)}')),
@@ -114,19 +100,18 @@ class TableNFT extends StatelessWidget {
         DataCell(Text(solanaTx.createdAt.toString())),
         DataCell(OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
-            primary: AppColors.primaryColor.withOpacity(0.6),
-            side: BorderSide(
-                color: AppColors.primaryColor.withOpacity(0.6), width: 1),
+            primary: dPrimaryColor.withOpacity(0.6),
+            side: BorderSide(color: dPrimaryColor.withOpacity(0.6), width: 1),
             textStyle:
                 const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
           label: const Text(
             'VIEW',
-            style: TextStyle(fontSize: 14),
+            style: TextStyle(fontSize: 12),
           ),
           icon: const Icon(
             Icons.open_in_new_outlined,
-            size: 18,
+            size: 16,
           ),
           onPressed: () {
             // Respond to button press
