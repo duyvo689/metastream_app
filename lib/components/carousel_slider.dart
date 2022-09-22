@@ -53,7 +53,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
           future: ApiBannerServices().fetchBanner(),
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
-              return SquareSkeleton(
+              // ignore: curly_braces_in_flow_control_structures
+              return const SquareSkeleton(
                 height: 5,
               );
             List<Carousel>? Carousels = snapshot.data;

@@ -1,5 +1,6 @@
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +9,7 @@ void main() => runApp(
         providers: [
           ChangeNotifierProvider(create: (_) => UserInfo()),
         ],
-        child: const MyApp(),
+        child: DevicePreview(builder: (context) => const MyApp()),
       ),
     );
 
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

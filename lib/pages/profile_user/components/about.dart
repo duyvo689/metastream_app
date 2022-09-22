@@ -17,18 +17,22 @@ class AboutProfile extends StatelessWidget {
               future: ApiUserServices().fetchUserById(userId),
               builder: (context, snapshot) {
                 if ((snapshot.hasError) || (!snapshot.hasData))
-                  return CircleLoading();
+                  // ignore: curly_braces_in_flow_control_structures
+                  return const CircleLoading();
                 User? user = snapshot.data;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10),
-                    Text(
-                      user!.descriptions.toString(),
-                      style: AppStyles.about_profile_title_style,
-                    ),
-                  ],
-                );
+                return user != null && user.descriptions != ''
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 10),
+                          Text(
+                            user.descriptions.toString(),
+                            style: AppStyles.about_profile_title_style,
+                          ),
+                        ],
+                      )
+                    : NoContentProfile(
+                        title: "${user!.userName} don't have about!");
               }),
         ));
   }

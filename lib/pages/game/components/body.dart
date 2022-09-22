@@ -3,7 +3,6 @@ import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
 import 'game_list.dart';
-import 'game_upcoming_list.dart';
 import 'section_title.dart';
 
 class Body extends StatelessWidget {
@@ -32,7 +31,6 @@ class Body extends StatelessWidget {
             // GameUpcomingList(),
             // SizedBox(height: 20),
 
-            TableNFT(),
             SizedBox(height: 30),
           ],
         ),

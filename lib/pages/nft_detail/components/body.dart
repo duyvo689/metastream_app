@@ -1,8 +1,8 @@
-import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'expansion_cart.dart';
+import 'table_nft.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key, required this.nftSolana}) : super(key: key);
@@ -35,26 +35,33 @@ class Body extends StatelessWidget {
             ),
           ),
         ),
-        Text(
-          nftSolana.name!,
-          textAlign: TextAlign.start,
-          maxLines: 2,
-          style: const TextStyle(
-            overflow: TextOverflow.ellipsis,
-            fontWeight: FontWeight.w500,
-            fontSize: 26,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              Text(
+                nftSolana.name!,
+                textAlign: TextAlign.start,
+                maxLines: 2,
+                style: const TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 26,
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                nftSolana.name!,
+                textAlign: TextAlign.start,
+                style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    color: AppColors.primaryColor),
+              ),
+            ],
           ),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        Text(
-          nftSolana.name!,
-          textAlign: TextAlign.start,
-          style: const TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 14,
-              color: AppColors.primaryColor),
         ),
         const SizedBox(height: 20),
         Container(
@@ -98,7 +105,7 @@ class Body extends StatelessWidget {
         const SizedBox(height: 20),
         ExpansionCart(nftSolana: nftSolana),
         const SizedBox(height: 20),
-        const TableNFT(),
+        TableNFT(mintAddress: nftSolana.mintAddress.toString()),
         const SizedBox(height: 20),
       ],
     ));

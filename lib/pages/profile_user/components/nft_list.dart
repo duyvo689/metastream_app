@@ -20,9 +20,10 @@ class NFTList extends StatelessWidget {
           future: ApiNftSolanaServices().fetchSellerByAddress(addressWallet),
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
-              return CircleLoading();
+              // ignore: curly_braces_in_flow_control_structures
+              return const CircleLoading();
             List<NftSolana>? nftSolanas = snapshot.data;
-            return nftSolanas!.length > 0
+            return nftSolanas != null && nftSolanas.isNotEmpty
                 ? GridView.builder(
                     shrinkWrap: true,
                     padding: const EdgeInsets.only(top: 10),

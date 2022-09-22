@@ -23,7 +23,7 @@ class AboutProfile extends StatelessWidget {
                   // ignore: curly_braces_in_flow_control_structures
                   return const CircleLoading();
                 User? user = snapshot.data;
-                return user != null
+                return user != null && user.descriptions != ''
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -34,7 +34,8 @@ class AboutProfile extends StatelessWidget {
                           ),
                         ],
                       )
-                    : const NoContentProfile(title: "You don't have nft!");
+                    : NoContentProfile(
+                        title: "${user!.userName} don't have about!");
                 ;
               }),
         ));

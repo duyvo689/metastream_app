@@ -36,12 +36,13 @@ class _PopularGamesState extends State<PopularGames> {
             future: ApiGameServices().fetchGame(),
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
+                // ignore: curly_braces_in_flow_control_structures
                 return Container(
                   height: 260,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 6,
-                    itemBuilder: (context, index) => CardSkeleton(),
+                    itemBuilder: (context, index) => const CardSkeleton(),
                   ),
                 );
               List<Game>? games = snapshot.data;

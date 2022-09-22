@@ -5,3 +5,5 @@ export 'nft.dart';
 export 'short.dart';
 export 'user.dart';
 export 'video.dart';
+export 'etherTx.dart';
+export 'solanaTx.dart';
