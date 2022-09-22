@@ -30,8 +30,8 @@ class NFTDetail extends StatelessWidget {
             onPressed: _launchURLApp,
             child: Image.asset(
               AppAssets.icPhantom,
-              height: 40,
-              width: 40,
+              height: 35,
+              width: 35,
             ),
           ),
         ],

@@ -1,5 +1,6 @@
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/app_colors.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import '../pages/game_detail/game_detail.dart';
@@ -89,7 +90,6 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                                         item.assetUrl.toString(),
                                         fit: BoxFit.cover,
                                         width: 1000.0,
-                                        height: 220,
                                       ),
                                       Container(
                                         decoration: BoxDecoration(
@@ -104,7 +104,6 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                                       Positioned(
                                         left: 0.0,
                                         right: 0.0,
-                                        top: getProportionateScreenHeight(50),
                                         bottom:
                                             getProportionateScreenHeight(50),
                                         child: Container(
@@ -116,12 +115,9 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                                             children: [
                                               Text(
                                                 item.name.toString(),
-                                                style: const TextStyle(
-                                                  color: AppColors
-                                                      .textPrimaryColor,
-                                                  fontSize: 24,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                                style: PrimaryFont.medium(26)
+                                                    .copyWith(
+                                                        color: dWhileColor),
                                               ),
                                               const SizedBox(
                                                 height: 10,
@@ -129,13 +125,10 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                                               Text(
                                                 item.description.toString(),
                                                 maxLines: 3,
-                                                style: const TextStyle(
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  color:
-                                                      AppColors.textSecondColor,
-                                                  fontSize: 14,
-                                                ),
+                                                style: PrimaryFont.light(14)
+                                                    .copyWith(
+                                                        color: dGreyLightColor,
+                                                        height: 1.2),
                                               ),
                                             ],
                                           ),
@@ -150,7 +143,9 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                 carouselController: _controller,
                 options: CarouselOptions(
                     autoPlay: true,
-                    aspectRatio: 16 / 9,
+                    aspectRatio: 2.0,
+                    enlargeCenterPage: true,
+                    initialPage: 2,
                     viewportFraction: widget.viewport,
                     onPageChanged: (index, reason) {
                       setState(() {

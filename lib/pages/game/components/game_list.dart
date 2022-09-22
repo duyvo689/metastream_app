@@ -11,6 +11,8 @@ class GameList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(children: [
@@ -18,16 +20,17 @@ class GameList extends StatelessWidget {
           future: ApiGameServices().fetchGame(),
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
-              return ListGameSkeleton();
+              // ignore: curly_braces_in_flow_control_structures
+              return const ListGameSkeleton();
             List<Game>? games = snapshot.data;
             return GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.only(top: 10),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisSpacing: 15,
-                mainAxisSpacing: 15,
-                crossAxisCount: 2,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+                crossAxisCount: size.width < 600 ? 2 : 3,
                 childAspectRatio: 0.66,
               ),
               itemCount: games!.length,

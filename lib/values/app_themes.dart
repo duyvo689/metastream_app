@@ -8,7 +8,8 @@ const kColorDarkGrey = Color(0xFF3F414E);
 const dPrimaryColor = Color(0xFF2AFD92);
 const dBlackColor = Color(0xFF000000);
 const dWhileColor = Color(0xFFFFFFFF);
-const dGreyLightColor = Color(0xFF8A8A8A);
+const dGreyLightColor = Color(0xFFB4B4B4);
+// const dGreyLightColor = Color(0xFF8A8A8A);
 const dGreyDarkColor = Color(0xFF212121);
 
 double getHeight(double sysVar, double size) {
