@@ -5,14 +5,14 @@ import 'components/body.dart';
 class ProfileMe extends StatelessWidget {
   const ProfileMe({
     Key? key,
-    required this.walletAddr,
+    this.walletAddr,
   }) : super(key: key);
-  final String walletAddr;
+  final String? walletAddr;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgrMainColor,
-      body: Body(walletAddr: walletAddr),
+      body: Body(walletAddr: walletAddr.toString()),
     );
   }
 }

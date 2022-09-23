@@ -22,8 +22,8 @@ class Body extends StatelessWidget {
           ),
           _ListUser(),
           SizedBox(height: 20),
-          CarouselWithIndicator(
-              viewport: 1, width: 30, height: 3, style: 'start'),
+          // CarouselWithIndicator(
+          //     viewport: 1, width: 30, height: 3, style: 'start'),
           SizedBox(height: 20),
           PopularVideos(),
           SizedBox(height: 20),

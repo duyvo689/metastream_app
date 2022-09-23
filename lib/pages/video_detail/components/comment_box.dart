@@ -1,4 +1,5 @@
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,6 @@ class CommentContainer extends StatefulWidget {
 }
 
 class _CommentContainerState extends State<CommentContainer> {
-  // void ffff() {
-  //   user = context.watch<UserInfo>().userInfo;
-  // }
-
   final formKey = GlobalKey<FormState>();
   final TextEditingController commentController = TextEditingController();
   List filedata = [
@@ -30,6 +27,71 @@ class _CommentContainerState extends State<CommentContainer> {
     //   'message': 'Very cool'
     // },
   ];
+
+  void SendMessage() {
+    if (context.read<UserInfo>().userInfo == null) {
+      _showMyDialog();
+    } else {
+      sendButtonMethod();
+    }
+  }
+
+  void sendButtonMethod() {
+    if (formKey.currentState!.validate()) {
+      setState(() {
+        var value = {
+          'name': 'Me',
+          'pic':
+              'https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400',
+          'message': commentController.text
+        };
+        filedata.insert(0, value);
+      });
+      commentController.clear();
+      FocusScope.of(context).unfocus();
+    } else {
+      print("Not validated");
+    }
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notifications',
+              style: TextStyle(color: dPrimaryColor)),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('You need a wallet connection to login.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel',
+                  style: TextStyle(color: dGreyLightColor, fontSize: 16)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Agree',
+                  style: TextStyle(color: dPrimaryColor, fontSize: 16)),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WalletPhanTom()));
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Widget commentChild(data) {
     return ListView(
@@ -129,28 +191,14 @@ class _CommentContainerState extends State<CommentContainer> {
       labelText: 'Write a comment...',
       withBorder: false,
       errorText: 'Comment cannot be blank',
-      sendButtonMethod: () {
-        if (formKey.currentState!.validate()) {
-          setState(() {
-            var value = {
-              'name': 'Me',
-              'pic':
-                  'https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400',
-              'message': commentController.text
-            };
-            filedata.insert(0, value);
-          });
-          commentController.clear();
-          FocusScope.of(context).unfocus();
-        } else {
-          print("Not validated");
-        }
-      },
+      sendButtonMethod: () {},
       formKey: formKey,
       commentController: commentController,
       backgroundColor: Colors.black,
       textColor: Colors.white,
-      sendWidget: Icon(Icons.send_sharp, size: 30, color: Colors.white),
+      sendWidget: InkWell(
+          onTap: () => {SendMessage()},
+          child: const Icon(Icons.send_sharp, size: 30, color: Colors.white)),
     );
   }
 }

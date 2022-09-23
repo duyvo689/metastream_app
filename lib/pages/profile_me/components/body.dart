@@ -28,10 +28,13 @@ class _BodyState extends State<Body> {
   }
 
   void FethUser(String walletAddr) async {
-    User userInfo =
-        await ApiUserServices().fetchUserByWalletAddress(widget.walletAddr);
+    if (context.read<UserInfo>().userInfo == null) {
+      User userInfo =
+          await ApiUserServices().fetchUserByWalletAddress(widget.walletAddr);
+      context.read<UserInfo>().increment(userInfo);
+    }
+
     // ignore: use_build_context_synchronously
-    context.read<UserInfo>().increment(userInfo);
   }
 
   @override
@@ -42,10 +45,13 @@ class _BodyState extends State<Body> {
       FutureBuilder<User>(
           future: ApiUserServices().fetchUserByWalletAddress(widget.walletAddr),
           builder: (context, snapshot) {
-            if ((snapshot.hasError) || (!snapshot.hasData))
+            if (((snapshot.hasError) || (!snapshot.hasData)) &&
+                context.watch<UserInfo>().userInfo == null)
               // ignore: curly_braces_in_flow_control_structures
               return const CircleLoading();
-            User? user = snapshot.data;
+            User? user = context.watch<UserInfo>().userInfo == null
+                ? snapshot.data
+                : context.watch<UserInfo>().userInfo;
             return SizedBox(
               height: size.height,
               child: Stack(
