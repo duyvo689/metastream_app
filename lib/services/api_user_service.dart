@@ -62,16 +62,21 @@ class ApiUserServices {
     });
   }
 
-  // Future FollowUser(String id, String userId, bool isFollow) {
-  //   return http.put(
-  //     Uri.parse('${URL().API_URL}/api/v1/user/follow/${id}'),
-  //     headers: <String, String>{
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //     },
-  //     body: jsonEncode(<String, dynamic>{
-  //       'idUser': userId,
-  //       'isFollow': isFollow,
-  //     }),
-  //   );
-  // }
+  Future ApiFollowUser(String id, String userId, bool isFollow) async {
+    print("==================");
+    print(id);
+    print(userId);
+    print(isFollow);
+    final response = await http.put(
+      Uri.parse('${URL().API_URL}/api/v1/user/follow/${id}'), //of minh
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'idUser': userId, //of nguoi duoc fl
+        'isFollow': isFollow,
+      }),
+    );
+    print(response.body);
+  }
 }

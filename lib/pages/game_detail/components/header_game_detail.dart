@@ -1,7 +1,11 @@
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../main.dart';
 
 class HeaderGameDetail extends StatefulWidget {
   const HeaderGameDetail({Key? key, required this.gameId}) : super(key: key);
@@ -12,7 +16,50 @@ class HeaderGameDetail extends StatefulWidget {
 }
 
 class _HeaderGameDetailState extends State<HeaderGameDetail> {
-  bool isFollow = false;
+  bool isFollow = true;
+
+  void FollowGame(String id, String gameId, bool isFollow) async {
+    await ApiGameServices().ApiFollowGame(id, gameId, isFollow);
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notifications',
+              style: TextStyle(color: dPrimaryColor)),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('You need a wallet connection to login.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel',
+                  style: TextStyle(color: dGreyLightColor, fontSize: 16)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Agree',
+                  style: TextStyle(color: dPrimaryColor, fontSize: 16)),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WalletPhanTom()));
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,11 +142,24 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600)),
                                 onPressed: () {
-                                  setState(() {
-                                    isFollow = !isFollow;
-                                  });
+                                  if (context.read<UserInfo>().userInfo !=
+                                      null) {
+                                    setState(() {
+                                      isFollow = !isFollow;
+                                    });
+                                    FollowGame(
+                                        context
+                                            .read<UserInfo>()
+                                            .userInfo!
+                                            .id
+                                            .toString(),
+                                        widget.gameId.toString(),
+                                        isFollow);
+                                  } else {
+                                    _showMyDialog();
+                                  }
                                 },
-                                child: Text(isFollow ? "Following" : "Follow"),
+                                child: Text(isFollow ? "Follow" : "Unfollow"),
                               ),
                             ],
                           ),

@@ -40,4 +40,22 @@ class ApiGameServices {
       return Game.fromJson(game);
     });
   }
+
+  Future ApiFollowGame(String id, String gameId, bool isFollow) async {
+    print("==================");
+    print(id);
+    print(gameId);
+    print(isFollow);
+    final response = await http.put(
+      Uri.parse('${URL().API_URL}/api/v1/follow/game/${id}'), //of minh
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'idGame': gameId, //of nguoi duoc fl
+        'isFollow': isFollow,
+      }),
+    );
+    print(response.body);
+  }
 }
