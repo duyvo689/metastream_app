@@ -2,9 +2,17 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
-class HeaderProflie extends StatelessWidget {
+class HeaderProflie extends StatefulWidget {
   const HeaderProflie({Key? key, required this.user}) : super(key: key);
   final User user;
+
+  @override
+  State<HeaderProflie> createState() => _HeaderProflieState();
+}
+
+class _HeaderProflieState extends State<HeaderProflie> {
+  bool isFollow = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,8 +23,9 @@ class HeaderProflie extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(user != null && user.avatar != null
-                      ? user.avatar!
+                  image: NetworkImage(widget.user != null &&
+                          widget.user.avatar != null
+                      ? widget.user.avatar!
                       : 'https://ecdn.game4v.com/g4v-content/uploads/2016/07/lmht_kute-1-480x480.jpg'),
                   fit: BoxFit.cover,
                 ),
@@ -55,10 +64,10 @@ class HeaderProflie extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        user != null &&
-                                user.firstName != null &&
-                                user.lastName != null
-                            ? "${user.firstName!} ${user.lastName!}"
+                        widget.user != null &&
+                                widget.user.firstName != null &&
+                                widget.user.lastName != null
+                            ? "${widget.user.firstName!} ${widget.user.lastName!}"
                             : "Unknow",
                         textAlign: TextAlign.start,
                         style: const TextStyle(
@@ -76,8 +85,12 @@ class HeaderProflie extends StatelessWidget {
                             onPrimary: AppColors.firstColor,
                             textStyle: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w600)),
-                        onPressed: () {},
-                        child: Text('following'),
+                        onPressed: () {
+                          setState(() {
+                            isFollow = !isFollow;
+                          });
+                        },
+                        child: Text(isFollow ? "Following" : "Follow"),
                       ),
                     ],
                   ),
@@ -91,7 +104,7 @@ class HeaderProflie extends StatelessWidget {
                       children: [
                         RichText(
                           text: TextSpan(
-                            text: user.follow.toString(),
+                            text: widget.user.follow.toString(),
                             style: const TextStyle(
                                 color: AppColors.primaryColor,
                                 fontSize: 16,

@@ -49,7 +49,6 @@ class Body extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
               const VideoStates(),
               const SizedBox(height: 10),
               InfoUserVideo(video: video),

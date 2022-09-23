@@ -3,20 +3,29 @@ import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
-class HeaderGameDetail extends StatelessWidget {
+class HeaderGameDetail extends StatefulWidget {
   const HeaderGameDetail({Key? key, required this.gameId}) : super(key: key);
   final String gameId;
+
+  @override
+  State<HeaderGameDetail> createState() => _HeaderGameDetailState();
+}
+
+class _HeaderGameDetailState extends State<HeaderGameDetail> {
+  bool isFollow = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Stack(
         children: [
           FutureBuilder<Game>(
-            future: ApiGameServices().fetchGameById(gameId),
+            future: ApiGameServices().fetchGameById(widget.gameId),
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
+                // ignore: curly_braces_in_flow_control_structures
                 return Container(
-                  child: Center(
+                  child: const Center(
                     child: CircularProgressIndicator(),
                   ),
                 );
@@ -85,8 +94,12 @@ class HeaderGameDetail extends StatelessWidget {
                                     textStyle: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600)),
-                                onPressed: () {},
-                                child: const Text('following'),
+                                onPressed: () {
+                                  setState(() {
+                                    isFollow = !isFollow;
+                                  });
+                                },
+                                child: Text(isFollow ? "Following" : "Follow"),
                               ),
                             ],
                           ),

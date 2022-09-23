@@ -16,11 +16,11 @@ class Body extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const SizedBox(height: 10),
-            // size.width < 600
-            //     ? const CarouselWithIndicator(
-            //         viewport: 0.9, width: 36, height: 3, style: 'center')
-            //     : const CarouselWithIndicator(
-            //         viewport: 1, width: 50, height: 4, style: 'center'),
+            size.width < 600
+                ? const CarouselWithIndicator(
+                    viewport: 0.9, width: 36, height: 3, style: 'center')
+                : const CarouselWithIndicator(
+                    viewport: 1, width: 50, height: 4, style: 'center'),
             const SizedBox(height: 20),
             const _SectionTitle(
               title: "Trending Games",

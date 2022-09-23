@@ -2,13 +2,20 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
-class InfoUserVideo extends StatelessWidget {
+class InfoUserVideo extends StatefulWidget {
   const InfoUserVideo({
     Key? key,
     required this.video,
   }) : super(key: key);
 
   final Video video;
+
+  @override
+  State<InfoUserVideo> createState() => _InfoUserVideoState();
+}
+
+class _InfoUserVideoState extends State<InfoUserVideo> {
+  bool isFollow = false;
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +25,14 @@ class InfoUserVideo extends StatelessWidget {
         Row(
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(video.userId!.avatar!),
+              backgroundImage: NetworkImage(widget.video.userId!.avatar!),
             ),
             const SizedBox(width: 16),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${video.userId!.lastName!} ${video.userId!.firstName!}",
+                  "${widget.video.userId!.lastName!} ${widget.video.userId!.firstName!}",
                   textAlign: TextAlign.start,
                   maxLines: 1,
                   style: const TextStyle(
@@ -50,13 +57,17 @@ class InfoUserVideo extends StatelessWidget {
         ),
         ElevatedButton.icon(
           onPressed: () {
-            // Respond to button press
+            setState(() {
+              isFollow = !isFollow;
+            });
           },
-          icon: const Icon(
-            Icons.notifications_outlined,
+          icon: Icon(
+            isFollow
+                ? Icons.notifications_active
+                : Icons.notifications_outlined,
             size: 20,
           ),
-          label: const Text("Following"),
+          label: Text(isFollow ? "Following" : "Follow"),
           style: ElevatedButton.styleFrom(
               primary: AppColors.secondColor,
               onPrimary: AppColors.textSecondColor,
