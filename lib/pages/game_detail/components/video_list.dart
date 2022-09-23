@@ -12,13 +12,12 @@ class VideoList extends StatelessWidget {
   final String gameId;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: SizedBox(
-          height: 500,
-          child: FutureBuilder<List<Video>>(
+    return Container(
+      width: 200,
+      height: 500,
+      child: Column(
+        children: [
+          FutureBuilder<List<Video>>(
             future: gameId != null
                 ? ApiVideoServices().fetchVideosOfGame(gameId)
                 : null,
@@ -57,7 +56,7 @@ class VideoList extends StatelessWidget {
                   : const NoContentProfile(title: "Game don't have video!");
             },
           ),
-        ),
+        ],
       ),
     );
   }
