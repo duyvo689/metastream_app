@@ -4,6 +4,7 @@ import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:skeletons/skeletons.dart';
 import 'popular_video.dart';
 import 'popular_game.dart';
@@ -71,12 +72,13 @@ class _ListUser extends StatelessWidget {
                   users.length,
                   (index) => _CircleVideoCard(
                     user: users[index],
-                    press: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Profile(
-                                  user: users[index],
-                                ))),
+                    press: (() => pushNewScreen(
+                          context,
+                          screen: Profile(user: users[index]),
+                          withNavBar: false,
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        )),
                   ),
                 ),
               ],

@@ -71,6 +71,7 @@ class _MainPageState extends State<MainPage> {
       body: PersistentTabView(
         context,
         controller: _controller,
+        hideNavigationBarWhenKeyboardShows: true,
         screens: [
           MyHomePage(),
           const GamePage(),

@@ -3,6 +3,7 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class GameList extends StatelessWidget {
   const GameList({
@@ -37,14 +38,16 @@ class GameList extends StatelessWidget {
               itemCount: games!.length,
               itemBuilder: (BuildContext context, int index) {
                 return GameCard(
-                  game: games[index],
-                  press: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => GameDetail(
+                    game: games[index],
+                    press: () => pushNewScreen(
+                          context,
+                          screen: GameDetail(
                               gameId: games[index].id,
-                              collection: games[index].addressCollection))),
-                );
+                              collection: games[index].addressCollection),
+                          withNavBar: false,
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        ));
               },
             );
           },

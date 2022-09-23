@@ -4,6 +4,7 @@ import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'section_title.dart';
 
 class PopularGames extends StatefulWidget {
@@ -59,14 +60,15 @@ class _PopularGamesState extends State<PopularGames> {
                               padding: EdgeInsets.only(
                                   right: getProportionateScreenWidth(20)),
                               child: GameCard(
-                                game: games[index],
-                                press: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => GameDetail(
-                                              gameId: games[index].id,
-                                            ))),
-                              ),
+                                  game: games[index],
+                                  press: () => pushNewScreen(
+                                        context,
+                                        screen:
+                                            GameDetail(gameId: games[index].id),
+                                        withNavBar: false,
+                                        pageTransitionAnimation:
+                                            PageTransitionAnimation.cupertino,
+                                      )),
                             ),
                           ),
                           const SizedBox(

@@ -4,6 +4,7 @@ import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'section_title.dart';
 import 'package:skeletons/skeletons.dart';
 
@@ -58,14 +59,14 @@ class PopularVideos extends StatelessWidget {
                 itemCount: videos.length,
                 itemBuilder: (BuildContext context, int index) {
                   return _VideoCard(
-                    video: videos[index],
-                    press: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VideoPage(
-                                  video: videos[index],
-                                ))),
-                  );
+                      video: videos[index],
+                      press: () => pushNewScreen(
+                            context,
+                            screen: VideoPage(video: videos[index]),
+                            withNavBar: false,
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                          ));
                 },
               ),
             );
@@ -86,7 +87,7 @@ class VideoCardSkelton extends StatelessWidget {
     return SkeletonItem(
         child: Column(
       children: [
-        const SquareSkeleton(height: 5),
+        const SquareSkeleton(height: 4),
         const SizedBox(height: 8),
         Row(
           children: const [

@@ -2,6 +2,7 @@ import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../pages/game_detail/game_detail.dart';
 
 import '../models/banner.dart';
@@ -70,12 +71,15 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                 items: banners
                     .map((item) => InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => GameDetail(
-                                          gameId: item.gameId,
-                                        )));
+                            pushNewScreen(
+                              context,
+                              screen: GameDetail(
+                                gameId: item.gameId,
+                              ),
+                              withNavBar: false,
+                              pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
+                            );
                           },
                           child: Container(
                             child: Container(
