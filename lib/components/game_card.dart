@@ -34,7 +34,7 @@ class GameCard extends StatelessWidget {
           child: Column(
             children: [
               AspectRatio(
-                aspectRatio: 1,
+                aspectRatio: 1.06,
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
@@ -47,31 +47,35 @@ class GameCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: getProportionateScreenWidth(15)),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    game.name!,
-                    textAlign: TextAlign.center,
-                    style: PrimaryFont.medium(14).copyWith(
-                      color: dWhileColor,
-                      overflow: TextOverflow.ellipsis,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      game.name!,
+                      textAlign: TextAlign.center,
+                      style: PrimaryFont.medium(14).copyWith(
+                        color: dWhileColor,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: getProportionateScreenWidth(10)),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        primary: dBlackColor,
-                        onPrimary: dWhileColor,
-                        shadowColor: dGreyLightColor,
-                        textStyle:
-                            PrimaryFont.light(14).copyWith(color: dWhileColor)),
-                    onPressed: () {},
-                    child: const Text('Discover this game'),
-                  ),
-                ],
+                    SizedBox(height: getProportionateScreenWidth(10)),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          primary: dBlackColor,
+                          onPrimary: dWhileColor,
+                          shadowColor: dGreyLightColor,
+                          textStyle: PrimaryFont.light(13)
+                              .copyWith(color: dWhileColor)),
+                      onPressed: () {},
+                      child: const Text('Discover this game'),
+                    ),
+                    const SizedBox(height: 10),
+                  ],
+                ),
               ),
             ],
           ),

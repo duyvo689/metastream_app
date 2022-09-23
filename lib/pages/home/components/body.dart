@@ -14,7 +14,6 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
