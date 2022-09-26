@@ -3,9 +3,6 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../main.dart';
 
 class AboutProfile extends StatelessWidget {
   const AboutProfile({Key? key, required this.userId}) : super(key: key);
@@ -23,19 +20,21 @@ class AboutProfile extends StatelessWidget {
                   // ignore: curly_braces_in_flow_control_structures
                   return const CircleLoading();
                 User? user = snapshot.data;
-                return user != null && user.descriptions != ''
+                return user != null ||
+                        user!.descriptions != '' ||
+                        user.descriptions == null
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const SizedBox(height: 10),
                           Text(
-                            user.descriptions.toString(),
+                            user!.descriptions.toString(),
                             style: AppStyles.about_profile_title_style,
                           ),
                         ],
                       )
                     : NoContentProfile(
-                        title: "${user!.userName} don't have about!");
+                        title: "${user.userName} don't have about!");
                 ;
               }),
         ));

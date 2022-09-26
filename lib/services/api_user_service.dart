@@ -42,8 +42,8 @@ class ApiUserServices {
     });
   }
 
-  Future<User?> fetchUserByWalletAddress(String address) {
-    return http
+  Future<User?> fetchUserByWalletAddress(String address) async {
+    return await http
         .get(Uri.parse('${URL().API_URL}/api/v1/user/address/${address}'))
         .then((http.Response response) {
       final String jsonBody = response.body;
@@ -79,6 +79,44 @@ class ApiUserServices {
       body: jsonEncode(<String, dynamic>{
         'idUser': userId, //of nguoi duoc fl
         'isFollow': isFollow,
+      }),
+    );
+    print(response.body);
+  }
+
+  Future ApiCreateUser(String addressWallet) async {
+    print(addressWallet);
+    final response = await http.post(
+      Uri.parse('${URL().API_URL}/api/v1/user'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{'addressWallet': addressWallet}),
+    );
+  }
+
+  Future ApiUpdateInfoUser(
+    String idUser,
+    String firstName,
+    String lastName,
+    String userName,
+    String email,
+    String description,
+  ) async {
+    print(idUser);
+    print(firstName);
+    print(description);
+    final response = await http.put(
+      Uri.parse('${URL().API_URL}/api/v1/user/${idUser}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'firstName': firstName,
+        'lastName': lastName,
+        'userName': userName,
+        'email': email,
+        'description': description,
       }),
     );
     print(response.body);

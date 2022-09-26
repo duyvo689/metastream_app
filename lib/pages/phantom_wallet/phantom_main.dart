@@ -3,11 +3,13 @@ import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:bs58/bs58.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:pinenacl/x25519.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../main.dart';
+import '../profile_me/components/form_info_user.dart';
 import 'deep_link_provider.dart';
 
 class WalletPhanTom extends StatefulWidget {
@@ -148,7 +150,21 @@ class _MainAppState extends State<WalletPhanTom> {
             ),
           ],
         ),
-        actions: const <Widget>[],
+        actions: <Widget>[
+          IconButton(
+              onPressed: () {
+                pushNewScreen(
+                  context,
+                  screen: MyCustomForm(),
+                  withNavBar: false,
+                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                );
+              },
+              icon: const Icon(
+                Icons.manage_accounts,
+                size: 30,
+              ))
+        ],
       ),
       body: StreamBuilder<String>(
         stream: provider.state,
