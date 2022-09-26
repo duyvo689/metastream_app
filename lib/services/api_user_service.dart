@@ -1,5 +1,5 @@
+import 'package:app_metastream/models/models.dart';
 import 'package:http/http.dart' as http;
-import '../models/user.dart';
 import 'api_url.dart';
 import 'dart:convert';
 
@@ -30,7 +30,6 @@ class ApiUserServices {
       final int statusCode = response.statusCode;
 
       if (statusCode != 200 || jsonBody == null) {
-        print(response.reasonPhrase);
         throw new Exception("Error load api");
       }
 
@@ -50,14 +49,12 @@ class ApiUserServices {
       final int statusCode = response.statusCode;
 
       if (statusCode != 200 || jsonBody == null) {
-        print(response.reasonPhrase);
         throw new Exception("Error load api");
       }
 
       final JsonDecoder _decoder = new JsonDecoder();
       final userContainer = _decoder.convert(jsonBody);
       final user = userContainer['data'];
-      print(user);
       if (user == null) {
         return null;
       } else {
@@ -67,10 +64,6 @@ class ApiUserServices {
   }
 
   Future ApiFollowUser(String id, String userId, bool isFollow) async {
-    print("==================");
-    print(id);
-    print(userId);
-    print(isFollow);
     final response = await http.put(
       Uri.parse('${URL().API_URL}/api/v1/user/follow/${id}'), //of minh
       headers: <String, String>{
@@ -81,11 +74,9 @@ class ApiUserServices {
         'isFollow': isFollow,
       }),
     );
-    print(response.body);
   }
 
   Future ApiCreateUser(String addressWallet) async {
-    print(addressWallet);
     final response = await http.post(
       Uri.parse('${URL().API_URL}/api/v1/user'),
       headers: <String, String>{
@@ -103,9 +94,6 @@ class ApiUserServices {
     String email,
     String description,
   ) async {
-    print(idUser);
-    print(firstName);
-    print(description);
     final response = await http.put(
       Uri.parse('${URL().API_URL}/api/v1/user/${idUser}'),
       headers: <String, String>{
@@ -119,6 +107,5 @@ class ApiUserServices {
         'description': description,
       }),
     );
-    print(response.body);
   }
 }

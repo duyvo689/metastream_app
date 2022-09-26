@@ -12,7 +12,12 @@ class GameDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgrMainColor,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
+      backgroundColor: AppColors.dBlackColor,
       body: Body(gameId: gameId.toString(), collection: collection.toString()),
     );
   }

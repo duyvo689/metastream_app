@@ -45,7 +45,7 @@ class Body extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
-                        color: AppColors.textSecondColor),
+                        color: AppColors.dGreyLightColor),
                   ),
                 ],
               ),

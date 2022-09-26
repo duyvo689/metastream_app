@@ -1,5 +1,6 @@
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_gifs/loading_gifs.dart';
 
 class Loading extends StatelessWidget {
   const Loading({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class Loading extends StatelessWidget {
         SizedBox(height: getProportionateScreenHeight(100)),
         Container(
           child: Center(
-            child: CircularProgressIndicator(),
+            child: Image.asset(cupertinoActivityIndicator, scale: 5),
           ),
         ),
       ],

@@ -1,3 +1,4 @@
+import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
@@ -29,7 +30,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Notifications',
-              style: TextStyle(color: dPrimaryColor)),
+              style: TextStyle(color: AppColors.dPrimaryColor)),
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
@@ -40,14 +41,16 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
           actions: <Widget>[
             TextButton(
               child: const Text('Cancel',
-                  style: TextStyle(color: dGreyLightColor, fontSize: 16)),
+                  style: TextStyle(
+                      color: AppColors.dGreyLightColor, fontSize: 16)),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
               child: const Text('Agree',
-                  style: TextStyle(color: dPrimaryColor, fontSize: 16)),
+                  style:
+                      TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -101,15 +104,6 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                         ])),
                   ),
                   Positioned(
-                    top: 0,
-                    left: 0,
-                    child: IconButton(
-                      iconSize: 36,
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.navigate_before),
-                    ),
-                  ),
-                  Positioned(
                     top: getProportionateScreenHeight(220),
                     left: 0,
                     right: 0,
@@ -128,7 +122,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 26,
                                   overflow: TextOverflow.ellipsis,
-                                  color: AppColors.textPrimaryColor,
+                                  color: AppColors.dWhileColor,
                                 ),
                               ),
                               ElevatedButton(
@@ -136,8 +130,8 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)),
-                                    primary: AppColors.primaryColor,
-                                    onPrimary: AppColors.firstColor,
+                                    primary: AppColors.dPrimaryColor,
+                                    onPrimary: AppColors.dBlackColor,
                                     textStyle: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600)),
@@ -175,7 +169,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                                   text: TextSpan(
                                     text: game.follows.toString(),
                                     style: const TextStyle(
-                                        color: AppColors.primaryColor,
+                                        color: AppColors.dPrimaryColor,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                     children: const <TextSpan>[
@@ -183,7 +177,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                                           text: ' Followers',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w400,
-                                              color: AppColors.textPrimaryColor,
+                                              color: AppColors.dWhileColor,
                                               fontSize: 15)),
                                     ],
                                   ),
@@ -201,7 +195,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                                       text: TextSpan(
                                         text: game.views.toString(),
                                         style: const TextStyle(
-                                            color: AppColors.primaryColor,
+                                            color: AppColors.dPrimaryColor,
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold),
                                         children: const <TextSpan>[
@@ -209,8 +203,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                                               text: ' viewers',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w400,
-                                                  color: AppColors
-                                                      .textPrimaryColor,
+                                                  color: AppColors.dWhileColor,
                                                   fontSize: 15)),
                                         ],
                                       ),

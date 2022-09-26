@@ -56,7 +56,7 @@ class GameCard extends StatelessWidget {
                       game.name!,
                       textAlign: TextAlign.center,
                       style: PrimaryFont.medium(14).copyWith(
-                        color: dWhileColor,
+                        color: AppColors.dWhileColor,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -65,11 +65,11 @@ class GameCard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                          primary: dBlackColor,
-                          onPrimary: dWhileColor,
-                          shadowColor: dGreyLightColor,
+                          primary: AppColors.dBlackColor,
+                          onPrimary: AppColors.dWhileColor,
+                          shadowColor: AppColors.dGreyLightColor,
                           textStyle: PrimaryFont.light(13)
-                              .copyWith(color: dWhileColor)),
+                              .copyWith(color: AppColors.dWhileColor)),
                       onPressed: () {},
                       child: const Text('Discover this game'),
                     ),

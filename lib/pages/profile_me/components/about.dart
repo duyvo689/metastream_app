@@ -19,7 +19,7 @@ class AboutProfile extends StatelessWidget {
                 builder: (context, snapshot) {
                   if ((snapshot.hasError) || (!snapshot.hasData))
                     // ignore: curly_braces_in_flow_control_structures
-                    return const CircleLoading();
+                    return const Loading();
                   User? user = snapshot.data;
                   return user != null ||
                           user!.descriptions != '' ||
@@ -29,7 +29,7 @@ class AboutProfile extends StatelessWidget {
                           children: [
                             const SizedBox(height: 10),
                             Text(
-                              user!.descriptions.toString(),
+                              user.descriptions.toString(),
                               style: AppStyles.about_profile_title_style,
                             ),
                           ],

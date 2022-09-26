@@ -1,7 +1,6 @@
-import 'package:app_metastream/models/nft_solana.dart';
-import 'package:app_metastream/values/app_colors.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import '../values/app_size.dart';
 
 class NFTCard extends StatelessWidget {
   const NFTCard({
@@ -27,8 +26,8 @@ class NFTCard extends StatelessWidget {
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10),
             ),
-            border: Border.all(color: AppColors.textSecondColor),
-            color: AppColors.bgrMainColor.withOpacity(0.3)),
+            border: Border.all(color: AppColors.dGreyLightColor),
+            color: AppColors.dBlackColor.withOpacity(0.3)),
         child: SizedBox(
           width: getProportionateScreenWidth(150),
           child: Column(
@@ -78,7 +77,7 @@ class NFTCard extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                         overflow: TextOverflow.ellipsis,
                         fontSize: 16,
-                        color: AppColors.primaryColor,
+                        color: AppColors.dPrimaryColor,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -98,7 +97,7 @@ class NFTCard extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             overflow: TextOverflow.ellipsis,
                             fontSize: 18,
-                            color: AppColors.textPrimaryColor,
+                            color: AppColors.dWhileColor,
                           ),
                         ),
                       ],

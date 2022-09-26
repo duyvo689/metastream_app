@@ -18,8 +18,8 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
   @override
   void initState() {
     super.initState();
-    videoplay(play_url);
     playurl(widget.videoId);
+    videoplay(play_url);
   }
 
   Future<void> playurl(String id) async {
@@ -32,9 +32,12 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
   }
 
   Future<void> videoplay(String url) async {
+    print(url);
+
     flickManager = FlickManager(
       videoPlayerController: VideoPlayerController.network(
-        url,
+        // url,
+        'https://metastream-static.s3.ap-southeast-1.amazonaws.com/category/video/AxieInfinity_Origin-LaunchStream.mp4',
         closedCaptionFile: _loadCaptions(),
       ),
     );

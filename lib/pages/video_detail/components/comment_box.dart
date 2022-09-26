@@ -1,3 +1,4 @@
+import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
@@ -5,7 +6,6 @@ import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../main.dart';
 import 'default_player.dart';
 import 'info_user_video.dart';
 import 'video_states.dart';
@@ -61,7 +61,7 @@ class _CommentContainerState extends State<CommentContainer> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Notifications',
-              style: TextStyle(color: dPrimaryColor)),
+              style: TextStyle(color: AppColors.dPrimaryColor)),
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
@@ -72,14 +72,16 @@ class _CommentContainerState extends State<CommentContainer> {
           actions: <Widget>[
             TextButton(
               child: const Text('Cancel',
-                  style: TextStyle(color: dGreyLightColor, fontSize: 16)),
+                  style: TextStyle(
+                      color: AppColors.dGreyLightColor, fontSize: 16)),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
               child: const Text('Agree',
-                  style: TextStyle(color: dPrimaryColor, fontSize: 16)),
+                  style:
+                      TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -124,7 +126,7 @@ class _CommentContainerState extends State<CommentContainer> {
                         overflow: TextOverflow.ellipsis,
                         fontWeight: FontWeight.w400,
                         fontSize: 14,
-                        color: AppColors.textSecondColor),
+                        color: AppColors.dGreyLightColor),
                   ),
                 ],
               ),
@@ -145,7 +147,7 @@ class _CommentContainerState extends State<CommentContainer> {
                 overflow: TextOverflow.ellipsis,
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
-                color: AppColors.textPrimaryColor),
+                color: AppColors.dWhileColor),
           ),
         ),
         for (var i = 0; i < data.length; i++)

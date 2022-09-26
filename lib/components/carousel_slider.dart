@@ -1,3 +1,4 @@
+import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../pages/game_detail/game_detail.dart';
 
-import '../models/banner.dart';
 import 'skeleton.dart';
 
 final List<String> imgList = [
@@ -41,6 +41,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
     FetchBanner();
   }
 
+  // ignore: non_constant_identifier_names
   void FetchBanner() async {
     List<Carousel>? carousels = await ApiBannerServices().fetchBanner();
     if (banners.length <= 0) {
@@ -123,7 +124,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                                                   item.name.toString(),
                                                   style: PrimaryFont.medium(26)
                                                       .copyWith(
-                                                          color: dWhileColor),
+                                                          color: AppColors
+                                                              .dWhileColor),
                                                 ),
                                                 const SizedBox(
                                                   height: 10,
@@ -133,8 +135,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                                                   maxLines: 3,
                                                   style: PrimaryFont.light(14)
                                                       .copyWith(
-                                                          color:
-                                                              dGreyLightColor,
+                                                          color: AppColors
+                                                              .dGreyLightColor,
                                                           height: 1.2),
                                                 ),
                                               ],

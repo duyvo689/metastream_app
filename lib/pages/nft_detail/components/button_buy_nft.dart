@@ -22,8 +22,8 @@ class ButtonBuyNft extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4)),
-                  primary: AppColors.primaryColor,
-                  onPrimary: AppColors.firstColor,
+                  primary: AppColors.dPrimaryColor,
+                  onPrimary: AppColors.dBlackColor,
                   textStyle: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.w600),
                   padding: EdgeInsets.only(
@@ -36,9 +36,9 @@ class ButtonBuyNft extends StatelessWidget {
               },
               child: Text("Make an offer"),
               style: OutlinedButton.styleFrom(
-                  primary: AppColors.primaryColor,
-                  side:
-                      const BorderSide(color: AppColors.primaryColor, width: 1),
+                  primary: AppColors.dPrimaryColor,
+                  side: const BorderSide(
+                      color: AppColors.dPrimaryColor, width: 1),
                   textStyle: const TextStyle(
                       fontSize: 16, fontWeight: FontWeight.w600),
                   padding: EdgeInsets.only(
@@ -51,7 +51,7 @@ class ButtonBuyNft extends StatelessWidget {
           text: const TextSpan(
             text: 'By clicking "Buy now" or "Make an offer", you agree to the',
             style: TextStyle(
-                color: AppColors.textSecondColor,
+                color: AppColors.dGreyLightColor,
                 fontSize: 14,
                 fontWeight: FontWeight.bold),
             children: <TextSpan>[
@@ -59,7 +59,7 @@ class ButtonBuyNft extends StatelessWidget {
                   text: ' Magic Eden Terms of Service.',
                   style: TextStyle(
                       fontWeight: FontWeight.w400,
-                      color: AppColors.textPrimaryColor,
+                      color: AppColors.dWhileColor,
                       fontSize: 14)),
             ],
           ),

@@ -88,7 +88,7 @@ class _DetailInfoNFT extends StatelessWidget {
               const Icon(
                 Icons.description,
                 size: 24,
-                color: dPrimaryColor,
+                color: AppColors.dPrimaryColor,
               ),
               const SizedBox(
                 width: 10,
@@ -96,7 +96,8 @@ class _DetailInfoNFT extends StatelessWidget {
               Text(
                 'Details',
                 textAlign: TextAlign.start,
-                style: PrimaryFont.light(22).copyWith(color: dGreyLightColor),
+                style: PrimaryFont.light(22)
+                    .copyWith(color: AppColors.dGreyLightColor),
               ),
             ],
           ),
@@ -128,7 +129,7 @@ class _DetailInfoNFT extends StatelessWidget {
         Text(
           name,
           textAlign: TextAlign.start,
-          style: PrimaryFont.light(18).copyWith(color: dWhileColor),
+          style: PrimaryFont.light(18).copyWith(color: AppColors.dWhileColor),
         ),
         Row(
           children: [
@@ -141,7 +142,8 @@ class _DetailInfoNFT extends StatelessWidget {
               info,
               textAlign: TextAlign.start,
               style: PrimaryFont.light(18).copyWith(
-                  color: dGreyLightColor, overflow: TextOverflow.ellipsis),
+                  color: AppColors.dGreyLightColor,
+                  overflow: TextOverflow.ellipsis),
             ),
           ],
         ),
@@ -171,21 +173,23 @@ class _CurrentPrice extends StatelessWidget {
         children: [
           Text(
             'Current Price',
-            style: PrimaryFont.light(22).copyWith(color: dGreyLightColor),
+            style: PrimaryFont.light(22)
+                .copyWith(color: AppColors.dGreyLightColor),
           ),
           const SizedBox(height: 10),
           Row(
             children: [
               const Icon(
                 Icons.local_offer,
-                color: dPrimaryColor,
+                color: AppColors.dPrimaryColor,
               ),
               const SizedBox(
                 width: 10,
               ),
               Text(
                 '${nftSolana.price} sol',
-                style: PrimaryFont.medium(26).copyWith(color: dWhileColor),
+                style: PrimaryFont.medium(26)
+                    .copyWith(color: AppColors.dWhileColor),
               ),
             ],
           ),
@@ -246,7 +250,7 @@ class _NameNFT extends StatelessWidget {
           textAlign: TextAlign.start,
           maxLines: 2,
           style: PrimaryFont.medium(28.0).copyWith(
-            color: dWhileColor,
+            color: AppColors.dWhileColor,
             overflow: TextOverflow.ellipsis,
           ),
         ),
@@ -256,7 +260,8 @@ class _NameNFT extends StatelessWidget {
         Text(
           nftSolana.name!,
           textAlign: TextAlign.start,
-          style: PrimaryFont.light(22.0).copyWith(color: dPrimaryColor),
+          style:
+              PrimaryFont.light(22.0).copyWith(color: AppColors.dPrimaryColor),
         ),
         // AutoSizeText(
         //   'The text to display',

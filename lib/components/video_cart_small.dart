@@ -1,7 +1,6 @@
+import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
-
-import '../models/video.dart';
 
 class VideoCardSmall extends StatelessWidget {
   const VideoCardSmall({
@@ -70,7 +69,7 @@ class VideoCardSmall extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                           fontSize: 16,
                           overflow: TextOverflow.ellipsis,
-                          color: AppColors.textSecondColor,
+                          color: AppColors.dGreyLightColor,
                         ),
                       ),
                       Row(
@@ -90,7 +89,7 @@ class VideoCardSmall extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                               overflow: TextOverflow.ellipsis,
-                              color: AppColors.textSecondColor,
+                              color: AppColors.dGreyLightColor,
                             ),
                           ),
                         ],

@@ -1,11 +1,10 @@
+import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/api_user_service.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../../main.dart';
 
 class HeaderProflie extends StatefulWidget {
   const HeaderProflie({Key? key, required this.user}) : super(key: key);
@@ -29,7 +28,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Notifications',
-              style: TextStyle(color: dPrimaryColor)),
+              style: TextStyle(color: AppColors.dPrimaryColor)),
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
@@ -40,14 +39,16 @@ class _HeaderProflieState extends State<HeaderProflie> {
           actions: <Widget>[
             TextButton(
               child: const Text('Cancel',
-                  style: TextStyle(color: dGreyLightColor, fontSize: 16)),
+                  style: TextStyle(
+                      color: AppColors.dGreyLightColor, fontSize: 16)),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
               child: const Text('Agree',
-                  style: TextStyle(color: dPrimaryColor, fontSize: 16)),
+                  style:
+                      TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -90,15 +91,15 @@ class _HeaderProflieState extends State<HeaderProflie> {
                   Colors.black.withOpacity(0.01)
                 ])),
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            child: IconButton(
-              iconSize: 36,
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(Icons.navigate_before),
-            ),
-          ),
+          // Positioned(
+          //   top: 0,
+          //   left: 0,
+          //   child: IconButton(
+          //     iconSize: 36,
+          //     onPressed: () => Navigator.pop(context),
+          //     icon: const Icon(Icons.navigate_before),
+          //   ),
+          // ),
           Positioned(
             top: getProportionateScreenHeight(220),
             left: 0,
@@ -122,15 +123,15 @@ class _HeaderProflieState extends State<HeaderProflie> {
                           fontWeight: FontWeight.bold,
                           fontSize: 26,
                           overflow: TextOverflow.ellipsis,
-                          color: AppColors.textPrimaryColor,
+                          color: AppColors.dWhileColor,
                         ),
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            primary: AppColors.primaryColor,
-                            onPrimary: AppColors.firstColor,
+                            primary: AppColors.dPrimaryColor,
+                            onPrimary: AppColors.dBlackColor,
                             textStyle: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w600)),
                         onPressed: () {
@@ -166,7 +167,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                           text: TextSpan(
                             text: widget.user.follow.toString(),
                             style: const TextStyle(
-                                color: AppColors.primaryColor,
+                                color: AppColors.dPrimaryColor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
                             children: const <TextSpan>[
@@ -174,7 +175,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                                   text: ' Followers',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
-                                      color: AppColors.textPrimaryColor,
+                                      color: AppColors.dWhileColor,
                                       fontSize: 15)),
                             ],
                           ),
@@ -192,7 +193,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                               text: const TextSpan(
                                 text: '0',
                                 style: TextStyle(
-                                    color: AppColors.primaryColor,
+                                    color: AppColors.dPrimaryColor,
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold),
                                 children: <TextSpan>[
@@ -200,7 +201,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                                       text: ' viewers',
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
-                                          color: AppColors.textPrimaryColor,
+                                          color: AppColors.dWhileColor,
                                           fontSize: 15)),
                                 ],
                               ),

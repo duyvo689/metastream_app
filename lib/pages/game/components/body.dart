@@ -49,7 +49,7 @@ class _SectionTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: PrimaryFont.medium(26).copyWith(color: dWhileColor),
+          style: PrimaryFont.medium(26).copyWith(color: AppColors.dWhileColor),
         ),
       ],
     );

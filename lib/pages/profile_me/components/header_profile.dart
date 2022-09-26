@@ -58,15 +58,15 @@ class HeaderProflie extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           fontSize: 26,
                           overflow: TextOverflow.ellipsis,
-                          color: AppColors.textPrimaryColor,
+                          color: AppColors.dWhileColor,
                         ),
                       ),
                       // ElevatedButton(
                       //   style: ElevatedButton.styleFrom(
                       //       shape: RoundedRectangleBorder(
                       //           borderRadius: BorderRadius.circular(10)),
-                      //       primary: AppColors.primaryColor,
-                      //       onPrimary: AppColors.firstColor,
+                      //       primary: AppColors.dPrimaryColor,
+                      //       onPrimary: AppColors.dBlackColor,
                       //       textStyle: const TextStyle(
                       //           fontSize: 14, fontWeight: FontWeight.w600)),
                       //   onPressed: () {},
@@ -86,7 +86,7 @@ class HeaderProflie extends StatelessWidget {
                           text: TextSpan(
                             text: '0',
                             style: const TextStyle(
-                                color: AppColors.primaryColor,
+                                color: AppColors.dPrimaryColor,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
                             children: const <TextSpan>[
@@ -94,7 +94,7 @@ class HeaderProflie extends StatelessWidget {
                                   text: ' Followers',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
-                                      color: AppColors.textPrimaryColor,
+                                      color: AppColors.dWhileColor,
                                       fontSize: 15)),
                             ],
                           ),
@@ -112,7 +112,7 @@ class HeaderProflie extends StatelessWidget {
                         //       text: const TextSpan(
                         //         text: '0',
                         //         style: TextStyle(
-                        //             color: AppColors.primaryColor,
+                        //             color: AppColors.dPrimaryColor,
                         //             fontSize: 16,
                         //             fontWeight: FontWeight.bold),
                         //         children: <TextSpan>[
@@ -120,7 +120,7 @@ class HeaderProflie extends StatelessWidget {
                         //               text: ' viewers',
                         //               style: TextStyle(
                         //                   fontWeight: FontWeight.w400,
-                        //                   color: AppColors.textPrimaryColor,
+                        //                   color: AppColors.dWhileColor,
                         //                   fontSize: 15)),
                         //         ],
                         //       ),

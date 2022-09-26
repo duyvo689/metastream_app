@@ -1,11 +1,10 @@
+import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../../main.dart';
 
 class InfoUserVideo extends StatefulWidget {
   const InfoUserVideo({
@@ -32,7 +31,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Notifications',
-              style: TextStyle(color: dPrimaryColor)),
+              style: TextStyle(color: AppColors.dPrimaryColor)),
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
@@ -43,14 +42,16 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
           actions: <Widget>[
             TextButton(
               child: const Text('Cancel',
-                  style: TextStyle(color: dGreyLightColor, fontSize: 16)),
+                  style: TextStyle(
+                      color: AppColors.dGreyLightColor, fontSize: 16)),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
               child: const Text('Agree',
-                  style: TextStyle(color: dPrimaryColor, fontSize: 16)),
+                  style:
+                      TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -86,7 +87,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
                       overflow: TextOverflow.ellipsis,
                       fontWeight: FontWeight.w400,
                       fontSize: 17,
-                      color: AppColors.textPrimaryColor),
+                      color: AppColors.dWhileColor),
                 ),
                 const SizedBox(height: 2),
                 const Text(
@@ -96,7 +97,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
                       overflow: TextOverflow.ellipsis,
                       fontWeight: FontWeight.w500,
                       fontSize: 13,
-                      color: AppColors.textSecondColor),
+                      color: AppColors.dGreyLightColor),
                 ),
               ],
             ),
@@ -122,8 +123,8 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
           ),
           label: Text(isFollow ? "Follow" : "Following"),
           style: ElevatedButton.styleFrom(
-              primary: AppColors.secondColor,
-              onPrimary: AppColors.textSecondColor,
+              primary: AppColors.dWhileColor,
+              onPrimary: AppColors.dGreyLightColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
               textStyle:

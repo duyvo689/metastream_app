@@ -1,5 +1,5 @@
+import 'package:app_metastream/models/models.dart';
 import 'package:http/http.dart' as http;
-import '../models/banner.dart';
 import 'api_url.dart';
 import 'dart:convert';
 

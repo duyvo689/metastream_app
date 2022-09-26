@@ -40,7 +40,7 @@ class _CategoriesState extends State<Categories> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
               color: selectedIndex == index
-                  ? AppColors.primaryColor
+                  ? AppColors.dPrimaryColor
                   : AppColors.bgrChipColor,
               borderRadius: BorderRadius.circular(6),
             ),

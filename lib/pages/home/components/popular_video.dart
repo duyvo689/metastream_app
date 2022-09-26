@@ -6,7 +6,6 @@ import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'section_title.dart';
-import 'package:skeletons/skeletons.dart';
 
 class PopularVideos extends StatelessWidget {
   const PopularVideos({
@@ -74,30 +73,6 @@ class PopularVideos extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class VideoCardSkelton extends StatelessWidget {
-  const VideoCardSkelton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SkeletonItem(
-        child: Column(
-      children: [
-        const SquareSkeleton(height: 4),
-        const SizedBox(height: 8),
-        Row(
-          children: const [
-            CircleSkeleton(size: 50),
-            SizedBox(width: 8),
-            ParagraphSkeleton(line: 2, height: 16)
-          ],
-        ),
-      ],
-    ));
   }
 }
 
@@ -176,7 +151,7 @@ class _VideoCard extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
                           overflow: TextOverflow.ellipsis,
-                          color: AppColors.textSecondColor,
+                          color: AppColors.dGreyLightColor,
                         ),
                       ),
                     ],

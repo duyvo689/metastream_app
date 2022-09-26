@@ -93,7 +93,6 @@ flutter:
     - assets/fonts/
     - assets/icons/
     - images/bumble_bee_captions.srt
-    - images/cupertino_activity_indicator_small.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

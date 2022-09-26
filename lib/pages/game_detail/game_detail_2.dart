@@ -13,7 +13,7 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       backgroundColor: AppColors.bgrMainColor,
+//       backgroundColor: AppColors.dBlackColor,
 //       appBar: AppBar(),
 //       body: SafeArea(
 //         child: SingleChildScrollView(
@@ -42,13 +42,13 @@
 //                         Text(
 //                           'Helions',
 //                           style: PrimaryFont.medium(40)
-//                               .copyWith(color: dWhileColor),
+//                               .copyWith(color: AppColors.dWhileColor),
 //                           maxLines: 1,
 //                         ),
 //                         Text(
 //                           'Việc phát hành bộ sưu tập hình đại diện NFT được chờ đợi nhiều, “Novatar” ra mắt vào ngày 4 tháng 4. Bộ sưu tập 25.000 avatar trẻ em sẽ được bán trong 3 đợt bao gồm 10 đợt bán hàng. Mỗi đợt sẽ bán được 1000 avatar trẻ em. Mỗi 1000 hình đại diện sẽ đắt hơn 0,01 ETH.',
 //                           style: PrimaryFont.light(20).copyWith(
-//                               color: dGreyLightColor,
+//                               color: AppColors.dGreyLightColor,
 //                               overflow: TextOverflow.ellipsis,
 //                               height: 1.2),
 //                           maxLines: 3,

@@ -11,7 +11,7 @@ class TableNFT extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: dGreyDarkColor,
+        color: AppColors.dGreyDarkColor,
         borderRadius: BorderRadius.circular(8),
       ),
       child: FutureBuilder<List<SolanaTx>>(
@@ -75,7 +75,7 @@ class TableNFT extends StatelessWidget {
   Text _TextHeaderDataColumn({required String name}) {
     return Text(
       name,
-      style: PrimaryFont.medium(16).copyWith(color: dGreyLightColor),
+      style: PrimaryFont.medium(16).copyWith(color: AppColors.dGreyLightColor),
     );
   }
 
@@ -85,7 +85,7 @@ class TableNFT extends StatelessWidget {
         DataCell(
           Text(solanaTx.type.toString(),
               style: solanaTx.type.toString() == 'Listing'
-                  ? TextStyle(color: dPrimaryColor.withOpacity(0.6))
+                  ? TextStyle(color: AppColors.dPrimaryColor.withOpacity(0.6))
                   : solanaTx.type.toString() == 'Cancel'
                       ? const TextStyle(color: Colors.red)
                       : const TextStyle(color: Colors.white)),
@@ -100,8 +100,9 @@ class TableNFT extends StatelessWidget {
         DataCell(Text(solanaTx.createdAt.toString())),
         DataCell(OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
-            primary: dPrimaryColor.withOpacity(0.6),
-            side: BorderSide(color: dPrimaryColor.withOpacity(0.6), width: 1),
+            primary: AppColors.dPrimaryColor.withOpacity(0.6),
+            side: BorderSide(
+                color: AppColors.dPrimaryColor.withOpacity(0.6), width: 1),
             textStyle:
                 const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),

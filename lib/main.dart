@@ -1,7 +1,8 @@
-import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'funtions/user_info_provider.dart';
 
 // void main() => runApp(
 //       MultiProvider(
@@ -50,16 +51,5 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashPage(),
     );
-  }
-}
-
-class UserInfo extends ChangeNotifier {
-  User? _userInfo;
-
-  User? get userInfo => _userInfo;
-
-  void increment(User? user) {
-    _userInfo = user;
-    notifyListeners();
   }
 }

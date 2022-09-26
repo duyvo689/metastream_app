@@ -15,7 +15,7 @@ class _DropdownPriceState extends State<DropdownPrice> {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: const BoxDecoration(
-        color: AppColors.bgrMainColor,
+        color: AppColors.dBlackColor,
       ),
       child: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
@@ -28,7 +28,7 @@ class _DropdownPriceState extends State<DropdownPrice> {
           style: const TextStyle(
             color: Colors.deepPurple,
           ),
-          dropdownColor: AppColors.bgrMainColor,
+          dropdownColor: AppColors.dBlackColor,
           underline: Container(),
           isExpanded: true,
           onChanged: (String? newValue) {
@@ -57,14 +57,14 @@ class _DropdownPriceState extends State<DropdownPrice> {
                         style: const TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16,
-                            color: AppColors.textPrimaryColor),
+                            color: AppColors.dWhileColor),
                       ),
                       const Text(
                         'Pay with connected wallet',
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 12,
-                            color: AppColors.textSecondColor),
+                            color: AppColors.dGreyLightColor),
                       ),
                     ],
                   )

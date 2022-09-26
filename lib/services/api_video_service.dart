@@ -1,5 +1,5 @@
+import 'package:app_metastream/models/models.dart';
 import 'package:http/http.dart' as http;
-import '../models/video.dart';
 import 'api_url.dart';
 import 'dart:convert';
 
@@ -12,7 +12,6 @@ class ApiVideoServices {
       final int statusCode = response.statusCode;
 
       if (statusCode != 200 || jsonBody == null) {
-        print(response.reasonPhrase);
         throw new Exception("Error load api");
       }
 
@@ -33,7 +32,6 @@ class ApiVideoServices {
       final int statusCode = response.statusCode;
 
       if (statusCode != 200 || jsonBody == null) {
-        print(response.reasonPhrase);
         throw new Exception("Error load api");
       }
 

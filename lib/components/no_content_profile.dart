@@ -17,7 +17,8 @@ class NoContentProfile extends StatelessWidget {
         Center(
           child: Text(
             title,
-            style: const TextStyle(color: AppColors.primaryColor, fontSize: 18),
+            style:
+                const TextStyle(color: AppColors.dPrimaryColor, fontSize: 18),
           ),
         ),
       ],

@@ -16,7 +16,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  Color mainColor = AppColors.secondColor;
+  Color mainColor = AppColors.dWhileColor;
   final PersistentTabController _controller =
       PersistentTabController(initialIndex: 0);
 

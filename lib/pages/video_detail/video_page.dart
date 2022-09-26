@@ -14,9 +14,9 @@ class VideoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgrMainColor,
+      backgroundColor: AppColors.dBlackColor,
       appBar: AppBar(
-        backgroundColor: AppColors.bgrMainColor,
+        backgroundColor: AppColors.dBlackColor,
       ),
       body: SafeArea(child: CommentContainer(video: video)),
     );

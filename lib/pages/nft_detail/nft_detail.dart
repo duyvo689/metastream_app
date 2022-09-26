@@ -22,9 +22,9 @@ class NFTDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgrMainColor,
+      backgroundColor: AppColors.dBlackColor,
       appBar: AppBar(
-        backgroundColor: AppColors.bgrMainColor,
+        backgroundColor: AppColors.dBlackColor,
         actions: <Widget>[
           RawMaterialButton(
             onPressed: _launchURLApp,

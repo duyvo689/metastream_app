@@ -1,5 +1,5 @@
+import 'package:app_metastream/models/models.dart';
 import 'package:http/http.dart' as http;
-import '../models/game.dart';
 import 'api_url.dart';
 import 'dart:convert';
 
@@ -42,10 +42,6 @@ class ApiGameServices {
   }
 
   Future ApiFollowGame(String id, String gameId, bool isFollow) async {
-    print("==================");
-    print(id);
-    print(gameId);
-    print(isFollow);
     final response = await http.put(
       Uri.parse('${URL().API_URL}/api/v1/follow/game/${id}'), //of minh
       headers: <String, String>{
@@ -56,6 +52,5 @@ class ApiGameServices {
         'isFollow': isFollow,
       }),
     );
-    print(response.body);
   }
 }

@@ -11,7 +11,7 @@ class ProfileMe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgrMainColor,
+      backgroundColor: AppColors.dBlackColor,
       body: Body(walletAddr: walletAddr.toString()),
     );
   }

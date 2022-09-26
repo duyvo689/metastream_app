@@ -1,4 +1,4 @@
-import 'package:app_metastream/models/video.dart';
+import 'package:app_metastream/models/models.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:math' as math;

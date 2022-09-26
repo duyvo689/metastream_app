@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:bs58/bs58.dart';
@@ -8,7 +9,6 @@ import 'package:pinenacl/x25519.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../main.dart';
 import '../profile_me/components/form_info_user.dart';
 import 'deep_link_provider.dart';
 
@@ -125,9 +125,9 @@ class _MainAppState extends State<WalletPhanTom> {
   Widget build(BuildContext context) {
     DeepLinkProvider provider = DeepLinkProvider();
     return Scaffold(
-      backgroundColor: dBlackColor,
+      backgroundColor: AppColors.dBlackColor,
       appBar: AppBar(
-        backgroundColor: dBlackColor,
+        backgroundColor: AppColors.dBlackColor,
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 10),
@@ -199,8 +199,8 @@ class _MainAppState extends State<WalletPhanTom> {
                       const SizedBox(height: 10),
                       Text(
                         'No wallets found',
-                        style:
-                            PrimaryFont.medium(20).copyWith(color: dWhileColor),
+                        style: PrimaryFont.medium(20)
+                            .copyWith(color: AppColors.dWhileColor),
                       ),
                       const SizedBox(height: 10),
                       ElevatedButton.icon(
@@ -211,8 +211,8 @@ class _MainAppState extends State<WalletPhanTom> {
                         ),
                         label: Text('Connect Phantom'),
                         style: ElevatedButton.styleFrom(
-                            primary: AppColors.secondColor,
-                            onPrimary: AppColors.textSecondColor,
+                            primary: AppColors.dWhileColor,
+                            onPrimary: AppColors.dGreyLightColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8)),
                             textStyle: const TextStyle(
@@ -238,13 +238,13 @@ class _MainAppState extends State<WalletPhanTom> {
           //                 fontWeight: FontWeight.w500,
           //                 fontSize: 20,
           //                 overflow: TextOverflow.ellipsis,
-          //                 color: AppColors.textPrimaryColor,
+          //                 color: AppColors.dWhileColor,
           //               ),
           //             ),
           //             const Icon(
           //               Icons.delete_outline,
           //               size: 28,
-          //               color: AppColors.textSecondColor,
+          //               color: AppColors.dGreyLightColor,
           //             ),
           //           ],
           //         ),

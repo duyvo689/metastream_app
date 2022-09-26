@@ -1,10 +1,9 @@
+import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../../main.dart';
 
 class MyCustomForm extends StatefulWidget {
   const MyCustomForm({Key? key}) : super(key: key);
@@ -44,7 +43,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: dBlackColor,
+        backgroundColor: AppColors.dBlackColor,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -169,7 +168,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                     padding: const EdgeInsets.only(left: 150.0, top: 40.0),
                     // ignore: unnecessary_new
                     child: new RaisedButton(
-                      color: dPrimaryColor,
+                      color: AppColors.dPrimaryColor,
                       child: const Text('Submit'),
                       onPressed: () {
                         // It returns true if the form is valid, otherwise returns false

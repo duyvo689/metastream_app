@@ -27,7 +27,7 @@ class _MyStatefulWidgetState extends State<ExpansionCart> {
                 Icon(
                   Icons.description,
                   size: 24,
-                  color: AppColors.primaryColor,
+                  color: AppColors.dPrimaryColor,
                 ),
                 SizedBox(
                   width: 8,
@@ -38,7 +38,7 @@ class _MyStatefulWidgetState extends State<ExpansionCart> {
                   style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 20,
-                      color: AppColors.textPrimaryColor),
+                      color: AppColors.dWhileColor),
                 ),
               ],
             ),

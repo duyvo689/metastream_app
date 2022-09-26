@@ -6,9 +6,9 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgrMainColor,
+      backgroundColor: AppColors.dBlackColor,
       appBar: AppBar(
-        backgroundColor: AppColors.bgrMainColor,
+        backgroundColor: AppColors.dBlackColor,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -18,14 +18,14 @@ class MyHomePage extends StatelessWidget {
                 Text(
                   'Discover',
                   style: TextStyle(
-                      color: AppColors.textPrimaryColor,
+                      color: AppColors.dWhileColor,
                       fontSize: 24,
                       fontWeight: FontWeight.bold),
                 ),
                 Text(
                   'Find your favourite streamer.',
                   style:
-                      TextStyle(color: AppColors.textSecondColor, fontSize: 14),
+                      TextStyle(color: AppColors.dGreyLightColor, fontSize: 14),
                 ),
               ],
             ),

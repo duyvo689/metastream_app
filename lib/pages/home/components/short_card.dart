@@ -56,7 +56,7 @@ class ShortCard extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                           overflow: TextOverflow.ellipsis,
-                          color: AppColors.textPrimaryColor,
+                          color: AppColors.dWhileColor,
                         ),
                       ),
                       const Text(
@@ -67,7 +67,7 @@ class ShortCard extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                           overflow: TextOverflow.ellipsis,
-                          color: AppColors.textPrimaryColor,
+                          color: AppColors.dWhileColor,
                         ),
                       ),
                       const SizedBox(
@@ -79,7 +79,7 @@ class ShortCard extends StatelessWidget {
                         style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
-                          color: AppColors.textPrimaryColor,
+                          color: AppColors.dWhileColor,
                         ),
                       ),
                     ],

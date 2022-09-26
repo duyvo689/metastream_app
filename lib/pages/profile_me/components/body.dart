@@ -1,10 +1,10 @@
 import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../main.dart';
 import 'categories.dart';
 import 'header_profile.dart';
 
@@ -57,7 +57,7 @@ class _BodyState extends State<Body> {
             if (((snapshot.hasError) || (!snapshot.hasData)) &&
                 context.watch<UserInfo>().userInfo == null)
               // ignore: curly_braces_in_flow_control_structures
-              return const CircleLoading();
+              return const Loading();
             User? user = context.watch<UserInfo>().userInfo == null
                 ? snapshot.data
                 : context.watch<UserInfo>().userInfo;
