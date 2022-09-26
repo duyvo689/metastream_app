@@ -19,6 +19,7 @@ class VideoCardSmall extends StatelessWidget {
       child: Column(
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 width: 180,
@@ -26,6 +27,9 @@ class VideoCardSmall extends StatelessWidget {
                   aspectRatio: 2.01,
                   child: Container(
                     decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color.fromARGB(255, 48, 48, 48),
+                      ),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),

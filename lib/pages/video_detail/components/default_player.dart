@@ -25,8 +25,9 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
   Future<void> playurl(String id) async {
     var response = await ApiVideoServices().fetchVideoById(id);
     String url = response.playUrl!;
+    print(url);
     setState(() {
-      play_url = url;
+      play_url = url.replaceAll(' ', '%20');
     });
     videoplay(play_url);
   }
@@ -36,8 +37,7 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
 
     flickManager = FlickManager(
       videoPlayerController: VideoPlayerController.network(
-        // url,
-        'https://metastream-static.s3.ap-southeast-1.amazonaws.com/category/video/AxieInfinity_Origin-LaunchStream.mp4',
+        url,
         closedCaptionFile: _loadCaptions(),
       ),
     );

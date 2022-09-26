@@ -96,6 +96,9 @@ class _VideoCard extends StatelessWidget {
             aspectRatio: 2.01,
             child: Container(
               decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color.fromARGB(255, 15, 15, 15),
+                ),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(4),
                   topRight: Radius.circular(4),

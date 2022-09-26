@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       home: SplashPage(),
+      // home: GameDetail2(),
     );
   }
 }

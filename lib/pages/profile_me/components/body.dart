@@ -31,6 +31,7 @@ class _BodyState extends State<Body> {
     if (context.read<UserInfo>().userInfo == null) {
       User? userInfo =
           await ApiUserServices().fetchUserByWalletAddress(walletAddr);
+
       context.read<UserInfo>().increment(userInfo);
     }
   }

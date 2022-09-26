@@ -12,7 +12,7 @@ class Loading extends StatelessWidget {
         SizedBox(height: getProportionateScreenHeight(100)),
         Container(
           child: Center(
-            child: Image.asset(cupertinoActivityIndicator, scale: 5),
+            child: Image.asset(cupertinoActivityIndicator, scale: 6),
           ),
         ),
       ],

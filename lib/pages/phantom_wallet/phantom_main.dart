@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../profile_me/components/form_info_user.dart';
+import '../test.dart/profile_me.dart';
 import 'deep_link_provider.dart';
 
 class WalletPhanTom extends StatefulWidget {
@@ -221,7 +222,7 @@ class _MainAppState extends State<WalletPhanTom> {
                     ],
                   ),
                 )
-              : ProfileMe(walletAddr: walletAddrFull);
+              : GameDetail2(walletAddr: walletAddrFull);
 
           // : Padding(
           //     padding: const EdgeInsets.symmetric(horizontal: 20),
