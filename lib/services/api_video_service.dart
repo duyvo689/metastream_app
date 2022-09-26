@@ -66,6 +66,7 @@ class ApiVideoServices {
   }
 
   Future<List<Video>> fetchVideosOfGame(String id) {
+    print(id);
     return http
         .get(Uri.parse('${URL().API_URL}/api/v1/video/game/${id}/1'))
         .then((http.Response response) {

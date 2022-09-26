@@ -101,7 +101,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                         ])),
                   ),
                   Positioned(
-                    top: 40,
+                    top: 0,
                     left: 0,
                     child: IconButton(
                       iconSize: 36,

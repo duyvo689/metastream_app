@@ -19,57 +19,61 @@ class _CategoriesState extends State<Categories> {
   List categories = ['Streams', 'NFTs', 'About'];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 30),
-          height: 30,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: categories.length,
-            itemBuilder: (context, index) => GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                });
-              },
-              child: Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                decoration: BoxDecoration(
-                  border: index == selectedIndex
-                      ? Border.all(color: AppColors.primaryColor)
-                      : Border.all(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(
-                  categories[index],
-                  style: TextStyle(
-                      fontWeight: selectedIndex == index
-                          ? FontWeight.w600
-                          : FontWeight.w500,
-                      fontSize: 18,
-                      color: index == selectedIndex
-                          ? AppColors.primaryColor
-                          : Colors.white),
+    return Expanded(
+      flex: 1,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 30),
+            height: 30,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: categories.length,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+                child: Container(
+                  alignment: Alignment.center,
+                  margin: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                    border: index == selectedIndex
+                        ? Border.all(color: AppColors.primaryColor)
+                        : Border.all(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Text(
+                    categories[index],
+                    style: TextStyle(
+                        fontWeight: selectedIndex == index
+                            ? FontWeight.w600
+                            : FontWeight.w500,
+                        fontSize: 18,
+                        color: index == selectedIndex
+                            ? AppColors.primaryColor
+                            : Colors.white),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        // if (selectedIndex == 0) ...[VideoList(gameId: widget.gameId)],
-        // if (selectedIndex == 1) ...[
-        //   NFTList(collection: widget.collection),
-        // ],
-        // if (selectedIndex == 1) ...[
-        //   const NoContentProfile(title: "Game don't have nft!")
-        // ],
-        // if (selectedIndex == 2) ...[AboutProfile(gameId: widget.gameId)],
-      ],
+          if (selectedIndex == 0) ...[VideoList(gameId: widget.gameId)],
+          if (selectedIndex == 1) ...[
+            NFTList(collection: widget.collection),
+          ],
+          // if (selectedIndex == 1) ...[
+          //   const NoContentProfile(title: "Game don't have nft!")
+          // ],
+          if (selectedIndex == 2) ...[AboutProfile(gameId: widget.gameId)],
+        ],
+      ),
     );
   }
 }

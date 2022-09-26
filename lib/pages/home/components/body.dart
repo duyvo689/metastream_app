@@ -26,8 +26,8 @@ class Body extends StatelessWidget {
           CarouselWithIndicator(
               viewport: 1, width: 30, height: 3, style: 'start'),
           SizedBox(height: 20),
-          PopularVideos(),
-          SizedBox(height: 20),
+          // PopularVideos(),
+          // SizedBox(height: 20),
           PopularGames(),
           SizedBox(
             height: 30,

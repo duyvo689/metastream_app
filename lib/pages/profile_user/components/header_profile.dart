@@ -91,7 +91,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                 ])),
           ),
           Positioned(
-            top: 25,
+            top: 0,
             left: 0,
             child: IconButton(
               iconSize: 36,

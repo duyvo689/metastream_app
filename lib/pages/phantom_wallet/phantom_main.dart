@@ -125,45 +125,42 @@ class _MainAppState extends State<WalletPhanTom> {
   Widget build(BuildContext context) {
     DeepLinkProvider provider = DeepLinkProvider();
     return Scaffold(
-      backgroundColor: AppColors.bgrMainColor,
+      backgroundColor: dBlackColor,
       appBar: AppBar(
-        backgroundColor: AppColors.bgrMainColor,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'Discover',
-                  style: TextStyle(
-                      color: AppColors.textPrimaryColor,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Find your favourite streamer.',
-                  style:
-                      TextStyle(color: AppColors.textSecondColor, fontSize: 14),
-                ),
-              ],
-            ),
-          ],
-        ),
+        backgroundColor: dBlackColor,
         actions: <Widget>[
-          IconButton(
-              onPressed: () {
-                pushNewScreen(
-                  context,
-                  screen: MyCustomForm(),
-                  withNavBar: false,
-                  pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                );
-              },
-              icon: const Icon(
-                Icons.manage_accounts,
-                size: 30,
-              ))
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+                onPressed: () {
+                  pushNewScreen(
+                    context,
+                    screen: const MyCustomForm(),
+                    withNavBar: false,
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
+                },
+                icon: const Icon(
+                  Icons.manage_accounts,
+                  size: 30,
+                )),
+            // child: context.read<UserInfo>().userInfo != null
+            //     ? IconButton(
+            //         onPressed: () {
+            //           pushNewScreen(
+            //             context,
+            //             screen: const MyCustomForm(),
+            //             withNavBar: false,
+            //             pageTransitionAnimation:
+            //                 PageTransitionAnimation.cupertino,
+            //           );
+            //         },
+            //         icon: const Icon(
+            //           Icons.manage_accounts,
+            //           size: 30,
+            //         ))
+            //     : SizedBox.shrink(),
+          )
         ],
       ),
       body: StreamBuilder<String>(
@@ -200,23 +197,27 @@ class _MainAppState extends State<WalletPhanTom> {
                         width: 90,
                       ),
                       const SizedBox(height: 10),
-                      const Text(
+                      Text(
                         'No wallets found',
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20,
-                          overflow: TextOverflow.ellipsis,
-                          color: AppColors.textPrimaryColor,
-                        ),
+                        style:
+                            PrimaryFont.medium(20).copyWith(color: dWhileColor),
                       ),
-                      TextButton(
-                          onPressed: _connect,
-                          style: TextButton.styleFrom(
-                            primary: AppColors.textSecondColor,
-                          ),
-                          child: const Text('Connect Phantom',
-                              style: TextStyle(fontSize: 15))),
+                      const SizedBox(height: 10),
+                      ElevatedButton.icon(
+                        onPressed: _connect,
+                        icon: const Icon(
+                          Icons.account_balance_wallet,
+                          size: 20,
+                        ),
+                        label: Text('Connect Phantom'),
+                        style: ElevatedButton.styleFrom(
+                            primary: AppColors.secondColor,
+                            onPrimary: AppColors.textSecondColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                            textStyle: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w600)),
+                      ),
                     ],
                   ),
                 )

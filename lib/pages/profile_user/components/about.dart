@@ -31,8 +31,7 @@ class AboutProfile extends StatelessWidget {
                           ),
                         ],
                       )
-                    : NoContentProfile(
-                        title: "${user!.userName} don't have about!");
+                    : const NoContentProfile(title: "No about!");
               }),
         ));
   }

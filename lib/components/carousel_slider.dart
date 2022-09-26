@@ -38,6 +38,20 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
   @override
   void initState() {
     super.initState();
+    FetchBanner();
+  }
+
+  void FetchBanner() async {
+    List<Carousel>? carousels = await ApiBannerServices().fetchBanner();
+    if (banners.length <= 0) {
+      for (int i = 0; i < carousels.length; i++) {
+        if (carousels[i].type == 'image') {
+          setState(() {
+            banners = [...banners, carousels[i]];
+          });
+        }
+      }
+    }
   }
 
   @override
@@ -50,120 +64,108 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
     Size size = MediaQuery.of(context).size;
     return Container(
       child: Column(children: [
-        FutureBuilder<List<Carousel>>(
-          future: ApiBannerServices().fetchBanner(),
-          builder: (context, snapshot) {
-            if ((snapshot.hasError) || (!snapshot.hasData))
-              // ignore: curly_braces_in_flow_control_structures
-              return SquareSkeleton(
+        banners.length <= 0
+            ? SquareSkeleton(
                 height: size.width < 600 ? 5 : 3,
-              );
-            List<Carousel>? Carousels = snapshot.data;
-            if (banners.length <= 0) {
-              for (int i = 0; i < Carousels!.length; i++) {
-                if (Carousels[i].type == 'image') {
-                  banners = [...banners, Carousels[i]];
-                }
-              }
-            }
-            return Container(
-              child: CarouselSlider(
-                items: banners
-                    .map((item) => InkWell(
-                          onTap: () {
-                            pushNewScreen(
-                              context,
-                              screen: GameDetail(
-                                gameId: item.gameId,
-                              ),
-                              withNavBar: false,
-                              pageTransitionAnimation:
-                                  PageTransitionAnimation.cupertino,
-                            );
-                          },
-                          child: Container(
+              )
+            : Container(
+                child: CarouselSlider(
+                  items: banners
+                      .map((item) => InkWell(
+                            onTap: () {
+                              pushNewScreen(
+                                context,
+                                screen: GameDetail(
+                                  gameId: item.gameId,
+                                ),
+                                withNavBar: false,
+                                pageTransitionAnimation:
+                                    PageTransitionAnimation.cupertino,
+                              );
+                            },
                             child: Container(
-                              margin: const EdgeInsets.all(5.0),
-                              child: ClipRRect(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(5.0)),
-                                  child: Stack(
-                                    children: <Widget>[
-                                      Image.network(
-                                        item.assetUrl.toString(),
-                                        fit: BoxFit.cover,
-                                        width: 1000.0,
-                                      ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                                begin: Alignment.centerLeft,
-                                                end: Alignment.centerRight,
-                                                colors: [
-                                              Colors.black.withOpacity(1),
-                                              Colors.black.withOpacity(0.01)
-                                            ])),
-                                      ),
-                                      Positioned(
-                                        left: 0.0,
-                                        right: 0.0,
-                                        bottom:
-                                            getProportionateScreenHeight(50),
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 10.0, horizontal: 20.0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                item.name.toString(),
-                                                style: PrimaryFont.medium(26)
-                                                    .copyWith(
-                                                        color: dWhileColor),
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                item.description.toString(),
-                                                maxLines: 3,
-                                                style: PrimaryFont.light(14)
-                                                    .copyWith(
-                                                        color: dGreyLightColor,
-                                                        height: 1.2),
-                                              ),
-                                            ],
+                              child: Container(
+                                margin: const EdgeInsets.all(5.0),
+                                child: ClipRRect(
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(5.0)),
+                                    child: Stack(
+                                      children: <Widget>[
+                                        Image.network(
+                                          item.assetUrl.toString(),
+                                          fit: BoxFit.cover,
+                                          width: 1000.0,
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                  begin: Alignment.centerLeft,
+                                                  end: Alignment.centerRight,
+                                                  colors: [
+                                                Colors.black.withOpacity(1),
+                                                Colors.black.withOpacity(0.01)
+                                              ])),
+                                        ),
+                                        Positioned(
+                                          left: 0.0,
+                                          right: 0.0,
+                                          bottom:
+                                              getProportionateScreenHeight(50),
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10.0,
+                                                horizontal: 20.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  item.name.toString(),
+                                                  style: PrimaryFont.medium(26)
+                                                      .copyWith(
+                                                          color: dWhileColor),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  item.description.toString(),
+                                                  maxLines: 3,
+                                                  style: PrimaryFont.light(14)
+                                                      .copyWith(
+                                                          color:
+                                                              dGreyLightColor,
+                                                          height: 1.2),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  )),
+                                      ],
+                                    )),
+                              ),
                             ),
-                          ),
-                        ))
-                    .toList(),
-                carouselController: _controller,
-                options: CarouselOptions(
-                    autoPlay: true,
-                    aspectRatio: 2.0,
-                    enlargeCenterPage: true,
-                    initialPage: 2,
-                    viewportFraction: widget.viewport,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _current = index;
-                      });
-                    }),
+                          ))
+                      .toList(),
+                  carouselController: _controller,
+                  options: CarouselOptions(
+                      autoPlay: true,
+                      aspectRatio: 2.0,
+                      enlargeCenterPage: true,
+                      initialPage: 2,
+                      viewportFraction: widget.viewport,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          _current = index;
+                        });
+                      }),
+                ),
               ),
-            );
-          },
-        ),
         Row(
           mainAxisAlignment: widget.style == 'start'
               ? MainAxisAlignment.start
               : MainAxisAlignment.center,
-          children: imgList.asMap().entries.map((entry) {
+          children: banners.asMap().entries.map((entry) {
             return GestureDetector(
               onTap: () => _controller.animateToPage(entry.key),
               child: Container(

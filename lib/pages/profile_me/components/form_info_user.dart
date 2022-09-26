@@ -44,7 +44,7 @@ class MyCustomFormState extends State<MyCustomForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: dBlackColor,
       ),
       body: SingleChildScrollView(
         child: Padding(

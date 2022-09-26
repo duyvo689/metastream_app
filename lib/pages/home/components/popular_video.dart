@@ -42,7 +42,7 @@ class PopularVideos extends StatelessWidget {
                   child: const VideoCardSkelton(),
                 ),
               );
-            List<Video>? videos = snapshot.data!.sublist(0, 6);
+            List<Video>? videos = snapshot.data!;
             return Padding(
               padding:
                   EdgeInsets.symmetric(horizontal: size.width < 600 ? 0 : 20),
