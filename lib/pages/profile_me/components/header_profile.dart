@@ -61,17 +61,17 @@ class HeaderProflie extends StatelessWidget {
                           color: AppColors.textPrimaryColor,
                         ),
                       ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            primary: AppColors.primaryColor,
-                            onPrimary: AppColors.firstColor,
-                            textStyle: const TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w600)),
-                        onPressed: () {},
-                        child: Text('following'),
-                      ),
+                      // ElevatedButton(
+                      //   style: ElevatedButton.styleFrom(
+                      //       shape: RoundedRectangleBorder(
+                      //           borderRadius: BorderRadius.circular(10)),
+                      //       primary: AppColors.primaryColor,
+                      //       onPrimary: AppColors.firstColor,
+                      //       textStyle: const TextStyle(
+                      //           fontSize: 14, fontWeight: FontWeight.w600)),
+                      //   onPressed: () {},
+                      //   child: Text('following'),
+                      // ),
                     ],
                   ),
                   const SizedBox(
@@ -99,34 +99,34 @@ class HeaderProflie extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.remove_red_eye_rounded,
-                              size: 16,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            RichText(
-                              text: const TextSpan(
-                                text: '0',
-                                style: TextStyle(
-                                    color: AppColors.primaryColor,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text: ' viewers',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          color: AppColors.textPrimaryColor,
-                                          fontSize: 15)),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     const Icon(
+                        //       Icons.remove_red_eye_rounded,
+                        //       size: 16,
+                        //     ),
+                        //     const SizedBox(
+                        //       width: 10,
+                        //     ),
+                        //     RichText(
+                        //       text: const TextSpan(
+                        //         text: '0',
+                        //         style: TextStyle(
+                        //             color: AppColors.primaryColor,
+                        //             fontSize: 16,
+                        //             fontWeight: FontWeight.bold),
+                        //         children: <TextSpan>[
+                        //           TextSpan(
+                        //               text: ' viewers',
+                        //               style: TextStyle(
+                        //                   fontWeight: FontWeight.w400,
+                        //                   color: AppColors.textPrimaryColor,
+                        //                   fontSize: 15)),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   )

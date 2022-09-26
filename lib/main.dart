@@ -58,7 +58,7 @@ class UserInfo extends ChangeNotifier {
 
   User? get userInfo => _userInfo;
 
-  void increment(User user) {
+  void increment(User? user) {
     _userInfo = user;
     notifyListeners();
   }

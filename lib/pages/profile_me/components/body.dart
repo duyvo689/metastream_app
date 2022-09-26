@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../main.dart';
 import 'categories.dart';
+import 'form_info_user.dart';
 import 'header_profile.dart';
 
 class Body extends StatefulWidget {
@@ -29,8 +30,9 @@ class _BodyState extends State<Body> {
 
   void FethUser(String walletAddr) async {
     if (context.read<UserInfo>().userInfo == null) {
-      User userInfo =
+      User? userInfo =
           await ApiUserServices().fetchUserByWalletAddress(widget.walletAddr);
+
       context.read<UserInfo>().increment(userInfo);
     }
 
@@ -42,9 +44,12 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
         child: Column(children: [
-      FutureBuilder<User>(
+      FutureBuilder<User?>(
           future: ApiUserServices().fetchUserByWalletAddress(widget.walletAddr),
           builder: (context, snapshot) {
+            if (snapshot.data == null) {
+              return const MyCustomForm();
+            }
             if (((snapshot.hasError) || (!snapshot.hasData)) &&
                 context.watch<UserInfo>().userInfo == null)
               // ignore: curly_braces_in_flow_control_structures

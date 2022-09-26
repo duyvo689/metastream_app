@@ -1,6 +1,11 @@
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../main.dart';
 
 class InfoUserVideo extends StatefulWidget {
   const InfoUserVideo({
@@ -15,7 +20,49 @@ class InfoUserVideo extends StatefulWidget {
 }
 
 class _InfoUserVideoState extends State<InfoUserVideo> {
-  bool isFollow = false;
+  bool isFollow = true;
+  void FollowUser(String id, String userId, bool isFollow) async {
+    await ApiUserServices().ApiFollowUser(id, userId, isFollow);
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notifications',
+              style: TextStyle(color: dPrimaryColor)),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('You need a wallet connection to login.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel',
+                  style: TextStyle(color: dGreyLightColor, fontSize: 16)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Agree',
+                  style: TextStyle(color: dPrimaryColor, fontSize: 16)),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WalletPhanTom()));
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,17 +104,23 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
         ),
         ElevatedButton.icon(
           onPressed: () {
-            setState(() {
-              isFollow = !isFollow;
-            });
+            if (context.read<UserInfo>().userInfo != null) {
+              setState(() {
+                isFollow = !isFollow;
+              });
+              FollowUser(context.read<UserInfo>().userInfo!.id.toString(),
+                  widget.video.userId!.id.toString(), isFollow);
+            } else {
+              _showMyDialog();
+            }
           },
           icon: Icon(
             isFollow
-                ? Icons.notifications_active
-                : Icons.notifications_outlined,
+                ? Icons.notifications_outlined
+                : Icons.notifications_active,
             size: 20,
           ),
-          label: Text(isFollow ? "Following" : "Follow"),
+          label: Text(isFollow ? "Follow" : "Following"),
           style: ElevatedButton.styleFrom(
               primary: AppColors.secondColor,
               onPrimary: AppColors.textSecondColor,

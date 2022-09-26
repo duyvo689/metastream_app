@@ -42,7 +42,7 @@ class ApiUserServices {
     });
   }
 
-  Future<User> fetchUserByWalletAddress(String address) {
+  Future<User?> fetchUserByWalletAddress(String address) {
     return http
         .get(Uri.parse('${URL().API_URL}/api/v1/user/address/${address}'))
         .then((http.Response response) {
@@ -57,8 +57,12 @@ class ApiUserServices {
       final JsonDecoder _decoder = new JsonDecoder();
       final userContainer = _decoder.convert(jsonBody);
       final user = userContainer['data'];
-
-      return User.fromJson(user);
+      print(user);
+      if (user == null) {
+        return null;
+      } else {
+        return User.fromJson(user);
+      }
     });
   }
 
