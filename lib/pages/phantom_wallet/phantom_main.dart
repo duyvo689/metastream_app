@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/pages/profile_me/form_info_user.dart';
+import 'package:app_metastream/pages/profile_me/profile_me.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:bs58/bs58.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +11,6 @@ import 'package:pinenacl/x25519.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../profile_me/components/form_info_user.dart';
-import '../test.dart/profile_me.dart';
 import 'deep_link_provider.dart';
 
 class WalletPhanTom extends StatefulWidget {
@@ -132,35 +132,22 @@ class _MainAppState extends State<WalletPhanTom> {
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 10),
-            child: IconButton(
-                onPressed: () {
-                  pushNewScreen(
-                    context,
-                    screen: const MyCustomForm(),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                },
-                icon: const Icon(
-                  Icons.manage_accounts,
-                  size: 30,
-                )),
-            // child: context.read<UserInfo>().userInfo != null
-            //     ? IconButton(
-            //         onPressed: () {
-            //           pushNewScreen(
-            //             context,
-            //             screen: const MyCustomForm(),
-            //             withNavBar: false,
-            //             pageTransitionAnimation:
-            //                 PageTransitionAnimation.cupertino,
-            //           );
-            //         },
-            //         icon: const Icon(
-            //           Icons.manage_accounts,
-            //           size: 30,
-            //         ))
-            //     : SizedBox.shrink(),
+            child: context.watch<UserInfo>().userInfo != null
+                ? IconButton(
+                    onPressed: () {
+                      pushNewScreen(
+                        context,
+                        screen: const FormAddInfoUser(),
+                        withNavBar: false,
+                        pageTransitionAnimation:
+                            PageTransitionAnimation.cupertino,
+                      );
+                    },
+                    icon: const Icon(
+                      Icons.manage_accounts,
+                      size: 30,
+                    ))
+                : const SizedBox.shrink(),
           )
         ],
       ),
@@ -222,7 +209,9 @@ class _MainAppState extends State<WalletPhanTom> {
                     ],
                   ),
                 )
-              : GameDetail2(walletAddr: walletAddrFull);
+              : ProfileMe(walletAddr: walletAddrFull);
+          // EGcd1rJc7sXYMfxd2NKuTiVGiE8ko4t1GhnZNheu1cxk
+          // : ProfileMe(walletAddr: walletAddrFull);
 
           // : Padding(
           //     padding: const EdgeInsets.symmetric(horizontal: 20),

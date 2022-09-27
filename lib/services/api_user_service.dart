@@ -77,13 +77,27 @@ class ApiUserServices {
   }
 
   Future ApiCreateUser(String addressWallet) async {
-    final response = await http.post(
+    return await http
+        .post(
       Uri.parse('${URL().API_URL}/api/v1/user'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(<String, dynamic>{'addressWallet': addressWallet}),
-    );
+    )
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200 || jsonBody == null) {
+        throw new Exception("Error load api");
+      }
+
+      final JsonDecoder _decoder = new JsonDecoder();
+      final userContainer = _decoder.convert(jsonBody);
+      final user = userContainer['data'];
+      return User.fromJson(user);
+    });
   }
 
   Future ApiUpdateInfoUser(
@@ -94,7 +108,8 @@ class ApiUserServices {
     String email,
     String description,
   ) async {
-    final response = await http.put(
+    return await http
+        .put(
       Uri.parse('${URL().API_URL}/api/v1/user/${idUser}'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -106,6 +121,22 @@ class ApiUserServices {
         'email': email,
         'description': description,
       }),
-    );
+    )
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200 || jsonBody == null) {
+        throw new Exception("Error load api");
+      }
+
+      final JsonDecoder _decoder = new JsonDecoder();
+      final userContainer = _decoder.convert(jsonBody);
+      final user = userContainer['data'];
+      print("===============user=================================");
+      print(user);
+      print("===============user=================================");
+      return User.fromJson(user);
+    });
   }
 }

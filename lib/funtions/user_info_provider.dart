@@ -1,4 +1,5 @@
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
 
 class UserInfo extends ChangeNotifier {
@@ -6,7 +7,20 @@ class UserInfo extends ChangeNotifier {
 
   User? get userInfo => _userInfo;
 
-  void increment(User? user) {
+  // ignore: non_constant_identifier_names
+  Future GetUserInfoProvider(String? walletAddr, User? userInfo) async {
+    User? user;
+    if (walletAddr != null) {
+      user = await ApiUserServices()
+          .fetchUserByWalletAddress(walletAddr.toString());
+      print(user);
+      if (user == null) {
+        user = await ApiUserServices().ApiCreateUser(walletAddr.toString());
+        print("ApiCreateUser");
+      }
+    } else {
+      user = userInfo;
+    }
     _userInfo = user;
     notifyListeners();
   }

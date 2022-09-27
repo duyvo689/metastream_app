@@ -109,7 +109,7 @@ class _CircleVideoCard extends StatelessWidget {
             radius: 34,
             backgroundImage: NetworkImage(user != null && user.avatar != null
                 ? user.avatar!
-                : 'https://ecdn.game4v.com/g4v-content/uploads/2016/07/lmht_kute-1-480x480.jpg'),
+                : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
           ),
         ],
       ),

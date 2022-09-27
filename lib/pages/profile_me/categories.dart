@@ -1,15 +1,12 @@
+import 'package:app_metastream/pages/profile_me/about.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
-import 'about.dart';
 import 'nft_list.dart';
 import 'video_list.dart';
 
 class Categories extends StatefulWidget {
-  const Categories(
-      {Key? key, required this.userId, required this.addressWallet})
-      : super(key: key);
-  final String userId, addressWallet;
+  const Categories({Key? key}) : super(key: key);
   @override
   _CategoriesState createState() => _CategoriesState();
 }
@@ -63,13 +60,12 @@ class _CategoriesState extends State<Categories> {
           ),
         ),
         ListView(
+          physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           children: [
-            if (selectedIndex == 0) ...[VideoList(userId: widget.userId)],
-            if (selectedIndex == 1) ...[
-              NFTList(addressWallet: widget.addressWallet)
-            ],
-            if (selectedIndex == 2) ...[AboutProfile(userId: widget.userId)],
+            if (selectedIndex == 0) ...[const VideoList()],
+            if (selectedIndex == 1) ...[const NFTList()],
+            if (selectedIndex == 2) ...[const AboutProfile()],
           ],
         )
       ],

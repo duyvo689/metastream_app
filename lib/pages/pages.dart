@@ -2,7 +2,6 @@ export './video_detail/video_page.dart';
 export './splash_page/splash_page.dart';
 export './short_video_page/short_page.dart';
 export './profile_user/profile_user.dart';
-export './profile_me/profile_me.dart';
 export './phantom_wallet/phantom_main.dart';
 export './nft_detail/nft_detail.dart';
 export './main_page/main_page.dart';

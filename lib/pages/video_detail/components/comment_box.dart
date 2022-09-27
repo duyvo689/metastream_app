@@ -186,7 +186,8 @@ class _CommentContainerState extends State<CommentContainer> {
   @override
   Widget build(BuildContext context) {
     return CommentBox(
-      userImage: context.watch<UserInfo>().userInfo != null
+      userImage: context.read<UserInfo>().userInfo != null &&
+              context.read<UserInfo>().userInfo!.avatar != null
           ? context.watch<UserInfo>().userInfo!.avatar
           : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg',
       child: commentChild(filedata),
