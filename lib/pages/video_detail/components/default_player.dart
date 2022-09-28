@@ -25,7 +25,6 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
   Future<void> playurl(String id) async {
     var response = await ApiVideoServices().fetchVideoById(id);
     String url = response.playUrl!;
-    print(url);
     setState(() {
       play_url = url.replaceAll(' ', '%20');
     });
@@ -33,8 +32,6 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
   }
 
   Future<void> videoplay(String url) async {
-    print(url);
-
     flickManager = FlickManager(
       videoPlayerController: VideoPlayerController.network(
         url,

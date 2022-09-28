@@ -133,9 +133,6 @@ class ApiUserServices {
       final JsonDecoder _decoder = new JsonDecoder();
       final userContainer = _decoder.convert(jsonBody);
       final user = userContainer['data'];
-      print("===============user=================================");
-      print(user);
-      print("===============user=================================");
       return User.fromJson(user);
     });
   }

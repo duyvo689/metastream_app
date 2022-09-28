@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
-import 'dart:math';
 
 class FormAddInfoUser extends StatefulWidget {
   const FormAddInfoUser({Key? key}) : super(key: key);

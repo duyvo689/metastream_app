@@ -40,9 +40,10 @@ class _CommentContainerState extends State<CommentContainer> {
     if (formKey.currentState!.validate()) {
       setState(() {
         var value = {
-          'name': 'Me',
-          'pic':
-              'https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400',
+          'name': context.read<UserInfo>().userInfo!.userName.toString(),
+          'pic': context.read<UserInfo>().userInfo!.avatar != null
+              ? context.read<UserInfo>().userInfo!.avatar.toString()
+              : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg',
           'message': commentController.text
         };
         filedata.insert(0, value);
@@ -163,8 +164,10 @@ class _CommentContainerState extends State<CommentContainer> {
                       color: Colors.blue,
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   child: CircleAvatar(
-                      radius: 40,
-                      backgroundImage: NetworkImage(data[i]['pic'] + "$i")),
+                    radius: 40,
+                    backgroundImage: NetworkImage(data[i]['pic']),
+                    backgroundColor: Colors.grey,
+                  ),
                 ),
               ),
               title: Text(

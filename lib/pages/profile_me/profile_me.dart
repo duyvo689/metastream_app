@@ -22,7 +22,6 @@ class _ProfileMeState extends State<ProfileMe> {
 
   Future fetchUser(String walletAddr) async {
     if (context.read<UserInfo>().userInfo == null) {
-      print("khong duoc chay cho nay");
       await context.read<UserInfo>().GetUserInfoProvider(walletAddr, null);
     }
   }
