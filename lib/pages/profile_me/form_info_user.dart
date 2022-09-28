@@ -4,7 +4,11 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'dart:io';
+import 'dart:math';
 
 class FormAddInfoUser extends StatefulWidget {
   const FormAddInfoUser({Key? key}) : super(key: key);
@@ -18,12 +22,39 @@ class FormAddInfoUser extends StatefulWidget {
 class FormAddInfoUserState extends State<FormAddInfoUser> {
   final _formKey = GlobalKey<FormState>();
   bool _loading = false;
+  File? image;
 
   String firstName = '';
   String lastName = '';
   String userName = '';
   String email = '';
   String description = '';
+
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final imageTemp = File(image.path);
+
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  Future pickImageC() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+      if (image == null) return;
+
+      final imageTemp = File(image.path);
+
+      setState(() => this.image = imageTemp);
+    } on PlatformException catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
 
   void updateInfoUser(
     String idUser,
@@ -69,6 +100,51 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                         child: Text('Add user information',
                             style: PrimaryFont.medium(24))),
                   ),
+                  const SizedBox(height: 20),
+                  //Avatar
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Stack(alignment: Alignment.center, children: const [
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundColor: Colors.white,
+                        ),
+                        CircleAvatar(
+                          radius: 48,
+                          backgroundImage: NetworkImage(
+                              'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
+                        ),
+                      ]),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _ButtonChooseImage(
+                            icon: const Icon(
+                              Icons.photo_camera_back_outlined,
+                              size: 20,
+                            ),
+                            onPress: pickImage,
+                            label: 'Album',
+                          ),
+                          _ButtonChooseImage(
+                            icon: const Icon(
+                              Icons.photo_camera,
+                              size: 20,
+                            ),
+                            onPress: pickImageC,
+                            label: 'Camera',
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  // image != null
+                  //     ? Image.file(image!)
+                  //     : Text("No image selected"),
+                  // const SizedBox(height: 20),
+
                   //First name
                   TextFormField(
                     decoration: const InputDecoration(
@@ -206,6 +282,34 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
           ]),
         ),
       ),
+    );
+  }
+}
+
+class _ButtonChooseImage extends StatelessWidget {
+  _ButtonChooseImage(
+      {Key? key,
+      required this.icon,
+      required this.onPress,
+      required this.label})
+      : super(key: key);
+  final Icon icon;
+  final String label;
+  Function onPress;
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+      onPressed: () {
+        onPress();
+      },
+      icon: icon,
+      label: Text(label),
+      style: ElevatedButton.styleFrom(
+          primary: AppColors.dWhileColor,
+          onPrimary: AppColors.dGreyDarkColor,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          textStyle:
+              const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
     );
   }
 }

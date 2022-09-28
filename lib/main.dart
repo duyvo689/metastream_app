@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'funtions/user_info_provider.dart';
+import 'pages/profile_me/form_info_user.dart';
 
 // void main() => runApp(
 //       MultiProvider(
@@ -44,13 +45,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        brightness: Brightness.dark,
-      ),
-      home: SplashPage(),
-      // home: GameDetail2(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          brightness: Brightness.dark,
+        ),
+        home: SplashPage());
+    // home: FormAddInfoUser());
   }
 }
