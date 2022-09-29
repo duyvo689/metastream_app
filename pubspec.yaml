@@ -57,7 +57,8 @@ dependencies:
   solana: ^0.26.0
   image_picker: ^0.8.5+3
   permission_handler: ^10.0.1
-
+  mime: ^1.0.2
+  dio: ^4.0.6
 dev_dependencies:
   flutter_test:
     sdk: flutter

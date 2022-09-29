@@ -17,11 +17,13 @@ class FormAddInfoUser extends StatefulWidget {
     return FormAddInfoUserState();
   }
 }
+//category/avatar/user
 
 class FormAddInfoUserState extends State<FormAddInfoUser> {
   final _formKey = GlobalKey<FormState>();
   bool _loading = false;
   File? image;
+  PickedFile? file;
 
   String firstName = '';
   String lastName = '';
@@ -31,11 +33,12 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
 
   Future pickImage() async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imageTemp = File(image.path);
-
-      setState(() => this.image = imageTemp);
+      final ImagePicker imagePicker = ImagePicker();
+      file = await imagePicker.getImage(source: ImageSource.gallery);
+      if (file == null) return;
+      final imageTemp = File(file!.path);
+      setState(() => file = file);
+      setState(() => image = imageTemp);
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
@@ -48,11 +51,33 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
       if (image == null) return;
 
       final imageTemp = File(image.path);
-
       setState(() => this.image = imageTemp);
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
+  }
+
+  Future signUrl(String fileName, String path, String fileExtension,
+      PickedFile file, File image) async {
+    var response =
+        await ApiUploadServices().getSignUrl(fileName, path, fileExtension);
+    if (response != null && response.url != null) {
+      await ApiUploadServices()
+          .uploadImageAws(response.url.toString(), file, fileExtension);
+    }
+
+    return "https://metastream-static.s3.ap-southeast-1.amazonaws.com/category/avatar/user/${getFileName(image)}";
+  }
+
+  String getFileName(File image) {
+    String fileName = image.path.split('/').last;
+    return fileName;
+  }
+
+  String getFileType(File image) {
+    List<String> imagePathArr = image.path.split(".");
+    String fileType = 'image/' + imagePathArr[1];
+    return fileType;
   }
 
   void updateInfoUser(
@@ -67,8 +92,18 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
     setState(() {
       _loading = true;
     });
+    String _avatarUrl = "";
+    if (image != null) {
+      _avatarUrl = await signUrl(
+          getFileName(image as File),
+          "category/avatar/user",
+          getFileType(image as File),
+          file as PickedFile,
+          image as File);
+    }
+    print(_avatarUrl);
     userInfo = await ApiUserServices().ApiUpdateInfoUser(
-        idUser, firstName, lastName, userName, email, description);
+        idUser, firstName, lastName, userName, email, description, _avatarUrl);
     setState(() {
       _loading = false;
     });

@@ -100,14 +100,8 @@ class ApiUserServices {
     });
   }
 
-  Future ApiUpdateInfoUser(
-    String idUser,
-    String firstName,
-    String lastName,
-    String userName,
-    String email,
-    String description,
-  ) async {
+  Future ApiUpdateInfoUser(String idUser, String firstName, String lastName,
+      String userName, String email, String description, String avatar) async {
     return await http
         .put(
       Uri.parse('${URL().API_URL}/api/v1/user/${idUser}'),
@@ -120,6 +114,7 @@ class ApiUserServices {
         'userName': userName,
         'email': email,
         'description': description,
+        'avatar': avatar,
       }),
     )
         .then((http.Response response) {
