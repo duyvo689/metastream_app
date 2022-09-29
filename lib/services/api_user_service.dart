@@ -18,6 +18,8 @@ class ApiUserServices {
       final JsonDecoder _decoder = new JsonDecoder();
       final userListContainer = _decoder.convert(jsonBody);
       final List users = userListContainer['data'];
+
+      print(users.length);
       return users.map((contactRaw) => new User.fromJson(contactRaw)).toList();
     });
   }

@@ -6,34 +6,33 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.dBlackColor,
-      appBar: AppBar(
         backgroundColor: AppColors.dBlackColor,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  'Discover',
-                  style: TextStyle(
-                      color: AppColors.dWhileColor,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Find your favourite streamer.',
-                  style:
-                      TextStyle(color: AppColors.dGreyLightColor, fontSize: 14),
-                ),
-              ],
-            ),
-          ],
+        appBar: AppBar(
+          backgroundColor: AppColors.dBlackColor,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text(
+                    'Discover',
+                    style: TextStyle(
+                        color: AppColors.dWhileColor,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Find your favourite streamer.',
+                    style: TextStyle(
+                        color: AppColors.dGreyLightColor, fontSize: 14),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          actions: const <Widget>[],
         ),
-        actions: const <Widget>[],
-      ),
-      body: const Body(),
-    );
+        body: const Body());
   }
 }

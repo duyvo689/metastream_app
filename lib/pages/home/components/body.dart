@@ -1,38 +1,76 @@
 import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
-import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:provider/provider.dart';
 import 'package:skeletons/skeletons.dart';
-import 'popular_video.dart';
 import 'popular_game.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  @override
+  void initState() {
+    fetchGameList();
+    fetchUserList();
+    super.initState();
+  }
+
+  Future fetchGameList() async {
+    await context.read<GameList>().GetGameListProvider();
+  }
+
+  Future fetchUserList() async {
+    await context.read<UserList>().GetUserListProvider();
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          SizedBox(
-            height: 20,
-          ),
-          _ListUser(),
-          SizedBox(height: 20),
-          CarouselWithIndicator(
-              viewport: 1, width: 30, height: 3, style: 'start'),
-          SizedBox(height: 20),
-          // PopularVideos(),
-          // SizedBox(height: 20),
-          PopularGames(),
-          SizedBox(
-            height: 30,
-          ),
-        ],
+    return RefreshIndicator(
+      color: Colors.white,
+      backgroundColor: AppColors.dPrimaryDarkColor,
+      onRefresh: () async {
+        await fetchUserList();
+        await fetchGameList();
+      },
+      notificationPredicate: (ScrollNotification notification) {
+        return notification.depth == 1;
+      },
+      child: SingleChildScrollView(
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                SizedBox(
+                  height: 20,
+                ),
+                _ListUser(),
+                SizedBox(height: 20),
+                CarouselWithIndicator(
+                    viewport: 1, width: 30, height: 3, style: 'start'),
+                SizedBox(height: 20),
+                // PopularVideos(),
+                // SizedBox(height: 20),
+                PopularGames(),
+                PopularGames(),
+                SizedBox(
+                  height: 30,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -42,51 +80,47 @@ class _ListUser extends StatelessWidget {
   const _ListUser({
     Key? key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(0)),
-      child: FutureBuilder<List<User>>(
-        future: ApiUserServices().fetchUsers(),
-        builder: (context, snapshot) {
-          if ((snapshot.hasError) || (!snapshot.hasData))
-            // ignore: curly_braces_in_flow_control_structures
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: SizedBox(
-                height: 65,
-                child: ListView.builder(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(0)),
+        child: Consumer<UserList>(builder: ((context, userListConsumer, child) {
+          return userListConsumer.userList != null &&
+                  userListConsumer.userList!.length > 0
+              ? SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 6,
-                  itemBuilder: (context, index) => const _UserCardSkelton(),
-                ),
-              ),
-            );
-          List<User>? users = snapshot.data!;
-          return (SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                ...List.generate(
-                  users.length,
-                  (index) => _CircleVideoCard(
-                    user: users[index],
-                    press: (() => pushNewScreen(
-                          context,
-                          screen: Profile(user: users[index]),
-                          withNavBar: false,
-                          pageTransitionAnimation:
-                              PageTransitionAnimation.cupertino,
-                        )),
+                  child: Row(
+                    children: [
+                      ...List.generate(
+                        userListConsumer.userList!.length,
+                        (index) => _CircleVideoCard(
+                          user: userListConsumer.userList![index],
+                          press: (() => pushNewScreen(
+                                context,
+                                screen: Profile(
+                                    user: userListConsumer.userList![index]),
+                                withNavBar: false,
+                                pageTransitionAnimation:
+                                    PageTransitionAnimation.cupertino,
+                              )),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ));
-        },
-      ),
-    );
+                )
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: SizedBox(
+                    height: 65,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 6,
+                      itemBuilder: (context, index) => const _UserCardSkelton(),
+                    ),
+                  ),
+                );
+        })));
   }
 }
 

@@ -1,9 +1,7 @@
+import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'funtions/user_info_provider.dart';
-import 'pages/profile_me/form_info_user.dart';
 
 // void main() => runApp(
 //       MultiProvider(
@@ -36,6 +34,8 @@ import 'pages/profile_me/form_info_user.dart';
 void main() => runApp(
       MultiProvider(providers: [
         ChangeNotifierProvider(create: (_) => UserInfo()),
+        ChangeNotifierProvider(create: (_) => GameList()),
+        ChangeNotifierProvider(create: (_) => UserList()),
       ], child: const MyApp()),
     );
 

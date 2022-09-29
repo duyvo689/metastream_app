@@ -1,10 +1,12 @@
 import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:provider/provider.dart';
 import 'section_title.dart';
 
 class PopularGames extends StatefulWidget {
@@ -25,87 +27,85 @@ class _PopularGamesState extends State<PopularGames> {
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          const SectionTitle(
-            title_1: "Games",
-            title_2: "we think you’ll like",
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          FutureBuilder<List<Game>>(
-            future: ApiGameServices().fetchGame(),
-            builder: (context, snapshot) {
-              if ((snapshot.hasError) || (!snapshot.hasData))
-                // ignore: curly_braces_in_flow_control_structures
-                return Container(
-                  height: 260,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 6,
-                    itemBuilder: (context, index) => const CardSkeleton(),
-                  ),
-                );
-              List<Game>? games = snapshot.data;
-              return size.width < 600
-                  ? SingleChildScrollView(
-                      clipBehavior: Clip.none,
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          ...List.generate(
-                            games!.length,
-                            (index) => Padding(
-                              padding: EdgeInsets.only(
-                                  right: getProportionateScreenWidth(20)),
-                              child: GameCard(
-                                  game: games[index],
-                                  press: () => pushNewScreen(
-                                        context,
-                                        screen:
-                                            GameDetail(gameId: games[index].id),
-                                        withNavBar: false,
-                                        pageTransitionAnimation:
-                                            PageTransitionAnimation.cupertino,
-                                      )),
+      child: Consumer<GameList>(builder: ((context, gamelistConsumer, child) {
+        return gamelistConsumer.gameList != null &&
+                gamelistConsumer.gameList!.length > 0
+            ? Column(children: [
+                const SectionTitle(
+                  title_1: "Games",
+                  title_2: "we think you’ll like",
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                size.width < 600
+                    ? SingleChildScrollView(
+                        clipBehavior: Clip.none,
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            ...List.generate(
+                              gamelistConsumer.gameList!.length,
+                              (index) => Padding(
+                                padding: EdgeInsets.only(
+                                    right: getProportionateScreenWidth(20)),
+                                child: GameCard(
+                                    game: gamelistConsumer.gameList![index],
+                                    press: () => pushNewScreen(
+                                          context,
+                                          screen: GameDetail(
+                                              gameId: gamelistConsumer
+                                                  .gameList![index].id),
+                                          withNavBar: false,
+                                          pageTransitionAnimation:
+                                              PageTransitionAnimation.cupertino,
+                                        )),
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                        ],
-                      ),
-                    )
-                  : GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      padding: const EdgeInsets.only(top: 10),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                        crossAxisCount: 3,
-                        childAspectRatio: 0.66,
-                      ),
-                      itemCount: games!.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return GameCard(
-                          game: games[index],
-                          press: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => GameDetail(
-                                      gameId: games[index].id,
-                                      collection:
-                                          games[index].addressCollection))),
-                        );
-                      },
-                    );
-            },
-          ),
-        ],
-      ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                          ],
+                        ),
+                      )
+                    : GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: const EdgeInsets.only(top: 10),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 20,
+                          crossAxisCount: 3,
+                          childAspectRatio: 0.66,
+                        ),
+                        itemCount: gamelistConsumer.gameList!.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return GameCard(
+                            game: gamelistConsumer.gameList![index],
+                            press: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => GameDetail(
+                                        gameId: gamelistConsumer
+                                            .gameList![index].id,
+                                        collection: gamelistConsumer
+                                            .gameList![index]
+                                            .addressCollection))),
+                          );
+                        },
+                      )
+              ])
+            : Container(
+                height: 260,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 6,
+                  itemBuilder: (context, index) => const CardSkeleton(),
+                ),
+              );
+        ;
+      })),
     );
   }
 }

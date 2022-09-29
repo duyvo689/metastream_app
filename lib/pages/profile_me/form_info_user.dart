@@ -201,14 +201,14 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                     decoration: const InputDecoration(
                       icon: Icon(
                         Icons.badge,
-                        color: AppColors.dPrimaryColor,
+                        color: AppColors.dPrimaryDarkColor,
                       ),
                       hintText: 'Enter your first name',
                       labelText: 'First name',
-                      labelStyle: TextStyle(color: AppColors.dPrimaryColor),
+                      labelStyle: TextStyle(color: AppColors.dPrimaryDarkColor),
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                              color: AppColors.dPrimaryColor, width: 1)),
+                              color: AppColors.dPrimaryDarkColor, width: 1)),
                     ),
                     initialValue: context.read<UserInfo>().userInfo != null &&
                             context.read<UserInfo>().userInfo!.firstName != null
@@ -231,13 +231,15 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                   //Last name
                   TextFormField(
                     decoration: const InputDecoration(
-                        icon: Icon(Icons.badge, color: AppColors.dPrimaryColor),
+                        icon: Icon(Icons.badge,
+                            color: AppColors.dPrimaryDarkColor),
                         hintText: 'Enter your last name',
                         labelText: 'Last name',
-                        labelStyle: TextStyle(color: AppColors.dPrimaryColor),
+                        labelStyle:
+                            TextStyle(color: AppColors.dPrimaryDarkColor),
                         focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: AppColors.dPrimaryColor, width: 1))),
+                                color: AppColors.dPrimaryDarkColor, width: 1))),
                     initialValue: context.read<UserInfo>().userInfo != null &&
                             context.read<UserInfo>().userInfo!.lastName != null
                         ? context.read<UserInfo>().userInfo!.lastName.toString()
@@ -255,14 +257,15 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                   //User Name
                   TextFormField(
                     decoration: const InputDecoration(
-                        icon:
-                            Icon(Icons.person, color: AppColors.dPrimaryColor),
+                        icon: Icon(Icons.person,
+                            color: AppColors.dPrimaryDarkColor),
                         hintText: 'Enter your user name',
                         labelText: 'User name',
-                        labelStyle: TextStyle(color: AppColors.dPrimaryColor),
+                        labelStyle:
+                            TextStyle(color: AppColors.dPrimaryDarkColor),
                         focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: AppColors.dPrimaryColor, width: 1))),
+                                color: AppColors.dPrimaryDarkColor, width: 1))),
                     initialValue: context.read<UserInfo>().userInfo != null &&
                             context.read<UserInfo>().userInfo!.userName != null
                         ? context.read<UserInfo>().userInfo!.userName.toString()
@@ -283,13 +286,15 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                   //Email
                   TextFormField(
                     decoration: const InputDecoration(
-                        icon: Icon(Icons.email, color: AppColors.dPrimaryColor),
+                        icon: Icon(Icons.email,
+                            color: AppColors.dPrimaryDarkColor),
                         hintText: 'Enter your email',
                         labelText: 'Email',
-                        labelStyle: TextStyle(color: AppColors.dPrimaryColor),
+                        labelStyle:
+                            TextStyle(color: AppColors.dPrimaryDarkColor),
                         focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: AppColors.dPrimaryColor, width: 1))),
+                                color: AppColors.dPrimaryDarkColor, width: 1))),
                     initialValue: context.read<UserInfo>().userInfo != null &&
                             context.read<UserInfo>().userInfo!.email != null
                         ? context.read<UserInfo>().userInfo!.email.toString()
@@ -308,13 +313,14 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                   TextFormField(
                     decoration: const InputDecoration(
                         icon: Icon(Icons.description,
-                            color: AppColors.dPrimaryColor),
+                            color: AppColors.dPrimaryDarkColor),
                         hintText: 'Enter your description',
                         labelText: 'Description',
-                        labelStyle: TextStyle(color: AppColors.dPrimaryColor),
+                        labelStyle:
+                            TextStyle(color: AppColors.dPrimaryDarkColor),
                         focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: AppColors.dPrimaryColor, width: 1))),
+                                color: AppColors.dPrimaryDarkColor, width: 1))),
                     initialValue: context.read<UserInfo>().userInfo != null &&
                             context.read<UserInfo>().userInfo!.descriptions !=
                                 null
@@ -345,7 +351,7 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                       child: new RaisedButton(
                         color: _loading
                             ? AppColors.dGreyLightColor
-                            : AppColors.dPrimaryColor,
+                            : AppColors.dPrimaryDarkColor,
                         child: const Text('Submit'),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
