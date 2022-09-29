@@ -7,3 +7,4 @@ export 'user_model.dart';
 export 'video_model.dart';
 export 'etherTx_model.dart';
 export 'solanaTx_model.dart';
+export 'info_user_form.dart';

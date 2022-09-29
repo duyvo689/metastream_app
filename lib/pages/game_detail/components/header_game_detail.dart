@@ -1,3 +1,4 @@
+import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
@@ -21,6 +22,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
 
   void FollowGame(String id, String gameId, bool isFollow) async {
     await ApiGameServices().ApiFollowGame(id, gameId, isFollow);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   Future<void> _showMyDialog() async {

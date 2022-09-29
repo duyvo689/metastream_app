@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
+import 'package:validators/validators.dart';
 
 class FormAddInfoUser extends StatefulWidget {
   const FormAddInfoUser({Key? key}) : super(key: key);
@@ -17,19 +18,14 @@ class FormAddInfoUser extends StatefulWidget {
     return FormAddInfoUserState();
   }
 }
-//category/avatar/user
 
+//category/avatar/user
 class FormAddInfoUserState extends State<FormAddInfoUser> {
   final _formKey = GlobalKey<FormState>();
   bool _loading = false;
   File? image;
   PickedFile? file;
-
-  String firstName = '';
-  String lastName = '';
-  String userName = '';
-  String email = '';
-  String description = '';
+  UserForm userForm = UserForm();
 
   Future pickImage() async {
     try {
@@ -46,12 +42,13 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
 
   Future pickImageC() async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.camera);
+      final ImagePicker imagePicker = ImagePicker();
+      file = await imagePicker.getImage(source: ImageSource.camera);
+      if (file == null) return;
 
-      if (image == null) return;
-
-      final imageTemp = File(image.path);
-      setState(() => this.image = imageTemp);
+      final imageTemp = File(file!.path);
+      setState(() => file = file);
+      setState(() => image = imageTemp);
     } on PlatformException catch (e) {
       print('Failed to pick image: $e');
     }
@@ -82,18 +79,14 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
 
   void updateInfoUser(
     String idUser,
-    String firstName,
-    String lastName,
-    String userName,
-    String email,
-    String description,
+    String avatarUrl,
   ) async {
-    User? userInfo = null;
+    User? _userInfo = null;
     setState(() {
       _loading = true;
     });
-    String _avatarUrl = "";
-    if (image != null) {
+    String _avatarUrl = avatarUrl;
+    if (file != null) {
       _avatarUrl = await signUrl(
           getFileName(image as File),
           "category/avatar/user",
@@ -101,16 +94,23 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
           file as PickedFile,
           image as File);
     }
-    print(_avatarUrl);
-    userInfo = await ApiUserServices().ApiUpdateInfoUser(
-        idUser, firstName, lastName, userName, email, description, _avatarUrl);
+    _userInfo = await ApiUserServices().ApiUpdateInfoUser(
+        idUser,
+        userForm.firstName.toString(),
+        userForm.lastName.toString(),
+        userForm.userName.toString(),
+        userForm.email.toString(),
+        userForm.description.toString(),
+        _avatarUrl);
     setState(() {
       _loading = false;
     });
     // ignore: use_build_context_synchronously
-    context.read<UserInfo>().GetUserInfoProvider(null, userInfo);
+    context.read<UserInfo>().GetUserInfoProvider(null, _userInfo);
     // ignore: use_build_context_synchronously
-    Navigator.of(context).pop();
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    Future.delayed(const Duration(milliseconds: 1500))
+        .then((value) => {Navigator.of(context).pop()});
   }
 
   @override
@@ -129,27 +129,49 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Center(
                         child: Text('Add user information',
-                            style: PrimaryFont.medium(24))),
+                            style: PrimaryFont.medium(22))),
                   ),
                   const SizedBox(height: 20),
                   //Avatar
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Stack(alignment: Alignment.center, children: const [
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundColor: Colors.white,
-                        ),
-                        CircleAvatar(
-                          radius: 48,
-                          backgroundImage: NetworkImage(
-                              'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
-                        ),
-                      ]),
+                      image != null
+                          ? ClipOval(
+                              child: Image.file(
+                                image!,
+                                height: 100,
+                                width: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : Stack(alignment: Alignment.center, children: [
+                              const CircleAvatar(
+                                radius: 50,
+                                backgroundColor: Colors.white,
+                              ),
+                              CircleAvatar(
+                                radius: 48,
+                                backgroundImage: NetworkImage(context
+                                                .read<UserInfo>()
+                                                .userInfo !=
+                                            null &&
+                                        context
+                                                .read<UserInfo>()
+                                                .userInfo!
+                                                .avatar !=
+                                            null
+                                    ? context
+                                        .read<UserInfo>()
+                                        .userInfo!
+                                        .avatar
+                                        .toString()
+                                    : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
+                              ),
+                            ]),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -174,112 +196,145 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  // image != null
-                  //     ? Image.file(image!)
-                  //     : Text("No image selected"),
-                  // const SizedBox(height: 20),
-
-                  //First name
+                  // First name
                   TextFormField(
                     decoration: const InputDecoration(
                       icon: Icon(
                         Icons.badge,
+                        color: AppColors.dPrimaryColor,
                       ),
                       hintText: 'Enter your first name',
                       labelText: 'First name',
+                      labelStyle: TextStyle(color: AppColors.dPrimaryColor),
+                      focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                              color: AppColors.dPrimaryColor, width: 1)),
                     ),
-                    onChanged: ((value) {
-                      setState(() {
-                        firstName = value;
-                      });
-                    }),
+                    initialValue: context.read<UserInfo>().userInfo != null &&
+                            context.read<UserInfo>().userInfo!.firstName != null
+                        ? context
+                            .read<UserInfo>()
+                            .userInfo!
+                            .firstName
+                            .toString()
+                        : '',
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Please enter some first name';
                       }
                       return null;
+                    },
+                    onSaved: (String? value) {
+                      userForm.firstName = value.toString();
                     },
                   ),
                   //Last name
                   TextFormField(
                     decoration: const InputDecoration(
-                      icon: Icon(
-                        Icons.badge,
-                      ),
-                      hintText: 'Enter your last name',
-                      labelText: 'Last name',
-                    ),
-                    onChanged: ((value) {
-                      setState(() {
-                        lastName = value;
-                      });
-                    }),
+                        icon: Icon(Icons.badge, color: AppColors.dPrimaryColor),
+                        hintText: 'Enter your last name',
+                        labelText: 'Last name',
+                        labelStyle: TextStyle(color: AppColors.dPrimaryColor),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: AppColors.dPrimaryColor, width: 1))),
+                    initialValue: context.read<UserInfo>().userInfo != null &&
+                            context.read<UserInfo>().userInfo!.lastName != null
+                        ? context.read<UserInfo>().userInfo!.lastName.toString()
+                        : '',
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Please enter some last name';
                       }
                       return null;
+                    },
+                    onSaved: (String? value) {
+                      userForm.lastName = value.toString();
                     },
                   ),
                   //User Name
                   TextFormField(
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.person),
-                      hintText: 'Enter your user name',
-                      labelText: 'User name',
-                    ),
-                    onChanged: ((value) {
-                      setState(() {
-                        userName = value;
-                      });
-                    }),
+                        icon:
+                            Icon(Icons.person, color: AppColors.dPrimaryColor),
+                        hintText: 'Enter your user name',
+                        labelText: 'User name',
+                        labelStyle: TextStyle(color: AppColors.dPrimaryColor),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: AppColors.dPrimaryColor, width: 1))),
+                    initialValue: context.read<UserInfo>().userInfo != null &&
+                            context.read<UserInfo>().userInfo!.userName != null
+                        ? context.read<UserInfo>().userInfo!.userName.toString()
+                        : '',
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Please enter some user name';
+                      }
+                      if (value.length <= 3) {
+                        return 'UserName must be more than 3 characters';
                       }
                       return null;
+                    },
+                    onSaved: (String? value) {
+                      userForm.userName = value.toString();
                     },
                   ),
                   //Email
                   TextFormField(
                     decoration: const InputDecoration(
-                      icon: Icon(
-                        Icons.email,
-                      ),
-                      hintText: 'Enter your email',
-                      labelText: 'Email',
-                    ),
-                    onChanged: ((value) {
-                      setState(() {
-                        email = value;
-                      });
-                    }),
+                        icon: Icon(Icons.email, color: AppColors.dPrimaryColor),
+                        hintText: 'Enter your email',
+                        labelText: 'Email',
+                        labelStyle: TextStyle(color: AppColors.dPrimaryColor),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: AppColors.dPrimaryColor, width: 1))),
+                    initialValue: context.read<UserInfo>().userInfo != null &&
+                            context.read<UserInfo>().userInfo!.email != null
+                        ? context.read<UserInfo>().userInfo!.email.toString()
+                        : '',
                     validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter some text';
+                      if (!isEmail(value.toString())) {
+                        return 'Please enter a valid email';
                       }
                       return null;
+                    },
+                    onSaved: (String? value) {
+                      userForm.email = value.toString();
                     },
                   ),
                   //Description
                   TextFormField(
                     decoration: const InputDecoration(
-                      icon: Icon(
-                        Icons.description,
-                      ),
-                      hintText: 'Enter your description',
-                      labelText: 'Description',
-                    ),
-                    onChanged: ((value) {
-                      setState(() {
-                        description = value;
-                      });
-                    }),
+                        icon: Icon(Icons.description,
+                            color: AppColors.dPrimaryColor),
+                        hintText: 'Enter your description',
+                        labelText: 'Description',
+                        labelStyle: TextStyle(color: AppColors.dPrimaryColor),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: AppColors.dPrimaryColor, width: 1))),
+                    initialValue: context.read<UserInfo>().userInfo != null &&
+                            context.read<UserInfo>().userInfo!.descriptions !=
+                                null
+                        ? context
+                            .read<UserInfo>()
+                            .userInfo!
+                            .descriptions
+                            .toString()
+                        : '',
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Please enter some text';
+                        return 'Please enter some description';
+                      }
+                      if (value.length <= 10) {
+                        return 'Description must be more than 10 characters';
                       }
                       return null;
+                    },
+                    onSaved: (String? value) {
+                      userForm.description = value.toString();
                     },
                   ),
 
@@ -293,19 +348,22 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                             : AppColors.dPrimaryColor,
                         child: const Text('Submit'),
                         onPressed: () {
-                          // user();
                           if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
                             updateInfoUser(
                                 context
                                     .read<UserInfo>()
                                     .userInfo!
                                     .id
                                     .toString(),
-                                firstName,
-                                lastName,
-                                userName,
-                                email,
-                                description);
+                                context.read<UserInfo>().userInfo!.avatar !=
+                                        null
+                                    ? context
+                                        .read<UserInfo>()
+                                        .userInfo!
+                                        .avatar
+                                        .toString()
+                                    : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg');
                           }
                         },
                       )),

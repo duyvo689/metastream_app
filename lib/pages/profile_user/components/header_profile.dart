@@ -1,3 +1,4 @@
+import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
@@ -19,6 +20,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
 
   void FollowUser(String id, String userId, bool isFollow) async {
     await ApiUserServices().ApiFollowUser(id, userId, isFollow);
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   Future<void> _showMyDialog() async {
