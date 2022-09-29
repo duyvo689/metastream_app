@@ -271,7 +271,7 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                       if (value!.isEmpty) {
                         return 'Please enter some user name';
                       }
-                      if (value.length <= 3) {
+                      if (value.length < 3) {
                         return 'UserName must be more than 3 characters';
                       }
                       return null;

@@ -44,10 +44,10 @@ class _ProfileMeState extends State<ProfileMe> {
                           Flexible(
                             flex: 1,
                             child: CircleAvatar(
-                              radius: 56,
+                              radius: 54,
                               backgroundColor: Colors.white,
                               child: CircleAvatar(
-                                radius: 54.5,
+                                radius: 52.5,
                                 backgroundImage: NetworkImage(userInfoConsumer
                                                 .userInfo !=
                                             null &&
@@ -74,7 +74,7 @@ class _ProfileMeState extends State<ProfileMe> {
                                               null
                                       ? "${userInfoConsumer.userInfo!.firstName!} ${userInfoConsumer.userInfo!.lastName!}"
                                       : "Unknow",
-                                  style: PrimaryFont.medium(30)
+                                  style: PrimaryFont.medium(28)
                                       .copyWith(color: AppColors.dWhileColor),
                                   maxLines: 1,
                                 ),
@@ -86,7 +86,7 @@ class _ProfileMeState extends State<ProfileMe> {
                                       ? userInfoConsumer.userInfo!.descriptions
                                           .toString()
                                       : "Unknown",
-                                  style: PrimaryFont.light(18).copyWith(
+                                  style: PrimaryFont.light(16).copyWith(
                                       color: AppColors.dGreyLightColor,
                                       overflow: TextOverflow.ellipsis,
                                       height: 1.2),
@@ -103,7 +103,7 @@ class _ProfileMeState extends State<ProfileMe> {
                           _StatesButton(
                             icon: Icon(
                               Icons.visibility,
-                              size: 30,
+                              size: 28,
                             ),
                             label: '0 views',
                           ),
@@ -111,7 +111,7 @@ class _ProfileMeState extends State<ProfileMe> {
                           _StatesButton(
                             icon: Icon(
                               Icons.favorite_border,
-                              size: 30,
+                              size: 28,
                             ),
                             label: '1203k likes',
                           ),
@@ -119,7 +119,7 @@ class _ProfileMeState extends State<ProfileMe> {
                           _StatesButton(
                             icon: Icon(
                               Icons.add_circle_outline,
-                              size: 30,
+                              size: 28,
                             ),
                             label: '13k follow',
                           ),
