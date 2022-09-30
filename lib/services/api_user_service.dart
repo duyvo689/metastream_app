@@ -18,8 +18,6 @@ class ApiUserServices {
       final JsonDecoder _decoder = new JsonDecoder();
       final userListContainer = _decoder.convert(jsonBody);
       final List users = userListContainer['data'];
-
-      print(users.length);
       return users.map((contactRaw) => new User.fromJson(contactRaw)).toList();
     });
   }
@@ -104,6 +102,15 @@ class ApiUserServices {
 
   Future ApiUpdateInfoUser(String idUser, String firstName, String lastName,
       String userName, String email, String description, String avatar) async {
+    // print("=========");
+    // print(idUser);
+    // print(firstName);
+    // print(lastName);
+    // print(userName);
+    // print(email);
+    // print(description);
+    // print(avatar);
+    // print("=========");
     return await http
         .put(
       Uri.parse('${URL().API_URL}/api/v1/user/${idUser}'),

@@ -18,23 +18,22 @@ import 'package:provider/provider.dart';
 //   @override
 //   Widget build(BuildContext context) {
 //     return MaterialApp(
-//       useInheritedMediaQuery: true,
-//       locale: DevicePreview.locale(context),
-//       builder: DevicePreview.appBuilder,
-//       debugShowCheckedModeBanner: false,
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         brightness: Brightness.dark,
-//       ),
-//       home: SplashPage(),
-//     );
+//         useInheritedMediaQuery: true,
+//         locale: DevicePreview.locale(context),
+//         builder: DevicePreview.appBuilder,
+//         debugShowCheckedModeBanner: false,
+//         title: 'Flutter Demo',
+//         theme: ThemeData(
+//           brightness: Brightness.dark,
+//         ),
+//         home: FormAddInfoUser());
 //   }
 // }
 
 void main() => runApp(
       MultiProvider(providers: [
         ChangeNotifierProvider(create: (_) => UserInfo()),
-        ChangeNotifierProvider(create: (_) => GameList()),
+        ChangeNotifierProvider(create: (_) => GameListProvider()),
         ChangeNotifierProvider(create: (_) => UserList()),
       ], child: const MyApp()),
     );
@@ -51,6 +50,5 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
         home: SplashPage());
-    // home: FormAddInfoUser());
   }
 }

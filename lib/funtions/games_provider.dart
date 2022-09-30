@@ -2,7 +2,7 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
 
-class GameList extends ChangeNotifier {
+class GameListProvider extends ChangeNotifier {
   List<Game>? _gameList;
 
   List<Game>? get gameList => _gameList;

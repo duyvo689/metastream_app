@@ -7,8 +7,6 @@ import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../main.dart';
-
 class HeaderGameDetail extends StatefulWidget {
   const HeaderGameDetail({Key? key, required this.gameId}) : super(key: key);
   final String gameId;

@@ -1,8 +1,6 @@
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
-import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
-import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -27,7 +25,8 @@ class _PopularGamesState extends State<PopularGames> {
     Size size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Consumer<GameList>(builder: ((context, gamelistConsumer, child) {
+      child: Consumer<GameListProvider>(
+          builder: ((context, gamelistConsumer, child) {
         return gamelistConsumer.gameList != null &&
                 gamelistConsumer.gameList!.length > 0
             ? Column(children: [

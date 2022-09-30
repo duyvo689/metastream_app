@@ -1,20 +1,43 @@
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:app_metastream/funtions/funtions.dart';
 
 import 'game_list.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  @override
+  void initState() {
+    super.initState();
+    fetchGameList();
+  }
+
+  Future fetchGameList() async {
+    await context.read<GameListProvider>().GetGameListProvider();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     SizeConfig().init(context);
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Container(
-        child: Column(
-          children: <Widget>[
+    return Container(
+      child: RefreshIndicator(
+        color: Colors.white,
+        backgroundColor: AppColors.dPrimaryDarkColor,
+        onRefresh: () async {
+          await fetchGameList();
+        },
+        child: ListView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          children: [
             const SizedBox(height: 10),
             size.width < 600
                 ? const CarouselWithIndicator(

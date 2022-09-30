@@ -25,7 +25,7 @@ class _BodyState extends State<Body> {
   }
 
   Future fetchGameList() async {
-    await context.read<GameList>().GetGameListProvider();
+    await context.read<GameListProvider>().GetGameListProvider();
   }
 
   Future fetchUserList() async {
@@ -36,43 +36,34 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return RefreshIndicator(
-      color: Colors.white,
-      backgroundColor: AppColors.dPrimaryDarkColor,
-      onRefresh: () async {
-        await fetchUserList();
-        await fetchGameList();
-      },
-      notificationPredicate: (ScrollNotification notification) {
-        return notification.depth == 1;
-      },
-      child: SingleChildScrollView(
+        color: Colors.white,
+        backgroundColor: AppColors.dPrimaryDarkColor,
+        onRefresh: () async {
+          await fetchUserList();
+          await fetchGameList();
+        },
+        // notificationPredicate: (ScrollNotification notification) {
+        //   return notification.depth == 1;
+        // },
         child: ListView(
-          shrinkWrap: true,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                SizedBox(
-                  height: 20,
-                ),
-                _ListUser(),
-                SizedBox(height: 20),
-                CarouselWithIndicator(
-                    viewport: 1, width: 30, height: 3, style: 'start'),
-                SizedBox(height: 20),
-                // PopularVideos(),
-                // SizedBox(height: 20),
-                PopularGames(),
-                PopularGames(),
-                SizedBox(
-                  height: 30,
-                ),
-              ],
+          physics: const AlwaysScrollableScrollPhysics(),
+          children: const [
+            SizedBox(
+              height: 20,
+            ),
+            _ListUser(),
+            SizedBox(height: 20),
+            CarouselWithIndicator(
+                viewport: 1, width: 30, height: 3, style: 'start'),
+            SizedBox(height: 20),
+            // PopularVideos(),
+            // SizedBox(height: 20),
+            PopularGames(),
+            SizedBox(
+              height: 30,
             ),
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
 

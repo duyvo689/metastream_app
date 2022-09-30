@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'dart:io';
-import 'package:validators/validators.dart';
 
 class FormAddInfoUser extends StatefulWidget {
   const FormAddInfoUser({Key? key}) : super(key: key);
@@ -300,8 +299,11 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                         ? context.read<UserInfo>().userInfo!.email.toString()
                         : '',
                     validator: (value) {
-                      if (!isEmail(value.toString())) {
-                        return 'Please enter a valid email';
+                      // if (!isEmail(value.toString())) {
+                      //   return 'Please enter a valid email';
+                      // }
+                      if (value!.isEmpty) {
+                        return 'Please enter some email';
                       }
                       return null;
                     },
