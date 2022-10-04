@@ -35,23 +35,26 @@ class _BodyState extends State<Body> {
         onRefresh: () async {
           await fetchGameList();
         },
-        child: ListView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          children: [
-            const SizedBox(height: 10),
-            size.width < 600
-                ? const CarouselWithIndicator(
-                    viewport: 0.9, width: 36, height: 3, style: 'center')
-                : const CarouselWithIndicator(
-                    viewport: 1, width: 50, height: 4, style: 'center'),
-            const SizedBox(height: 20),
-            const _SectionTitle(
-              title: "Trending Games",
-            ),
-            const SizedBox(height: 20),
-            const GameList(),
-            const SizedBox(height: 30),
-          ],
+        child: SingleChildScrollView(
+          child: ListView(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              const SizedBox(height: 10),
+              size.width < 600
+                  ? const CarouselWithIndicator(
+                      viewport: 0.96, width: 36, height: 3, style: 'center')
+                  : const CarouselWithIndicator(
+                      viewport: 1, width: 50, height: 4, style: 'center'),
+              const SizedBox(height: 20),
+              const _SectionTitle(
+                title: "Trending Games",
+              ),
+              const SizedBox(height: 20),
+              const GameList(),
+              const SizedBox(height: 30),
+            ],
+          ),
         ),
       ),
     );

@@ -23,9 +23,8 @@ class AboutProfile extends StatelessWidget {
                   User? user = snapshot.data;
                   return user != null && user.descriptions != ''
                       ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 10),
+                            const SizedBox(height: 20),
                             Text(
                               user.descriptions.toString(),
                               style: AppStyles.about_profile_title_style,

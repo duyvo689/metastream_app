@@ -8,11 +8,6 @@ import '../pages/game_detail/game_detail.dart';
 
 import 'skeleton.dart';
 
-final List<String> imgList = [
-  'https://vcdn-sohoa.vnecdn.net/2021/08/02/axie-screen1-1536x960-5711-162-8512-4162-1627846443.png',
-  'https://gamek.mediacdn.vn/133514250583805952/2021/7/31/photo-1-16277436623992136072459.png',
-];
-
 class CarouselWithIndicator extends StatefulWidget {
   const CarouselWithIndicator(
       {Key? key,
@@ -38,20 +33,25 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
   @override
   void initState() {
     super.initState();
-    FetchBanner();
+    if (banners.length <= 0) {
+      FetchBanner();
+    }
   }
 
   // ignore: non_constant_identifier_names
   void FetchBanner() async {
+    print(banners.length);
     List<Carousel>? carousels = await ApiBannerServices().fetchBanner();
-    if (banners.length <= 0) {
+    if (carousels.length > 0) {
+      List<Carousel> bannersItem = [];
       for (int i = 0; i < carousels.length; i++) {
         if (carousels[i].type == 'image') {
-          setState(() {
-            banners = [...banners, carousels[i]];
-          });
+          bannersItem = [...bannersItem, carousels[i]];
         }
       }
+      setState(() {
+        banners = [...banners, ...bannersItem];
+      });
     }
   }
 
@@ -67,7 +67,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
       child: Column(children: [
         banners.length <= 0
             ? SquareSkeleton(
-                height: size.width < 600 ? 5 : 3,
+                height: size.width < 600 ? 4 : 3,
               )
             : Container(
                 child: CarouselSlider(
@@ -85,74 +85,78 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                               );
                             },
                             child: Container(
-                              child: Container(
-                                margin: const EdgeInsets.all(5.0),
-                                child: ClipRRect(
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(5.0)),
-                                    child: Stack(
-                                      children: <Widget>[
-                                        Image.network(
-                                          item.assetUrl.toString(),
-                                          fit: BoxFit.cover,
-                                          width: 1000.0,
-                                        ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                  begin: Alignment.centerLeft,
-                                                  end: Alignment.centerRight,
-                                                  colors: [
-                                                Colors.black.withOpacity(1),
-                                                Colors.black.withOpacity(0.01)
-                                              ])),
-                                        ),
-                                        Positioned(
-                                          left: 0.0,
-                                          right: 0.0,
-                                          bottom:
-                                              getProportionateScreenHeight(50),
-                                          child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 10.0,
-                                                horizontal: 20.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  item.name.toString(),
-                                                  style: PrimaryFont.medium(26)
-                                                      .copyWith(
-                                                          color: AppColors
-                                                              .dWhileColor),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  item.description.toString(),
-                                                  maxLines: 3,
-                                                  style: PrimaryFont.light(14)
-                                                      .copyWith(
-                                                          color: AppColors
-                                                              .dGreyLightColor,
-                                                          height: 1.2),
-                                                ),
-                                              ],
-                                            ),
+                              margin: const EdgeInsets.all(0),
+                              child: ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5.0)),
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Container(
+                                          decoration: const BoxDecoration(
+                                              border: Border(
+                                                  bottom:
+                                                      BorderSide(width: 18)),
+                                              color: Color.fromARGB(
+                                                  255, 24, 24, 24))),
+                                      Image.network(
+                                        item.assetUrl.toString(),
+                                        fit: BoxFit.cover,
+                                        width: 1000.0,
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            gradient: LinearGradient(
+                                                begin: Alignment.centerLeft,
+                                                end: Alignment.centerRight,
+                                                colors: [
+                                              Colors.black.withOpacity(1),
+                                              Colors.black.withOpacity(0.01)
+                                            ])),
+                                      ),
+                                      Positioned(
+                                        left: 0.0,
+                                        right: 0.0,
+                                        bottom:
+                                            getProportionateScreenHeight(50),
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10.0, horizontal: 20.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                item.name.toString(),
+                                                style: PrimaryFont.medium(26)
+                                                    .copyWith(
+                                                        color: AppColors
+                                                            .dWhileColor),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                item.description.toString(),
+                                                maxLines: 3,
+                                                style: PrimaryFont.light(14)
+                                                    .copyWith(
+                                                        color: AppColors
+                                                            .dGreyLightColor,
+                                                        height: 1.2),
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ],
-                                    )),
-                              ),
+                                      ),
+                                    ],
+                                  )),
                             ),
                           ))
                       .toList(),
                   carouselController: _controller,
                   options: CarouselOptions(
                       autoPlay: true,
-                      aspectRatio: 2.0,
+                      aspectRatio: 1.7,
                       enlargeCenterPage: true,
                       initialPage: 2,
                       viewportFraction: widget.viewport,

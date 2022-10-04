@@ -46,24 +46,27 @@ class _BodyState extends State<Body> {
         // notificationPredicate: (ScrollNotification notification) {
         //   return notification.depth == 1;
         // },
-        child: ListView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          children: const [
-            SizedBox(
-              height: 20,
-            ),
-            _ListUser(),
-            SizedBox(height: 20),
-            CarouselWithIndicator(
-                viewport: 1, width: 30, height: 3, style: 'start'),
-            SizedBox(height: 20),
-            PopularVideos(),
-            SizedBox(height: 20),
-            PopularGames(),
-            SizedBox(
-              height: 30,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: ListView(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            children: const [
+              SizedBox(
+                height: 20,
+              ),
+              _ListUser(),
+              SizedBox(height: 20),
+              CarouselWithIndicator(
+                  viewport: 1, width: 30, height: 3, style: 'start'),
+              SizedBox(height: 20),
+              PopularVideos(),
+              SizedBox(height: 20),
+              PopularGames(),
+              SizedBox(
+                height: 30,
+              ),
+            ],
+          ),
         ));
   }
 }

@@ -36,6 +36,7 @@ class PopularVideos extends StatelessWidget {
               // ignore: curly_braces_in_flow_control_structures
               return ListView.builder(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 3,
                 // ignore: prefer_const_constructors
                 itemBuilder: (context, index) => Padding(
@@ -98,9 +99,7 @@ class _VideoCard extends StatelessWidget {
             aspectRatio: 2.01,
             child: Container(
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: Color.fromARGB(255, 15, 15, 15),
-                ),
+                color: Color.fromARGB(255, 24, 24, 24),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(4),
                   topRight: Radius.circular(4),

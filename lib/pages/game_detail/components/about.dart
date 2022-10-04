@@ -30,76 +30,59 @@ class AboutProfile extends StatelessWidget {
                               game.description.toString(),
                               style: AppStyles.about_profile_title_style,
                             ),
-                            const SizedBox(height: 20),
-                            Row(
-                              children: [
-                                const Text("Website: ",
-                                    style: AppStyles.about_profile_label_style),
-                                const SizedBox(width: 10),
-                                Text(
-                                  game.websiteUrl.toString(),
-                                  style: AppStyles.about_profile_title_style,
-                                ),
-                              ],
+                            const SizedBox(height: 10),
+                            const Divider(color: Colors.grey),
+                            const SizedBox(height: 10),
+                            _aboutItemGame(
+                              label: 'Network:',
+                              description: game.chainId!.name.toString(),
                             ),
                             const SizedBox(height: 20),
-                            Row(
-                              children: [
-                                const Text("Network: ",
-                                    style: AppStyles.about_profile_label_style),
-                                const SizedBox(width: 10),
-                                Text(
-                                  game.chainId!.name.toString(),
-                                  style: AppStyles.about_profile_title_style,
-                                ),
-                              ],
+                            _aboutItemGame(
+                              label: 'Developer:',
+                              description: game.developer!.name.toString(),
                             ),
                             const SizedBox(height: 20),
-                            Row(
-                              children: [
-                                const Text("Developer: ",
-                                    style: AppStyles.about_profile_label_style),
-                                const SizedBox(width: 10),
-                                Text(
-                                  game.developer!.name.toString(),
-                                  style: AppStyles.about_profile_title_style,
-                                ),
-                              ],
+                            _aboutItemGame(
+                              label: 'Release Status:',
+                              description: game.release!.toString(),
                             ),
-                            const SizedBox(height: 20),
-                            Row(
-                              children: [
-                                const Text("Release Status: ",
-                                    style: AppStyles.about_profile_label_style),
-                                const SizedBox(width: 10),
-                                Text(
-                                  game.release!.toString(),
-                                  style: AppStyles.about_profile_title_style,
-                                ),
-                              ],
+                            const SizedBox(height: 10),
+                            _aboutItemGame(
+                              label: 'Website:',
+                              description: game.websiteUrl.toString(),
                             ),
-                            // const Text("Contact: ",
-                            //     style: AppStyles.about_profile_label_style),
-                            // const SizedBox(height: 10),
-                            // Row(
-                            //   children: game.tags!
-                            //       .map((item) => Padding(
-                            //             padding: const EdgeInsets.only(right: 10),
-                            //             child: InkWell(
-                            //               child: CircleAvatar(
-                            //                 backgroundImage: AssetImage(
-                            //                     'assets/images/${item.title!.toLowerCase()}.jpeg'),
-                            //               ),
-                            //               onTap: () => launch(item.url.toString()),
-                            //             ),
-                            //           ))
-                            //       .toList(),
-                            // ),
                           ])
                     : const NoContentProfile(title: "Game don't have about!");
               }),
         ),
       ),
+    );
+  }
+}
+
+class _aboutItemGame extends StatelessWidget {
+  const _aboutItemGame({
+    Key? key,
+    required this.label,
+    required this.description,
+  }) : super(key: key);
+
+  final String label;
+  final String description;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(label, style: AppStyles.about_profile_label_style),
+        const SizedBox(width: 10),
+        Text(
+          description,
+          style: AppStyles.about_profile_title_style,
+        ),
+      ],
     );
   }
 }

@@ -42,7 +42,7 @@ class AppStyles {
       fontWeight: FontWeight.w500,
       fontSize: 18,
       overflow: TextOverflow.ellipsis,
-      color: AppColors.dGreyLightColor);
+      color: AppColors.dPrimaryDarkColor);
 
   static const TextStyle about_profile_title_style = TextStyle(
       fontWeight: FontWeight.w400, fontSize: 18, color: AppColors.dWhileColor);

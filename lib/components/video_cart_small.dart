@@ -27,8 +27,9 @@ class VideoCardSmall extends StatelessWidget {
                   aspectRatio: 2.01,
                   child: Container(
                     decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 48, 48, 48),
                       border: Border.all(
-                        color: Color.fromARGB(255, 48, 48, 48),
+                        color: const Color.fromARGB(255, 78, 78, 78),
                       ),
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
