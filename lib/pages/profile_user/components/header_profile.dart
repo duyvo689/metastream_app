@@ -79,7 +79,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                   image: NetworkImage(widget.user != null &&
                           widget.user.avatar != null
                       ? widget.user.avatar!
-                      : 'https://ecdn.game4v.com/g4v-content/uploads/2016/07/lmht_kute-1-480x480.jpg'),
+                      : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),

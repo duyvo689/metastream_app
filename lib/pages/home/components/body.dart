@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:skeletons/skeletons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'popular_game.dart';
+import 'video_live_streaming.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key}) : super(key: key);
@@ -44,6 +45,7 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
+    print("object");
     SizeConfig().init(context);
     return RefreshIndicator(
         color: Colors.white,
@@ -73,6 +75,8 @@ class _BodyState extends State<Body> {
               const CarouselWithIndicator(
                   viewport: 1, width: 30, height: 3, style: 'start'),
               const SizedBox(height: 20),
+              const VideoLiveStreaming(),
+              const SizedBox(height: 20),
               const PopularVideos(),
               const SizedBox(height: 20),
               const PopularGames(),
@@ -91,9 +95,9 @@ class _ListStreamer extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    _launchURLApp(String slug) async {
+    _launchURLApp(String label, String slug) async {
       var url =
-          'https://phantom.app/ul/browse/https://staging.metastream.network/live/${slug}';
+          'https://phantom.app/ul/browse/https://staging.metastream.network/${label}/${slug}';
       if (await canLaunch(url)) {
         await launch(url, forceSafariVC: false, forceWebView: false);
       } else {
@@ -126,22 +130,32 @@ class _ListStreamer extends StatelessWidget {
                                   true
                               ? false
                               : true,
-                          press: () {},
-                          // press: liveStreamsConsumer
-                          //             .liveStreamList![index].status ==
-                          //         1
-                          //     ? () => _launchURLApp(liveStreamsConsumer
-                          //         .liveStreamList![index].userId!.userName
-                          //         .toString())
-                          //     : () => pushNewScreen(
-                          //           context,
-                          //           screen: Profile(
-                          //               user: liveStreamsConsumer
-                          //                   .liveStreamList![index]),
-                          //           withNavBar: false,
-                          //           pageTransitionAnimation:
-                          //               PageTransitionAnimation.cupertino,
-                          //         ),
+                          press: liveStreamsConsumer
+                                      .liveStreamList![index].status ==
+                                  1
+                              ? liveStreamsConsumer.liveStreamList![index]
+                                          .streamWithProfileGame ==
+                                      false
+                                  ? () => _launchURLApp(
+                                      'live',
+                                      liveStreamsConsumer.liveStreamList![index]
+                                          .userId!.userName
+                                          .toString())
+                                  : () => _launchURLApp(
+                                      'game',
+                                      liveStreamsConsumer.liveStreamList![index]
+                                          .gameStream!.slug
+                                          .toString()
+                                          .toString())
+                              : () => pushNewScreen(
+                                    context,
+                                    screen: ProfileStreamer(
+                                        liveStream: liveStreamsConsumer
+                                            .liveStreamList![index]),
+                                    withNavBar: false,
+                                    pageTransitionAnimation:
+                                        PageTransitionAnimation.cupertino,
+                                  ),
                         ),
                       ),
                     ],

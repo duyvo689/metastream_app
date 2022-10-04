@@ -126,7 +126,7 @@ class _VideoCard extends StatelessWidget {
                             video.userId != null &&
                             video.userId!.avatar != null
                         ? video.userId!.avatar!
-                        : 'https://ecdn.game4v.com/g4v-content/uploads/2016/07/lmht_kute-1-480x480.jpg'),
+                        : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
                   ),
                 ),
                 const SizedBox(
