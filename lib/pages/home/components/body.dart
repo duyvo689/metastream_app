@@ -1,5 +1,6 @@
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
+import 'package:app_metastream/models/live_streaming_model.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/home/components/popular_video.dart';
 import 'package:app_metastream/pages/pages.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletons/skeletons.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'popular_game.dart';
 
 class Body extends StatefulWidget {
@@ -20,8 +22,9 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   void initState() {
-    fetchGameList();
+    fetchUserLiveStreaming();
     fetchUserList();
+    fetchGameList();
     super.initState();
   }
 
@@ -33,6 +36,12 @@ class _BodyState extends State<Body> {
     await context.read<UserList>().GetUserListProvider();
   }
 
+  Future fetchUserLiveStreaming() async {
+    await context
+        .read<LiveStreamingProvider>()
+        .GetUserListProvider(1); //Không cần truyền tham số
+  }
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -40,34 +49,175 @@ class _BodyState extends State<Body> {
         color: Colors.white,
         backgroundColor: AppColors.dPrimaryDarkColor,
         onRefresh: () async {
-          await fetchUserList();
+          await fetchUserLiveStreaming();
           await fetchGameList();
         },
-        // notificationPredicate: (ScrollNotification notification) {
-        //   return notification.depth == 1;
-        // },
         child: SingleChildScrollView(
           child: ListView(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 height: 20,
               ),
-              _ListUser(),
-              SizedBox(height: 20),
-              CarouselWithIndicator(
+              context.watch<LiveStreamingProvider>().liveStreamList != null &&
+                      // ignore: prefer_is_empty
+                      context
+                              .watch<LiveStreamingProvider>()
+                              .liveStreamList!
+                              .length >
+                          0
+                  ? const _ListStreamer()
+                  : const _ListUser(),
+              const SizedBox(height: 20),
+              const CarouselWithIndicator(
                   viewport: 1, width: 30, height: 3, style: 'start'),
-              SizedBox(height: 20),
-              PopularVideos(),
-              SizedBox(height: 20),
-              PopularGames(),
-              SizedBox(
+              const SizedBox(height: 20),
+              const PopularVideos(),
+              const SizedBox(height: 20),
+              const PopularGames(),
+              const SizedBox(
                 height: 30,
               ),
             ],
           ),
         ));
+  }
+}
+
+class _ListStreamer extends StatelessWidget {
+  const _ListStreamer({
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    _launchURLApp(String slug) async {
+      var url =
+          'https://phantom.app/ul/browse/https://staging.metastream.network/live/${slug}';
+      if (await canLaunch(url)) {
+        await launch(url, forceSafariVC: false, forceWebView: false);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
+    return Padding(
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(0)),
+        child: Consumer<LiveStreamingProvider>(
+            builder: ((context, liveStreamsConsumer, child) {
+          return liveStreamsConsumer.liveStreamList != null &&
+                  liveStreamsConsumer.liveStreamList!.length > 0
+              ? SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      ...List.generate(
+                        liveStreamsConsumer.liveStreamList!.length,
+                        (index) => _CircleUserLiveCard(
+                          data: liveStreamsConsumer.liveStreamList![index],
+                          isLive: liveStreamsConsumer
+                                      .liveStreamList![index].status ==
+                                  1
+                              ? true
+                              : false,
+                          isUserLive: liveStreamsConsumer.liveStreamList![index]
+                                      .streamWithProfileGame ==
+                                  true
+                              ? false
+                              : true,
+                          press: () {},
+                          // press: liveStreamsConsumer
+                          //             .liveStreamList![index].status ==
+                          //         1
+                          //     ? () => _launchURLApp(liveStreamsConsumer
+                          //         .liveStreamList![index].userId!.userName
+                          //         .toString())
+                          //     : () => pushNewScreen(
+                          //           context,
+                          //           screen: Profile(
+                          //               user: liveStreamsConsumer
+                          //                   .liveStreamList![index]),
+                          //           withNavBar: false,
+                          //           pageTransitionAnimation:
+                          //               PageTransitionAnimation.cupertino,
+                          //         ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: SizedBox(
+                    height: 65,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 6,
+                      itemBuilder: (context, index) => const _UserCardSkelton(),
+                    ),
+                  ),
+                );
+        })));
+  }
+}
+
+class _CircleUserLiveCard extends StatelessWidget {
+  const _CircleUserLiveCard({
+    required this.data,
+    Key? key,
+    required this.press,
+    required this.isLive,
+    required this.isUserLive,
+  }) : super(key: key);
+  final LiveStream data;
+  final bool isLive;
+  final bool isUserLive;
+  final GestureTapCallback press;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: press,
+      child: Row(
+        children: [
+          const Padding(padding: EdgeInsets.only(right: 10)),
+          Stack(alignment: Alignment(0, 1), children: [
+            CircleAvatar(
+              radius: 34,
+              backgroundColor: Colors.red,
+              child: CircleAvatar(
+                radius: isLive ? 32 : 34,
+                backgroundImage: NetworkImage(data != null &&
+                        data.userId!.avatar != null
+                    ? isUserLive
+                        ? data.userId!.avatar!
+                        : data.gameStream!.logo.toString()
+                    : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
+              ),
+            ),
+            isLive
+                ? Container(
+                    alignment: Alignment.center,
+                    height: 16,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 5),
+                      child: Text(
+                        'Live',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 13, fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                  )
+                : const SizedBox.shrink()
+          ]),
+        ],
+      ),
+    );
   }
 }
 
@@ -89,7 +239,7 @@ class _ListUser extends StatelessWidget {
                     children: [
                       ...List.generate(
                         userListConsumer.userList!.length,
-                        (index) => _CircleVideoCard(
+                        (index) => _CircleUserCard(
                           user: userListConsumer.userList![index],
                           press: (() => pushNewScreen(
                                 context,
@@ -119,8 +269,8 @@ class _ListUser extends StatelessWidget {
   }
 }
 
-class _CircleVideoCard extends StatelessWidget {
-  const _CircleVideoCard({
+class _CircleUserCard extends StatelessWidget {
+  const _CircleUserCard({
     required this.user,
     Key? key,
     required this.press,

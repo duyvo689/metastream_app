@@ -3,8 +3,8 @@ import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'components/body.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({Key? key, required this.user}) : super(key: key);
+class ProfileStreamer extends StatelessWidget {
+  const ProfileStreamer({Key? key, required this.user}) : super(key: key);
   final User user;
   // final LiveStream dataStreamer;
   @override
