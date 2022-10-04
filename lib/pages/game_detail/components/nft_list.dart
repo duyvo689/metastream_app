@@ -22,7 +22,7 @@ class NFTList extends StatelessWidget {
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
               // ignore: curly_braces_in_flow_control_structures
-              return const Loading();
+              return const Loading(scale: 6);
             List<NftSolana>? nftSolanas = snapshot.data;
             return nftSolanas != null && nftSolanas.length > 0
                 ? GridView.builder(

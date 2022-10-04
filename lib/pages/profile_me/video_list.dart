@@ -23,7 +23,7 @@ class VideoList extends StatelessWidget {
                 builder: (context, snapshot) {
                   if ((snapshot.hasError) || (!snapshot.hasData))
                     // ignore: curly_braces_in_flow_control_structures
-                    return const Loading();
+                    return const Loading(scale: 6);
                   List<Video>? videos = snapshot.data;
                   return videos!.length > 0
                       ? ListView.builder(
@@ -53,7 +53,7 @@ class VideoList extends StatelessWidget {
                 },
               ),
             )
-          : const Loading();
+          : const Loading(scale: 6);
     });
   }
 }

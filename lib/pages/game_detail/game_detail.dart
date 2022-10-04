@@ -11,6 +11,7 @@ class GameDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -18,7 +19,12 @@ class GameDetail extends StatelessWidget {
         elevation: 0.0,
       ),
       backgroundColor: AppColors.dBlackColor,
-      body: Body(gameId: gameId.toString(), collection: collection.toString()),
+      body: orientation == Orientation.portrait
+          ? Body(gameId: gameId.toString(), collection: collection.toString())
+          : SafeArea(
+              child: Body(
+                  gameId: gameId.toString(),
+                  collection: collection.toString())),
     );
   }
 }

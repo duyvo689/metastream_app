@@ -66,6 +66,8 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    final orientation = MediaQuery.of(context).orientation;
     return Container(
       child: Stack(
         children: [
@@ -74,16 +76,12 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
             builder: (context, snapshot) {
               if ((snapshot.hasError) || (!snapshot.hasData))
                 // ignore: curly_braces_in_flow_control_structures
-                return Container(
-                  child: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return const Loading(scale: 8);
               Game? game = snapshot.data;
               return Stack(
                 children: [
                   AspectRatio(
-                    aspectRatio: 1,
+                    aspectRatio: orientation == Orientation.portrait ? 1 : 3,
                     child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -104,11 +102,14 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                         ])),
                   ),
                   Positioned(
-                    top: getProportionateScreenHeight(220),
+                    top: getProportionateScreenHeight(
+                        orientation == Orientation.portrait ? 200 : 30),
                     left: 0,
                     right: 0,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(
+                          horizontal:
+                              orientation == Orientation.portrait ? 20 : 100),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

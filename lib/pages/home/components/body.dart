@@ -1,6 +1,7 @@
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/home/components/popular_video.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
@@ -56,8 +57,8 @@ class _BodyState extends State<Body> {
             CarouselWithIndicator(
                 viewport: 1, width: 30, height: 3, style: 'start'),
             SizedBox(height: 20),
-            // PopularVideos(),
-            // SizedBox(height: 20),
+            PopularVideos(),
+            SizedBox(height: 20),
             PopularGames(),
             SizedBox(
               height: 30,

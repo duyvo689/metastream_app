@@ -66,11 +66,13 @@ class _HeaderProflieState extends State<HeaderProflie> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    final orientation = MediaQuery.of(context).orientation;
     return Container(
       child: Stack(
         children: [
           AspectRatio(
-            aspectRatio: 1,
+            aspectRatio: orientation == Orientation.portrait ? 1 : 3,
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
@@ -93,21 +95,14 @@ class _HeaderProflieState extends State<HeaderProflie> {
                   Colors.black.withOpacity(0.01)
                 ])),
           ),
-          // Positioned(
-          //   top: 0,
-          //   left: 0,
-          //   child: IconButton(
-          //     iconSize: 36,
-          //     onPressed: () => Navigator.pop(context),
-          //     icon: const Icon(Icons.navigate_before),
-          //   ),
-          // ),
           Positioned(
-            top: getProportionateScreenHeight(220),
+            top: getProportionateScreenHeight(
+                orientation == Orientation.portrait ? 200 : 50),
             left: 0,
             right: 0,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: EdgeInsets.symmetric(
+                  horizontal: orientation == Orientation.portrait ? 20 : 100),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

@@ -24,7 +24,8 @@ class AboutProfile extends StatelessWidget {
                       ),
                     ],
                   ))
-              : const Loading();
+              : const Loading(scale: 6);
+          ;
         },
       ),
     );

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:loading_gifs/loading_gifs.dart';
 
 class Loading extends StatelessWidget {
-  const Loading({Key? key}) : super(key: key);
-
+  const Loading({Key? key, required this.scale}) : super(key: key);
+  final double scale;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -12,7 +12,7 @@ class Loading extends StatelessWidget {
         SizedBox(height: getProportionateScreenHeight(100)),
         Container(
           child: Center(
-            child: Image.asset(cupertinoActivityIndicator, scale: 6),
+            child: Image.asset(cupertinoActivityIndicator, scale: scale),
           ),
         ),
       ],

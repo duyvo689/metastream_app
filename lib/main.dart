@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 //       MultiProvider(
 //         providers: [
 //           ChangeNotifierProvider(create: (_) => UserInfo()),
+//           ChangeNotifierProvider(create: (_) => GameListProvider()),
+//           ChangeNotifierProvider(create: (_) => UserList()),
 //         ],
 //         child: DevicePreview(builder: (context) => const MyApp()),
 //       ),
@@ -26,7 +28,7 @@ import 'package:provider/provider.dart';
 //         theme: ThemeData(
 //           brightness: Brightness.dark,
 //         ),
-//         home: FormAddInfoUser());
+//         home: SplashPage());
 //   }
 // }
 

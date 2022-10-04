@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
@@ -53,7 +55,7 @@ class PopularVideos extends StatelessWidget {
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                   crossAxisCount: size.width < 600 ? 1 : 2,
-                  childAspectRatio: 1.51,
+                  childAspectRatio: 1.4,
                 ),
                 itemCount: videos.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -120,7 +122,7 @@ class _VideoCard extends StatelessWidget {
               children: [
                 Container(
                   child: CircleAvatar(
-                    radius: 22,
+                    radius: 26,
                     backgroundImage: NetworkImage(video != null &&
                             video.userId != null &&
                             video.userId!.avatar != null
@@ -129,34 +131,28 @@ class _VideoCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 16,
+                  width: 10,
                 ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        video.name!,
-                        textAlign: TextAlign.start,
-                        maxLines: 2,
-                        style: const TextStyle(
-                          overflow: TextOverflow.ellipsis,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                        ),
-                      ),
+                      Text(video.name!,
+                          textAlign: TextAlign.start,
+                          maxLines: 2,
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.w500,
+                              overflow: TextOverflow.ellipsis,
+                              color: AppColors.dWhileColor)),
                       const SizedBox(height: 6),
-                      Text(
-                        video.name!,
-                        textAlign: TextAlign.start,
-                        maxLines: 1,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
-                          overflow: TextOverflow.ellipsis,
-                          color: AppColors.dGreyLightColor,
-                        ),
-                      ),
+                      Text(video.name!,
+                          textAlign: TextAlign.start,
+                          maxLines: 1,
+                          style: PrimaryFont.light(15).copyWith(
+                            overflow: TextOverflow.ellipsis,
+                            color: AppColors.dGreyLightColor,
+                          )),
                     ],
                   ),
                 ),

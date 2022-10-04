@@ -8,6 +8,7 @@ class Profile extends StatelessWidget {
   final User user;
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -15,7 +16,9 @@ class Profile extends StatelessWidget {
         elevation: 0.0,
       ),
       backgroundColor: AppColors.dBlackColor,
-      body: Body(user: user),
+      body: orientation == Orientation.portrait
+          ? Body(user: user)
+          : SafeArea(child: Body(user: user)),
     );
   }
 }
