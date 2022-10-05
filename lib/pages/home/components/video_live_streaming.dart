@@ -107,28 +107,49 @@ class _VideoCard extends StatelessWidget {
             },
       child: Column(
         children: [
-          AspectRatio(
-            aspectRatio: 2.01,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 24, 24, 24),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(4),
-                  topRight: Radius.circular(4),
-                  bottomLeft: Radius.circular(4),
-                  bottomRight: Radius.circular(4),
-                ),
-                image: DecorationImage(
-                  image: NetworkImage(video != null &&
-                          video.userId!.avatar != null
-                      ? isUserLive
-                          ? video.userId!.avatar!
-                          : video.gameStream!.logo.toString()
-                      : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
-                  fit: BoxFit.cover,
+          Stack(
+            alignment: Alignment(0.9, -0.8),
+            children: [
+              AspectRatio(
+                aspectRatio: 2.01,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 24, 24, 24),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(4),
+                      topRight: Radius.circular(4),
+                      bottomLeft: Radius.circular(4),
+                      bottomRight: Radius.circular(4),
+                    ),
+                    image: DecorationImage(
+                      image: NetworkImage(video != null &&
+                              video.userId!.avatar != null
+                          ? isUserLive
+                              ? video.userId!.avatar!
+                              : video.gameStream!.logo.toString()
+                          : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
-            ),
+              Container(
+                alignment: Alignment.center,
+                height: 26,
+                width: 50,
+                decoration: const BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: Text(
+                    'Live...',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+                  ),
+                ),
+              )
+            ],
           ),
           Container(
             margin: const EdgeInsets.only(top: 15, left: 2, right: 2),
