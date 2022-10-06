@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new, prefer_const_constructors, no_leading_underscores_for_local_identifiers, non_constant_identifier_names
+
 import 'package:app_metastream/models/models.dart';
 import 'package:http/http.dart' as http;
 import 'api_url.dart';
@@ -80,7 +82,6 @@ class ApiUserServices {
 
       // ignore: unnecessary_null_comparison
       if (statusCode != 200 || jsonBody == null) {
-        // ignore: unnecessary_new
         throw new Exception("Error load api");
       }
 
@@ -117,15 +118,6 @@ class ApiUserServices {
 
   Future ApiUpdateInfoUser(String idUser, String firstName, String lastName,
       String userName, String email, String description, String avatar) async {
-    // print("=========");
-    // print(idUser);
-    // print(firstName);
-    // print(lastName);
-    // print(userName);
-    // print(email);
-    // print(description);
-    // print(avatar);
-    // print("=========");
     return await http
         .put(
       Uri.parse('${URL().API_URL}/api/v1/user/${idUser}'),

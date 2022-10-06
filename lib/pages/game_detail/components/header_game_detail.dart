@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, body_might_complete_normally_nullable, use_build_context_synchronously, unnecessary_null_comparison
 
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
@@ -18,11 +18,56 @@ class HeaderGameDetail extends StatefulWidget {
 }
 
 class _HeaderGameDetailState extends State<HeaderGameDetail> {
-  bool isFollow = true;
+  bool isFollow = false;
+  bool isLoadFollow = false;
+  User? userInfoMe;
+  int count = 0;
+  Game? game;
 
-  void FollowGame(String id, String gameId, bool isFollow) async {
-    await ApiGameServices().ApiFollowGame(id, gameId, isFollow);
+  @override
+  void initState() {
+    fetchGameById(widget.gameId);
+    super.initState();
+  }
+
+  Future followGame(String id, String gameId, bool isFollow) async {
+    setState(() {
+      isLoadFollow = true;
+    });
+    User response = await ApiGameServices().ApiFollowGame(id, gameId, isFollow);
+    context.read<UserInfo>().GetUserInfoProvider(null, response);
+    setState(() {
+      isLoadFollow = false;
+      isFollow ? count-- : count++;
+    });
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  Future<Game?> fetchGameById(String id) async {
+    Game response = await ApiGameServices().fetchGameById(widget.gameId);
+    if (context.read<UserInfo>().userInfo != null && response != null) {
+      userInfoMe = context.read<UserInfo>().userInfo;
+      print(userInfoMe);
+      checkFollower(userInfoMe!.followGame!.toList(), response.id.toString());
+    }
+    setState(() {
+      game = response;
+    });
+  }
+
+  int checkFollower(List followGameMe, String idUser) {
+    int flag = 0;
+    for (var i = 0; i < followGameMe.length; i++) {
+      if (followGameMe[i] == idUser) {
+        flag = 1;
+        setState(() {
+          isFollow = true;
+        });
+        break;
+      }
+    }
+
+    return flag;
   }
 
   Future<void> _showMyDialog() async {
@@ -70,114 +115,137 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final orientation = MediaQuery.of(context).orientation;
-    return Container(
-      child: Stack(
-        children: [
-          FutureBuilder<Game>(
-            future: ApiGameServices().fetchGameById(widget.gameId),
-            builder: (context, snapshot) {
-              if ((snapshot.hasError) || (!snapshot.hasData))
-                // ignore: curly_braces_in_flow_control_structures
-                return const Loading(scale: 8);
-              Game? game = snapshot.data;
-              return Stack(
-                children: [
-                  AspectRatio(
-                    aspectRatio: orientation == Orientation.portrait ? 1 : 3,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(game!.featureImg!),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+    return game != null
+        ? Container(
+            child: Stack(
+            children: [
+              AspectRatio(
+                aspectRatio: orientation == Orientation.portrait ? 1 : 3,
+                child: Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(game!.featureImg!),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.topCenter,
-                            colors: [
-                          Colors.black.withOpacity(1),
-                          Colors.black.withOpacity(0.01)
-                        ])),
-                  ),
-                  Positioned(
-                    top: getProportionateScreenHeight(
-                        orientation == Orientation.portrait ? 200 : 30),
-                    left: 0,
-                    right: 0,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal:
-                              orientation == Orientation.portrait ? 20 : 100),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.topCenter,
+                        colors: [
+                      Colors.black.withOpacity(1),
+                      Colors.black.withOpacity(0.01)
+                    ])),
+              ),
+              Positioned(
+                top: getProportionateScreenHeight(
+                    orientation == Orientation.portrait ? 200 : 30),
+                left: 0,
+                right: 0,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal:
+                          orientation == Orientation.portrait ? 20 : 100),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                game.name!,
-                                textAlign: TextAlign.start,
+                          Text(
+                            game!.name!,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 26,
+                              overflow: TextOverflow.ellipsis,
+                              color: AppColors.dWhileColor,
+                            ),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                primary: userInfoMe != null
+                                    ? AppColors.dPrimaryColor
+                                    : Colors.grey[400],
+                                onPrimary: AppColors.dBlackColor,
+                                textStyle: const TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w600)),
+                            onPressed: () {
+                              if (context.read<UserInfo>().userInfo != null) {
+                                setState(() {
+                                  isFollow = !isFollow;
+                                });
+                                followGame(
+                                    context
+                                        .read<UserInfo>()
+                                        .userInfo!
+                                        .id
+                                        .toString(),
+                                    widget.gameId.toString(),
+                                    !isFollow);
+                              } else {
+                                _showMyDialog();
+                              }
+                            },
+                            child: Text(isFollow
+                                ? isLoadFollow
+                                    ? 'Following...'
+                                    : 'Unfollow'
+                                : isLoadFollow
+                                    ? 'Unfollowing...'
+                                    : 'Follow'),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                text: '${game!.follows! + count}',
                                 style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 26,
-                                  overflow: TextOverflow.ellipsis,
-                                  color: AppColors.dWhileColor,
-                                ),
+                                    color: AppColors.dPrimaryColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                                children: const <TextSpan>[
+                                  TextSpan(
+                                      text: ' Followers',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: AppColors.dWhileColor,
+                                          fontSize: 15)),
+                                ],
                               ),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    primary: AppColors.dPrimaryColor,
-                                    onPrimary: AppColors.dBlackColor,
-                                    textStyle: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600)),
-                                onPressed: () {
-                                  if (context.read<UserInfo>().userInfo !=
-                                      null) {
-                                    setState(() {
-                                      isFollow = !isFollow;
-                                    });
-                                    FollowGame(
-                                        context
-                                            .read<UserInfo>()
-                                            .userInfo!
-                                            .id
-                                            .toString(),
-                                        widget.gameId.toString(),
-                                        isFollow);
-                                  } else {
-                                    _showMyDialog();
-                                  }
-                                },
-                                child: Text(isFollow ? "Follow" : "Unfollow"),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            ),
+                            Row(
                               children: [
+                                const Icon(
+                                  Icons.remove_red_eye_rounded,
+                                  size: 16,
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
                                 RichText(
                                   text: TextSpan(
-                                    text: game.follows.toString(),
+                                    text: game!.views.toString(),
                                     style: const TextStyle(
                                         color: AppColors.dPrimaryColor,
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold),
                                     children: const <TextSpan>[
                                       TextSpan(
-                                          text: ' Followers',
+                                          text: ' viewers',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w400,
                                               color: AppColors.dWhileColor,
@@ -185,47 +253,17 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                                     ],
                                   ),
                                 ),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.remove_red_eye_rounded,
-                                      size: 16,
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    RichText(
-                                      text: TextSpan(
-                                        text: game.views.toString(),
-                                        style: const TextStyle(
-                                            color: AppColors.dPrimaryColor,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold),
-                                        children: const <TextSpan>[
-                                          TextSpan(
-                                              text: ' viewers',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  color: AppColors.dWhileColor,
-                                                  fontSize: 15)),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
                               ],
                             ),
-                          )
-                        ],
-                      ),
-                    ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
-                ],
-              );
-            },
-          ),
-        ],
-      ),
-    );
+                ),
+              ),
+            ],
+          ))
+        : const Loading(scale: 8);
   }
 }

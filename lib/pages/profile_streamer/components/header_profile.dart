@@ -99,7 +99,6 @@ class _HeaderProflieState extends State<HeaderProflie> {
         break;
       }
     }
-
     return flag;
   }
 
