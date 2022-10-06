@@ -94,8 +94,8 @@ flutter:
     - assets/videos/
     - assets/fonts/
     - assets/icons/
-    # - images/bumble_bee_captions.srt 
-    # - images/cong_example.json
+    - images/bumble_bee_captions.srt 
+    - images/cong_example.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {
   // ignore: avoid_init_to_null
-  User? _user = null;
+  User? _user;
 
   User? get user => _user;
   // ignore: non_constant_identifier_names

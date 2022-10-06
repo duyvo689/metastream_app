@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,8 @@ class VideoStates extends StatefulWidget {
 class _VideoStatesState extends State<VideoStates> {
   bool isLike = false;
   bool isDisLike = false;
+  int countLike = 0;
+  int countDisLike = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +29,16 @@ class _VideoStatesState extends State<VideoStates> {
                 onPressed: () {
                   setState(() {
                     isLike = !isLike;
+                    isLike ? countLike++ : countLike--;
                   });
                 },
                 icon:
                     Icon(isLike ? Icons.thumb_up_alt : Icons.thumb_up_off_alt)),
-            const Text(
-              '542 like',
+            Text(
+              '${countLike} like',
               textAlign: TextAlign.start,
               maxLines: 2,
-              style: TextStyle(
+              style: const TextStyle(
                   overflow: TextOverflow.ellipsis,
                   fontWeight: FontWeight.w400,
                   fontSize: 13,
@@ -48,17 +53,18 @@ class _VideoStatesState extends State<VideoStates> {
               onPressed: () {
                 setState(() {
                   isDisLike = !isDisLike;
+                  isDisLike ? countDisLike++ : countDisLike--;
                 });
               },
               icon: Icon(
                 isDisLike ? Icons.thumb_down_alt : Icons.thumb_down_off_alt,
               ),
             ),
-            const Text(
-              'Dislike',
+            Text(
+              '${countDisLike} Dislike',
               textAlign: TextAlign.start,
               maxLines: 2,
-              style: TextStyle(
+              style: const TextStyle(
                   overflow: TextOverflow.ellipsis,
                   fontWeight: FontWeight.w400,
                   fontSize: 13,

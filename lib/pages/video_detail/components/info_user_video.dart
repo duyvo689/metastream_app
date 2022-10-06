@@ -1,3 +1,4 @@
+import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
@@ -21,51 +22,97 @@ class InfoUserVideo extends StatefulWidget {
 }
 
 class _InfoUserVideoState extends State<InfoUserVideo> {
-  bool isFollow = true;
-  void FollowUser(String id, String userId, bool isFollow) async {
-    await ApiUserServices().ApiFollowUser(id, userId, isFollow);
+  bool isFollow = false;
+  bool isLoadFollow = false;
+  User? userInfoMe;
+  int count = 0;
+  int countFollow = 0;
+
+  @override
+  void initState() {
+    if (context.read<UserInfo>().userInfo != null) {
+      userInfoMe = context.read<UserInfo>().userInfo;
+      checkFollower(
+          userInfoMe!.follower!.toList(), widget.video.userId!.id.toString());
+    }
+    context
+        .read<UserProvider>()
+        .GetUserProvider(widget.video.userId!.id.toString());
+    super.initState();
   }
 
-  // Future<void> _showMyDialog() async {
-  //   return showDialog<void>(
-  //     context: context,
-  //     barrierDismissible: false, // user must tap button!
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: const Text('Notifications',
-  //             style: TextStyle(color: AppColors.dPrimaryColor)),
-  //         content: SingleChildScrollView(
-  //           child: ListBody(
-  //             children: const <Widget>[
-  //               Text('You need a wallet connection to login.'),
-  //             ],
-  //           ),
-  //         ),
-  //         actions: <Widget>[
-  //           TextButton(
-  //             child: const Text('Cancel',
-  //                 style: TextStyle(
-  //                     color: AppColors.dGreyLightColor, fontSize: 16)),
-  //             onPressed: () {
-  //               Navigator.of(context).pop();
-  //             },
-  //           ),
-  //           TextButton(
-  //             child: const Text('Agree',
-  //                 style:
-  //                     TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
-  //             onPressed: () {
-  //               Navigator.push(
-  //                   context,
-  //                   MaterialPageRoute(
-  //                       builder: (context) => const WalletPhanTom()));
-  //             },
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
+  Future followUser(String id, String userId, bool isFollow) async {
+    setState(() {
+      isLoadFollow = true;
+    });
+    User response = await ApiUserServices().ApiFollowUser(id, userId, isFollow);
+    // ignore: use_build_context_synchronously
+    context.read<UserInfo>().GetUserInfoProvider(null, response);
+    // ignore: use_build_context_synchronously
+    setState(() {
+      isLoadFollow = false;
+      isFollow ? count-- : count++;
+    });
+    // ignore: use_build_context_synchronously
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  int checkFollower(List followerMe, String idUser) {
+    // ignore: unused_local_variable
+    int flag = 0;
+    for (var i = 0; i < followerMe.length; i++) {
+      if (followerMe[i] == idUser) {
+        flag = 1;
+        setState(() {
+          isFollow = true;
+        });
+        break;
+      }
+    }
+
+    return flag;
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Notifications',
+              style: TextStyle(color: AppColors.dPrimaryColor)),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('You need a wallet connection to login.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel',
+                  style: TextStyle(
+                      color: AppColors.dGreyLightColor, fontSize: 16)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Agree',
+                  style:
+                      TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WalletPhanTom()));
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,10 +139,10 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
                       color: AppColors.dWhileColor),
                 ),
                 const SizedBox(height: 2),
-                const Text(
-                  '0 followers',
+                Text(
+                  '${(context.read<UserProvider>().user != null ? context.read<UserProvider>().user!.follow! : 0) + count} followers',
                   textAlign: TextAlign.start,
-                  style: TextStyle(
+                  style: const TextStyle(
                       overflow: TextOverflow.ellipsis,
                       fontWeight: FontWeight.w500,
                       fontSize: 13,
@@ -111,48 +158,65 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
               setState(() {
                 isFollow = !isFollow;
               });
-              FollowUser(context.read<UserInfo>().userInfo!.id.toString(),
-                  widget.video.userId!.id.toString(), isFollow);
+              followUser(context.read<UserInfo>().userInfo!.id.toString(),
+                  widget.video.userId!.id.toString(), !isFollow);
             } else {
-              // _showMyDialog();
-              Dialogs.bottomMaterialDialog(
-                color: Colors.white,
-                lottieBuilder: Lottie.asset(
-                  'assets/images/cong_example.json',
-                  fit: BoxFit.contain,
-                ),
-                msg: 'Congratulations, you won 500 points',
-                title: 'Congratulations',
-                context: context,
-                actions: [
-                  IconsButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    text: 'Claim',
-                    iconData: Icons.done,
-                    color: AppColors.dPrimaryDarkColor,
-                    textStyle: TextStyle(color: Colors.white),
-                    iconColor: Colors.white,
-                  ),
-                ],
-              );
+              _showMyDialog();
             }
           },
+          // onPressed: () {
+          //   if (context.read<UserInfo>().userInfo != null) {
+          //     setState(() {
+          //       isFollow = !isFollow;
+          //     });
+          //     followUser(context.read<UserInfo>().userInfo!.id.toString(),
+          //         widget.video.userId!.id.toString(), isFollow);
+          //   } else {
+          //     // _showMyDialog();
+          //     Dialogs.bottomMaterialDialog(
+          //       color: Colors.white,
+          //       lottieBuilder: Lottie.asset(
+          //         'assets/images/cong_example.json',
+          //         fit: BoxFit.contain,
+          //       ),
+          //       msg: 'Congratulations, you won 500 points',
+          //       title: 'Congratulations',
+          //       context: context,
+          //       actions: [
+          //         IconsButton(
+          //           onPressed: () {
+          //             Navigator.of(context).pop();
+          //           },
+          //           text: 'Claim',
+          //           iconData: Icons.done,
+          //           color: AppColors.dPrimaryDarkColor,
+          //           textStyle: TextStyle(color: Colors.white),
+          //           iconColor: Colors.white,
+          //         ),
+          //       ],
+          //     );
+          //   }
+          // },
           icon: Icon(
             isFollow
-                ? Icons.notifications_outlined
-                : Icons.notifications_active,
-            size: 20,
+                ? Icons.notifications_active
+                : Icons.notifications_outlined,
+            size: 18,
           ),
-          label: Text(isFollow ? "Follow" : "Following"),
+          label: Text(isFollow
+              ? isLoadFollow
+                  ? 'Following...'
+                  : 'Unfollow'
+              : isLoadFollow
+                  ? 'Unfollowing...'
+                  : 'Follow'),
           style: ElevatedButton.styleFrom(
               primary: AppColors.dWhileColor,
               onPrimary: AppColors.dGreyLightColor,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8)),
               textStyle:
-                  const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                  const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
         )
       ],
     );

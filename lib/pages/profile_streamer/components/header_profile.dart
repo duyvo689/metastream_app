@@ -42,6 +42,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
       isLoadFollow = false;
       isFollow ? count-- : count++;
     });
+    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -95,7 +96,6 @@ class _HeaderProflieState extends State<HeaderProflie> {
         setState(() {
           isFollow = true;
         });
-
         break;
       }
     }
@@ -173,7 +173,9 @@ class _HeaderProflieState extends State<HeaderProflie> {
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
-                            primary: AppColors.dPrimaryColor,
+                            primary: userInfoMe != null
+                                ? AppColors.dPrimaryColor
+                                : Colors.grey[400],
                             onPrimary: AppColors.dBlackColor,
                             textStyle: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.w600)),

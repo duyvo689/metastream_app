@@ -75,9 +75,9 @@ class _BodyState extends State<Body> {
               //     viewport: 1, width: 30, height: 3, style: 'start'),
               // const SizedBox(height: 20),
               // const VideoLiveStreaming(),
-              // const SizedBox(height: 20),
-              // const PopularVideos(),
-              // const SizedBox(height: 20),
+              const SizedBox(height: 20),
+              const PopularVideos(),
+              const SizedBox(height: 20),
               const PopularGames(),
               const SizedBox(
                 height: 30,
@@ -201,6 +201,7 @@ class _CircleUserLiveCard extends StatelessWidget {
               child: CircleAvatar(
                 radius: isLive ? 32 : 34,
                 backgroundImage: NetworkImage(data != null &&
+                        data.userId != null &&
                         data.userId!.avatar != null
                     ? isUserLive
                         ? data.userId!.avatar!
