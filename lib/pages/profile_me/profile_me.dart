@@ -86,42 +86,22 @@ class _ProfileMeState extends State<ProfileMe> {
                                     color: AppColors.dGreyLightColor,
                                     overflow: TextOverflow.ellipsis,
                                     height: 1.2),
-                                maxLines: 3,
+                                maxLines: 2,
+                              ),
+                              SizedBox(height: 6),
+                              Text(
+                                '${context.read<UserInfo>().userInfo!.follow} follow',
+                                style: const TextStyle(
+                                    color: AppColors.dPrimaryColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600),
                               )
                             ],
                           ),
                         )
                       ],
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        _StatesButton(
-                          icon: Icon(
-                            Icons.visibility,
-                            size: 28,
-                          ),
-                          label: '0 views',
-                        ),
-                        SizedBox(width: 20),
-                        _StatesButton(
-                          icon: Icon(
-                            Icons.favorite_border,
-                            size: 28,
-                          ),
-                          label: '1203k likes',
-                        ),
-                        SizedBox(width: 20),
-                        _StatesButton(
-                          icon: Icon(
-                            Icons.add_circle_outline,
-                            size: 28,
-                          ),
-                          label: '13k follow',
-                        ),
-                      ],
-                    ),
-                    Categories(),
+                    const Categories(),
                   ],
                 );
               })),
@@ -141,13 +121,13 @@ class _StatesButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
+        Text("${label}"),
         IconButton(
           onPressed: (() {}),
           icon: icon,
         ),
-        Text("${label}")
       ],
     );
   }

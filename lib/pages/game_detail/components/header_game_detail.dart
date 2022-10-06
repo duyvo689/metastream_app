@@ -79,7 +79,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
       msg: 'You need to log in to your account before you can do this!',
       msgAlign: TextAlign.center,
       msgStyle: const TextStyle(color: Colors.black),
-      title: 'Notifycation',
+      title: 'notification',
       titleStyle: TextStyle(
           color: Colors.grey[500], fontWeight: FontWeight.bold, fontSize: 18),
       // lottieBuilder: Lottie.asset(
