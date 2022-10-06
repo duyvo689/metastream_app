@@ -2,6 +2,7 @@ import 'package:app_metastream/funtions/live_streaming_provider.dart';
 import 'package:app_metastream/models/live_streaming_model.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
+import 'package:material_dialogs/material_dialogs.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'section_title.dart';
@@ -135,15 +136,16 @@ class _VideoCard extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment(0, 0),
-                height: 26,
-                width: 40,
+                height: 40,
+                width: 45,
                 decoration: const BoxDecoration(
-                    color: Colors.red,
+                    color: Colors.transparent,
                     borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                child: const Icon(
-                  Icons.sensors,
-                  size: 26,
-                ),
+                // child: const Icon(
+                //   Icons.sensors,
+                //   size: 26,
+                // ),
+                child: Lottie.asset('assets/images/85430-wave.json'),
               )
             ],
           ),
