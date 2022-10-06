@@ -106,7 +106,8 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                     MaterialPageRoute(
                         builder: (context) => const WalletPhanTom()))
                 .then((_) => Navigator.of(context).pop())
-                .then((_) => fetchGameById(widget.gameId));
+                .then((_) => fetchGameById(widget.gameId))
+                .then((_) => setState(() {}));
           },
           text: 'Login',
           iconData: Icons.done,

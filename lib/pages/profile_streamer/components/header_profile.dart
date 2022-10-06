@@ -81,6 +81,10 @@ class _HeaderProflieState extends State<HeaderProflie> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => const WalletPhanTom()))
+                .then((_) => Navigator.of(context).pop())
+                .then((_) => userInfoMe = context.read<UserInfo>().userInfo)
+                .then((_) => checkFollower(
+                    userInfoMe!.follower!.toList(), widget.user.id.toString()))
                 .then((_) => setState(() {}));
           },
           text: 'Login',

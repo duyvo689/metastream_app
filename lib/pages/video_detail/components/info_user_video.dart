@@ -111,7 +111,8 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
                 .then((_) => Navigator.of(context).pop())
                 .then((_) => userInfoMe = context.read<UserInfo>().userInfo)
                 .then((_) => checkFollower(userInfoMe!.follower!.toList(),
-                    widget.video.userId!.id.toString()));
+                    widget.video.userId!.id.toString()))
+                .then((_) => setState(() {}));
           },
           text: 'Login',
           iconData: Icons.done,
