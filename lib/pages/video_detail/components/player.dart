@@ -33,6 +33,7 @@ Map<String, dynamic> mockData = {
 };
 
 class DefaultPlayer2 extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   DefaultPlayer2({Key? key}) : super(key: key);
 
   @override

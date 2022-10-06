@@ -21,6 +21,7 @@ class VideoList extends StatelessWidget {
               // ignore: curly_braces_in_flow_control_structures
               return const Loading(scale: 6);
             List<Video>? videos = snapshot.data;
+            // ignore: prefer_is_empty
             return videos!.length > 0
                 ? ListView.builder(
                     shrinkWrap: true,

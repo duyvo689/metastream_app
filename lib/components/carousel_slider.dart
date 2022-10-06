@@ -33,6 +33,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
   @override
   void initState() {
     super.initState();
+    // ignore: prefer_is_empty
     if (banners.length <= 0) {
       FetchBanner();
     }
@@ -40,8 +41,8 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
 
   // ignore: non_constant_identifier_names
   void FetchBanner() async {
-    print(banners.length);
     List<Carousel>? carousels = await ApiBannerServices().fetchBanner();
+    // ignore: prefer_is_empty
     if (carousels.length > 0) {
       List<Carousel> bannersItem = [];
       for (int i = 0; i < carousels.length; i++) {

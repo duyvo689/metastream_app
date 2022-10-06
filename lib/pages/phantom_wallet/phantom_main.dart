@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:app_metastream/funtions/funtions.dart';
-import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/pages/profile_me/form_info_user.dart';
 import 'package:app_metastream/pages/profile_me/profile_me.dart';
 import 'package:app_metastream/values/values.dart';
@@ -197,7 +196,7 @@ class _MainAppState extends State<WalletPhanTom> {
                           Icons.account_balance_wallet,
                           size: 20,
                         ),
-                        label: Text('Connect Phantom'),
+                        label: const Text('Connect Phantom'),
                         style: ElevatedButton.styleFrom(
                             primary: AppColors.dWhileColor,
                             onPrimary: AppColors.dGreyLightColor,
@@ -210,37 +209,6 @@ class _MainAppState extends State<WalletPhanTom> {
                   ),
                 )
               : ProfileMe(walletAddr: walletAddrFull);
-          // EGcd1rJc7sXYMfxd2NKuTiVGiE8ko4t1GhnZNheu1cxk
-          // : ProfileMe(walletAddr: walletAddrFull);
-
-          // : Padding(
-          //     padding: const EdgeInsets.symmetric(horizontal: 20),
-          //     child: Column(
-          //       children: [
-          //         const SizedBox(height: 10),
-          //         Row(
-          //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //           children: [
-          //             Text(
-          //               walletAddrFull,
-          //               textAlign: TextAlign.start,
-          //               style: const TextStyle(
-          //                 fontWeight: FontWeight.w500,
-          //                 fontSize: 20,
-          //                 overflow: TextOverflow.ellipsis,
-          //                 color: AppColors.dWhileColor,
-          //               ),
-          //             ),
-          //             const Icon(
-          //               Icons.delete_outline,
-          //               size: 28,
-          //               color: AppColors.dGreyLightColor,
-          //             ),
-          //           ],
-          //         ),
-          //       ],
-          //     ),
-          //   );
         },
       ),
     );

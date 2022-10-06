@@ -114,7 +114,7 @@ class _VideoCard extends StatelessWidget {
                 aspectRatio: 2.01,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 24, 24, 24),
+                    color: const Color.fromARGB(255, 24, 24, 24),
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(4),
                       topRight: Radius.circular(4),
@@ -134,19 +134,15 @@ class _VideoCard extends StatelessWidget {
                 ),
               ),
               Container(
-                alignment: Alignment.center,
+                alignment: Alignment(0, 0),
                 height: 26,
-                width: 50,
+                width: 40,
                 decoration: const BoxDecoration(
                     color: Colors.red,
                     borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5),
-                  child: Text(
-                    'Live...',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
-                  ),
+                child: const Icon(
+                  Icons.sensors,
+                  size: 26,
                 ),
               )
             ],

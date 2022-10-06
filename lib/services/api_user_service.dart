@@ -63,17 +63,32 @@ class ApiUserServices {
     });
   }
 
+  // ignore: non_constant_identifier_names
   Future ApiFollowUser(String id, String userId, bool isFollow) async {
-    final response = await http.put(
-      Uri.parse('${URL().API_URL}/api/v1/user/follow/${id}'), //of minh
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode(<String, dynamic>{
-        'idUser': userId, //of nguoi duoc fl
-        'isFollow': isFollow,
-      }),
-    );
+    return await http
+        .put(Uri.parse('${URL().API_URL}/api/v1/user/follow/${id}'), //of minh
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode(<String, dynamic>{
+              'idUser': userId, //of nguoi duoc fl
+              'isFollow': isFollow,
+            }))
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      // ignore: unnecessary_null_comparison
+      if (statusCode != 200 || jsonBody == null) {
+        // ignore: unnecessary_new
+        throw new Exception("Error load api");
+      }
+
+      final JsonDecoder _decoder = new JsonDecoder();
+      final userContainer = _decoder.convert(jsonBody);
+      final user = userContainer['data'];
+      return User.fromJson(user);
+    });
   }
 
   Future ApiCreateUser(String addressWallet) async {

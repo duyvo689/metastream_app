@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
@@ -57,19 +59,20 @@ class CustomDialog {
 
   static _buildTitle(context, String heading) {
     return Padding(
-      padding: EdgeInsets.all(8),
-      child: Text(heading, style: TextStyle(fontSize: 18)),
+      padding: const EdgeInsets.all(8),
+      child: Text(heading, style: const TextStyle(fontSize: 18)),
     );
   }
 
   static _buildSubTitle(context, String subHeading) {
+    // ignore: unnecessary_null_comparison
     if (subHeading != null && subHeading.isNotEmpty) {
       return Text(
         subHeading,
         style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
       );
     }
-    return SizedBox.shrink();
+    return const SizedBox.shrink();
   }
 
   static List<Widget> _buildActions(
@@ -86,6 +89,7 @@ class CustomDialog {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onPressed: () {
+            // ignore: unnecessary_null_comparison
             if (onPressedNegative != null) {
               onPressedNegative();
             } else {

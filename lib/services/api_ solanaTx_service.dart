@@ -11,7 +11,9 @@ class ApiSolanaTxServices {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
+      // ignore: unnecessary_null_comparison
       if (statusCode != 200 || jsonBody == null) {
+        // ignore: unnecessary_new
         throw new Exception("Error load api");
       }
 
@@ -19,6 +21,7 @@ class ApiSolanaTxServices {
       final solanaTxListContainer = _decoder.convert(jsonBody);
       List solanaTx = solanaTxListContainer['data'];
       return solanaTx
+          // ignore: unnecessary_new
           .map((contactRaw) => new SolanaTx.fromJson(contactRaw))
           .toList();
     });

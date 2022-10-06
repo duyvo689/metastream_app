@@ -133,7 +133,7 @@ class _Home extends State<ShortVideo> with SingleTickerProviderStateMixin {
                 ),
               ),
               Padding(
-                  padding: EdgeInsets.only(bottom: 30, right: 10),
+                  padding: const EdgeInsets.only(bottom: 30, right: 10),
                   child: Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
@@ -143,7 +143,7 @@ class _Home extends State<ShortVideo> with SingleTickerProviderStateMixin {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           Container(
-                            margin: EdgeInsets.only(bottom: 23),
+                            margin: const EdgeInsets.only(bottom: 23),
                             width: 40,
                             height: 50,
                             child: Stack(
@@ -163,6 +163,7 @@ class _Home extends State<ShortVideo> with SingleTickerProviderStateMixin {
                                   child: CircleAvatar(
                                     radius: 10,
                                     backgroundColor:
+                                        // ignore: use_full_hex_values_for_flutter_colors
                                         const Color(0xfd2c58).withOpacity(1),
                                     child: const Center(
                                         child: Icon(Icons.add,

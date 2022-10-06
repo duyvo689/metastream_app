@@ -28,6 +28,7 @@ class _PopularGamesState extends State<PopularGames> {
       child: Consumer<GameListProvider>(
           builder: ((context, gamelistConsumer, child) {
         return gamelistConsumer.gameList != null &&
+                // ignore: prefer_is_empty
                 gamelistConsumer.gameList!.length > 0
             ? Column(children: [
                 const SectionTitle(

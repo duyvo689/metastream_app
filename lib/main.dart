@@ -8,12 +8,13 @@ void main() => runApp(
       MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => UserInfo()),
-          ChangeNotifierProvider(create: (_) => GameListProvider()),
+          ChangeNotifierProvider(create: (_) => UserProvider()),
           ChangeNotifierProvider(create: (_) => UserList()),
+          ChangeNotifierProvider(create: (_) => GameListProvider()),
           ChangeNotifierProvider(create: (_) => LiveStreamingProvider()),
         ],
         child:
-            DevicePreview(enabled: true, builder: (context) => const MyApp()),
+            DevicePreview(enabled: false, builder: (context) => const MyApp()),
       ),
     );
 

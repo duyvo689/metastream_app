@@ -45,7 +45,6 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    print("object");
     SizeConfig().init(context);
     return RefreshIndicator(
         color: Colors.white,
@@ -72,13 +71,13 @@ class _BodyState extends State<Body> {
                   ? const _ListStreamer()
                   : const _ListUser(),
               const SizedBox(height: 20),
-              const CarouselWithIndicator(
-                  viewport: 1, width: 30, height: 3, style: 'start'),
-              const SizedBox(height: 20),
-              const VideoLiveStreaming(),
-              const SizedBox(height: 20),
-              const PopularVideos(),
-              const SizedBox(height: 20),
+              // const CarouselWithIndicator(
+              //     viewport: 1, width: 30, height: 3, style: 'start'),
+              // const SizedBox(height: 20),
+              // const VideoLiveStreaming(),
+              // const SizedBox(height: 20),
+              // const PopularVideos(),
+              // const SizedBox(height: 20),
               const PopularGames(),
               const SizedBox(
                 height: 30,

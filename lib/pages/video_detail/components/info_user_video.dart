@@ -5,6 +5,8 @@ import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:material_dialogs/material_dialogs.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 
 class InfoUserVideo extends StatefulWidget {
   const InfoUserVideo({
@@ -24,46 +26,46 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
     await ApiUserServices().ApiFollowUser(id, userId, isFollow);
   }
 
-  Future<void> _showMyDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Notifications',
-              style: TextStyle(color: AppColors.dPrimaryColor)),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text('You need a wallet connection to login.'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Cancel',
-                  style: TextStyle(
-                      color: AppColors.dGreyLightColor, fontSize: 16)),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('Agree',
-                  style:
-                      TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const WalletPhanTom()));
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // Future<void> _showMyDialog() async {
+  //   return showDialog<void>(
+  //     context: context,
+  //     barrierDismissible: false, // user must tap button!
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: const Text('Notifications',
+  //             style: TextStyle(color: AppColors.dPrimaryColor)),
+  //         content: SingleChildScrollView(
+  //           child: ListBody(
+  //             children: const <Widget>[
+  //               Text('You need a wallet connection to login.'),
+  //             ],
+  //           ),
+  //         ),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             child: const Text('Cancel',
+  //                 style: TextStyle(
+  //                     color: AppColors.dGreyLightColor, fontSize: 16)),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //           TextButton(
+  //             child: const Text('Agree',
+  //                 style:
+  //                     TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
+  //             onPressed: () {
+  //               Navigator.push(
+  //                   context,
+  //                   MaterialPageRoute(
+  //                       builder: (context) => const WalletPhanTom()));
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +114,29 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
               FollowUser(context.read<UserInfo>().userInfo!.id.toString(),
                   widget.video.userId!.id.toString(), isFollow);
             } else {
-              _showMyDialog();
+              // _showMyDialog();
+              Dialogs.bottomMaterialDialog(
+                color: Colors.white,
+                lottieBuilder: Lottie.asset(
+                  'assets/images/cong_example.json',
+                  fit: BoxFit.contain,
+                ),
+                msg: 'Congratulations, you won 500 points',
+                title: 'Congratulations',
+                context: context,
+                actions: [
+                  IconsButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    text: 'Claim',
+                    iconData: Icons.done,
+                    color: AppColors.dPrimaryDarkColor,
+                    textStyle: TextStyle(color: Colors.white),
+                    iconColor: Colors.white,
+                  ),
+                ],
+              );
             }
           },
           icon: Icon(

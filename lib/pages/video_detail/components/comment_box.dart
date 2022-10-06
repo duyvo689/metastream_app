@@ -28,13 +28,13 @@ class _CommentContainerState extends State<CommentContainer> {
     // },
   ];
 
-  void SendMessage() {
-    if (context.read<UserInfo>().userInfo == null) {
-      _showMyDialog();
-    } else {
-      sendButtonMethod();
-    }
-  }
+  // void SendMessage() {
+  //   if (context.read<UserInfo>().userInfo == null) {
+  //     _showMyDialog();
+  //   } else {
+  //     sendButtonMethod();
+  //   }
+  // }
 
   void sendButtonMethod() {
     if (formKey.currentState!.validate()) {
@@ -55,46 +55,46 @@ class _CommentContainerState extends State<CommentContainer> {
     }
   }
 
-  Future<void> _showMyDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Notifications',
-              style: TextStyle(color: AppColors.dPrimaryColor)),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text('You need a wallet connection to login.'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Cancel',
-                  style: TextStyle(
-                      color: AppColors.dGreyLightColor, fontSize: 16)),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('Agree',
-                  style:
-                      TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const WalletPhanTom()));
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // Future<void> _showMyDialog() async {
+  //   return showDialog<void>(
+  //     context: context,
+  //     barrierDismissible: false, // user must tap button!
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: const Text('Notifications',
+  //             style: TextStyle(color: AppColors.dPrimaryColor)),
+  //         content: SingleChildScrollView(
+  //           child: ListBody(
+  //             children: const <Widget>[
+  //               Text('You need a wallet connection to login.'),
+  //             ],
+  //           ),
+  //         ),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             child: const Text('Cancel',
+  //                 style: TextStyle(
+  //                     color: AppColors.dGreyLightColor, fontSize: 16)),
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //           ),
+  //           TextButton(
+  //             child: const Text('Agree',
+  //                 style:
+  //                     TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
+  //             onPressed: () {
+  //               Navigator.push(
+  //                   context,
+  //                   MaterialPageRoute(
+  //                       builder: (context) => const WalletPhanTom()));
+  //             },
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   Widget commentChild(data) {
     return ListView(
@@ -188,23 +188,54 @@ class _CommentContainerState extends State<CommentContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return CommentBox(
-      userImage: context.read<UserInfo>().userInfo != null &&
-              context.read<UserInfo>().userInfo!.avatar != null
-          ? context.watch<UserInfo>().userInfo!.avatar
-          : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg',
-      child: commentChild(filedata),
-      labelText: 'Write a comment...',
-      withBorder: false,
-      errorText: 'Comment cannot be blank',
-      sendButtonMethod: () {},
-      formKey: formKey,
-      commentController: commentController,
-      backgroundColor: Colors.black,
-      textColor: Colors.white,
-      sendWidget: InkWell(
-          onTap: () => {SendMessage()},
-          child: const Icon(Icons.send_sharp, size: 30, color: Colors.white)),
-    );
+    return context.read<UserInfo>().userInfo != null
+        ? CommentBox(
+            userImage: context.read<UserInfo>().userInfo != null &&
+                    context.read<UserInfo>().userInfo!.avatar != null
+                ? context.watch<UserInfo>().userInfo!.avatar
+                : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg',
+            child: commentChild(filedata),
+            labelText: 'Write a comment...',
+            withBorder: false,
+            errorText: 'Comment cannot be blank',
+            sendButtonMethod: () {},
+            formKey: formKey,
+            commentController: commentController,
+            backgroundColor: Colors.black,
+            textColor: Colors.white,
+            sendWidget: InkWell(
+                onTap: () => {sendButtonMethod()},
+                child: const Icon(Icons.send_sharp,
+                    size: 30, color: Colors.white)),
+          )
+        : Column(
+            children: [
+              Expanded(child: commentChild(filedata)),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4)),
+                        primary: AppColors.dPrimaryDarkColor,
+                        onPrimary: AppColors.dWhileColor,
+                        shadowColor: AppColors.dGreyLightColor,
+                        textStyle: const TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w600)),
+                    onPressed: () {
+                      Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const WalletPhanTom()))
+                          .then((_) => setState(() {}));
+                    },
+                    child: const Text("Login in to comment"),
+                  ),
+                ),
+              ),
+            ],
+          );
   }
 }

@@ -13,6 +13,7 @@ class UserInfo extends ChangeNotifier {
     if (walletAddr != null) {
       user = await ApiUserServices()
           .fetchUserByWalletAddress(walletAddr.toString());
+      // ignore: prefer_conditional_assignment
       if (user == null) {
         user = await ApiUserServices().ApiCreateUser(walletAddr.toString());
       }
