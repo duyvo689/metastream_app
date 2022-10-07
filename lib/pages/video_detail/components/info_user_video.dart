@@ -82,7 +82,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
       msg: 'You need to log in to your account before you can do this!',
       msgAlign: TextAlign.center,
       msgStyle: const TextStyle(color: Colors.black),
-      title: 'notification',
+      title: 'Notification',
       titleStyle: TextStyle(
           color: Colors.grey[500], fontWeight: FontWeight.bold, fontSize: 18),
       // lottieBuilder: Lottie.asset(

@@ -10,3 +10,4 @@ export './game_detail/game_detail.dart';
 export './game/game_page.dart';
 export './profile_streamer/profile_streamer.dart';
 export 'video_detail/components/comment_box.dart';
+export 'collection_page/collection_page.dart';

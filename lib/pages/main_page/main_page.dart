@@ -75,8 +75,8 @@ class _MainPageState extends State<MainPage> {
         screens: [
           MyHomePage(),
           const GamePage(),
+          const NftPage(),
           const WalletPhanTom(),
-          // const CommentContainer()
         ],
         items: _navBarsItems(),
         navBarStyle: NavBarStyle.style6,
@@ -100,18 +100,18 @@ class _MainPageState extends State<MainPage> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
+        icon:
+            const Icon(CupertinoIcons.rectangle_fill_on_rectangle_angled_fill),
+        title: ("NFT"),
+        activeColorPrimary: mainColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.profile_circled),
         title: ("Profile"),
         activeColorPrimary: mainColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
-      // PersistentBottomNavBarItem(
-      //   icon:
-      //       const Icon(CupertinoIcons.rectangle_fill_on_rectangle_angled_fill),
-      //   title: ("Wallet"),
-      //   activeColorPrimary: mainColor,
-      //   inactiveColorPrimary: CupertinoColors.systemGrey,
-      // ),
     ];
   }
 }

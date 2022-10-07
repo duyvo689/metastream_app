@@ -11,6 +11,7 @@ void main() => runApp(
           ChangeNotifierProvider(create: (_) => UserProvider()),
           ChangeNotifierProvider(create: (_) => UserList()),
           ChangeNotifierProvider(create: (_) => GameListProvider()),
+          ChangeNotifierProvider(create: (_) => CollectionProvider()),
           ChangeNotifierProvider(create: (_) => LiveStreamingProvider()),
         ],
         child:

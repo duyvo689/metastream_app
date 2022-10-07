@@ -8,3 +8,5 @@ export 'video_model.dart';
 export 'etherTx_model.dart';
 export 'solanaTx_model.dart';
 export 'info_user_form.dart';
+export 'collection_model.dart';
+export 'magicedentnft_model.dart';

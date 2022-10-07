@@ -136,16 +136,16 @@ class _VideoCard extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment(0, 0),
-                height: 40,
-                width: 45,
+                height: 26,
+                width: 40,
                 decoration: const BoxDecoration(
-                    color: Colors.transparent,
+                    color: Colors.red,
                     borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                // child: const Icon(
-                //   Icons.sensors,
-                //   size: 26,
-                // ),
-                child: Lottie.asset('assets/images/85430-wave.json'),
+                child: const Icon(
+                  Icons.sensors,
+                  size: 26,
+                ),
+                // child: Lottie.asset('assets/images/85430-wave.json'),
               )
             ],
           ),
