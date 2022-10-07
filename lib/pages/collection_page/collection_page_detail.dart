@@ -2,6 +2,7 @@
 
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
@@ -132,7 +133,16 @@ class _CollectionDetailState extends State<CollectionDetail> {
                             itemBuilder: (BuildContext context, int index) {
                               return NFTCardMagicEden(
                                 nft: magicEdenNftList![index],
-                                press: () {},
+                                press: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              NFTMagicEdenDetail(
+                                                  nftMagicEden:
+                                                      magicEdenNftList![
+                                                          index])));
+                                },
                               );
                             }),
                       )

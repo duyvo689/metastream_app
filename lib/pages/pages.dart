@@ -11,3 +11,4 @@ export './game/game_page.dart';
 export './profile_streamer/profile_streamer.dart';
 export 'video_detail/components/comment_box.dart';
 export 'collection_page/collection_page.dart';
+export 'nft_magiceden_detail/nft_magiceden_detail.dart';
