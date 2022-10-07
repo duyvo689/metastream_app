@@ -1,8 +1,11 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/live_streaming_model.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/home/components/popular_video.dart';
+import 'package:app_metastream/pages/home/components/section_title.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +27,7 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     fetchUserLiveStreaming();
+    fetchCollections();
     fetchUserList();
     fetchGameList();
     super.initState();
@@ -31,6 +35,10 @@ class _BodyState extends State<Body> {
 
   Future fetchGameList() async {
     await context.read<GameListProvider>().GetGameListProvider();
+  }
+
+  Future fetchCollections() async {
+    await context.read<CollectionProvider>().GetCollectionsProvider();
   }
 
   Future fetchUserList() async {
@@ -52,6 +60,7 @@ class _BodyState extends State<Body> {
         onRefresh: () async {
           await fetchUserLiveStreaming();
           await fetchGameList();
+          await fetchCollections();
         },
         child: SingleChildScrollView(
           child: ListView(
@@ -76,6 +85,30 @@ class _BodyState extends State<Body> {
               const SizedBox(height: 20),
               const VideoLiveStreaming(),
               const SizedBox(height: 20),
+              Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: SectionTitle(
+                      title_1: "Solana",
+                      title_2: "Collections",
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Container(
+                      height: 200,
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: ListCollectionSolana(
+                            direction: Axis.horizontal, count: 1),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
               const PopularVideos(),
               const SizedBox(height: 20),
               const PopularGames(),

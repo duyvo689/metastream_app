@@ -19,7 +19,7 @@ class PopularVideos extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: SectionTitle(
             title_1: "Videos",
@@ -44,7 +44,8 @@ class PopularVideos extends StatelessWidget {
                   child: const VideoCardSkelton(),
                 ),
               );
-            List<Video>? videos = snapshot.data!;
+            List<Video>? videos =
+                snapshot.data!.reversed.toList().sublist(0, 6);
             return Padding(
               padding:
                   EdgeInsets.symmetric(horizontal: size.width < 600 ? 0 : 20),

@@ -68,7 +68,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
       child: Column(children: [
         banners.length <= 0
             ? SquareSkeleton(
-                height: size.width < 600 ? 4 : 3,
+                height: size.width < 600 ? 260 : 500,
               )
             : Container(
                 child: CarouselSlider(

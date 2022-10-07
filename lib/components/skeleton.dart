@@ -1,17 +1,19 @@
+// ignore_for_file: prefer_if_null_operators
+
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
 class SquareSkeleton extends StatelessWidget {
   const SquareSkeleton({Key? key, this.width, required this.height})
       : super(key: key);
-  final int height;
+  final double height;
   final double? width;
   @override
   Widget build(BuildContext context) {
     return SkeletonAvatar(
       style: SkeletonAvatarStyle(
-        width: width != null ? double.infinity : width,
-        height: MediaQuery.of(context).size.height / height,
+        width: width != null ? width : double.infinity,
+        height: height,
       ),
     );
   }
@@ -64,7 +66,7 @@ class VideoCardSkelton extends StatelessWidget {
     return SkeletonItem(
         child: Column(
       children: [
-        const SquareSkeleton(height: 4),
+        const SquareSkeleton(height: 230),
         const SizedBox(height: 8),
         Row(
           children: const [
@@ -86,12 +88,12 @@ class CardSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(right: 15),
+      margin: const EdgeInsets.only(right: 10),
       width: 180,
       height: 260,
       child: const SkeletonItem(
         child: SquareSkeleton(
-          height: 2,
+          height: 230,
           width: 220,
         ),
       ),
@@ -120,6 +122,66 @@ class ListGameSkeleton extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return const CardSkeleton();
       },
+    );
+  }
+}
+
+class ListCollectionSkeleton extends StatelessWidget {
+  const ListCollectionSkeleton({
+    Key? key,
+    required this.columnCount,
+    required this.direction,
+  }) : super(key: key);
+  final int columnCount;
+  final Axis direction;
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      scrollDirection: direction,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 0,
+        crossAxisCount: columnCount,
+        childAspectRatio: 1,
+      ),
+      itemCount: 6,
+      itemBuilder: (BuildContext context, int index) {
+        return const CardSkeleton();
+      },
+    );
+  }
+}
+
+class ListStatCollectionSkeleton extends StatelessWidget {
+  const ListStatCollectionSkeleton({
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: GridView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 5,
+          crossAxisCount: 2,
+          childAspectRatio: 3.5,
+        ),
+        itemCount: 4,
+        itemBuilder: (BuildContext context, int index) {
+          return const SkeletonItem(
+            child: SquareSkeleton(
+              height: 60,
+              width: 150,
+            ),
+          );
+        },
+      ),
     );
   }
 }

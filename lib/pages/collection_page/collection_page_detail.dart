@@ -108,7 +108,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
                           )
                         ],
                       )
-                    : const LoadingCenter(),
+                    : const ListStatCollectionSkeleton(),
                 const SizedBox(height: 10),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
@@ -136,7 +136,8 @@ class _CollectionDetailState extends State<CollectionDetail> {
                               );
                             }),
                       )
-                    : const LoadingCenter(),
+                    : const ListCollectionSkeleton(
+                        columnCount: 2, direction: Axis.vertical),
               ],
             ),
           ),

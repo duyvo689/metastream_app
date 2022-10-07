@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
@@ -58,35 +60,74 @@ class _NftPageState extends State<NftPage> {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Consumer<CollectionProvider>(
-                builder: (context, collectionConsumer, child) {
-              return collectionConsumer.collectionList != null
-                  ? GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                        crossAxisCount: 2,
-                      ),
-                      itemCount: collectionConsumer.collectionList!.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return _NftCard(
-                            collection:
-                                collectionConsumer.collectionList![index],
-                            press: () => pushNewScreen(
-                                  context,
-                                  screen: CollectionDetail(
-                                      collection: collectionConsumer
-                                          .collectionList![index]),
-                                  withNavBar: false,
-                                  pageTransitionAnimation:
-                                      PageTransitionAnimation.cupertino,
-                                ));
-                      })
-                  : const LoadingCenter();
-            }),
+            child: RefreshIndicator(
+              color: Colors.white,
+              backgroundColor: AppColors.dPrimaryDarkColor,
+              onRefresh: () async {
+                await fetchCollections();
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  children: const [
+                    SizedBox(height: 35),
+                    SectionTitleCenter(title: 'Solana Collections'),
+                    SizedBox(height: 30),
+                    ListCollectionSolana(direction: Axis.vertical, count: 2),
+                    SizedBox(height: 20)
+                  ],
+                ),
+              ),
+            ),
           ),
         ));
+  }
+}
+
+class ListCollectionSolana extends StatelessWidget {
+  const ListCollectionSolana({
+    Key? key,
+    required this.count,
+    required this.direction,
+  }) : super(key: key);
+  final int count;
+  final Axis direction;
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<CollectionProvider>(
+        builder: (context, collectionConsumer, child) {
+      return collectionConsumer.collectionList != null
+          ? GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              scrollDirection: direction,
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisSpacing: 18,
+                mainAxisSpacing: 18,
+                crossAxisCount: count,
+                childAspectRatio: 0.95,
+              ),
+              itemCount: collectionConsumer.collectionList!.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _NftCard(
+                    collection: collectionConsumer.collectionList![index],
+                    press: () => pushNewScreen(
+                          context,
+                          screen: CollectionDetail(
+                              collection:
+                                  collectionConsumer.collectionList![index]),
+                          withNavBar: false,
+                          pageTransitionAnimation:
+                              PageTransitionAnimation.cupertino,
+                        ));
+              })
+          : count == 1
+              ? Container(
+                  height: 200,
+                  child: ListCollectionSkeleton(
+                      columnCount: count, direction: direction))
+              : ListCollectionSkeleton(
+                  columnCount: count, direction: direction);
+    });
   }
 }
 

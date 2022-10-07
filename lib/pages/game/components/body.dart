@@ -47,7 +47,7 @@ class _BodyState extends State<Body> {
                   : const CarouselWithIndicator(
                       viewport: 1, width: 50, height: 4, style: 'center'),
               const SizedBox(height: 20),
-              const _SectionTitle(
+              const SectionTitleCenter(
                 title: "Trending Games",
               ),
               const SizedBox(height: 20),
@@ -57,27 +57,6 @@ class _BodyState extends State<Body> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _SectionTitle extends StatelessWidget {
-  const _SectionTitle({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          title,
-          style: PrimaryFont.medium(26).copyWith(color: AppColors.dWhileColor),
-        ),
-      ],
     );
   }
 }

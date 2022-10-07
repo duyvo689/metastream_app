@@ -8,3 +8,4 @@ export 'video_cart_small.dart';
 export 'loading.dart';
 export 'my_text_form_field.dart';
 export 'dynamic_snacbar.dart';
+export 'section_title.dart';
