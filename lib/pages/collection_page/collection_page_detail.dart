@@ -19,17 +19,27 @@ class CollectionDetail extends StatefulWidget {
 
 class _CollectionDetailState extends State<CollectionDetail> {
   List<MagicEdenNft>? magicEdenNftList;
+  StatsMagicEden? statsMagicEden;
   @override
   void initState() {
-    fetchMagicEdenNfts(widget.collection.symbol.toString());
+    fetchStatMagicEdenNfts(widget.collection.symbol.toString());
+    fetchNftMagicEdenNfts(widget.collection.symbol.toString());
     super.initState();
   }
 
-  Future fetchMagicEdenNfts(String symbol) async {
+  Future fetchNftMagicEdenNfts(String symbol) async {
     List<MagicEdenNft> response =
-        await ApiCollectionServices().fetchMagicEdenBySymbol(symbol);
+        await ApiCollectionServices().fetchNftMagicEdenBySymbol(symbol);
     setState(() {
       magicEdenNftList = response;
+    });
+  }
+
+  Future fetchStatMagicEdenNfts(String symbol) async {
+    StatsMagicEden response =
+        await ApiCollectionServices().fetchStatsMagicEdenBySymbol(symbol);
+    setState(() {
+      statsMagicEden = response;
     });
   }
 
@@ -49,19 +59,61 @@ class _CollectionDetailState extends State<CollectionDetail> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
-                  backgroundImage:
-                      NetworkImage(widget.collection.image.toString()),
-                  radius: 60,
+                  backgroundColor: Colors.white,
+                  radius: 70,
+                  child: CircleAvatar(
+                    backgroundImage:
+                        NetworkImage(widget.collection.image.toString()),
+                    radius: 67,
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Text(
                   widget.collection.name.toString(),
                   style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w600),
+                      fontSize: 22, fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
-                const _CardStats(),
+                statsMagicEden != null
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: [
+                              _CardStats(
+                                  name: 'floorPrice',
+                                  value: statsMagicEden!.magic!.floorPrice
+                                      .toString()),
+                              const SizedBox(height: 5),
+                              _CardStats(
+                                  name: 'avgPrice24hr',
+                                  value: statsMagicEden!.magic!.avgPrice24Hr
+                                      .toString()),
+                            ],
+                          ),
+                          const SizedBox(width: 10),
+                          Column(
+                            children: [
+                              _CardStats(
+                                  name: 'listedCount',
+                                  value: statsMagicEden!.magic!.listedCount
+                                      .toString()),
+                              const SizedBox(height: 5),
+                              _CardStats(
+                                  name: 'volumeAll',
+                                  value: statsMagicEden!.magic!.volumeAll
+                                      .toString()),
+                            ],
+                          )
+                        ],
+                      )
+                    : const LoadingCenter(),
+                const SizedBox(height: 10),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Divider(color: Colors.grey, height: 4),
+                ),
                 const SizedBox(height: 20),
                 magicEdenNftList != null
                     ? Container(
@@ -97,40 +149,43 @@ class _CollectionDetailState extends State<CollectionDetail> {
 class _CardStats extends StatelessWidget {
   const _CardStats({
     Key? key,
+    required this.name,
+    required this.value,
   }) : super(key: key);
-
+  final String name, value;
   @override
   Widget build(BuildContext context) {
     return Card(
       color: Colors.blueGrey[600],
       child: Container(
         alignment: Alignment.center,
-        width: 140,
+        width: 160,
         height: 60,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const Text(
-            'Duy vo',
-            style: TextStyle(
+          Text(
+            name,
+            style: const TextStyle(
                 color: AppColors.dGreyLightColor,
                 fontWeight: FontWeight.w500,
                 fontSize: 16),
           ),
+          const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                '1.2',
-                style: TextStyle(
+              Text(
+                '${value.substring(0, 2)}.${value.substring(2, 3)}${name == 'volumeAll' ? 'T' : 'G'}',
+                style: const TextStyle(
                     color: AppColors.dWhileColor,
                     fontWeight: FontWeight.w600,
-                    fontSize: 20),
+                    fontSize: 17),
               ),
-              const SizedBox(height: 5),
+              const SizedBox(width: 5),
               SvgPicture.asset(
                 'assets/images/solana-sol-icon.svg',
                 semanticsLabel: 'sol',
-                width: 20,
-                height: 20,
+                width: 18,
+                height: 18,
                 fit: BoxFit.cover,
               ),
             ],

@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';

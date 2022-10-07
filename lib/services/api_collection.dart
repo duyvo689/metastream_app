@@ -26,7 +26,7 @@ class ApiCollectionServices {
     });
   }
 
-  Future<List<MagicEdenNft>> fetchMagicEdenBySymbol(String symbol) {
+  Future<List<MagicEdenNft>> fetchNftMagicEdenBySymbol(String symbol) {
     return http
         .get(Uri.parse(
             '${URL().API_URL}/api/v1/magicEden/collections/${symbol}/listings'))
@@ -44,6 +44,26 @@ class ApiCollectionServices {
       return magicEdenNft
           .map((contactRaw) => new MagicEdenNft.fromJson(contactRaw))
           .toList();
+    });
+  }
+
+  Future<StatsMagicEden> fetchStatsMagicEdenBySymbol(String symbol) {
+    return http
+        .get(Uri.parse(
+            '${URL().API_URL}/api/v1/magicEden/collections/${symbol}/stats'))
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200 || jsonBody == null) {
+        throw new Exception("Error load api");
+      }
+
+      final JsonDecoder _decoder = new JsonDecoder();
+      final statsContainer = _decoder.convert(jsonBody);
+      final stats = statsContainer['data'];
+
+      return StatsMagicEden.fromJson(stats);
     });
   }
 }
