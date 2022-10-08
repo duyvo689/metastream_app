@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_is_empty, curly_braces_in_flow_control_structures
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
@@ -22,13 +24,12 @@ class VideoList extends StatelessWidget {
                     userInfoConsumer.userInfo!.id.toString()),
                 builder: (context, snapshot) {
                   if ((snapshot.hasError) || (!snapshot.hasData))
-                    // ignore: curly_braces_in_flow_control_structures
                     return const Loading(scale: 6);
                   List<Video>? videos = snapshot.data;
                   return videos!.length > 0
                       ? ListView.builder(
                           shrinkWrap: true,
-                          // physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           scrollDirection: Axis.vertical,
                           padding: const EdgeInsets.all(8),
                           itemCount: videos.length,

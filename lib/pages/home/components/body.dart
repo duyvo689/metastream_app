@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace
+// ignore_for_file: sized_box_for_whitespace, prefer_is_empty
 
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';

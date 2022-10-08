@@ -39,19 +39,17 @@ class ParagraphSkeleton extends StatelessWidget {
   final int line;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SkeletonParagraph(
-        style: SkeletonParagraphStyle(
-            lines: line,
-            spacing: 10,
-            lineStyle: SkeletonLineStyle(
-              randomLength: true,
-              height: height,
-              borderRadius: BorderRadius.circular(8),
-              minLength: MediaQuery.of(context).size.width / 4,
-              maxLength: MediaQuery.of(context).size.width / 2,
-            )),
-      ),
+    return SkeletonParagraph(
+      style: SkeletonParagraphStyle(
+          lines: line,
+          spacing: 10,
+          lineStyle: SkeletonLineStyle(
+            randomLength: true,
+            height: height,
+            borderRadius: BorderRadius.circular(8),
+            minLength: MediaQuery.of(context).size.width / 4,
+            maxLength: MediaQuery.of(context).size.width / 2,
+          )),
     );
   }
 }
@@ -181,6 +179,27 @@ class ListStatCollectionSkeleton extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class InfoNftSkeleton extends StatelessWidget {
+  const InfoNftSkeleton({
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return SkeletonItem(
+      child: Column(
+        children: const [
+          SizedBox(height: 20),
+          ParagraphSkeleton(line: 2, height: 18),
+          SizedBox(height: 20),
+          SquareSkeleton(height: 80),
+          SizedBox(height: 20),
+          SquareSkeleton(height: 140),
+        ],
       ),
     );
   }

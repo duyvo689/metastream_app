@@ -88,9 +88,9 @@ class _ProfileMeState extends State<ProfileMe> {
                                     height: 1.2),
                                 maxLines: 2,
                               ),
-                              SizedBox(height: 6),
+                              const SizedBox(height: 6),
                               Text(
-                                '${context.read<UserInfo>().userInfo!.follow} follow',
+                                '${context.read<UserInfo>().userInfo != null ? context.read<UserInfo>().userInfo!.follow : '0'} follow',
                                 style: const TextStyle(
                                     color: AppColors.dPrimaryColor,
                                     fontSize: 16,

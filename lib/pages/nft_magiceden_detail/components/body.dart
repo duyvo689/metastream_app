@@ -4,7 +4,7 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import 'table_nft.dart';
+import 'table_magiceden_nft.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key, required this.nftSolana}) : super(key: key);
@@ -55,10 +55,11 @@ class _BodyState extends State<Body> {
                               nftSolana: magicEdenNft as MagicEdenNftDetail),
                         ],
                       )
-                    : const LoadingCenter(),
+                    : Container(height: 350, child: const InfoNftSkeleton()),
                 const SizedBox(height: 20),
-                // TableNFT(mintAddress: nftSolana.mintAddress.toString()),
-                // const SizedBox(height: 20),
+                TableNFTMagicEden(
+                    tokenMint: widget.nftSolana.tokenMint.toString()),
+                const SizedBox(height: 20),
               ],
             ),
           ))
@@ -96,7 +97,8 @@ class _BodyState extends State<Body> {
                           : const LoadingCenter(),
                     ],
                   ),
-                  // TableNFT(mintAddress: nftSolana.mintAddress.toString()),
+                  TableNFTMagicEden(
+                      tokenMint: widget.nftSolana.tokenMint.toString()),
                 ],
               ),
             ),

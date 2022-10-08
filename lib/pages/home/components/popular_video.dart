@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, avoid_unnecessary_containers
 
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
@@ -33,12 +33,10 @@ class PopularVideos extends StatelessWidget {
           future: ApiVideoServices().fetchVideos(),
           builder: (context, snapshot) {
             if ((snapshot.hasError) || (!snapshot.hasData))
-              // ignore: curly_braces_in_flow_control_structures
               return ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 3,
-                // ignore: prefer_const_constructors
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: const VideoCardSkelton(),
@@ -52,7 +50,6 @@ class PopularVideos extends StatelessWidget {
               child: GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                // padding: const EdgeInsets.only(top: 10),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
@@ -97,7 +94,7 @@ class _VideoCard extends StatelessWidget {
       child: Column(
         children: [
           AspectRatio(
-            aspectRatio: 2.01,
+            aspectRatio: 1.9,
             child: Container(
               decoration: BoxDecoration(
                 color: Color.fromARGB(255, 24, 24, 24),
@@ -141,15 +138,16 @@ class _VideoCard extends StatelessWidget {
                           textAlign: TextAlign.start,
                           maxLines: 2,
                           style: TextStyle(
-                              fontSize: 17,
+                              fontSize: 16,
                               fontWeight: FontWeight.w500,
                               overflow: TextOverflow.ellipsis,
                               color: AppColors.dWhileColor)),
                       const SizedBox(height: 6),
-                      Text(video.name!,
+                      Text(
+                          '${video.userId!.firstName} ${video.userId!.lastName}',
                           textAlign: TextAlign.start,
                           maxLines: 1,
-                          style: PrimaryFont.light(15).copyWith(
+                          style: PrimaryFont.light(14).copyWith(
                             overflow: TextOverflow.ellipsis,
                             color: AppColors.dGreyLightColor,
                           )),

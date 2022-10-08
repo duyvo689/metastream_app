@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_is_empty, curly_braces_in_flow_control_structures
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/user_info_provider.dart';
 import 'package:app_metastream/models/models.dart';
@@ -20,13 +22,12 @@ class NFTList extends StatelessWidget {
                       userInfoConsumer.userInfo!.addressWallet.toString()),
                   builder: (context, snapshot) {
                     if ((snapshot.hasError) || (!snapshot.hasData))
-                      // ignore: curly_braces_in_flow_control_structures
                       return const Loading(scale: 6);
-                    ;
                     List<NftSolana>? nftSolanas = snapshot.data;
                     return nftSolanas!.length > 0
                         ? GridView.builder(
                             shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
                             padding: const EdgeInsets.only(top: 10),
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(

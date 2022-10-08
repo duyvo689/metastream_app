@@ -50,7 +50,6 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
     Game response = await ApiGameServices().fetchGameById(widget.gameId);
     if (context.read<UserInfo>().userInfo != null && response != null) {
       userInfoMe = context.read<UserInfo>().userInfo;
-      print(userInfoMe);
       checkFollower(userInfoMe!.followGame!.toList(), response.id.toString());
     }
     setState(() {

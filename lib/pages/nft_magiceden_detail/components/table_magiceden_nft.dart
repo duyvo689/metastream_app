@@ -1,12 +1,15 @@
+// ignore_for_file: non_constant_identifier_names, sized_box_for_whitespace
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
-class TableNFT extends StatelessWidget {
-  const TableNFT({Key? key, required this.mintAddress}) : super(key: key);
-  final String mintAddress;
+class TableNFTMagicEden extends StatelessWidget {
+  const TableNFTMagicEden({Key? key, required this.tokenMint})
+      : super(key: key);
+  final String tokenMint;
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -14,20 +17,14 @@ class TableNFT extends StatelessWidget {
         color: AppColors.dGreyDarkColor,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: FutureBuilder<List<SolanaTx>>(
-        future: ApiSolanaTxServices().fetchSolanaTx(mintAddress),
+      child: FutureBuilder<List<MagicEdenNftActivities>>(
+        future: ApiCollectionServices().fetchMagicEdenNftActivitis(tokenMint),
         builder: (context, snapshot) {
           if ((snapshot.hasError) || (!snapshot.hasData))
             // ignore: curly_braces_in_flow_control_structures
             return Container(
-              height: 60,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 6,
-                itemBuilder: (context, index) => const CardSkeleton(),
-              ),
-            );
-          List<SolanaTx>? solanaTx = snapshot.data;
+                height: 60, child: const SquareSkeleton(height: 40));
+          List<MagicEdenNftActivities>? solanaTx = snapshot.data;
           return SingleChildScrollView(
             clipBehavior: Clip.hardEdge,
             scrollDirection: Axis.horizontal,
@@ -37,9 +34,6 @@ class TableNFT extends StatelessWidget {
                   columns: <DataColumn>[
                     DataColumn(
                       label: _TextHeaderDataColumn(name: 'TYPE'),
-                    ),
-                    DataColumn(
-                      label: _TextHeaderDataColumn(name: 'TRANSACTION'),
                     ),
                     DataColumn(
                       label: _TextHeaderDataColumn(name: 'SELLER'),
@@ -79,25 +73,26 @@ class TableNFT extends StatelessWidget {
     );
   }
 
-  DataRow TableCell({required SolanaTx solanaTx}) {
+  DataRow TableCell({required MagicEdenNftActivities solanaTx}) {
     return DataRow(
       cells: <DataCell>[
         DataCell(
           Text(solanaTx.type.toString(),
-              style: solanaTx.type.toString() == 'Listing'
-                  ? TextStyle(color: AppColors.dPrimaryColor.withOpacity(0.6))
-                  : solanaTx.type.toString() == 'Cancel'
+              style: solanaTx.type.toString() == 'list'
+                  ? const TextStyle(color: AppColors.dPrimaryColor)
+                  : solanaTx.type.toString() == 'cancelBid'
                       ? const TextStyle(color: Colors.red)
-                      : const TextStyle(color: Colors.white)),
+                      : solanaTx.type.toString() == 'bid'
+                          ? const TextStyle(color: Colors.yellow)
+                          : const TextStyle(color: Colors.yellow)),
         ),
         DataCell(Text(
-            '${solanaTx.transaction.toString().substring(0, 4)}...${solanaTx.transaction.toString().substring(solanaTx.transaction.toString().length - 4, solanaTx.transaction.toString().length)}')),
+            '${solanaTx.tokenMint.toString().substring(0, 4)}...${solanaTx.tokenMint.toString().substring(solanaTx.tokenMint.toString().length - 4, solanaTx.tokenMint.toString().length)}')),
         DataCell(Text(
-            '${solanaTx.mintAddress.toString().substring(0, 4)}...${solanaTx.mintAddress.toString().substring(solanaTx.mintAddress.toString().length - 4, solanaTx.mintAddress.toString().length)}')),
-        const DataCell(Text('...')),
+            '${solanaTx.buyer.toString().substring(0, 4)}...${solanaTx.buyer.toString().substring(solanaTx.buyer.toString().length - 4, solanaTx.buyer.toString().length)}')),
         DataCell(Text(
             '${solanaTx.price != null ? solanaTx.price.toString() : 0} SOL')),
-        DataCell(Text(solanaTx.createdAt.toString())),
+        DataCell(Text(solanaTx.blockTime.toString())),
         DataCell(OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
             primary: AppColors.dPrimaryColor.withOpacity(0.6),

@@ -35,7 +35,7 @@ class NFTCard extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: AspectRatio(
-                  aspectRatio: 0.94,
+                  aspectRatio: 1,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(

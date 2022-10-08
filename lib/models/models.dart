@@ -11,3 +11,4 @@ export 'info_user_form.dart';
 export 'collection_model.dart';
 export 'magicedentnft_model.dart';
 export 'stats_magiceden_model.dart';
+export 'magiceden_nft_activitis.dart';

@@ -1,5 +1,6 @@
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/pages/profile_me/profile_me.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
