@@ -4,6 +4,7 @@ import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/live_streaming_model.dart';
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/pages/collection_page/collection_sol_page/list_collection_sol.dart';
 import 'package:app_metastream/pages/home/components/popular_video.dart';
 import 'package:app_metastream/pages/home/components/section_title.dart';
 import 'package:app_metastream/pages/pages.dart';

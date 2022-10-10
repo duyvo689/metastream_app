@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_is_empty, avoid_unnecessary_containers
 
+import 'package:app_metastream/components/loading.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -88,6 +89,9 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                                           item.assetUrl.toString(),
                                           fit: BoxFit.cover,
                                           width: 1000.0,
+                                          errorBuilder:
+                                              (context, error, stackTrace) =>
+                                                  const LoadingCenter(),
                                         ),
                                         Container(
                                           decoration: BoxDecoration(

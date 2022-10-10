@@ -7,9 +7,9 @@ import 'api_url.dart';
 import 'dart:convert';
 
 class ApiCollectionServices {
-  Future<List<Collection>> fetchListCollection() {
+  Future<List<Collection>> fetchListCollection(String chain) {
     return http
-        .get(Uri.parse('${URL().API_URL}/api/v1/collection/sol'))
+        .get(Uri.parse('${URL().API_URL}/api/v1/collection/${chain}'))
         .then((http.Response response) {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;

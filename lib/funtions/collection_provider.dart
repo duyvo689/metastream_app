@@ -3,14 +3,21 @@ import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
 
 class CollectionProvider extends ChangeNotifier {
-  List<Collection>? _collections;
+  List<Collection>? _collectionsSol;
+  List<Collection>? _collectionsEth;
 
-  List<Collection>? get collectionList => _collections;
+  List<Collection>? get collectionSolList => _collectionsSol;
+  List<Collection>? get collectionEthList => _collectionsEth;
   // ignore: non_constant_identifier_names
   Future GetCollectionsProvider() async {
-    List<Collection>? collectionList =
-        await ApiCollectionServices().fetchListCollection();
-    _collections = collectionList;
+    List<Collection>? collectionSols =
+        await ApiCollectionServices().fetchListCollection('sol');
+    _collectionsSol = collectionSols;
+
+    // List<Collection>? collectionEths =
+    //     await ApiCollectionServices().fetchListCollection('eth');
+    // _collectionsEth = collectionEths;
+
     notifyListeners();
   }
 }

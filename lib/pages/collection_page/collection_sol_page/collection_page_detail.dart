@@ -196,7 +196,7 @@ class _CardStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: AppColors.dPrimaryDarkColor,
+      color: AppColors.dPrimaryDarkBigColor,
       child: Container(
         alignment: Alignment.center,
         width: 150,

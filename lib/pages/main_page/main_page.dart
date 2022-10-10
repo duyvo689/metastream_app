@@ -1,3 +1,4 @@
+import 'package:app_metastream/pages/collection_page/collection_page.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/cupertino.dart';
