@@ -71,7 +71,6 @@ class _BodyState extends State<Body> {
                 height: 20,
               ),
               context.watch<LiveStreamingProvider>().liveStreamList != null &&
-                      // ignore: prefer_is_empty
                       context
                               .watch<LiveStreamingProvider>()
                               .liveStreamList!

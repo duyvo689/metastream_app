@@ -39,9 +39,10 @@ import 'package:provider/provider.dart';
 
 void main() => runApp(
       MultiProvider(providers: [
+        ChangeNotifierProvider(create: (_) => UserList()),
         ChangeNotifierProvider(create: (_) => UserInfo()),
         ChangeNotifierProvider(create: (_) => UserProvider()),
-        ChangeNotifierProvider(create: (_) => UserList()),
+        ChangeNotifierProvider(create: (_) => BannerProvider()),
         ChangeNotifierProvider(create: (_) => GameListProvider()),
         ChangeNotifierProvider(create: (_) => CollectionProvider()),
         ChangeNotifierProvider(create: (_) => LiveStreamingProvider()),
