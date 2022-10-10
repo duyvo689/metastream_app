@@ -148,23 +148,24 @@ class _NftCard extends StatelessWidget {
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10),
             ),
-            border: Border.all(color: AppColors.dGreyLightColor),
+            border: Border.all(
+                color: const Color.fromARGB(255, 51, 50, 50), width: 2),
             color: AppColors.dBlackColor.withOpacity(0.3)),
-        child: SizedBox(
-          width: getProportionateScreenWidth(150),
-          child: Column(
-            children: [
-              Expanded(
-                flex: 2,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(2),
                 child: AspectRatio(
                   aspectRatio: 2,
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8),
+                        bottomLeft: Radius.circular(8),
+                        bottomRight: Radius.circular(8),
                       ),
                       image: DecorationImage(
                           image: NetworkImage(collection.image.toString()),
@@ -173,43 +174,43 @@ class _NftCard extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  width: getProportionateScreenWidth(150),
-                  padding: const EdgeInsets.only(
-                      top: 10, left: 10, right: 10, bottom: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        collection.name.toString(),
-                        textAlign: TextAlign.start,
-                        maxLines: 1,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                width: getProportionateScreenWidth(150),
+                padding: const EdgeInsets.only(
+                    top: 10, left: 10, right: 10, bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      collection.name.toString(),
+                      textAlign: TextAlign.start,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 4),
-                      Text(
-                        collection.name.toString(),
-                        textAlign: TextAlign.start,
-                        maxLines: 1,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w500,
-                          overflow: TextOverflow.ellipsis,
-                          fontSize: 16,
-                          color: AppColors.dPrimaryColor,
-                        ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      collection.name.toString(),
+                      textAlign: TextAlign.start,
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        overflow: TextOverflow.ellipsis,
+                        fontSize: 16,
+                        color: AppColors.dPrimaryColor,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );

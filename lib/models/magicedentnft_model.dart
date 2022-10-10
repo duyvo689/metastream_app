@@ -6,7 +6,7 @@ class MagicEdenNft {
   String? seller;
   String? sellerReferral;
   int? tokenSize;
-  double? price;
+  num? price;
   Rarity? rarity;
   Extra? extra;
   int? expiry;
@@ -46,7 +46,7 @@ class MagicEdenNft {
     if (json["tokenSize"] is int) {
       tokenSize = json["tokenSize"];
     }
-    if (json["price"] is double) {
+    if (json["price"] is num) {
       price = json["price"];
     }
     if (json["rarity"] is Map) {
@@ -130,7 +130,7 @@ class Rarity {
 
 class Merarity {
   String? tokenKey;
-  double? score;
+  int? score;
   int? totalSupply;
   int? rank;
 
@@ -140,7 +140,7 @@ class Merarity {
     if (json["tokenKey"] is String) {
       tokenKey = json["tokenKey"];
     }
-    if (json["score"] is double) {
+    if (json["score"] is int) {
       score = json["score"];
     }
     if (json["totalSupply"] is int) {
@@ -163,7 +163,7 @@ class Merarity {
 
 class Moonrank {
   int? rank;
-  double? absoluteRarity;
+  int? absoluteRarity;
   Crawl? crawl;
 
   Moonrank({rank, absoluteRarity, crawl});
@@ -172,7 +172,7 @@ class Moonrank {
     if (json["rank"] is int) {
       rank = json["rank"];
     }
-    if (json["absolute_rarity"] is double) {
+    if (json["absolute_rarity"] is int) {
       absoluteRarity = json["absolute_rarity"];
     }
     if (json["crawl"] is Map) {

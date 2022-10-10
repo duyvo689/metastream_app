@@ -1,3 +1,5 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +19,6 @@ class ButtonBuyNft extends StatelessWidget {
               onPressed: () {
                 // Respond to button press
               },
-              // ignore: sort_child_properties_last
               child: const Text('Buy now'),
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
@@ -34,7 +35,7 @@ class ButtonBuyNft extends StatelessWidget {
               onPressed: () {
                 // Respond to button press
               },
-              child: Text("Make an offer"),
+              child: const Text("Make an offer"),
               style: OutlinedButton.styleFrom(
                   primary: AppColors.dPrimaryColor,
                   side: const BorderSide(

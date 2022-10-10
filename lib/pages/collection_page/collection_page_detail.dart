@@ -185,7 +185,9 @@ class _CardStats extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                '${value.substring(0, 2)}.${value.substring(2, 3)}${name == 'volumeAll' ? 'T' : 'G'}',
+                value != 'null'
+                    ? '${value.substring(0, 2)}.${value.substring(2, 3)}${name == 'volumeAll' ? 'T' : 'G'}'
+                    : '16.5',
                 style: const TextStyle(
                     color: AppColors.dWhileColor,
                     fontWeight: FontWeight.w600,

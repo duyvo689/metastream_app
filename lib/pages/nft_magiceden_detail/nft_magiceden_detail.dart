@@ -13,7 +13,7 @@ class NFTMagicEdenDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     _launchURLApp() async {
       var url =
-          'https://staging.metastream.network/NFT/solana/item-details/${nftMagicEden.tokenMint}';
+          'https://phantom.app/ul/browse/https://staging.metastream.network/NFT/solana/item-details/${nftMagicEden.tokenMint}';
       if (await canLaunch(url)) {
         await launch(url, forceSafariVC: false, forceWebView: false);
       } else {

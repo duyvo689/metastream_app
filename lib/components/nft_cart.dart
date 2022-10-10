@@ -26,7 +26,8 @@ class NFTCard extends StatelessWidget {
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10),
             ),
-            border: Border.all(color: AppColors.dGreyLightColor),
+            border: Border.all(
+                color: const Color.fromARGB(255, 51, 50, 50), width: 2),
             color: AppColors.dBlackColor.withOpacity(0.3)),
         child: SizedBox(
           width: getProportionateScreenWidth(150),
@@ -34,19 +35,22 @@ class NFTCard extends StatelessWidget {
             children: [
               Expanded(
                 flex: 1,
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(8),
+                          topRight: Radius.circular(8),
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                        image: DecorationImage(
+                            image: NetworkImage(nftSolana.image!),
+                            fit: BoxFit.cover),
                       ),
-                      image: DecorationImage(
-                          image: NetworkImage(nftSolana.image!),
-                          fit: BoxFit.cover),
                     ),
                   ),
                 ),
