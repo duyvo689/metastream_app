@@ -1,3 +1,4 @@
+import 'package:app_metastream/models/magicedennft_detail_model.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +10,11 @@ class NFTCardMagicEden extends StatelessWidget {
     required this.nft,
     this.isFullCard = false,
     required this.press,
+    required this.nftDetail,
   }) : super(key: key);
 
   final MagicEdenNft nft;
+  final MagicEdenNftDetail nftDetail;
   final bool isFullCard;
   final GestureTapCallback press;
 
@@ -49,7 +52,7 @@ class NFTCardMagicEden extends StatelessWidget {
                           bottomRight: Radius.circular(8),
                         ),
                         image: DecorationImage(
-                            image: NetworkImage(nft.extra!.img.toString()),
+                            image: NetworkImage(nftDetail.image.toString()),
                             fit: BoxFit.cover),
                       ),
                     ),
@@ -64,8 +67,8 @@ class NFTCardMagicEden extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      nft.rarity!.moonrank != null
-                          ? nft.rarity!.moonrank!.crawl!.id.toString()
+                      nftDetail.name != null
+                          ? nftDetail.name.toString()
                           : '...',
                       textAlign: TextAlign.start,
                       maxLines: 1,
@@ -77,7 +80,7 @@ class NFTCardMagicEden extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${nft.tokenMint.toString().substring(0, 4)}...${nft.tokenMint.toString().substring(nft.tokenMint.toString().length - 4, nft.tokenMint.toString().length)}',
+                      '${nftDetail.mintAddress.toString().substring(0, 4)}...${nftDetail.mintAddress.toString().substring(nftDetail.mintAddress.toString().length - 4, nftDetail.mintAddress.toString().length)}',
                       textAlign: TextAlign.start,
                       maxLines: 1,
                       style: const TextStyle(

@@ -178,10 +178,10 @@ class _MainAppState extends State<WalletPhanTom> {
                     children: [
                       const Image(
                         image: AssetImage(
-                          'assets/images/logo-metastream.png',
+                          'assets/icons/ic_phantom.png',
                         ),
                         height: 80,
-                        width: 80,
+                        width: 890,
                       ),
                       const SizedBox(height: 10),
                       Text(

@@ -13,8 +13,8 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return EasySplashScreen(
-      logo: Image.asset('assets/images/logo.png'),
-      logoWidth: 90,
+      logo: Image.asset('assets/images/logo-splash.png'),
+      logoWidth: 200,
       backgroundColor: Colors.black,
       showLoader: false,
       navigator: const MainPage(),
