@@ -1,3 +1,4 @@
+import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,7 @@ class VideoCardSmall extends StatelessWidget {
                             ? video.coverImage!
                             : 'https://toquoc.mediacdn.vn/280518851207290880/2022/7/3/photo-1-16564884870661953523091-1656818526769-1656818526969356939449.jpg'),
                         fit: BoxFit.cover,
+                        onError: (error, stackTrace) => LoadingCenter,
                       ),
                     ),
                   ),

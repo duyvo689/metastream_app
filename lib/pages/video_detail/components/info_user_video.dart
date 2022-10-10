@@ -6,6 +6,7 @@ import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
@@ -28,6 +29,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
   User? userInfoMe;
   int count = 0;
   int countFollow = 0;
+  User? user;
 
   @override
   void initState() {
@@ -39,7 +41,16 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
     context
         .read<UserProvider>()
         .GetUserProvider(widget.video.userId!.id.toString());
+
+    getUserById(widget.video.userId!.id.toString());
     super.initState();
+  }
+
+  Future<User?> getUserById(String id) async {
+    User response = await ApiUserServices().fetchUserById(id);
+    setState(() {
+      user = response;
+    });
   }
 
   Future followUser(String id, String userId, bool isFollow) async {
@@ -129,38 +140,48 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(widget.video.userId!.avatar!),
-            ),
-            const SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "${widget.video.userId!.lastName!} ${widget.video.userId!.firstName!}",
-                  textAlign: TextAlign.start,
-                  maxLines: 1,
-                  style: const TextStyle(
-                      overflow: TextOverflow.ellipsis,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 17,
-                      color: AppColors.dWhileColor),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  '${(context.read<UserProvider>().user != null ? context.read<UserProvider>().user!.follow! : 0) + count} followers',
-                  textAlign: TextAlign.start,
-                  style: const TextStyle(
-                      overflow: TextOverflow.ellipsis,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 13,
-                      color: AppColors.dGreyLightColor),
-                ),
-              ],
-            ),
-          ],
+        InkWell(
+          onTap: () {
+            pushNewScreen(
+              context,
+              screen: Profile(user: user as User),
+              withNavBar: false,
+              pageTransitionAnimation: PageTransitionAnimation.cupertino,
+            );
+          },
+          child: Row(
+            children: [
+              CircleAvatar(
+                backgroundImage: NetworkImage(widget.video.userId!.avatar!),
+              ),
+              const SizedBox(width: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "${widget.video.userId!.lastName!} ${widget.video.userId!.firstName!}",
+                    textAlign: TextAlign.start,
+                    maxLines: 1,
+                    style: const TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 17,
+                        color: AppColors.dWhileColor),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    '${(context.read<UserProvider>().user != null ? context.read<UserProvider>().user!.follow! : 0) + count} followers',
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 13,
+                        color: AppColors.dGreyLightColor),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
         ElevatedButton.icon(
           onPressed: () {

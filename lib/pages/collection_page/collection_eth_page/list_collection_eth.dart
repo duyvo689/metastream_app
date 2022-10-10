@@ -64,7 +64,6 @@ class _CollectionNftCard extends StatelessWidget {
   final GestureTapCallback press;
   @override
   Widget build(BuildContext context) {
-    print(collection.image.toString());
     return GestureDetector(
       onTap: press,
       child: DecoratedBox(

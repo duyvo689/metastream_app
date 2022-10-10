@@ -227,7 +227,7 @@ class _CircleUserLiveCard extends StatelessWidget {
       child: Row(
         children: [
           const Padding(padding: EdgeInsets.only(right: 10)),
-          Stack(alignment: Alignment(0, 1), children: [
+          Stack(alignment: const Alignment(0, 1), children: [
             CircleAvatar(
               radius: 34,
               backgroundColor: Colors.red,
