@@ -1,27 +1,47 @@
 import 'package:app_metastream/models/magicedennft_detail_model.dart';
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class NFTCardMagicEden extends StatelessWidget {
+class NFTCardMagicEden extends StatefulWidget {
   const NFTCardMagicEden({
     Key? key,
     required this.nft,
     this.isFullCard = false,
     required this.press,
-    required this.nftDetail,
   }) : super(key: key);
 
   final MagicEdenNft nft;
-  final MagicEdenNftDetail nftDetail;
   final bool isFullCard;
   final GestureTapCallback press;
 
   @override
+  State<NFTCardMagicEden> createState() => _NFTCardMagicEdenState();
+}
+
+class _NFTCardMagicEdenState extends State<NFTCardMagicEden> {
+  MagicEdenNftDetail? nftDetail;
+
+  @override
+  void initState() {
+    fetchNftMagicEdenNftsDetail(widget.nft.tokenMint.toString());
+    super.initState();
+  }
+
+  Future fetchNftMagicEdenNftsDetail(String tokenMint) async {
+    MagicEdenNftDetail nft =
+        await ApiCollectionServices().fetchTokenListingDataMagicEden(tokenMint);
+    setState(() {
+      nftDetail = nft;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: press,
+      onTap: widget.press,
       child: DecoratedBox(
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
@@ -52,7 +72,8 @@ class NFTCardMagicEden extends StatelessWidget {
                           bottomRight: Radius.circular(8),
                         ),
                         image: DecorationImage(
-                            image: NetworkImage(nftDetail.image.toString()),
+                            image:
+                                NetworkImage(widget.nft.extra!.img.toString()),
                             fit: BoxFit.cover),
                       ),
                     ),
@@ -67,8 +88,8 @@ class NFTCardMagicEden extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      nftDetail.name != null
-                          ? nftDetail.name.toString()
+                      nftDetail != null && nftDetail!.name != null
+                          ? nftDetail!.name.toString()
                           : '...',
                       textAlign: TextAlign.start,
                       maxLines: 1,
@@ -80,7 +101,7 @@ class NFTCardMagicEden extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${nftDetail.mintAddress.toString().substring(0, 4)}...${nftDetail.mintAddress.toString().substring(nftDetail.mintAddress.toString().length - 4, nftDetail.mintAddress.toString().length)}',
+                      '${widget.nft.tokenMint.toString().substring(0, 4)}...${widget.nft.tokenMint.toString().substring(widget.nft.tokenMint.toString().length - 4, widget.nft.tokenMint.toString().length)}',
                       textAlign: TextAlign.start,
                       maxLines: 1,
                       style: const TextStyle(
@@ -103,7 +124,7 @@ class NFTCardMagicEden extends StatelessWidget {
                         const SizedBox(width: 5),
                         Text(
                           // nft.price != null ? '${nft.price}' : '...',
-                          '${nft.price}',
+                          '${widget.nft.price}',
                           textAlign: TextAlign.start,
                           maxLines: 1,
                           style: const TextStyle(

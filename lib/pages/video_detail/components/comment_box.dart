@@ -1,6 +1,10 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:app_metastream/funtions/funtions.dart';
+import 'package:app_metastream/models/message_model.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/material.dart';
@@ -28,13 +32,18 @@ class _CommentContainerState extends State<CommentContainer> {
     // },
   ];
 
-  // void SendMessage() {
-  //   if (context.read<UserInfo>().userInfo == null) {
-  //     _showMyDialog();
-  //   } else {
-  //     sendButtonMethod();
-  //   }
-  // }
+  @override
+  void initState() {
+    fetchMessages(widget.video.slug!);
+    super.initState();
+  }
+
+  Future<void> fetchMessages(String slug) async {
+    List<MessageModel> messages = await ApiMessageServices().getMessages(slug);
+    setState(() {
+      filedata = [...messages];
+    });
+  }
 
   void sendButtonMethod() {
     if (formKey.currentState!.validate()) {
@@ -58,7 +67,7 @@ class _CommentContainerState extends State<CommentContainer> {
   Widget commentChild(data) {
     return ListView(
       children: [
-        SafeArea(child: DefaultPlayer(videoId: widget.video.id!)),
+        SafeArea(child: DefaultPlayer(videoSlug: widget.video.slug!)),
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),

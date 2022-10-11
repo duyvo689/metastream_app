@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
@@ -46,7 +48,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
     super.initState();
   }
 
-  Future<User?> getUserById(String id) async {
+  Future<void> getUserById(String id) async {
     User response = await ApiUserServices().fetchUserById(id);
     setState(() {
       user = response;
@@ -58,19 +60,15 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
       isLoadFollow = true;
     });
     User response = await ApiUserServices().ApiFollowUser(id, userId, isFollow);
-    // ignore: use_build_context_synchronously
     context.read<UserInfo>().GetUserInfoProvider(null, response);
-    // ignore: use_build_context_synchronously
     setState(() {
       isLoadFollow = false;
       isFollow ? count-- : count++;
     });
-    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   int checkFollower(List followerMe, String idUser) {
-    // ignore: unused_local_variable
     int flag = 0;
     for (var i = 0; i < followerMe.length; i++) {
       if (followerMe[i] == idUser) {
@@ -170,7 +168,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    '${(context.read<UserProvider>().user != null ? context.read<UserProvider>().user!.follow! : 0) + count} followers',
+                    '${user != null ? user!.follow! + count : ''} followers',
                     textAlign: TextAlign.start,
                     style: const TextStyle(
                         overflow: TextOverflow.ellipsis,
@@ -183,72 +181,41 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
             ],
           ),
         ),
-        ElevatedButton.icon(
-          onPressed: () {
-            if (context.read<UserInfo>().userInfo != null) {
-              setState(() {
-                isFollow = !isFollow;
-              });
-              followUser(context.read<UserInfo>().userInfo!.id.toString(),
-                  widget.video.userId!.id.toString(), !isFollow);
-            } else {
-              _showMyDialog();
-            }
-          },
-          // onPressed: () {
-          //   if (context.read<UserInfo>().userInfo != null) {
-          //     setState(() {
-          //       isFollow = !isFollow;
-          //     });
-          //     followUser(context.read<UserInfo>().userInfo!.id.toString(),
-          //         widget.video.userId!.id.toString(), isFollow);
-          //   } else {
-          //     // _showMyDialog();
-          //     Dialogs.bottomMaterialDialog(
-          //       color: Colors.white,
-          //       lottieBuilder: Lottie.asset(
-          //         'assets/images/cong_example.json',
-          //         fit: BoxFit.contain,
-          //       ),
-          //       msg: 'Congratulations, you won 500 points',
-          //       title: 'Congratulations',
-          //       context: context,
-          //       actions: [
-          //         IconsButton(
-          //           onPressed: () {
-          //             Navigator.of(context).pop();
-          //           },
-          //           text: 'Claim',
-          //           iconData: Icons.done,
-          //           color: AppColors.dPrimaryDarkColor,
-          //           textStyle: TextStyle(color: Colors.white),
-          //           iconColor: Colors.white,
-          //         ),
-          //       ],
-          //     );
-          //   }
-          // },
-          icon: Icon(
-            isFollow
-                ? Icons.notifications_active
-                : Icons.notifications_outlined,
-            size: 18,
-          ),
-          label: Text(isFollow
-              ? isLoadFollow
-                  ? 'Following...'
-                  : 'Unfollow'
-              : isLoadFollow
-                  ? 'Unfollowing...'
-                  : 'Follow'),
-          style: ElevatedButton.styleFrom(
-              primary: AppColors.dWhileColor,
-              onPrimary: AppColors.dGreyLightColor,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-              textStyle:
-                  const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
-        )
+        userInfoMe != null && user != null && userInfoMe!.id == user!.id
+            ? const SizedBox.shrink()
+            : ElevatedButton.icon(
+                onPressed: () {
+                  if (context.read<UserInfo>().userInfo != null) {
+                    setState(() {
+                      isFollow = !isFollow;
+                    });
+                    followUser(context.read<UserInfo>().userInfo!.id.toString(),
+                        widget.video.userId!.id.toString(), !isFollow);
+                  } else {
+                    _showMyDialog();
+                  }
+                },
+                icon: Icon(
+                  isFollow
+                      ? Icons.notifications_active
+                      : Icons.notifications_outlined,
+                  size: 18,
+                ),
+                label: Text(isFollow
+                    ? isLoadFollow
+                        ? 'Following...'
+                        : 'Unfollow'
+                    : isLoadFollow
+                        ? 'Unfollowing...'
+                        : 'Follow'),
+                style: ElevatedButton.styleFrom(
+                    primary: AppColors.dWhileColor,
+                    onPrimary: AppColors.dGreyLightColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    textStyle: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w600)),
+              )
       ],
     );
   }

@@ -43,6 +43,26 @@ class ApiVideoServices {
     });
   }
 
+  Future<Video> fetchVideoBySlug(String slug) {
+    print(slug);
+    return http
+        .get(Uri.parse('${URL().API_URL}/api/v1/video/slug/${slug}'))
+        .then((http.Response response) {
+      final String jsonBody = response.body;
+      final int statusCode = response.statusCode;
+
+      if (statusCode != 200 || jsonBody == null) {
+        throw new Exception("Error load api");
+      }
+
+      final JsonDecoder _decoder = new JsonDecoder();
+      final videoContainer = _decoder.convert(jsonBody);
+      final video = videoContainer['data'];
+
+      return Video.fromJson(video);
+    });
+  }
+
   Future<List<Video>> fetchVideosOfUser(String id) {
     return http
         .get(Uri.parse('${url}/api/v1/video/user/${id}'))

@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SafeArea(child: DefaultPlayer(videoId: video.id!)),
+        SafeArea(child: DefaultPlayer(videoSlug: video.slug!)),
         const SizedBox(height: 20),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),

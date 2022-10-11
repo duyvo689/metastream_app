@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, unnecessary_null_comparison
+// ignore_for_file: unused_local_variable, unnecessary_null_comparison, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
 
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/magicedennft_detail_model.dart';
@@ -25,8 +25,8 @@ class _CollectionDetailState extends State<CollectionDetail> {
   StatsMagicEden? statsMagicEden;
   @override
   void initState() {
-    fetchStatMagicEdenNfts(widget.collection.symbol.toString());
     fetchNftMagicEdenNfts(widget.collection.symbol.toString());
+    fetchStatMagicEdenNfts(widget.collection.symbol.toString());
     super.initState();
   }
 
@@ -34,17 +34,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
     List<MagicEdenNftDetail> listNft = [];
     List<MagicEdenNft> response =
         await ApiCollectionServices().fetchNftMagicEdenBySymbol(symbol);
-    if (response != null) {
-      for (int i = 0; i < response.length; i++) {
-        MagicEdenNftDetail nft = await ApiCollectionServices()
-            .fetchTokenListingDataMagicEden(response[i].tokenMint.toString());
-        if (nft != null) {
-          listNft = [...listNft, nft];
-        }
-      }
-    }
     setState(() {
-      magicEdenNftDetailList = listNft;
       magicEdenNftList = response;
     });
   }
@@ -144,7 +134,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
                   child: Divider(color: Colors.grey, height: 4),
                 ),
                 const SizedBox(height: 20),
-                magicEdenNftList != null && magicEdenNftDetailList != null
+                magicEdenNftList != null
                     ? Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: GridView.builder(
@@ -161,7 +151,6 @@ class _CollectionDetailState extends State<CollectionDetail> {
                             itemBuilder: (BuildContext context, int index) {
                               return NFTCardMagicEden(
                                 nft: magicEdenNftList![index],
-                                nftDetail: magicEdenNftDetailList![index],
                                 press: () {
                                   Navigator.push(
                                       context,
@@ -214,22 +203,26 @@ class _CardStats extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                value != 'null'
-                    ? '${value.substring(0, 2)}.${value.substring(2, 3)}${name == 'volumeAll' ? 'T' : 'G'}'
-                    : '16.5',
+                name == 'LISTED'
+                    ? '${value}'
+                    : value != 'null'
+                        ? '${value.substring(0, 2)}.${value.substring(2, 3)}${name == 'TOTAL VOL' ? 'T' : 'G'}'
+                        : '16.5G',
                 style: const TextStyle(
                     color: AppColors.dWhileColor,
                     fontWeight: FontWeight.w600,
                     fontSize: 14),
               ),
               const SizedBox(width: 5),
-              SvgPicture.asset(
-                'assets/images/solana-sol-icon.svg',
-                semanticsLabel: 'sol',
-                width: 17,
-                height: 17,
-                fit: BoxFit.cover,
-              ),
+              name == 'LISTED'
+                  ? const SizedBox.shrink()
+                  : SvgPicture.asset(
+                      'assets/images/solana-sol-icon.svg',
+                      semanticsLabel: 'sol',
+                      width: 17,
+                      height: 17,
+                      fit: BoxFit.cover,
+                    ),
             ],
           )
         ]),

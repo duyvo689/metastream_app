@@ -8,3 +8,4 @@ export 'api_ solanaTx_service.dart';
 export 'api_upload_image.dart';
 export 'api_streaming_service.dart';
 export 'api_collection.dart';
+export 'api_message_service.dart';

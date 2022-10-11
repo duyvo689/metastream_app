@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, avoid_unnecessary_containers, unnecessary_this, non_constant_identifier_names
+
 import 'package:app_metastream/services/api_video_service.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
@@ -5,28 +7,29 @@ import 'package:visibility_detector/visibility_detector.dart';
 import 'package:video_player/video_player.dart';
 
 class DefaultPlayer extends StatefulWidget {
-  const DefaultPlayer({Key? key, required this.videoId}) : super(key: key);
-  final String videoId;
+  const DefaultPlayer({Key? key, required this.videoSlug}) : super(key: key);
+  final String videoSlug;
   @override
   _DefaultPlayerState createState() => _DefaultPlayerState();
 }
 
 class _DefaultPlayerState extends State<DefaultPlayer> {
-  String play_url = '';
   late FlickManager flickManager;
+  String? urlVideo;
 
   @override
   void initState() {
     super.initState();
-    playurl(widget.videoId);
-    videoplay(play_url);
+    playurl(widget.videoSlug);
+    videoplay(urlVideo.toString());
   }
 
-  Future<void> playurl(String id) async {
-    var response = await ApiVideoServices().fetchVideoById(id);
+  Future<void> playurl(String slug) async {
+    var response = await ApiVideoServices().fetchVideoBySlug(slug);
     String url = response.playUrl!;
+    String play_url = url.replaceAll(' ', '%20');
     setState(() {
-      play_url = url.replaceAll(' ', '%20');
+      urlVideo = play_url;
     });
     videoplay(play_url);
   }
