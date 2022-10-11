@@ -31,7 +31,7 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
     setState(() {
       urlVideo = play_url;
     });
-    videoplay(play_url);
+    videoplay(urlVideo.toString());
   }
 
   Future<void> videoplay(String url) async {

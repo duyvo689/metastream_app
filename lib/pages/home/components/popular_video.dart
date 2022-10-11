@@ -43,7 +43,7 @@ class PopularVideos extends StatelessWidget {
                 ),
               );
             List<Video>? videos =
-                snapshot.data!.reversed.toList().sublist(0, 6);
+                snapshot.data!.reversed.toList().sublist(0, 10);
             return Padding(
               padding:
                   EdgeInsets.symmetric(horizontal: size.width < 600 ? 0 : 20),

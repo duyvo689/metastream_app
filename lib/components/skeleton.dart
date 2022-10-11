@@ -204,3 +204,26 @@ class InfoNftSkeleton extends StatelessWidget {
     );
   }
 }
+
+class ListCommentSkeleton extends StatelessWidget {
+  const ListCommentSkeleton({
+    Key? key,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 6,
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: const [
+            CircleSkeleton(size: 40),
+            ParagraphSkeleton(line: 2, height: 20)
+          ],
+        ),
+      ),
+    );
+  }
+}

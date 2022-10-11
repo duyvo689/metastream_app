@@ -6,7 +6,7 @@ import 'api_url.dart';
 import 'dart:convert';
 
 class ApiMessageServices {
-  Future<List<MessageModel>> getMessages(String slug) async {
+  Future<List<MessageModel>?> getMessages(String slug) async {
     return await http
         .get(Uri.parse('${URL().API_URL}/api/v1/message/${slug}'))
         .then((http.Response response) {
@@ -20,9 +20,13 @@ class ApiMessageServices {
       final JsonDecoder _decoder = new JsonDecoder();
       final messageListContainer = _decoder.convert(jsonBody);
       List messages = messageListContainer['data'];
-      return messages
-          .map((contactRaw) => new MessageModel.fromJson(contactRaw))
-          .toList();
+      if (messages == null) {
+        return null;
+      } else {
+        return messages
+            .map((contactRaw) => new MessageModel.fromJson(contactRaw))
+            .toList();
+      }
     });
   }
 }
