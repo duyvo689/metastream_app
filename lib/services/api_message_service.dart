@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_new, prefer_const_constructors, no_leading_underscores_for_local_identifiers, unnecessary_null_comparison
+// ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_new, prefer_const_constructors, no_leading_underscores_for_local_identifiers, unnecessary_null_comparison, non_constant_identifier_names
 
 import 'package:app_metastream/models/message_model.dart';
 import 'package:http/http.dart' as http;
@@ -28,5 +28,21 @@ class ApiMessageServices {
             .toList();
       }
     });
+  }
+
+  Future<void> ApiSendMessage(String slug, String sender, String content,
+      String color, num? gems) async {
+    await http.post(
+      Uri.parse('${URL().API_URL}/api/v1/message/${slug}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, dynamic>{
+        'sender': sender,
+        'content': content,
+        'color': '1',
+        'gems': null
+      }),
+    );
   }
 }

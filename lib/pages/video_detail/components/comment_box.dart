@@ -1,4 +1,4 @@
-// ignore_for_file: sort_child_properties_last, unnecessary_null_comparison, library_private_types_in_public_api, sized_box_for_whitespace, avoid_print, prefer_is_empty
+// ignore_for_file: sort_child_properties_last, unnecessary_null_comparison, library_private_types_in_public_api, sized_box_for_whitespace, avoid_print, prefer_is_empty, unnecessary_new
 
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
@@ -23,6 +23,7 @@ class _CommentContainerState extends State<CommentContainer> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController commentController = TextEditingController();
   List<MessageModel> filedata = [];
+  List currentData = [];
   bool isLoading = false;
 
   @override
@@ -39,7 +40,7 @@ class _CommentContainerState extends State<CommentContainer> {
     if (messages != null) {
       List<MessageModel> newFileData = [...messages];
       setState(() {
-        filedata = newFileData.reversed.toList();
+        filedata = newFileData;
       });
     }
     setState(() {
@@ -47,38 +48,70 @@ class _CommentContainerState extends State<CommentContainer> {
     });
   }
 
-  void sendButtonMethod() {
+  void sendButtonMethod() async {
     if (formKey.currentState!.validate()) {
-      // setState(() {
-      //   var value = {
-      //     'name': context.read<UserInfo>().userInfo!.userName.toString(),
-      //     'pic': context.read<UserInfo>().userInfo!.avatar != null
-      //         ? context.read<UserInfo>().userInfo!.avatar.toString()
-      //         : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
-      //     'message': commentController.text
-      //   };
-      //   filedata.insert(0, value);
-      // });
-      // setState(() {
-      //   MessageModel message;
-      //   message.content!.content = commentController.text;
-      //   message.user!.avatar = context.read<UserInfo>().userInfo!.avatar != null
-      //       ? context.read<UserInfo>().userInfo!.avatar.toString()
-      //       : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png';
-
-      // });
+      setState(() {
+        var value = {
+          'name': 'New User',
+          'pic':
+              'https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400',
+          'message': commentController.text
+        };
+        currentData.insert(0, value);
+      });
       commentController.clear();
       FocusScope.of(context).unfocus();
+
+      ///Save database
+      await ApiMessageServices().ApiSendMessage(
+          widget.video.slug!,
+          // context.read<UserInfo>().userInfo!.id!,
+          '62f1df752b02e4df1e20696b',
+          commentController.text,
+          '1',
+          null);
     } else {
       print("Not validated");
     }
   }
 
-  Widget commentChild(List<MessageModel> data) {
+  Widget commentChild(List<MessageModel> data, List currentData) {
     return ListView(
       shrinkWrap: true,
       children: [
-        for (var i = 0; i < data.length; i++)
+        //List comment t2
+        for (var i = 0; i < currentData.length; i++) ...{
+          Padding(
+            padding: const EdgeInsets.fromLTRB(2.0, 8.0, 2.0, 0.0),
+            child: ListTile(
+              leading: GestureDetector(
+                onTap: () async {
+                  // Display the image in large form.
+                  print("Comment Clicked");
+                },
+                child: Container(
+                  height: 50.0,
+                  width: 50.0,
+                  // ignore: prefer_const_constructors
+                  decoration: new BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(50))),
+                  child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage:
+                          NetworkImage(currentData[i]['pic'] + "$i")),
+                ),
+              ),
+              title: Text(
+                currentData[i]['name'],
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(currentData[i]['message']),
+            ),
+          )
+        },
+        for (var i = 0; i < data.length; i++) ...{
           Padding(
             padding: const EdgeInsets.fromLTRB(3.0, 8.0, 2.0, 0.0),
             child: ListTile(
@@ -181,6 +214,7 @@ class _CommentContainerState extends State<CommentContainer> {
               ),
             ),
           )
+        },
       ],
     );
   }
@@ -202,7 +236,7 @@ class _CommentContainerState extends State<CommentContainer> {
                       : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
                   child: !isLoading
                       ? filedata.length > 0
-                          ? commentChild(filedata)
+                          ? commentChild(filedata, currentData)
                           : const Center(
                               child: Text(
                               '0 Comment',
@@ -237,7 +271,7 @@ class _CommentContainerState extends State<CommentContainer> {
                     Expanded(
                       child: !isLoading
                           ? filedata.length > 0
-                              ? commentChild(filedata)
+                              ? commentChild(filedata, currentData)
                               : const Center(
                                   child: Text(
                                   '0 Comment',
