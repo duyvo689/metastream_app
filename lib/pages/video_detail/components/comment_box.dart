@@ -54,7 +54,7 @@ class _CommentContainerState extends State<CommentContainer> {
       //     'name': context.read<UserInfo>().userInfo!.userName.toString(),
       //     'pic': context.read<UserInfo>().userInfo!.avatar != null
       //         ? context.read<UserInfo>().userInfo!.avatar.toString()
-      //         : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg',
+      //         : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
       //     'message': commentController.text
       //   };
       //   filedata.insert(0, value);
@@ -64,7 +64,7 @@ class _CommentContainerState extends State<CommentContainer> {
       //   message.content!.content = commentController.text;
       //   message.user!.avatar = context.read<UserInfo>().userInfo!.avatar != null
       //       ? context.read<UserInfo>().userInfo!.avatar.toString()
-      //       : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg';
+      //       : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png';
 
       // });
       commentController.clear();
@@ -196,7 +196,7 @@ class _CommentContainerState extends State<CommentContainer> {
                 userImage: context.read<UserInfo>().userInfo != null &&
                         context.read<UserInfo>().userInfo!.avatar != null
                     ? context.watch<UserInfo>().userInfo!.avatar
-                    : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg',
+                    : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
                 child: !isLoading
                     ? filedata.length > 0
                         ? commentChild(filedata)

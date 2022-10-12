@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_is_empty
+// ignore_for_file: sized_box_for_whitespace, prefer_is_empty, unnecessary_null_comparison
 
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
@@ -236,10 +236,15 @@ class _CircleUserLiveCard extends StatelessWidget {
                 backgroundImage: NetworkImage(data != null &&
                         data.userId != null &&
                         data.userId!.avatar != null
-                    ? isUserLive
-                        ? data.userId!.avatar!
-                        : data.gameStream!.logo.toString()
-                    : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
+                    ? isLive
+                        ? isUserLive
+                            ? data.userId!.avatar!
+                            : data.gameStream != null &&
+                                    data.gameStream!.logo != null
+                                ? data.gameStream!.logo.toString()
+                                : 'https://cdn.dribbble.com/users/10917/screenshots/837497/media/fa636a2ec0dacad6d8b7a790720f663e.jpg?compress=1&resize=400x300&vertical=top'
+                        : data.userId!.avatar!
+                    : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'),
               ),
             ),
             isLive
@@ -335,7 +340,7 @@ class _CircleUserCard extends StatelessWidget {
             radius: 34,
             backgroundImage: NetworkImage(user != null && user.avatar != null
                 ? user.avatar!
-                : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
+                : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'),
           ),
         ],
       ),

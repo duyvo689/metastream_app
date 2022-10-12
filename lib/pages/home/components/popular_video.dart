@@ -124,7 +124,7 @@ class _VideoCard extends StatelessWidget {
                             video.userId != null &&
                             video.userId!.avatar != null
                         ? video.userId!.avatar!
-                        : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
+                        : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'),
                   ),
                 ),
                 const SizedBox(
