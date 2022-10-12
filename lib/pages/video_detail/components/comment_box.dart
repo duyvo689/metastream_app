@@ -188,88 +188,93 @@ class _CommentContainerState extends State<CommentContainer> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height * 0.6;
-    return context.read<UserInfo>().userInfo != null
-        ? Expanded(
-            child: Container(
-              height: height,
-              child: CommentBox(
-                userImage: context.read<UserInfo>().userInfo != null &&
-                        context.read<UserInfo>().userInfo!.avatar != null
-                    ? context.watch<UserInfo>().userInfo!.avatar
-                    : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
-                child: !isLoading
-                    ? filedata.length > 0
-                        ? commentChild(filedata)
-                        : const Center(
-                            child: Text(
-                            '0 Comment',
-                            style: TextStyle(
-                                color: AppColors.dPrimaryColor,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16),
-                          ))
-                    : const ListCommentSkeleton(),
-                labelText: 'Write a comment...',
-                withBorder: false,
-                errorText: 'Comment cannot be blank',
-                sendButtonMethod: () {},
-                formKey: formKey,
-                commentController: commentController,
-                backgroundColor: Colors.black,
-                textColor: Colors.white,
-                sendWidget: InkWell(
-                    onTap: () => {sendButtonMethod()},
-                    child: const Icon(Icons.send_sharp,
-                        size: 30, color: Colors.white)),
+    return context.read<UserInfo>().userInfo == null
+        ? SafeArea(
+            child: Expanded(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                height: height,
+                child: CommentBox(
+                  userImage: context.read<UserInfo>().userInfo != null &&
+                          context.read<UserInfo>().userInfo!.avatar != null
+                      ? context.watch<UserInfo>().userInfo!.avatar
+                      : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
+                  child: !isLoading
+                      ? filedata.length > 0
+                          ? commentChild(filedata)
+                          : const Center(
+                              child: Text(
+                              '0 Comment',
+                              style: TextStyle(
+                                  color: AppColors.dPrimaryColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16),
+                            ))
+                      : const ListCommentSkeleton(),
+                  labelText: 'Write a comment...',
+                  withBorder: true,
+                  errorText: 'Comment cannot be blank',
+                  sendButtonMethod: () {},
+                  formKey: formKey,
+                  commentController: commentController,
+                  backgroundColor: Colors.black,
+                  textColor: Colors.white,
+                  sendWidget: InkWell(
+                      onTap: () => {sendButtonMethod()},
+                      child: const Icon(Icons.send_sharp,
+                          size: 30, color: Colors.white)),
+                ),
               ),
             ),
           )
-        : Expanded(
-            child: Container(
-              height: height,
-              child: Column(
-                children: [
-                  // Expanded(child: commentChild(filedata)),
-                  Expanded(
-                    child: !isLoading
-                        ? filedata.length > 0
-                            ? commentChild(filedata)
-                            : const Center(
-                                child: Text(
-                                '0 Comment',
-                                style: TextStyle(
-                                    color: AppColors.dPrimaryColor,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 15),
-                              ))
-                        : const ListCommentSkeleton(),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4)),
-                            primary: AppColors.dPrimaryDarkColor,
-                            onPrimary: AppColors.dWhileColor,
-                            shadowColor: AppColors.dGreyLightColor,
-                            textStyle: const TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w600)),
-                        onPressed: () {
-                          Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const WalletPhanTom()))
-                              .then((_) => setState(() {}));
-                        },
-                        child: const Text("Login in to comment"),
+        : SafeArea(
+            child: Expanded(
+              child: Container(
+                height: height,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: !isLoading
+                          ? filedata.length > 0
+                              ? commentChild(filedata)
+                              : const Center(
+                                  child: Text(
+                                  '0 Comment',
+                                  style: TextStyle(
+                                      color: AppColors.dPrimaryColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15),
+                                ))
+                          : const ListCommentSkeleton(),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4)),
+                              primary: AppColors.dPrimaryDarkColor,
+                              onPrimary: AppColors.dWhileColor,
+                              shadowColor: AppColors.dGreyLightColor,
+                              textStyle: const TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w600)),
+                          onPressed: () {
+                            Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const WalletPhanTom()))
+                                .then((_) => setState(() {}));
+                          },
+                          child: const Text("Login in to comment"),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

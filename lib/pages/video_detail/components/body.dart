@@ -114,7 +114,7 @@ class Body extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                CommentContainer(video: video)
+                                CommentContainer(video: video),
                               ],
                             ),
                           ),
