@@ -168,7 +168,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    '${user != null ? user!.follow! + count : ''} followers',
+                    '${user != null ? user!.follow! + count : 0} followers',
                     textAlign: TextAlign.start,
                     style: const TextStyle(
                         overflow: TextOverflow.ellipsis,

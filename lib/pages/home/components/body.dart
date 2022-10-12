@@ -60,61 +60,59 @@ class _BodyState extends State<Body> {
         backgroundColor: AppColors.dPrimaryDarkColor,
         onRefresh: () async {
           await fetchUserLiveStreaming();
-          await fetchGameList();
-          await fetchCollections();
         },
         child: SingleChildScrollView(
           child: ListView(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              // const SizedBox(
-              //   height: 20,
-              // ),
-              // context.watch<LiveStreamingProvider>().liveStreamList != null &&
-              //         context
-              //                 .watch<LiveStreamingProvider>()
-              //                 .liveStreamList!
-              //                 .length >
-              //             0
-              //     ? const _ListStreamer()
-              //     : const _ListUser(),
-              // const SizedBox(height: 20),
-              // const CarouselWithIndicator(
-              //     viewport: 1, width: 30, height: 3, style: 'start'),
-              // const SizedBox(height: 20),
-              // const VideoLiveStreaming(),
-              // const SizedBox(height: 20),
-              // Column(
-              //   children: [
-              //     const Padding(
-              //       padding: EdgeInsets.symmetric(horizontal: 20),
-              //       child: SectionTitle(
-              //         title_1: "Solana",
-              //         title_2: "Collections",
-              //       ),
-              //     ),
-              //     const SizedBox(height: 20),
-              //     SingleChildScrollView(
-              //       scrollDirection: Axis.horizontal,
-              //       child: Container(
-              //         height: 200,
-              //         child: const Padding(
-              //           padding: EdgeInsets.symmetric(horizontal: 10),
-              //           child: ListCollectionSolana(
-              //               direction: Axis.horizontal, count: 1),
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              // const SizedBox(height: 30),
+              const SizedBox(
+                height: 20,
+              ),
+              context.watch<LiveStreamingProvider>().liveStreamList != null &&
+                      context
+                              .watch<LiveStreamingProvider>()
+                              .liveStreamList!
+                              .length >
+                          0
+                  ? const _ListStreamer()
+                  : const _ListUser(),
+              const SizedBox(height: 20),
+              const CarouselWithIndicator(
+                  viewport: 1, width: 30, height: 3, style: 'start'),
+              const SizedBox(height: 20),
+              const VideoLiveStreaming(),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: SectionTitle(
+                      title_1: "Solana",
+                      title_2: "Collections",
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Container(
+                      height: 200,
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: ListCollectionSolana(
+                            direction: Axis.horizontal, count: 1),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 30),
               const PopularVideos(),
-              // const SizedBox(height: 20),
-              // const PopularGames(),
-              // const SizedBox(
-              //   height: 30,
-              // ),
+              const SizedBox(height: 20),
+              const PopularGames(),
+              const SizedBox(
+                height: 30,
+              ),
             ],
           ),
         ));

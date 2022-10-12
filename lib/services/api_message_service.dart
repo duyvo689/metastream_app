@@ -7,6 +7,7 @@ import 'dart:convert';
 
 class ApiMessageServices {
   Future<List<MessageModel>?> getMessages(String slug) async {
+    print(slug);
     return await http
         .get(Uri.parse('${URL().API_URL}/api/v1/message/${slug}'))
         .then((http.Response response) {

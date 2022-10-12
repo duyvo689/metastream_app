@@ -32,17 +32,19 @@ class _VideoStatesState extends State<VideoStates> {
                     isLike ? countLike++ : countLike--;
                   });
                 },
-                icon:
-                    Icon(isLike ? Icons.thumb_up_alt : Icons.thumb_up_off_alt)),
+                icon: Icon(
+                  isLike ? Icons.thumb_up_alt : Icons.thumb_up_off_alt,
+                  size: 24,
+                )),
+            const SizedBox(height: 5),
             Text(
               '${countLike} like',
               textAlign: TextAlign.start,
-              maxLines: 2,
               style: const TextStyle(
-                  overflow: TextOverflow.ellipsis,
                   fontWeight: FontWeight.w400,
-                  fontSize: 13,
-                  color: AppColors.dWhileColor),
+                  fontSize: 12,
+                  color: AppColors.dWhileColor,
+                  height: -0.01),
             ),
           ],
         ),
@@ -58,39 +60,21 @@ class _VideoStatesState extends State<VideoStates> {
               },
               icon: Icon(
                 isDisLike ? Icons.thumb_down_alt : Icons.thumb_down_off_alt,
+                size: 24,
               ),
             ),
+            const SizedBox(height: 5),
             Text(
               '${countDisLike} Dislike',
               textAlign: TextAlign.start,
-              maxLines: 2,
               style: const TextStyle(
-                  overflow: TextOverflow.ellipsis,
                   fontWeight: FontWeight.w400,
-                  fontSize: 13,
-                  color: AppColors.dWhileColor),
+                  fontSize: 12,
+                  color: AppColors.dWhileColor,
+                  height: -0.01),
             ),
           ],
         ),
-        // const SizedBox(width: 30),
-        // Column(
-        //   children: [
-        //     IconButton(
-        //       onPressed: () {},
-        //       icon: const Icon(Icons.share_outlined),
-        //     ),
-        //     const Text(
-        //       'Share',
-        //       textAlign: TextAlign.start,
-        //       maxLines: 2,
-        //       style: TextStyle(
-        //           overflow: TextOverflow.ellipsis,
-        //           fontWeight: FontWeight.w400,
-        //           fontSize: 13,
-        //           color: AppColors.dWhileColor),
-        //     ),
-        //   ],
-        // )
       ],
     );
   }

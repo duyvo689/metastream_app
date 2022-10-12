@@ -50,24 +50,27 @@ class _CommentContainerState extends State<CommentContainer> {
 
   void sendButtonMethod() async {
     if (formKey.currentState!.validate()) {
+      String content = commentController.text;
       setState(() {
         var value = {
-          'name': 'New User',
-          'pic':
-              'https://lh3.googleusercontent.com/a-/AOh14GjRHcaendrf6gU5fPIVd8GIl1OgblrMMvGUoCBj4g=s400',
-          'message': commentController.text
+          'name': context.read<UserInfo>().userInfo!.userName.toString(),
+          'pic': context.read<UserInfo>().userInfo!.avatar != null
+              ? context.read<UserInfo>().userInfo!.avatar.toString()
+              : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg',
+          'message': content
         };
         currentData.insert(0, value);
       });
+
       commentController.clear();
       FocusScope.of(context).unfocus();
 
       ///Save database
       await ApiMessageServices().ApiSendMessage(
           widget.video.slug!,
-          // context.read<UserInfo>().userInfo!.id!,
-          '62f1df752b02e4df1e20696b',
-          commentController.text,
+          context.read<UserInfo>().userInfo!.id!,
+          // '62f1df752b02e4df1e20696b',
+          content,
           '1',
           null);
     } else {
@@ -75,11 +78,11 @@ class _CommentContainerState extends State<CommentContainer> {
     }
   }
 
-  Widget commentChild(List<MessageModel> data, List currentData) {
+  Widget commentChild(List<MessageModel> filedata, List currentData) {
     return ListView(
       shrinkWrap: true,
       children: [
-        //List comment t2
+        //List comment from input
         for (var i = 0; i < currentData.length; i++) ...{
           Padding(
             padding: const EdgeInsets.fromLTRB(2.0, 8.0, 2.0, 0.0),
@@ -90,28 +93,35 @@ class _CommentContainerState extends State<CommentContainer> {
                   print("Comment Clicked");
                 },
                 child: Container(
-                  height: 50.0,
-                  width: 50.0,
+                  height: 40.0,
+                  width: 40.0,
                   // ignore: prefer_const_constructors
                   decoration: new BoxDecoration(
                       color: Colors.blue,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(50))),
                   child: CircleAvatar(
-                      radius: 50,
-                      backgroundImage:
-                          NetworkImage(currentData[i]['pic'] + "$i")),
+                    radius: 40,
+                    backgroundImage: NetworkImage(currentData[i]['pic']),
+                    backgroundColor: Colors.grey,
+                  ),
                 ),
               ),
               title: Text(
                 currentData[i]['name'],
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
               ),
-              subtitle: Text(currentData[i]['message']),
+              subtitle: Text(
+                currentData[i]['message'],
+                style:
+                    const TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
+              ),
             ),
           )
         },
-        for (var i = 0; i < data.length; i++) ...{
+        //List comment from database
+        for (var i = 0; i < filedata.length; i++) ...{
           Padding(
             padding: const EdgeInsets.fromLTRB(3.0, 8.0, 2.0, 0.0),
             child: ListTile(
@@ -126,13 +136,13 @@ class _CommentContainerState extends State<CommentContainer> {
                   child: CircleAvatar(
                     radius: 40,
                     backgroundImage:
-                        NetworkImage(data[i].user!.avatar.toString()),
+                        NetworkImage(filedata[i].user!.avatar.toString()),
                     backgroundColor: Colors.grey,
                   ),
                 ),
               ),
               title: Text(
-                data[i].user!.userName!,
+                filedata[i].user!.userName!,
                 style:
                     const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
               ),
@@ -141,12 +151,12 @@ class _CommentContainerState extends State<CommentContainer> {
                 children: [
                   const SizedBox(height: 6),
                   Text(
-                    data[i].content!.content!,
+                    filedata[i].content!.content!,
                     style: const TextStyle(
                         fontWeight: FontWeight.w400, fontSize: 14),
                   ),
                   const SizedBox(height: 4),
-                  data[i].nft != null
+                  filedata[i].nft != null
                       ? Row(
                           children: [
                             SizedBox(
@@ -168,7 +178,8 @@ class _CommentContainerState extends State<CommentContainer> {
                                       bottomRight: Radius.circular(10),
                                     ),
                                     image: DecorationImage(
-                                      image: NetworkImage(data[i].nft!.image!),
+                                      image:
+                                          NetworkImage(filedata[i].nft!.image!),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -181,7 +192,7 @@ class _CommentContainerState extends State<CommentContainer> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    data[i].nft!.name!,
+                                    filedata[i].nft!.name!,
                                     style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600),
@@ -197,7 +208,7 @@ class _CommentContainerState extends State<CommentContainer> {
                                         fit: BoxFit.cover,
                                       ),
                                       Text(
-                                        data[i].nft!.price.toString(),
+                                        filedata[i].nft!.price.toString(),
                                         style: const TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w400),
@@ -222,67 +233,69 @@ class _CommentContainerState extends State<CommentContainer> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height * 0.6;
-    return context.read<UserInfo>().userInfo == null
+    return context.read<UserInfo>().userInfo != null
         ? SafeArea(
             child: Expanded(
               child: Container(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 height: height,
-                child: CommentBox(
-                  userImage: context.read<UserInfo>().userInfo != null &&
-                          context.read<UserInfo>().userInfo!.avatar != null
-                      ? context.watch<UserInfo>().userInfo!.avatar
-                      : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
-                  child: !isLoading
-                      ? filedata.length > 0
-                          ? commentChild(filedata, currentData)
-                          : const Center(
-                              child: Text(
-                              '0 Comment',
-                              style: TextStyle(
-                                  color: AppColors.dPrimaryColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16),
-                            ))
-                      : const ListCommentSkeleton(),
-                  labelText: 'Write a comment...',
-                  withBorder: true,
-                  errorText: 'Comment cannot be blank',
-                  sendButtonMethod: () {},
-                  formKey: formKey,
-                  commentController: commentController,
-                  backgroundColor: Colors.black,
-                  textColor: Colors.white,
-                  sendWidget: InkWell(
-                      onTap: () => {sendButtonMethod()},
-                      child: const Icon(Icons.send_sharp,
-                          size: 30, color: Colors.white)),
+                child: SafeArea(
+                  child: CommentBox(
+                    userImage: context.read<UserInfo>().userInfo != null &&
+                            context.read<UserInfo>().userInfo!.avatar != null
+                        ? context.watch<UserInfo>().userInfo!.avatar
+                        : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
+                    child: !isLoading
+                        ? filedata.length > 0
+                            ? commentChild(filedata, currentData)
+                            : const Center(
+                                child: Text(
+                                '0 Comment',
+                                style: TextStyle(
+                                    color: AppColors.dPrimaryColor,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16),
+                              ))
+                        : const ListCommentSkeleton(),
+                    labelText: 'Write a comment...',
+                    withBorder: true,
+                    errorText: 'Comment cannot be blank',
+                    sendButtonMethod: () {},
+                    formKey: formKey,
+                    commentController: commentController,
+                    backgroundColor: Colors.black,
+                    textColor: Colors.white,
+                    sendWidget: InkWell(
+                        onTap: () => {sendButtonMethod()},
+                        child: const Icon(Icons.send_sharp,
+                            size: 30, color: Colors.white)),
+                  ),
                 ),
               ),
             ),
           )
-        : SafeArea(
-            child: Expanded(
-              child: Container(
-                height: height,
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: !isLoading
-                          ? filedata.length > 0
-                              ? commentChild(filedata, currentData)
-                              : const Center(
-                                  child: Text(
-                                  '0 Comment',
-                                  style: TextStyle(
-                                      color: AppColors.dPrimaryColor,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 15),
-                                ))
-                          : const ListCommentSkeleton(),
-                    ),
-                    SizedBox(
+        : Expanded(
+            child: Container(
+              height: height,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: !isLoading
+                        ? filedata.length > 0
+                            ? commentChild(filedata, currentData)
+                            : const Center(
+                                child: Text(
+                                '0 Comment',
+                                style: TextStyle(
+                                    color: AppColors.dPrimaryColor,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 15),
+                              ))
+                        : const ListCommentSkeleton(),
+                  ),
+                  SafeArea(
+                    child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -307,8 +320,8 @@ class _CommentContainerState extends State<CommentContainer> {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );

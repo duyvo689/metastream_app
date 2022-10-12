@@ -19,7 +19,7 @@ class Body extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SafeArea(child: DefaultPlayer(videoSlug: video.slug!)),
-        const SizedBox(height: 20),
+        const SizedBox(height: 15),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
@@ -32,10 +32,10 @@ class Body extends StatelessWidget {
                 style: const TextStyle(
                   overflow: TextOverflow.ellipsis,
                   fontWeight: FontWeight.w500,
-                  fontSize: 18,
+                  fontSize: 16,
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 4),
               Row(
                 children: const [
                   Text(
