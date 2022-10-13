@@ -86,13 +86,16 @@ class TableNFTMagicEden extends StatelessWidget {
                           ? const TextStyle(color: Colors.yellow)
                           : const TextStyle(color: Colors.yellow)),
         ),
-        DataCell(Text(
-            '${solanaTx.tokenMint.toString().substring(0, 4)}...${solanaTx.tokenMint.toString().substring(solanaTx.tokenMint.toString().length - 4, solanaTx.tokenMint.toString().length)}')),
-        DataCell(Text(
-            '${solanaTx.buyer.toString().substring(0, 4)}...${solanaTx.buyer.toString().substring(solanaTx.buyer.toString().length - 4, solanaTx.buyer.toString().length)}')),
+        DataCell(Text(solanaTx.tokenMint != null
+            ? '${solanaTx.tokenMint.toString().substring(0, 4)}...${solanaTx.tokenMint.toString().substring(solanaTx.tokenMint.toString().length - 4, solanaTx.tokenMint.toString().length)}'
+            : '...')),
+        DataCell(Text(solanaTx.buyer != null
+            ? '${solanaTx.buyer.toString().substring(0, 4)}...${solanaTx.buyer.toString().substring(solanaTx.buyer.toString().length - 4, solanaTx.buyer.toString().length)}'
+            : '...')),
         DataCell(Text(
             '${solanaTx.price != null ? solanaTx.price.toString() : 0} SOL')),
-        DataCell(Text(solanaTx.blockTime.toString())),
+        DataCell(Text(
+            '${DateTime.fromMillisecondsSinceEpoch(solanaTx.blockTime! * 1000)}')),
         DataCell(OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
             primary: AppColors.dPrimaryColor.withOpacity(0.6),
