@@ -204,6 +204,8 @@ class UserId {
       data["tags_id"] = tagsId?.map((e) => e.toJson()).toList();
     return data;
   }
+
+  containsKey(String s) {}
 }
 
 class TagsId {

@@ -26,8 +26,8 @@ class _CollectionDetailState extends State<CollectionDetail> {
   StatsMagicEden? statsMagicEden;
   @override
   void initState() {
-    fetchNftMagicEdenNfts(widget.collection.symbol.toString());
     fetchStatMagicEdenNfts(widget.collection.symbol.toString());
+    fetchNftMagicEdenNfts(widget.collection.symbol.toString());
     super.initState();
   }
 

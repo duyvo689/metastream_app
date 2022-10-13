@@ -13,11 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-import 'default_player.dart';
-import 'info_user_video.dart';
-import 'name_video.dart';
-import 'video_states.dart';
-
 class CommentContainer extends StatefulWidget {
   const CommentContainer({Key? key, required this.video}) : super(key: key);
   final Video video;
@@ -88,21 +83,6 @@ class _CommentContainerState extends State<CommentContainer> {
     return ListView(
       shrinkWrap: true,
       children: [
-        SafeArea(child: DefaultPlayer(videoSlug: widget.video.slug!)),
-        const SizedBox(height: 15),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              NameVideo(video: widget.video),
-              const VideoStates(),
-              const SizedBox(height: 10),
-              InfoUserVideo(video: widget.video),
-              const SizedBox(height: 10),
-            ],
-          ),
-        ),
         //List comment from input
         for (var i = 0; i < currentData.length; i++) ...{
           Padding(
@@ -114,15 +94,15 @@ class _CommentContainerState extends State<CommentContainer> {
                   print("Comment Clicked");
                 },
                 child: Container(
-                  height: 40.0,
-                  width: 40.0,
+                  height: 38,
+                  width: 38,
                   // ignore: prefer_const_constructors
                   decoration: new BoxDecoration(
                       color: Colors.blue,
                       borderRadius:
                           const BorderRadius.all(Radius.circular(50))),
                   child: CircleAvatar(
-                    radius: 40,
+                    radius: 38,
                     backgroundImage:
                         CachedNetworkImageProvider(currentData[i]['pic']),
                     backgroundColor: Colors.grey,
@@ -150,13 +130,13 @@ class _CommentContainerState extends State<CommentContainer> {
               leading: GestureDetector(
                 onTap: () async {},
                 child: Container(
-                  height: 40.0,
-                  width: 40.0,
+                  height: 38,
+                  width: 38,
                   decoration: const BoxDecoration(
                       color: Colors.blue,
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   child: CircleAvatar(
-                    radius: 40,
+                    radius: 38,
                     backgroundImage: CachedNetworkImageProvider(filedata[i]
                                 .user!
                                 .avatar !=
@@ -258,90 +238,82 @@ class _CommentContainerState extends State<CommentContainer> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height * 0.6;
-    return context.read<UserInfo>().userInfo == null
-        ? Expanded(
-            child: SingleChildScrollView(
-              child: SafeArea(
-                child: CommentBox(
-                  userImage: context.read<UserInfo>().userInfo != null &&
-                          context.read<UserInfo>().userInfo!.avatar != null
-                      ? context.watch<UserInfo>().userInfo!.avatar
-                      : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
-                  child: !isLoading
-                      ? filedata.length > 0
-                          ? commentChild(filedata, currentData)
-                          : const Center(
-                              child: Text(
-                              '0 Comment',
-                              style: TextStyle(
-                                  color: AppColors.dPrimaryColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 16),
-                            ))
-                      : const ListCommentSkeleton(),
-                  labelText: 'Write a comment...',
-                  withBorder: false,
-                  errorText: 'Comment cannot be blank',
-                  sendButtonMethod: () {},
-                  formKey: formKey,
-                  commentController: commentController,
-                  backgroundColor: Colors.black,
-                  textColor: Colors.white,
-                  sendWidget: InkWell(
-                      onTap: () => {sendButtonMethod()},
-                      child: const Icon(Icons.send_sharp,
-                          size: 30, color: Colors.white)),
-                ),
-              ),
+    return context.read<UserInfo>().userInfo != null
+        ? GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
+            child: CommentBox(
+              userImage: context.read<UserInfo>().userInfo != null &&
+                      context.read<UserInfo>().userInfo!.avatar != null
+                  ? context.watch<UserInfo>().userInfo!.avatar
+                  : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
+              child: !isLoading
+                  ? filedata.length > 0 || currentData.length > 0
+                      ? commentChild(filedata, currentData)
+                      : const Center(
+                          child: Text(
+                          '0 Comment',
+                          style: TextStyle(
+                              color: AppColors.dPrimaryColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16),
+                        ))
+                  : const ListCommentSkeleton(),
+              labelText: 'Write a comment...',
+              withBorder: false,
+              errorText: 'Comment cannot be blank',
+              sendButtonMethod: () {},
+              formKey: formKey,
+              commentController: commentController,
+              backgroundColor: Colors.black,
+              textColor: Colors.white,
+              sendWidget: InkWell(
+                  onTap: () => {sendButtonMethod()},
+                  child: const Icon(Icons.send_sharp,
+                      size: 30, color: Colors.white)),
             ),
           )
-        : Expanded(
-            child: Column(
-              children: [
-                Expanded(
-                  child: !isLoading
-                      ? filedata.length > 0
-                          ? commentChild(filedata, currentData)
-                          : const Center(
-                              child: Text(
-                              '0 Comment',
-                              style: TextStyle(
-                                  color: AppColors.dPrimaryColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 15),
-                            ))
-                      : const ListCommentSkeleton(),
-                ),
-                SafeArea(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4)),
-                            primary: AppColors.dPrimaryDarkColor,
-                            onPrimary: AppColors.dWhileColor,
-                            shadowColor: AppColors.dGreyLightColor,
-                            textStyle: const TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w600)),
-                        onPressed: () {
-                          Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const WalletPhanTom()))
-                              .then((_) => setState(() {}));
-                        },
-                        child: const Text("Login in to comment"),
-                      ),
-                    ),
+        : Column(
+            children: [
+              Expanded(
+                child: !isLoading
+                    ? filedata.length > 0
+                        ? commentChild(filedata, currentData)
+                        : const Center(
+                            child: Text(
+                            '0 Comment',
+                            style: TextStyle(
+                                color: AppColors.dPrimaryColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15),
+                          ))
+                    : const ListCommentSkeleton(),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 45,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4)),
+                        primary: AppColors.dPrimaryDarkColor,
+                        onPrimary: AppColors.dWhileColor,
+                        shadowColor: AppColors.dGreyLightColor,
+                        textStyle: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600)),
+                    onPressed: () {
+                      Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const WalletPhanTom()))
+                          .then((_) => setState(() {}));
+                    },
+                    child: const Text("Login in to comment"),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           );
   }
 }

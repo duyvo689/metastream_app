@@ -70,15 +70,15 @@ class _BodyState extends State<Body> {
               const SizedBox(
                 height: 20,
               ),
-              // context.watch<LiveStreamingProvider>().liveStreamList != null &&
-              //         context
-              //                 .watch<LiveStreamingProvider>()
-              //                 .liveStreamList!
-              //                 .length >
-              //             0
-              //     ? const _ListStreamer()
-              //     : const _ListUser(),
-              // const SizedBox(height: 20),
+              context.watch<LiveStreamingProvider>().liveStreamList != null &&
+                      context
+                              .watch<LiveStreamingProvider>()
+                              .liveStreamList!
+                              .length >
+                          0
+                  ? const _ListStreamer()
+                  : const _ListUser(),
+              const SizedBox(height: 20),
               const CarouselWithIndicator(
                   viewport: 1, width: 30, height: 3, style: 'start'),
               const SizedBox(height: 20),
@@ -234,7 +234,8 @@ class _CircleUserLiveCard extends StatelessWidget {
                 radius: isLive ? 32 : 34,
                 backgroundImage: CachedNetworkImageProvider(data != null &&
                         data.userId != null &&
-                        data.userId!.avatar != null
+                        data.userId!.avatar != null &&
+                        data.userId!.avatar != 'null'
                     ? isLive
                         ? isUserLive
                             ? data.userId!.avatar!
@@ -338,7 +339,8 @@ class _CircleUserCard extends StatelessWidget {
           CircleAvatar(
             radius: 34,
             backgroundImage: CachedNetworkImageProvider(user != null &&
-                    user.avatar != null
+                    user.avatar != null &&
+                    user.avatar != 'null'
                 ? user.avatar!
                 : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'),
           ),

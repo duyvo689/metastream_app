@@ -9,6 +9,7 @@ class VideoListProvider extends ChangeNotifier {
   // ignore: non_constant_identifier_names
   Future GetVideoListProvider() async {
     List<Video>? videoList = await ApiVideoServices().fetchVideos();
+    videoList = videoList.reversed.toList().sublist(0, 8);
     _videoList = videoList;
     notifyListeners();
   }

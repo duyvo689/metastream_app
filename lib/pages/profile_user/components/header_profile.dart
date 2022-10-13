@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
@@ -5,7 +7,10 @@ import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/api_user_service.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:material_dialogs/material_dialogs.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:provider/provider.dart';
 
 class HeaderProflie extends StatefulWidget {
@@ -25,43 +30,46 @@ class _HeaderProflieState extends State<HeaderProflie> {
   }
 
   Future<void> _showMyDialog() async {
-    return showDialog<void>(
+    return Dialogs.materialDialog(
+      color: Colors.white,
+      msg: 'You need to log in to your account before you can do this!',
+      msgAlign: TextAlign.center,
+      msgStyle: const TextStyle(color: Colors.black),
+      title: 'Notification',
+      titleStyle: TextStyle(
+          color: Colors.grey[500], fontWeight: FontWeight.bold, fontSize: 18),
+      dialogWidth: kIsWeb ? 0.3 : null,
       context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Notifications',
-              style: TextStyle(color: AppColors.dPrimaryColor)),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text('You need a wallet connection to login.'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Cancel',
-                  style: TextStyle(
-                      color: AppColors.dGreyLightColor, fontSize: 16)),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: const Text('Agree',
-                  style:
-                      TextStyle(color: AppColors.dPrimaryColor, fontSize: 16)),
-              onPressed: () {
-                Navigator.push(
+      actions: [
+        IconsButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          text: 'Cancel',
+          iconData: Icons.done,
+          color: Colors.grey[400],
+          textStyle: const TextStyle(color: Colors.white),
+          iconColor: Colors.white,
+        ),
+        IconsButton(
+          onPressed: () {
+            Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const WalletPhanTom()));
-              },
-            ),
-          ],
-        );
-      },
+                        builder: (context) => const WalletPhanTom()))
+                // .then((_) => Navigator.of(context).pop())
+                // .then((_) => userInfoMe = context.read<UserInfo>().userInfo)
+                // .then((_) => checkFollower(
+                //     userInfoMe!.follower!.toList(), widget.user.id.toString()))
+                .then((_) => setState(() {}));
+          },
+          text: 'Login',
+          iconData: Icons.done,
+          color: AppColors.dPrimaryDarkColor,
+          textStyle: const TextStyle(color: Colors.white),
+          iconColor: Colors.white,
+        ),
+      ],
     );
   }
 

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';

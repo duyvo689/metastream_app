@@ -95,10 +95,6 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
       title: 'Notification',
       titleStyle: TextStyle(
           color: Colors.grey[500], fontWeight: FontWeight.bold, fontSize: 18),
-      // lottieBuilder: Lottie.asset(
-      //   'assets/images/cong_example.json',
-      //   fit: BoxFit.contain,
-      // ),
       dialogWidth: kIsWeb ? 0.3 : null,
       context: context,
       actions: [
@@ -153,6 +149,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
               CircleAvatar(
                 backgroundImage:
                     CachedNetworkImageProvider(widget.video.userId!.avatar!),
+                radius: 20,
               ),
               const SizedBox(width: 16),
               Column(
@@ -164,8 +161,8 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
                     maxLines: 1,
                     style: const TextStyle(
                         overflow: TextOverflow.ellipsis,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15,
                         color: AppColors.dWhileColor),
                   ),
                   const SizedBox(height: 2),
@@ -175,7 +172,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
                     style: const TextStyle(
                         overflow: TextOverflow.ellipsis,
                         fontWeight: FontWeight.w500,
-                        fontSize: 13,
+                        fontSize: 12,
                         color: AppColors.dGreyLightColor),
                   ),
                 ],
@@ -185,38 +182,43 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
         ),
         userInfoMe != null && user != null && userInfoMe!.id == user!.id
             ? const SizedBox.shrink()
-            : ElevatedButton.icon(
-                onPressed: () {
-                  if (context.read<UserInfo>().userInfo != null) {
-                    setState(() {
-                      isFollow = !isFollow;
-                    });
-                    followUser(context.read<UserInfo>().userInfo!.id.toString(),
-                        widget.video.userId!.id.toString(), !isFollow);
-                  } else {
-                    _showMyDialog();
-                  }
-                },
-                icon: Icon(
-                  isFollow
-                      ? Icons.notifications_active
-                      : Icons.notifications_outlined,
-                  size: 18,
+            : SizedBox(
+                height: 35,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    if (context.read<UserInfo>().userInfo != null) {
+                      setState(() {
+                        isFollow = !isFollow;
+                      });
+                      followUser(
+                          context.read<UserInfo>().userInfo!.id.toString(),
+                          widget.video.userId!.id.toString(),
+                          !isFollow);
+                    } else {
+                      _showMyDialog();
+                    }
+                  },
+                  icon: Icon(
+                    isFollow
+                        ? Icons.notifications_active
+                        : Icons.notifications_outlined,
+                    size: 18,
+                  ),
+                  label: Text(isFollow
+                      ? isLoadFollow
+                          ? 'Following...'
+                          : 'Unfollow'
+                      : isLoadFollow
+                          ? 'Unfollowing...'
+                          : 'Follow'),
+                  style: ElevatedButton.styleFrom(
+                      primary: AppColors.dWhileColor,
+                      onPrimary: AppColors.dGreyLightColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
+                      textStyle: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w600)),
                 ),
-                label: Text(isFollow
-                    ? isLoadFollow
-                        ? 'Following...'
-                        : 'Unfollow'
-                    : isLoadFollow
-                        ? 'Unfollowing...'
-                        : 'Follow'),
-                style: ElevatedButton.styleFrom(
-                    primary: AppColors.dWhileColor,
-                    onPrimary: AppColors.dGreyLightColor,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    textStyle: const TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.w600)),
               )
       ],
     );

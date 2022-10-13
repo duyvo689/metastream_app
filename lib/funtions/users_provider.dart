@@ -9,6 +9,7 @@ class UserList extends ChangeNotifier {
   // ignore: non_constant_identifier_names
   Future GetUserListProvider() async {
     List<User>? userList = await ApiUserServices().fetchUsers();
+    userList = userList.where((a) => a.avatar != null).toList();
     _userList = userList;
     notifyListeners();
   }

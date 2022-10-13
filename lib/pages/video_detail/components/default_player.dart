@@ -26,7 +26,8 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
 
   Future<void> playurl(String slug) async {
     var response = await ApiVideoServices().fetchVideoBySlug(slug);
-    String url = response.playUrl!;
+    if (response?.playUrl == null) return;
+    String url = response!.playUrl!;
     String play_url = url.replaceAll(' ', '%20');
     setState(() {
       urlVideo = play_url;

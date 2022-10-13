@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, body_might_complete_normally_nullable, use_build_context_synchronously, unnecessary_null_comparison
+// ignore_for_file: unused_local_variable, body_might_complete_normally_nullable, use_build_context_synchronously, unnecessary_null_comparison, avoid_unnecessary_containers
 
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';

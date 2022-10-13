@@ -10,8 +10,6 @@ class ApiMessageServices {
     http.Response response =
         await http.get(Uri.parse('${URL().API_URL}/api/v1/message/${slug}'));
 
-    if (response.body.isEmpty) return null;
-
     final String jsonBody = response.body;
     final int statusCode = response.statusCode;
     if (statusCode != 200 || jsonBody == null) {

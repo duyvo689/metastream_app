@@ -1,5 +1,4 @@
 import 'package:app_metastream/models/models.dart';
-import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
 class NameVideo extends StatelessWidget {
@@ -12,34 +11,37 @@ class NameVideo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          video.name!,
-          textAlign: TextAlign.start,
-          maxLines: 2,
-          style: const TextStyle(
-            overflow: TextOverflow.ellipsis,
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Row(
-          children: const [
-            Text(
-              '0 views',
-              textAlign: TextAlign.start,
-              maxLines: 2,
-              style: TextStyle(
-                  overflow: TextOverflow.ellipsis,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                  color: AppColors.dGreyLightColor),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            video.name!,
+            textAlign: TextAlign.start,
+            maxLines: 2,
+            style: const TextStyle(
+              overflow: TextOverflow.ellipsis,
+              fontWeight: FontWeight.w500,
+              fontSize: 16,
             ),
-          ],
-        ),
-      ],
+          ),
+          // Row(
+          //   children: const [
+          //     Text(
+          //       '0 views',
+          //       textAlign: TextAlign.start,
+          //       maxLines: 2,
+          //       style: TextStyle(
+          //           overflow: TextOverflow.ellipsis,
+          //           fontWeight: FontWeight.w400,
+          //           fontSize: 14,
+          //           color: AppColors.dGreyLightColor),
+          //     ),
+          //   ],
+          // ),
+        ],
+      ),
     );
   }
 }

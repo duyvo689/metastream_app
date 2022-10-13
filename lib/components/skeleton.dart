@@ -214,7 +214,7 @@ class ListCommentSkeleton extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: 6,
+      itemCount: 3,
       itemBuilder: (context, index) => Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
