@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_new, unused_field, prefer_final_fields, prefer_const_constructors, sized_box_for_whitespace
-
 import 'package:app_metastream/models/models.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +61,6 @@ class _Home extends State<ShortVideo> with SingleTickerProviderStateMixin {
         itemBuilder: (context, index) {
           return Stack(
             children: <Widget>[
-              // ignore: deprecated_member_use
               FlatButton(
                   padding: EdgeInsets.all(0),
                   onPressed: () {
@@ -167,7 +164,6 @@ class _Home extends State<ShortVideo> with SingleTickerProviderStateMixin {
                                   child: CircleAvatar(
                                     radius: 10,
                                     backgroundColor:
-                                        // ignore: use_full_hex_values_for_flutter_colors
                                         const Color(0xfd2c58).withOpacity(1),
                                     child: const Center(
                                         child: Icon(Icons.add,

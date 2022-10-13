@@ -1,5 +1,3 @@
-// ignore_for_file: camel_case_types
-
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
@@ -20,7 +18,6 @@ class AboutProfile extends StatelessWidget {
               future: ApiGameServices().fetchGameById(gameId),
               builder: (context, snapshot) {
                 if ((snapshot.hasError) || (!snapshot.hasData))
-                  // ignore: curly_braces_in_flow_control_structures
                   return const Loading(scale: 6);
                 Game? game = snapshot.data;
                 return game != null

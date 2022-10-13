@@ -6,7 +6,6 @@ class GameListProvider extends ChangeNotifier {
   List<Game>? _gameList;
 
   List<Game>? get gameList => _gameList;
-  // ignore: non_constant_identifier_names
   Future GetGameListProvider() async {
     List<Game>? gameList = await ApiGameServices().fetchGame();
     _gameList = gameList;

@@ -1,5 +1,3 @@
-// ignore_for_file: sort_child_properties_last, unnecessary_null_comparison, library_private_types_in_public_api, sized_box_for_whitespace, avoid_print, prefer_is_empty, unnecessary_new
-
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/message_model.dart';
@@ -103,7 +101,6 @@ class _CommentContainerState extends State<CommentContainer> {
                 child: Container(
                   height: 38,
                   width: 38,
-                  // ignore: prefer_const_constructors
                   decoration: new BoxDecoration(
                       color: Colors.blue,
                       borderRadius:

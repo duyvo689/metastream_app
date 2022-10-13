@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
-
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 

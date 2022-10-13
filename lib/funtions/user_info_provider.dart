@@ -7,13 +7,11 @@ class UserInfo extends ChangeNotifier {
 
   User? get userInfo => _userInfo;
 
-  // ignore: non_constant_identifier_names
   Future GetUserInfoProvider(String? walletAddr, User? userInfo) async {
     User? user;
     if (walletAddr != null) {
       user = await ApiUserServices()
           .fetchUserByWalletAddress(walletAddr.toString());
-      // ignore: prefer_conditional_assignment
       if (user == null) {
         user = await ApiUserServices().ApiCreateUser(walletAddr.toString());
       }

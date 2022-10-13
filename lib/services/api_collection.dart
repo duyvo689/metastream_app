@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names, unused_local_variable, unnecessary_new, unnecessary_null_comparison, prefer_const_constructors, no_leading_underscores_for_local_identifiers, unnecessary_brace_in_string_interps
-
 import 'package:app_metastream/models/magicedennft_detail_model.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:http/http.dart' as http;

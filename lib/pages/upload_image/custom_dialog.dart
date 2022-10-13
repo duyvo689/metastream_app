@@ -65,7 +65,6 @@ class CustomDialog {
   }
 
   static _buildSubTitle(context, String subHeading) {
-    // ignore: unnecessary_null_comparison
     if (subHeading != null && subHeading.isNotEmpty) {
       return Text(
         subHeading,
@@ -89,7 +88,6 @@ class CustomDialog {
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onPressed: () {
-            // ignore: unnecessary_null_comparison
             if (onPressedNegative != null) {
               onPressedNegative();
             } else {

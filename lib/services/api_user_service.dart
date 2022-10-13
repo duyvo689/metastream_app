@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_new, prefer_const_constructors, no_leading_underscores_for_local_identifiers, non_constant_identifier_names
-
 import 'package:app_metastream/models/models.dart';
 import 'package:http/http.dart' as http;
 import 'api_url.dart';
@@ -65,7 +63,6 @@ class ApiUserServices {
     });
   }
 
-  // ignore: non_constant_identifier_names
   Future ApiFollowUser(String id, String userId, bool isFollow) async {
     return await http
         .put(Uri.parse('${URL().API_URL}/api/v1/user/follow/${id}'), //of minh
@@ -80,7 +77,6 @@ class ApiUserServices {
       final String jsonBody = response.body;
       final int statusCode = response.statusCode;
 
-      // ignore: unnecessary_null_comparison
       if (statusCode != 200 || jsonBody == null) {
         throw new Exception("Error load api");
       }

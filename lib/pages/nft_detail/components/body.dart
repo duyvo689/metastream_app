@@ -39,7 +39,6 @@ class Body extends StatelessWidget {
                     children: [
                       Expanded(
                           child: Align(
-                        // ignore: sort_child_properties_last
                         child: _ImageNFT(nftSolana: nftSolana),
                         alignment: Alignment.topCenter,
                       )),

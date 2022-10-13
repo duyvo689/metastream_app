@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_new, unnecessary_null_comparison, prefer_const_constructors, no_leading_underscores_for_local_identifiers
-
 import 'package:app_metastream/models/models.dart';
 import 'package:http/http.dart' as http;
 import 'api_url.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file:  curly_braces_in_flow_control_structures
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
@@ -18,7 +20,6 @@ class TableNFT extends StatelessWidget {
         future: ApiSolanaTxServices().fetchSolanaTx(mintAddress),
         builder: (context, snapshot) {
           if ((snapshot.hasError) || (!snapshot.hasData))
-            // ignore: curly_braces_in_flow_control_structures
             return Container(
               height: 60,
               child: ListView.builder(

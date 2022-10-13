@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
@@ -107,9 +105,7 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
     setState(() {
       _loading = false;
     });
-    // ignore: use_build_context_synchronously
     context.read<UserInfo>().GetUserInfoProvider(null, _userInfo);
-    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
     Future.delayed(const Duration(milliseconds: 1500))
         .then((value) => {Navigator.of(context).pop()});
@@ -366,11 +362,9 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                       },
                     ),
 
-                    // ignore: unnecessary_new
-                    new Container(
+                    Container(
                         padding: const EdgeInsets.only(left: 150.0, top: 40.0),
-                        // ignore: unnecessary_new
-                        child: new RaisedButton(
+                        child: RaisedButton(
                           color: _loading
                               ? AppColors.dGreyLightColor
                               : AppColors.dPrimaryDarkColor,

@@ -21,7 +21,6 @@ class TableNFTMagicEden extends StatelessWidget {
         future: ApiCollectionServices().fetchMagicEdenNftActivitis(tokenMint),
         builder: (context, snapshot) {
           if ((snapshot.hasError) || (!snapshot.hasData))
-            // ignore: curly_braces_in_flow_control_structures
             return Container(
                 height: 60, child: const SquareSkeleton(height: 40));
           List<MagicEdenNftActivities>? solanaTx = snapshot.data;

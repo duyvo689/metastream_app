@@ -39,7 +39,6 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
     FetchBanner();
   }
 
-  // ignore: non_constant_identifier_names
   Future FetchBanner() async {
     await context.read<BannerProvider>().GetBannerProvider();
   }

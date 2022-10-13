@@ -36,28 +36,23 @@ class LiveStream {
 
   LiveStream.fromJson(Map<String, dynamic> json) {
     if (json["primaryPlatform"] is Map)
-      // ignore: curly_braces_in_flow_control_structures
       primaryPlatform = json["primaryPlatform"] == null
           ? null
           : PrimaryPlatform.fromJson(json["primaryPlatform"]);
     if (json["streamKey"] is Map)
-      // ignore: curly_braces_in_flow_control_structures
       streamKey = json["streamKey"] == null
           ? null
           : StreamKey.fromJson(json["streamKey"]);
     if (json["_id"] is String) id = json["_id"];
     if (json["user_id"] is Map)
-      // ignore: curly_braces_in_flow_control_structures
       userId =
           json["user_id"] == null ? null : UserId.fromJson(json["user_id"]);
     if (json["isVerify"] is bool) isVerify = json["isVerify"];
     if (json["isBan"] is bool) isBan = json["isBan"];
     if (json["isActive"] is bool) isActive = json["isActive"];
     if (json["otherPlatform"] is List)
-      // ignore: curly_braces_in_flow_control_structures
       otherPlatform = json["otherPlatform"] ?? [];
     if (json["game_id"] is Map)
-      // ignore: curly_braces_in_flow_control_structures
       gameId =
           json["game_id"] == null ? null : GameId.fromJson(json["game_id"]);
     if (json["createdAt"] is String) createdAt = json["createdAt"];
@@ -66,10 +61,8 @@ class LiveStream {
     if (json["activityId"] is String) activityId = json["activityId"];
     if (json["status"] is int) status = json["status"];
     if (json["streamWithProfileGame"] is bool)
-      // ignore: curly_braces_in_flow_control_structures
       streamWithProfileGame = json["streamWithProfileGame"];
     if (json["gameStream"] is Map)
-      // ignore: curly_braces_in_flow_control_structures
       gameStream = json["gameStream"] == null
           ? null
           : GameStream.fromJson(json["gameStream"]);
@@ -78,7 +71,6 @@ class LiveStream {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (primaryPlatform != null)
-      // ignore: curly_braces_in_flow_control_structures
       data["primaryPlatform"] = primaryPlatform?.toJson();
     if (streamKey != null) data["streamKey"] = streamKey?.toJson();
     data["_id"] = id;
@@ -173,9 +165,7 @@ class UserId {
 
   UserId.fromJson(Map<String, dynamic> json) {
     if (json["_id"] is String) id = json["_id"];
-    if (json["descriptions"] is String)
-      // ignore: curly_braces_in_flow_control_structures
-      descriptions = json["descriptions"];
+    if (json["descriptions"] is String) descriptions = json["descriptions"];
     if (json["firstName"] is String) firstName = json["firstName"];
     if (json["lastName"] is String) lastName = json["lastName"];
     if (json["userName"] is String) userName = json["userName"];
@@ -183,7 +173,6 @@ class UserId {
     if (json["title"] is String) title = json["title"];
     if (json["activityId"] is String) activityId = json["activityId"];
     if (json["tags_id"] is List)
-      // ignore: curly_braces_in_flow_control_structures
       tagsId = json["tags_id"] == null
           ? null
           : (json["tags_id"] as List).map((e) => TagsId.fromJson(e)).toList();
@@ -200,7 +189,6 @@ class UserId {
     data["title"] = title;
     data["activityId"] = activityId;
     if (tagsId != null)
-      // ignore: curly_braces_in_flow_control_structures
       data["tags_id"] = tagsId?.map((e) => e.toJson()).toList();
     return data;
   }
@@ -238,9 +226,7 @@ class StreamKey {
 
   StreamKey.fromJson(Map<String, dynamic> json) {
     if (json["PushPath"] is String) pushPath = json["PushPath"];
-    if (json["StreamingCode"] is String)
-      // ignore: curly_braces_in_flow_control_structures
-      streamingCode = json["StreamingCode"];
+    if (json["StreamingCode"] is String) streamingCode = json["StreamingCode"];
   }
 
   Map<String, dynamic> toJson() {

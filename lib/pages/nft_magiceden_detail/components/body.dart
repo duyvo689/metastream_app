@@ -78,7 +78,6 @@ class _BodyState extends State<Body> {
                     children: [
                       Expanded(
                           child: Align(
-                        // ignore: sort_child_properties_last
                         child: _ImageNFT(nftSolana: widget.nftSolana),
                         alignment: Alignment.topCenter,
                       )),

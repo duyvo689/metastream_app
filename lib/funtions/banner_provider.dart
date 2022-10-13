@@ -4,11 +4,9 @@ import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
 
 class BannerProvider extends ChangeNotifier {
-  // ignore: avoid_init_to_null
   List<Carousel> _banners = [];
 
   List<Carousel> get banners => _banners;
-  // ignore: non_constant_identifier_names
   Future GetBannerProvider() async {
     List<Carousel> carousels = await ApiBannerServices().fetchBanner();
     if (carousels.length > 0) {

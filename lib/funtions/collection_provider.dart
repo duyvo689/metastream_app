@@ -8,7 +8,6 @@ class CollectionProvider extends ChangeNotifier {
 
   List<Collection>? get collectionSolList => _collectionsSol;
   List<Collection>? get collectionEthList => _collectionsEth;
-  // ignore: non_constant_identifier_names
   Future GetCollectionsProvider() async {
     List<Collection>? collectionSols =
         await ApiCollectionServices().fetchListCollection('sol');

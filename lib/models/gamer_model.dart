@@ -50,12 +50,10 @@ class Game {
 
   Game.fromJson(Map<String, dynamic> json) {
     if (json["background"] is Map)
-      // ignore: curly_braces_in_flow_control_structures
       background = json["background"] == null
           ? null
           : Background.fromJson(json["background"]);
     if (json["developer"] is Map)
-      // ignore: curly_braces_in_flow_control_structures
       developer = json["developer"] == null
           ? null
           : Developer.fromJson(json["developer"]);
@@ -68,35 +66,29 @@ class Game {
     if (json["views"] is int) views = json["views"];
     if (json["follows"] is int) follows = json["follows"];
     if (json["chain_id"] is Map)
-      // ignore: curly_braces_in_flow_control_structures
       chainId =
           json["chain_id"] == null ? null : ChainId.fromJson(json["chain_id"]);
     if (json["tags"] is List)
-      // ignore: curly_braces_in_flow_control_structures
       tags = json["tags"] == null
           ? null
           : (json["tags"] as List).map((e) => Tags.fromJson(e)).toList();
     if (json["public"] is bool) public = json["public"];
     if (json["isActive"] is bool) isActive = json["isActive"];
     if (json["genres_id"] is List)
-      // ignore: curly_braces_in_flow_control_structures
       genresId = json["genres_id"] == null
           ? null
           : (json["genres_id"] as List)
               .map((e) => GenresId.fromJson(e))
               .toList();
     if (json["screenShots"] is List)
-      // ignore: curly_braces_in_flow_control_structures
       screenShots = json["screenShots"] == null
           ? null
           : List<String>.from(json["screenShots"]);
     if (json["link"] is List)
-      // ignore: curly_braces_in_flow_control_structures
       link = json["link"] == null
           ? null
           : (json["link"] as List).map((e) => Link.fromJson(e)).toList();
     if (json["addressCollection"] is String)
-      // ignore: curly_braces_in_flow_control_structures
       addressCollection = json["addressCollection"];
     if (json["slug"] is String) slug = json["slug"];
     if (json["createdAt"] is String) createdAt = json["createdAt"];
@@ -122,7 +114,6 @@ class Game {
     data["public"] = public;
     data["isActive"] = isActive;
     if (genresId != null)
-      // ignore: curly_braces_in_flow_control_structures
       data["genres_id"] = genresId?.map((e) => e.toJson()).toList();
     if (screenShots != null) data["screenShots"] = screenShots;
     if (link != null) data["link"] = link?.map((e) => e.toJson()).toList();
