@@ -13,6 +13,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import 'default_player.dart';
+import 'info_user_video.dart';
+import 'name_video.dart';
+import 'video_states.dart';
+
 class CommentContainer extends StatefulWidget {
   const CommentContainer({Key? key, required this.video}) : super(key: key);
   final Video video;
@@ -83,6 +88,21 @@ class _CommentContainerState extends State<CommentContainer> {
     return ListView(
       shrinkWrap: true,
       children: [
+        SafeArea(child: DefaultPlayer(videoSlug: widget.video.slug!)),
+        const SizedBox(height: 15),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              NameVideo(video: widget.video),
+              const VideoStates(),
+              const SizedBox(height: 10),
+              InfoUserVideo(video: widget.video),
+              const SizedBox(height: 10),
+            ],
+          ),
+        ),
         //List comment from input
         for (var i = 0; i < currentData.length; i++) ...{
           Padding(
@@ -277,53 +297,50 @@ class _CommentContainerState extends State<CommentContainer> {
             ),
           )
         : Expanded(
-            child: Container(
-              height: height,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: !isLoading
-                        ? filedata.length > 0
-                            ? commentChild(filedata, currentData)
-                            : const Center(
-                                child: Text(
-                                '0 Comment',
-                                style: TextStyle(
-                                    color: AppColors.dPrimaryColor,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 15),
-                              ))
-                        : const ListCommentSkeleton(),
-                  ),
-                  SafeArea(
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(4)),
-                              primary: AppColors.dPrimaryDarkColor,
-                              onPrimary: AppColors.dWhileColor,
-                              shadowColor: AppColors.dGreyLightColor,
-                              textStyle: const TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.w600)),
-                          onPressed: () {
-                            Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const WalletPhanTom()))
-                                .then((_) => setState(() {}));
-                          },
-                          child: const Text("Login in to comment"),
-                        ),
+            child: Column(
+              children: [
+                Expanded(
+                  child: !isLoading
+                      ? filedata.length > 0
+                          ? commentChild(filedata, currentData)
+                          : const Center(
+                              child: Text(
+                              '0 Comment',
+                              style: TextStyle(
+                                  color: AppColors.dPrimaryColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 15),
+                            ))
+                      : const ListCommentSkeleton(),
+                ),
+                SafeArea(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4)),
+                            primary: AppColors.dPrimaryDarkColor,
+                            onPrimary: AppColors.dWhileColor,
+                            shadowColor: AppColors.dGreyLightColor,
+                            textStyle: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w600)),
+                        onPressed: () {
+                          Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const WalletPhanTom()))
+                              .then((_) => setState(() {}));
+                        },
+                        child: const Text("Login in to comment"),
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
   }
