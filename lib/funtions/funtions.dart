@@ -5,3 +5,4 @@ export 'live_streaming_provider.dart';
 export 'user_provider.dart';
 export 'banner_provider.dart';
 export 'collection_provider.dart';
+export 'video_provider.dart';

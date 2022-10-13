@@ -1,5 +1,6 @@
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -47,12 +48,13 @@ class _ProfileMeState extends State<ProfileMe> {
                             backgroundColor: Colors.white,
                             child: CircleAvatar(
                               radius: 52.5,
-                              backgroundImage: NetworkImage(userInfoConsumer
-                                              .userInfo !=
-                                          null &&
-                                      userInfoConsumer.userInfo!.avatar != null
-                                  ? userInfoConsumer.userInfo!.avatar.toString()
-                                  : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'),
+                              backgroundImage: CachedNetworkImageProvider(
+                                  userInfoConsumer.userInfo != null &&
+                                          userInfoConsumer.userInfo!.avatar !=
+                                              null
+                                      ? userInfoConsumer.userInfo!.avatar
+                                          .toString()
+                                      : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'),
                             ),
                           ),
                         ),

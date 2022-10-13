@@ -44,6 +44,7 @@ void main() => runApp(
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => BannerProvider()),
         ChangeNotifierProvider(create: (_) => GameListProvider()),
+        ChangeNotifierProvider(create: (_) => VideoListProvider()),
         ChangeNotifierProvider(create: (_) => CollectionProvider()),
         ChangeNotifierProvider(create: (_) => LiveStreamingProvider()),
       ], child: const MyApp()),

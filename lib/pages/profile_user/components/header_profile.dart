@@ -4,6 +4,7 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/api_user_service.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -76,7 +77,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(widget.user != null &&
+                  image: CachedNetworkImageProvider(widget.user != null &&
                           widget.user.avatar != null
                       ? widget.user.avatar!
                       : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'),

@@ -2,6 +2,7 @@ import 'package:app_metastream/models/magicedennft_detail_model.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -72,8 +73,11 @@ class _NFTCardMagicEdenState extends State<NFTCardMagicEden> {
                           bottomRight: Radius.circular(8),
                         ),
                         image: DecorationImage(
-                            image:
-                                NetworkImage(widget.nft.extra!.img.toString()),
+                            // image:
+                            //     NetworkImage(widget.nft.extra!.img.toString()),
+                            // fit: BoxFit.cover),
+                            image: CachedNetworkImageProvider(
+                                widget.nft.extra!.img.toString()),
                             fit: BoxFit.cover),
                       ),
                     ),

@@ -7,6 +7,7 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:comment_box/comment/comment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -102,7 +103,8 @@ class _CommentContainerState extends State<CommentContainer> {
                           const BorderRadius.all(Radius.circular(50))),
                   child: CircleAvatar(
                     radius: 40,
-                    backgroundImage: NetworkImage(currentData[i]['pic']),
+                    backgroundImage:
+                        CachedNetworkImageProvider(currentData[i]['pic']),
                     backgroundColor: Colors.grey,
                   ),
                 ),
@@ -135,8 +137,12 @@ class _CommentContainerState extends State<CommentContainer> {
                       borderRadius: BorderRadius.all(Radius.circular(50))),
                   child: CircleAvatar(
                     radius: 40,
-                    backgroundImage:
-                        NetworkImage(filedata[i].user!.avatar.toString()),
+                    backgroundImage: CachedNetworkImageProvider(filedata[i]
+                                .user!
+                                .avatar !=
+                            null
+                        ? filedata[i].user!.avatar.toString()
+                        : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg'),
                     backgroundColor: Colors.grey,
                   ),
                 ),
@@ -178,8 +184,8 @@ class _CommentContainerState extends State<CommentContainer> {
                                       bottomRight: Radius.circular(10),
                                     ),
                                     image: DecorationImage(
-                                      image:
-                                          NetworkImage(filedata[i].nft!.image!),
+                                      image: CachedNetworkImageProvider(
+                                          filedata[i].nft!.image!),
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -233,44 +239,39 @@ class _CommentContainerState extends State<CommentContainer> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height * 0.6;
-    return context.read<UserInfo>().userInfo != null
-        ? SafeArea(
-            child: Expanded(
-              child: Container(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
-                height: height,
-                child: SafeArea(
-                  child: CommentBox(
-                    userImage: context.read<UserInfo>().userInfo != null &&
-                            context.read<UserInfo>().userInfo!.avatar != null
-                        ? context.watch<UserInfo>().userInfo!.avatar
-                        : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
-                    child: !isLoading
-                        ? filedata.length > 0
-                            ? commentChild(filedata, currentData)
-                            : const Center(
-                                child: Text(
-                                '0 Comment',
-                                style: TextStyle(
-                                    color: AppColors.dPrimaryColor,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 16),
-                              ))
-                        : const ListCommentSkeleton(),
-                    labelText: 'Write a comment...',
-                    withBorder: true,
-                    errorText: 'Comment cannot be blank',
-                    sendButtonMethod: () {},
-                    formKey: formKey,
-                    commentController: commentController,
-                    backgroundColor: Colors.black,
-                    textColor: Colors.white,
-                    sendWidget: InkWell(
-                        onTap: () => {sendButtonMethod()},
-                        child: const Icon(Icons.send_sharp,
-                            size: 30, color: Colors.white)),
-                  ),
+    return context.read<UserInfo>().userInfo == null
+        ? Expanded(
+            child: SingleChildScrollView(
+              child: SafeArea(
+                child: CommentBox(
+                  userImage: context.read<UserInfo>().userInfo != null &&
+                          context.read<UserInfo>().userInfo!.avatar != null
+                      ? context.watch<UserInfo>().userInfo!.avatar
+                      : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png',
+                  child: !isLoading
+                      ? filedata.length > 0
+                          ? commentChild(filedata, currentData)
+                          : const Center(
+                              child: Text(
+                              '0 Comment',
+                              style: TextStyle(
+                                  color: AppColors.dPrimaryColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16),
+                            ))
+                      : const ListCommentSkeleton(),
+                  labelText: 'Write a comment...',
+                  withBorder: false,
+                  errorText: 'Comment cannot be blank',
+                  sendButtonMethod: () {},
+                  formKey: formKey,
+                  commentController: commentController,
+                  backgroundColor: Colors.black,
+                  textColor: Colors.white,
+                  sendWidget: InkWell(
+                      onTap: () => {sendButtonMethod()},
+                      child: const Icon(Icons.send_sharp,
+                          size: 30, color: Colors.white)),
                 ),
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'table_nft.dart';
 
@@ -222,7 +223,7 @@ class _ImageNFT extends StatelessWidget {
               bottomRight: Radius.circular(6),
             ),
             image: DecorationImage(
-              image: NetworkImage(nftSolana.image!),
+              image: CachedNetworkImageProvider(nftSolana.image!),
               fit: BoxFit.cover,
             ),
           ),

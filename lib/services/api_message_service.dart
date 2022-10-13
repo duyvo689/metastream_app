@@ -7,28 +7,24 @@ import 'dart:convert';
 
 class ApiMessageServices {
   Future<List<MessageModel>?> getMessages(String slug) async {
-    print(slug);
-    return await http
-        .get(Uri.parse('${URL().API_URL}/api/v1/message/${slug}'))
-        .then((http.Response response) {
-      final String jsonBody = response.body;
-      final int statusCode = response.statusCode;
+    http.Response response =
+        await http.get(Uri.parse('${URL().API_URL}/api/v1/message/${slug}'));
 
-      if (statusCode != 200 || jsonBody == null) {
-        throw new Exception("Error load api");
-      }
+    if (response.body.isEmpty) return null;
 
-      final JsonDecoder _decoder = new JsonDecoder();
-      final messageListContainer = _decoder.convert(jsonBody);
-      List messages = messageListContainer['data'];
-      if (messages == null) {
-        return null;
-      } else {
-        return messages
-            .map((contactRaw) => new MessageModel.fromJson(contactRaw))
-            .toList();
-      }
-    });
+    final String jsonBody = response.body;
+    final int statusCode = response.statusCode;
+    if (statusCode != 200 || jsonBody == null) {
+      throw new Exception("Error load api");
+    }
+    final JsonDecoder _decoder = new JsonDecoder();
+    final messageListContainer = _decoder.convert(jsonBody);
+    String status = messageListContainer['status'];
+    if (status != 'Success') return null;
+    List messages = messageListContainer['data'];
+    return messages
+        .map((contactRaw) => new MessageModel.fromJson(contactRaw))
+        .toList();
   }
 
   Future<void> ApiSendMessage(String slug, String sender, String content,

@@ -3,6 +3,7 @@
 import 'package:app_metastream/components/loading.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -85,13 +86,20 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                                                         BorderSide(width: 18)),
                                                 color: Color.fromARGB(
                                                     255, 24, 24, 24))),
-                                        Image.network(
-                                          item.assetUrl.toString(),
-                                          fit: BoxFit.cover,
-                                          width: 1000.0,
-                                          errorBuilder:
-                                              (context, error, stackTrace) =>
-                                                  const LoadingCenter(),
+                                        // Image.network(
+                                        //   item.assetUrl.toString(),
+                                        //   fit: BoxFit.cover,
+                                        //   width: 1000.0,
+                                        //   errorBuilder:
+                                        //       (context, error, stackTrace) =>
+                                        //           const LoadingCenter(),
+                                        // ),
+                                        CachedNetworkImage(
+                                          imageUrl: item.assetUrl.toString(),
+                                          placeholder: (context, url) =>
+                                              const CircularProgressIndicator(),
+                                          errorWidget: (context, url, error) =>
+                                              const Icon(Icons.error),
                                         ),
                                         Container(
                                           decoration: BoxDecoration(

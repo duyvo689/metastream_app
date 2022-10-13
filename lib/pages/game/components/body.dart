@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';

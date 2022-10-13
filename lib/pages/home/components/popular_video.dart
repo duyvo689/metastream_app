@@ -1,39 +1,80 @@
-// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, avoid_unnecessary_containers, unnecessary_null_comparison
 
 import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/funtions/video_provider.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
-import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:provider/provider.dart';
 import 'section_title.dart';
 
-class PopularVideos extends StatelessWidget {
+class PopularVideos extends StatefulWidget {
   const PopularVideos({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<PopularVideos> createState() => _PopularVideosState();
+}
+
+class _PopularVideosState extends State<PopularVideos> {
+  @override
+  void initState() {
+    fetchVideos();
+    super.initState();
+  }
+
+  Future fetchVideos() async {
+    await context.read<VideoListProvider>().GetVideoListProvider();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: SectionTitle(
-            title_1: "Videos",
-            title_2: "we think you’ll like",
-          ),
+    return Column(children: [
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: SectionTitle(
+          title_1: "Videos",
+          title_2: "we think you’ll like",
         ),
-        const SizedBox(
-          height: 20,
-        ),
-        FutureBuilder<List<Video>>(
-          future: ApiVideoServices().fetchVideos(),
-          builder: (context, snapshot) {
-            if ((snapshot.hasError) || (!snapshot.hasData))
-              return ListView.builder(
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      Consumer<VideoListProvider>(builder: ((context, videosConSumer, child) {
+        List<Video>? videos = videosConSumer.videoList;
+        return videos != null
+            ? Padding(
+                padding:
+                    EdgeInsets.symmetric(horizontal: size.width < 600 ? 0 : 20),
+                child: GridView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 20,
+                    mainAxisSpacing: 20,
+                    crossAxisCount: size.width < 600 ? 1 : 2,
+                    childAspectRatio: 1.4,
+                  ),
+                  itemCount: videos.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _VideoCard(
+                        video: videos[index],
+                        press: () => pushNewScreen(
+                              context,
+                              screen: VideoPage(video: videos[index]),
+                              withNavBar: false,
+                              pageTransitionAnimation:
+                                  PageTransitionAnimation.cupertino,
+                            ));
+                  },
+                ),
+              )
+            : ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: 3,
@@ -42,40 +83,11 @@ class PopularVideos extends StatelessWidget {
                   child: const VideoCardSkelton(),
                 ),
               );
-            List<Video>? videos =
-                snapshot.data!.reversed.toList().sublist(0, 10);
-            return Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: size.width < 600 ? 0 : 20),
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                  crossAxisCount: size.width < 600 ? 1 : 2,
-                  childAspectRatio: 1.4,
-                ),
-                itemCount: videos.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return _VideoCard(
-                      video: videos[index],
-                      press: () => pushNewScreen(
-                            context,
-                            screen: VideoPage(video: videos[index]),
-                            withNavBar: false,
-                            pageTransitionAnimation:
-                                PageTransitionAnimation.cupertino,
-                          ));
-                },
-              ),
-            );
-          },
-        ),
-      ],
-    );
+      }))
+    ]);
   }
 }
+// .reversed.toList().sublist(0, 10)
 
 class _VideoCard extends StatelessWidget {
   const _VideoCard({
@@ -105,9 +117,10 @@ class _VideoCard extends StatelessWidget {
                   bottomRight: Radius.circular(4),
                 ),
                 image: DecorationImage(
-                  image: NetworkImage(video != null && video.coverImage != null
+                  image: CachedNetworkImageProvider(video != null &&
+                          video.coverImage != null
                       ? video.coverImage!
-                      : 'https://toquoc.mediacdn.vn/280518851207290880/2022/7/3/photo-1-16564884870661953523091-1656818526769-1656818526969356939449.jpg'),
+                      : 'https://haiquanonline.com.vn/stores/news_dataimages/baohaiquan/072017/17/11/pho-tong-giam-doc-viettel-lan-dau-song-ca-em-cua-ngay-hom-qua-cung-son-tung-m-tp-33-.5569.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -120,7 +133,7 @@ class _VideoCard extends StatelessWidget {
                 Container(
                   child: CircleAvatar(
                     radius: 26,
-                    backgroundImage: NetworkImage(video != null &&
+                    backgroundImage: CachedNetworkImageProvider(video != null &&
                             video.userId != null &&
                             video.userId!.avatar != null
                         ? video.userId!.avatar!
@@ -144,7 +157,11 @@ class _VideoCard extends StatelessWidget {
                               color: AppColors.dWhileColor)),
                       const SizedBox(height: 6),
                       Text(
-                          '${video.userId!.firstName} ${video.userId!.lastName}',
+                          video.userId != null &&
+                                  video.userId!.firstName != null &&
+                                  video.userId!.lastName != null
+                              ? '${video.userId!.firstName} ${video.userId!.lastName}'
+                              : 'Unknow',
                           textAlign: TextAlign.start,
                           maxLines: 1,
                           style: PrimaryFont.light(14).copyWith(

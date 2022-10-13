@@ -1,6 +1,8 @@
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class NFTCard extends StatelessWidget {
   const NFTCard({
@@ -48,7 +50,7 @@ class NFTCard extends StatelessWidget {
                           bottomRight: Radius.circular(8),
                         ),
                         image: DecorationImage(
-                            image: NetworkImage(nftSolana.image!),
+                            image: CachedNetworkImageProvider(nftSolana.image!),
                             fit: BoxFit.cover),
                       ),
                     ),
@@ -87,10 +89,12 @@ class NFTCard extends StatelessWidget {
                     const SizedBox(height: 10),
                     Row(
                       children: [
-                        const Icon(
-                          Icons.paid,
-                          color: Colors.deepPurple,
-                          size: 24,
+                        SvgPicture.asset(
+                          'assets/images/solana-sol-icon.svg',
+                          semanticsLabel: 'sol',
+                          width: 20,
+                          height: 20,
+                          fit: BoxFit.cover,
                         ),
                         const SizedBox(width: 8),
                         Text(

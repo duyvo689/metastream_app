@@ -1,9 +1,12 @@
+// ignore_for_file: unused_local_variable, unnecessary_null_comparison, avoid_unnecessary_containers, prefer_interpolation_to_compose_strings, use_build_context_synchronously
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/api_user_service.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:material_dialogs/material_dialogs.dart';
@@ -38,14 +41,11 @@ class _HeaderProflieState extends State<HeaderProflie> {
       isLoadFollow = true;
     });
     User response = await ApiUserServices().ApiFollowUser(id, userId, isFollow);
-    // ignore: use_build_context_synchronously
     context.read<UserInfo>().GetUserInfoProvider(null, response);
-    // ignore: use_build_context_synchronously
     setState(() {
       isLoadFollow = false;
       isFollow ? count-- : count++;
     });
-    // ignore: use_build_context_synchronously
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -58,10 +58,6 @@ class _HeaderProflieState extends State<HeaderProflie> {
       title: 'Notification',
       titleStyle: TextStyle(
           color: Colors.grey[500], fontWeight: FontWeight.bold, fontSize: 18),
-      // lottieBuilder: Lottie.asset(
-      //   'assets/images/cong_example.json',
-      //   fit: BoxFit.contain,
-      // ),
       dialogWidth: kIsWeb ? 0.3 : null,
       context: context,
       actions: [
@@ -98,7 +94,6 @@ class _HeaderProflieState extends State<HeaderProflie> {
   }
 
   int checkFollower(List followerMe, String idUser) {
-    // ignore: unused_local_variable
     int flag = 0;
     for (var i = 0; i < followerMe.length; i++) {
       if (followerMe[i] == idUser) {
@@ -114,11 +109,13 @@ class _HeaderProflieState extends State<HeaderProflie> {
 
   @override
   Widget build(BuildContext context) {
-    print(isFollow);
-    // ignore: unused_local_variable
+    String name = widget.user != null &&
+            widget.user.firstName != null &&
+            widget.user.lastName != null
+        ? "${widget.user.firstName!} ${widget.user.lastName!}"
+        : 'Unknow';
     Size size = MediaQuery.of(context).size;
     final orientation = MediaQuery.of(context).orientation;
-    // ignore: avoid_unnecessary_containers
     return Container(
       child: Stack(
         children: [
@@ -127,8 +124,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  // ignore: unnecessary_null_comparison
-                  image: NetworkImage(widget.user != null &&
+                  image: CachedNetworkImageProvider(widget.user != null &&
                           widget.user.avatar != null
                       ? widget.user.avatar!
                       : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'),
@@ -162,12 +158,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        // ignore: unnecessary_null_comparison
-                        widget.user != null &&
-                                widget.user.firstName != null &&
-                                widget.user.lastName != null
-                            ? "${widget.user.firstName!} ${widget.user.lastName!}"
-                            : "Unknow",
+                        name.length > 20 ? name.split(' ')[0] + '...' : name,
                         textAlign: TextAlign.start,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
@@ -206,7 +197,6 @@ class _HeaderProflieState extends State<HeaderProflie> {
                             _showMyDialog();
                           }
                         },
-                        // child: Text(isFollow ? "Follow" : "Unfollow"),
                         child: Text(isFollow
                             ? isLoadFollow
                                 ? 'Following...'
@@ -227,7 +217,6 @@ class _HeaderProflieState extends State<HeaderProflie> {
                       children: [
                         RichText(
                           text: TextSpan(
-                            // text: widget.user.follow.toString(),
                             text: '${widget.user.follow! + count}',
                             style: const TextStyle(
                                 color: AppColors.dPrimaryColor,

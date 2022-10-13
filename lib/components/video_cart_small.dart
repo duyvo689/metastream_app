@@ -1,6 +1,7 @@
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/app_colors.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class VideoCardSmall extends StatelessWidget {
@@ -39,7 +40,7 @@ class VideoCardSmall extends StatelessWidget {
                         bottomRight: Radius.circular(10),
                       ),
                       image: DecorationImage(
-                        image: NetworkImage(video != null &&
+                        image: CachedNetworkImageProvider(video != null &&
                                 video.coverImage != null
                             ? video.coverImage!
                             : 'https://toquoc.mediacdn.vn/280518851207290880/2022/7/3/photo-1-16564884870661953523091-1656818526769-1656818526969356939449.jpg'),

@@ -1,5 +1,6 @@
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class GameCard extends StatelessWidget {
@@ -37,13 +38,14 @@ class GameCard extends StatelessWidget {
                 aspectRatio: 1.06,
                 child: Container(
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                    ),
-                    image: DecorationImage(
-                        image: NetworkImage(game.logo!), fit: BoxFit.cover),
-                  ),
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      ),
+                      image: DecorationImage(
+                          // image: NetworkImage(game.logo!), fit: BoxFit.cover),
+                          image: CachedNetworkImageProvider(game.logo!),
+                          fit: BoxFit.cover)),
                 ),
               ),
               SizedBox(height: getProportionateScreenWidth(15)),

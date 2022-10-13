@@ -3,6 +3,7 @@ import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -154,7 +155,7 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                               ),
                               CircleAvatar(
                                 radius: 48,
-                                backgroundImage: NetworkImage(context
+                                backgroundImage: CachedNetworkImageProvider(context
                                                 .read<UserInfo>()
                                                 .userInfo !=
                                             null &&

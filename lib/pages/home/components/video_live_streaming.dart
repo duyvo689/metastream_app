@@ -1,6 +1,9 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:app_metastream/funtions/live_streaming_provider.dart';
 import 'package:app_metastream/models/live_streaming_model.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:material_dialogs/material_dialogs.dart';
 import 'package:provider/provider.dart';
@@ -123,7 +126,7 @@ class _VideoCard extends StatelessWidget {
                       bottomRight: Radius.circular(4),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(video != null &&
+                      image: CachedNetworkImageProvider(video != null &&
                               video.userId!.avatar != null
                           ? isUserLive
                               ? video.userId!.avatar!
@@ -135,7 +138,7 @@ class _VideoCard extends StatelessWidget {
                 ),
               ),
               Container(
-                alignment: Alignment(0, 0),
+                alignment: const Alignment(0, 0),
                 height: 26,
                 width: 40,
                 decoration: const BoxDecoration(
@@ -153,13 +156,14 @@ class _VideoCard extends StatelessWidget {
             margin: const EdgeInsets.only(top: 15, left: 2, right: 2),
             child: Row(
               children: [
-                Stack(alignment: Alignment(0, 1), children: [
+                Stack(alignment: const Alignment(0, 1), children: [
                   CircleAvatar(
                     radius: 26,
                     backgroundColor: Colors.red,
                     child: CircleAvatar(
                       radius: 24,
-                      backgroundImage: NetworkImage(video != null &&
+                      backgroundImage: CachedNetworkImageProvider(video !=
+                                  null &&
                               video.userId!.avatar != null
                           ? isUserLive
                               ? video.userId!.avatar!

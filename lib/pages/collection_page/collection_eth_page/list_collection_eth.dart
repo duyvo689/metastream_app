@@ -4,6 +4,7 @@ import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/funtions/funtions.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -94,7 +95,8 @@ class _CollectionNftCard extends StatelessWidget {
                         bottomRight: Radius.circular(8),
                       ),
                       image: DecorationImage(
-                        image: NetworkImage(collection.image.toString()),
+                        image: CachedNetworkImageProvider(
+                            collection.image.toString()),
                         fit: BoxFit.cover,
                         onError: (error, stackTrace) => LoadingCenter,
                       ),

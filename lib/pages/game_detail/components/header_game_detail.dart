@@ -6,6 +6,7 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:material_dialogs/material_dialogs.dart';
@@ -131,7 +132,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                 child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(game!.featureImg!),
+                      image: CachedNetworkImageProvider(game!.featureImg!),
                       fit: BoxFit.cover,
                     ),
                   ),

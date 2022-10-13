@@ -9,6 +9,7 @@ import 'package:app_metastream/pages/home/components/popular_video.dart';
 import 'package:app_metastream/pages/home/components/section_title.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
@@ -69,15 +70,15 @@ class _BodyState extends State<Body> {
               const SizedBox(
                 height: 20,
               ),
-              context.watch<LiveStreamingProvider>().liveStreamList != null &&
-                      context
-                              .watch<LiveStreamingProvider>()
-                              .liveStreamList!
-                              .length >
-                          0
-                  ? const _ListStreamer()
-                  : const _ListUser(),
-              const SizedBox(height: 20),
+              // context.watch<LiveStreamingProvider>().liveStreamList != null &&
+              //         context
+              //                 .watch<LiveStreamingProvider>()
+              //                 .liveStreamList!
+              //                 .length >
+              //             0
+              //     ? const _ListStreamer()
+              //     : const _ListUser(),
+              // const SizedBox(height: 20),
               const CarouselWithIndicator(
                   viewport: 1, width: 30, height: 3, style: 'start'),
               const SizedBox(height: 20),
@@ -231,7 +232,7 @@ class _CircleUserLiveCard extends StatelessWidget {
               backgroundColor: Colors.red,
               child: CircleAvatar(
                 radius: isLive ? 32 : 34,
-                backgroundImage: NetworkImage(data != null &&
+                backgroundImage: CachedNetworkImageProvider(data != null &&
                         data.userId != null &&
                         data.userId!.avatar != null
                     ? isLive
@@ -336,7 +337,8 @@ class _CircleUserCard extends StatelessWidget {
           const Padding(padding: EdgeInsets.only(right: 15)),
           CircleAvatar(
             radius: 34,
-            backgroundImage: NetworkImage(user != null && user.avatar != null
+            backgroundImage: CachedNetworkImageProvider(user != null &&
+                    user.avatar != null
                 ? user.avatar!
                 : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'),
           ),

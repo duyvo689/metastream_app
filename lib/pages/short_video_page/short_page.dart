@@ -1,4 +1,5 @@
 import 'package:app_metastream/models/models.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:math' as math;
@@ -154,7 +155,7 @@ class _Home extends State<ShortVideo> with SingleTickerProviderStateMixin {
                                   child: CircleAvatar(
                                     radius: 19,
                                     backgroundColor: Colors.black,
-                                    backgroundImage: NetworkImage(
+                                    backgroundImage: CachedNetworkImageProvider(
                                         widget.video.userId!.avatar!),
                                   ),
                                 ),

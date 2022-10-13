@@ -6,6 +6,7 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -68,8 +69,8 @@ class _CollectionDetailState extends State<CollectionDetail> {
                       backgroundColor: Colors.white,
                       radius: 70,
                       child: CircleAvatar(
-                        backgroundImage:
-                            NetworkImage(widget.collection.image.toString()),
+                        backgroundImage: CachedNetworkImageProvider(
+                            widget.collection.image.toString()),
                         radius: 67,
                       ),
                     ),

@@ -1,8 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/magicedennft_detail_model.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'table_magiceden_nft.dart';
 
@@ -264,7 +267,8 @@ class _ImageNFT extends StatelessWidget {
               bottomRight: Radius.circular(6),
             ),
             image: DecorationImage(
-              image: NetworkImage(nftSolana.extra!.img.toString()),
+              image:
+                  CachedNetworkImageProvider(nftSolana.extra!.img.toString()),
               fit: BoxFit.cover,
             ),
           ),

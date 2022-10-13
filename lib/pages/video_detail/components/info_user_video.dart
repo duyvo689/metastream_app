@@ -6,6 +6,7 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -150,7 +151,8 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
           child: Row(
             children: [
               CircleAvatar(
-                backgroundImage: NetworkImage(widget.video.userId!.avatar!),
+                backgroundImage:
+                    CachedNetworkImageProvider(widget.video.userId!.avatar!),
               ),
               const SizedBox(width: 16),
               Column(
