@@ -160,6 +160,7 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
                         initialPage: 2,
                         viewportFraction: widget.viewport,
                         onPageChanged: (index, reason) {
+                          if (!mounted) return;
                           setState(() {
                             _current = index;
                           });

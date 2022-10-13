@@ -61,6 +61,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+    if (!mounted) return;
     setState(() {
       _connectionStatus = result;
     });

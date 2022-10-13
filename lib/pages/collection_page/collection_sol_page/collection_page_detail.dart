@@ -35,6 +35,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
     List<MagicEdenNftDetail> listNft = [];
     List<MagicEdenNft> response =
         await ApiCollectionServices().fetchNftMagicEdenBySymbol(symbol);
+    if (!mounted) return;
     setState(() {
       magicEdenNftList = response;
     });
@@ -43,6 +44,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
   Future fetchStatMagicEdenNfts(String symbol) async {
     StatsMagicEden response =
         await ApiCollectionServices().fetchStatsMagicEdenBySymbol(symbol);
+    if (!mounted) return;
     setState(() {
       statsMagicEden = response;
     });

@@ -34,16 +34,21 @@ class _CommentContainerState extends State<CommentContainer> {
   }
 
   Future<void> fetchMessages(String slug) async {
+    if (!mounted) return;
     setState(() {
       isLoading = true;
     });
     List<MessageModel>? messages = await ApiMessageServices().getMessages(slug);
     if (messages != null) {
       List<MessageModel> newFileData = [...messages];
+      if (!mounted) return;
+
       setState(() {
         filedata = newFileData;
       });
     }
+    if (!mounted) return;
+
     setState(() {
       isLoading = false;
     });
@@ -52,6 +57,8 @@ class _CommentContainerState extends State<CommentContainer> {
   void sendButtonMethod() async {
     if (formKey.currentState!.validate()) {
       String content = commentController.text;
+      if (!mounted) return;
+
       setState(() {
         var value = {
           'name': context.read<UserInfo>().userInfo!.userName.toString(),

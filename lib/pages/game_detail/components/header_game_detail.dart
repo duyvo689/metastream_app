@@ -35,11 +35,15 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
   }
 
   Future followGame(String id, String gameId, bool isFollow) async {
+    if (!mounted) return;
+
     setState(() {
       isLoadFollow = true;
     });
     User response = await ApiGameServices().ApiFollowGame(id, gameId, isFollow);
     context.read<UserInfo>().GetUserInfoProvider(null, response);
+    if (!mounted) return;
+
     setState(() {
       isLoadFollow = false;
       isFollow ? count-- : count++;
@@ -53,6 +57,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
       userInfoMe = context.read<UserInfo>().userInfo;
       checkFollower(userInfoMe!.followGame!.toList(), response.id.toString());
     }
+
     setState(() {
       game = response;
     });
@@ -63,6 +68,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
     for (var i = 0; i < followGameMe.length; i++) {
       if (followGameMe[i] == idUser) {
         flag = 1;
+
         setState(() {
           isFollow = true;
         });
@@ -185,6 +191,7 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
                                     fontSize: 14, fontWeight: FontWeight.w600)),
                             onPressed: () {
                               if (context.read<UserInfo>().userInfo != null) {
+                                if (!mounted) return;
                                 setState(() {
                                   isFollow = !isFollow;
                                 });

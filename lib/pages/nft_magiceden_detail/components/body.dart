@@ -29,6 +29,8 @@ class _BodyState extends State<Body> {
   Future fetchNftMagicEdenNfts(String tokenMint) async {
     MagicEdenNftDetail response =
         await ApiCollectionServices().fetchTokenListingDataMagicEden(tokenMint);
+    if (!mounted) return;
+
     setState(() {
       magicEdenNft = response;
     });

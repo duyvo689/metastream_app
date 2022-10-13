@@ -24,6 +24,8 @@ class _ProfileStreamerState extends State<ProfileStreamer> {
 
   Future fetchUser(String id) async {
     User userAsync = await ApiUserServices().fetchUserById(id);
+    if (!mounted) return;
+
     setState(() {
       user = userAsync;
     });

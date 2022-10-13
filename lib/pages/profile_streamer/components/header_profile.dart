@@ -37,11 +37,15 @@ class _HeaderProflieState extends State<HeaderProflie> {
   }
 
   Future followUser(String id, String userId, bool isFollow) async {
+    if (!mounted) return;
+
     setState(() {
       isLoadFollow = true;
     });
     User response = await ApiUserServices().ApiFollowUser(id, userId, isFollow);
     context.read<UserInfo>().GetUserInfoProvider(null, response);
+    if (!mounted) return;
+
     setState(() {
       isLoadFollow = false;
       isFollow ? count-- : count++;

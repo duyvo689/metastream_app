@@ -142,6 +142,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                                 fontSize: 14, fontWeight: FontWeight.w600)),
                         onPressed: () {
                           if (context.read<UserInfo>().userInfo != null) {
+                            if (!mounted) return;
                             setState(() {
                               isFollow = !isFollow;
                             });

@@ -51,17 +51,23 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
 
   Future<void> getUserById(String id) async {
     User response = await ApiUserServices().fetchUserById(id);
+    if (!mounted) return;
+
     setState(() {
       user = response;
     });
   }
 
   Future followUser(String id, String userId, bool isFollow) async {
+    if (!mounted) return;
+
     setState(() {
       isLoadFollow = true;
     });
     User response = await ApiUserServices().ApiFollowUser(id, userId, isFollow);
     context.read<UserInfo>().GetUserInfoProvider(null, response);
+    if (!mounted) return;
+
     setState(() {
       isLoadFollow = false;
       isFollow ? count-- : count++;
@@ -74,6 +80,7 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
     for (var i = 0; i < followerMe.length; i++) {
       if (followerMe[i] == idUser) {
         flag = 1;
+
         setState(() {
           isFollow = true;
         });
@@ -187,6 +194,8 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
                 child: ElevatedButton.icon(
                   onPressed: () {
                     if (context.read<UserInfo>().userInfo != null) {
+                      if (!mounted) return;
+
                       setState(() {
                         isFollow = !isFollow;
                       });

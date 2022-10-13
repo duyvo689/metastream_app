@@ -34,6 +34,7 @@ class _NFTCardMagicEdenState extends State<NFTCardMagicEden> {
   Future fetchNftMagicEdenNftsDetail(String tokenMint) async {
     MagicEdenNftDetail nft =
         await ApiCollectionServices().fetchTokenListingDataMagicEden(tokenMint);
+    if (!mounted) return;
     setState(() {
       nftDetail = nft;
     });

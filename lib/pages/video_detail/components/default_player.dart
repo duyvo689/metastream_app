@@ -29,6 +29,8 @@ class _DefaultPlayerState extends State<DefaultPlayer> {
     if (response?.playUrl == null) return;
     String url = response!.playUrl!;
     String play_url = url.replaceAll(' ', '%20');
+    if (!mounted) return;
+
     setState(() {
       urlVideo = play_url;
     });
