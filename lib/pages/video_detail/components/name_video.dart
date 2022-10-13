@@ -11,36 +11,39 @@ class NameVideo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            video.name!,
-            textAlign: TextAlign.start,
-            maxLines: 2,
-            style: const TextStyle(
-              overflow: TextOverflow.ellipsis,
-              fontWeight: FontWeight.w500,
-              fontSize: 16,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus!.unfocus(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              video.name!,
+              textAlign: TextAlign.start,
+              maxLines: 2,
+              style: const TextStyle(
+                overflow: TextOverflow.ellipsis,
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+              ),
             ),
-          ),
-          // Row(
-          //   children: const [
-          //     Text(
-          //       '0 views',
-          //       textAlign: TextAlign.start,
-          //       maxLines: 2,
-          //       style: TextStyle(
-          //           overflow: TextOverflow.ellipsis,
-          //           fontWeight: FontWeight.w400,
-          //           fontSize: 14,
-          //           color: AppColors.dGreyLightColor),
-          //     ),
-          //   ],
-          // ),
-        ],
+            // Row(
+            //   children: const [
+            //     Text(
+            //       '0 views',
+            //       textAlign: TextAlign.start,
+            //       maxLines: 2,
+            //       style: TextStyle(
+            //           overflow: TextOverflow.ellipsis,
+            //           fontWeight: FontWeight.w400,
+            //           fontSize: 14,
+            //           color: AppColors.dGreyLightColor),
+            //     ),
+            //   ],
+            // ),
+          ],
+        ),
       ),
     );
   }
