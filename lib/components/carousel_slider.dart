@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_is_empty, avoid_unnecessary_containers
 
-import 'package:app_metastream/components/loading.dart';
 import 'package:app_metastream/providers/providers.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -36,10 +35,10 @@ class _CarouselWithIndicatorState extends State<CarouselWithIndicator> {
   @override
   void initState() {
     super.initState();
-    FetchBanner();
+    fetchBanner();
   }
 
-  Future FetchBanner() async {
+  Future fetchBanner() async {
     await context.read<BannerProvider>().GetBannerProvider();
   }
 

@@ -100,15 +100,15 @@ class _CategoriesState extends State<Categories> {
           ),
         ),
         if (selectedIndex == 0) ...[
-          videos != null ? VideoList(videos: videos) : const LoadingCenter(),
+          videos != null ? VideoList(videos: videos) : const Loading(scale: 6),
         ],
         if (selectedIndex == 1) ...[
           nftSolanas != null
               ? NFTList(nftSolanas: nftSolanas)
-              : const SizedBox.shrink(),
+              : const Loading(scale: 6),
         ],
         if (selectedIndex == 2) ...[
-          user != null ? AboutProfile(user: user) : const LoadingCenter()
+          user != null ? AboutProfile(user: user) : const Loading(scale: 6)
         ],
       ]),
     );
