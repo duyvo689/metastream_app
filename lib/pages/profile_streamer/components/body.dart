@@ -1,12 +1,19 @@
+import 'package:app_metastream/models/live_streaming_model.dart';
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'categories.dart';
 import 'header_profile.dart';
 
-class Body extends StatelessWidget {
-  const Body({Key? key, required this.user}) : super(key: key);
-  final User user;
+class Body extends StatefulWidget {
+  const Body({Key? key, required this.liveStream}) : super(key: key);
+  final LiveStream liveStream;
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,7 +24,7 @@ class Body extends StatelessWidget {
           height: size.height,
           child: Stack(
             children: <Widget>[
-              HeaderProflie(user: user),
+              HeaderProflie(liveStream: widget.liveStream),
               Container(
                 margin: EdgeInsets.only(top: size.height * 0.4),
                 decoration: const BoxDecoration(
@@ -29,8 +36,7 @@ class Body extends StatelessWidget {
                 ),
                 child: Column(
                   children: <Widget>[
-                    Categories(
-                        addressWallet: user.addressWallet!, userId: user.id!),
+                    Categories(userId: widget.liveStream.userId!.id.toString())
                   ],
                 ),
               ),

@@ -1,6 +1,5 @@
-// ignore_for_file: unused_local_variable, unnecessary_null_comparison, avoid_unnecessary_containers, prefer_interpolation_to_compose_strings, use_build_context_synchronously
-
 import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/live_streaming_model.dart';
 import 'package:app_metastream/providers/providers.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
@@ -14,8 +13,8 @@ import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:provider/provider.dart';
 
 class HeaderProflie extends StatefulWidget {
-  const HeaderProflie({Key? key, required this.user}) : super(key: key);
-  final User user;
+  const HeaderProflie({Key? key, required this.liveStream}) : super(key: key);
+  final LiveStream liveStream;
 
   @override
   State<HeaderProflie> createState() => _HeaderProflieState();
@@ -26,14 +25,26 @@ class _HeaderProflieState extends State<HeaderProflie> {
   bool isLoadFollow = false;
   User? userInfoMe;
   int count = 0;
+  User? user;
 
   @override
   void initState() {
+    fetchUser(widget.liveStream.userId!.id.toString());
+
+    super.initState();
+  }
+
+  Future fetchUser(String id) async {
+    User userAsync = await ApiUserServices().fetchUserById(id);
+    if (!mounted) return;
     if (context.read<UserInfo>().userInfo != null) {
       userInfoMe = context.read<UserInfo>().userInfo;
-      checkFollower(userInfoMe!.follower!.toList(), widget.user.id.toString());
+      checkFollower(userInfoMe!.follower!.toList(), userAsync.id.toString());
     }
-    super.initState();
+
+    setState(() {
+      user = userAsync;
+    });
   }
 
   Future followUser(String id, String userId, bool isFollow) async {
@@ -84,7 +95,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                 .then((_) => Navigator.of(context).pop())
                 .then((_) => userInfoMe = context.read<UserInfo>().userInfo)
                 .then((_) => checkFollower(
-                    userInfoMe!.follower!.toList(), widget.user.id.toString()))
+                    userInfoMe!.follower!.toList(), user!.id.toString()))
                 .then((_) => setState(() {}));
           },
           text: 'Login',
@@ -113,10 +124,10 @@ class _HeaderProflieState extends State<HeaderProflie> {
 
   @override
   Widget build(BuildContext context) {
-    String name = widget.user != null &&
-            widget.user.firstName != null &&
-            widget.user.lastName != null
-        ? "${widget.user.firstName!} ${widget.user.lastName!}"
+    String name = widget.liveStream.userId! != null &&
+            widget.liveStream.userId!.firstName != null &&
+            widget.liveStream.userId!.lastName != null
+        ? "${widget.liveStream.userId!.firstName!} ${widget.liveStream.userId!.lastName!}"
         : 'Unknow';
     Size size = MediaQuery.of(context).size;
     final orientation = MediaQuery.of(context).orientation;
@@ -128,9 +139,10 @@ class _HeaderProflieState extends State<HeaderProflie> {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: CachedNetworkImageProvider(widget.user != null &&
-                          widget.user.avatar != null
-                      ? widget.user.avatar!
+                  image: CachedNetworkImageProvider(widget
+                              .liveStream.userId?.avatar !=
+                          null
+                      ? widget.liveStream.userId!.avatar!
                       : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png'),
                   fit: BoxFit.cover,
                 ),
@@ -195,7 +207,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                                     .userInfo!
                                     .id
                                     .toString(),
-                                widget.user.id.toString(),
+                                user!.id.toString(),
                                 !isFollow);
                           } else {
                             _showMyDialog();
@@ -221,7 +233,7 @@ class _HeaderProflieState extends State<HeaderProflie> {
                       children: [
                         RichText(
                           text: TextSpan(
-                            text: '${widget.user.follow! + count}',
+                            text: '${user != null ? user!.follow! + count : 0}',
                             style: const TextStyle(
                                 color: AppColors.dPrimaryColor,
                                 fontSize: 16,

@@ -1,7 +1,6 @@
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
-// We need statefull widget because we are gonna change some state on our category
 class Categories extends StatefulWidget {
   const Categories({Key? key}) : super(key: key);
 

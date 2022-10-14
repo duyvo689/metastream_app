@@ -1,3 +1,5 @@
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
@@ -5,12 +7,8 @@ import 'about.dart';
 import 'nft_list.dart';
 import 'video_list.dart';
 
-// We need statefull widget because we are gonna change some state on our category
 class Categories extends StatefulWidget {
-  const Categories(
-      {Key? key, required this.addressWallet, required this.userId})
-      : super(key: key);
-  final String addressWallet;
+  const Categories({Key? key, required this.userId}) : super(key: key);
   final String userId;
   @override
   _CategoriesState createState() => _CategoriesState();
@@ -20,6 +18,23 @@ class _CategoriesState extends State<Categories> {
   // by default first item will be selected
   int selectedIndex = 0;
   List categories = ['Streams', 'NFTs', 'About'];
+
+  User? user;
+
+  @override
+  void initState() {
+    fetchUser(widget.userId.toString());
+    super.initState();
+  }
+
+  Future fetchUser(String id) async {
+    User userAsync = await ApiUserServices().fetchUserById(id);
+    if (!mounted) return;
+    setState(() {
+      user = userAsync;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -67,7 +82,9 @@ class _CategoriesState extends State<Categories> {
         ),
         if (selectedIndex == 0) ...[VideoList(userId: widget.userId)],
         if (selectedIndex == 1) ...[
-          NFTList(addressWallet: widget.addressWallet),
+          user != null
+              ? NFTList(addressWallet: user!.addressWallet.toString())
+              : const SizedBox.shrink(),
         ],
         if (selectedIndex == 2) ...[AboutProfile(userId: widget.userId)],
       ]),

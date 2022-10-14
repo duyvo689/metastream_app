@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, avoid_unnecessary_containers, unnecessary_null_comparison
-
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
@@ -35,7 +33,7 @@ class _PopularVideosState extends State<PopularVideos> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Column(children: [
-      Padding(
+      const Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: SectionTitle(
           title_1: "Videos",
