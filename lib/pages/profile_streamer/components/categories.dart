@@ -1,3 +1,4 @@
+import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
@@ -15,23 +16,41 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-  // by default first item will be selected
   int selectedIndex = 0;
   List categories = ['Streams', 'NFTs', 'About'];
 
   User? user;
+  List<Video>? videos;
+  List<NftSolana>? nftSolanas;
 
   @override
   void initState() {
     fetchUser(widget.userId.toString());
+    fetchVideosOfUser(widget.userId);
     super.initState();
   }
 
   Future fetchUser(String id) async {
-    User userAsync = await ApiUserServices().fetchUserById(id);
+    User response = await ApiUserServices().fetchUserById(id);
     if (!mounted) return;
     setState(() {
-      user = userAsync;
+      user = response;
+    });
+    fetchNftsOfUser(response.addressWallet.toString());
+  }
+
+  Future<void> fetchVideosOfUser(String id) async {
+    List<Video>? response = await ApiVideoServices().fetchVideosOfUser(id);
+    setState(() {
+      videos = response;
+    });
+  }
+
+  Future<void> fetchNftsOfUser(String addressWallet) async {
+    List<NftSolana>? response =
+        await ApiNftSolanaServices().fetchSellerByAddress(addressWallet);
+    setState(() {
+      nftSolanas = response;
     });
   }
 
@@ -80,13 +99,17 @@ class _CategoriesState extends State<Categories> {
             ),
           ),
         ),
-        if (selectedIndex == 0) ...[VideoList(userId: widget.userId)],
+        if (selectedIndex == 0) ...[
+          videos != null ? VideoList(videos: videos) : const LoadingCenter(),
+        ],
         if (selectedIndex == 1) ...[
-          user != null
-              ? NFTList(addressWallet: user!.addressWallet.toString())
+          nftSolanas != null
+              ? NFTList(nftSolanas: nftSolanas)
               : const SizedBox.shrink(),
         ],
-        if (selectedIndex == 2) ...[AboutProfile(userId: widget.userId)],
+        if (selectedIndex == 2) ...[
+          user != null ? AboutProfile(user: user) : const LoadingCenter()
+        ],
       ]),
     );
   }

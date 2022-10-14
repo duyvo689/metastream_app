@@ -1,6 +1,4 @@
 import 'package:app_metastream/models/live_streaming_model.dart';
-import 'package:app_metastream/models/models.dart';
-import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'categories.dart';
