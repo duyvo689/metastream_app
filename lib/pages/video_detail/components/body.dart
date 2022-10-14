@@ -1,6 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'comment_box.dart';
 import 'default_player.dart';
@@ -29,7 +30,15 @@ class Body extends StatelessWidget {
                   // const VideoStates(),
                   const SizedBox(height: 15),
                   InfoUserVideo(video: video),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 15),
+                  const Text(
+                    'Comment:',
+                    style: TextStyle(
+                        color: AppColors.dPrimaryDarkColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 5),
                 ],
               ),
             ),

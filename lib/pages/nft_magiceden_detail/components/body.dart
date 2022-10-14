@@ -53,8 +53,7 @@ class _BodyState extends State<Body> {
                           _NameNFT(
                               nftSolana: magicEdenNft as MagicEdenNftDetail),
                           const SizedBox(height: 20),
-                          _CurrentPrice(
-                              nftSolana: magicEdenNft as MagicEdenNftDetail),
+                          _CurrentPrice(nftSolana: widget.nftSolana),
                           const SizedBox(height: 20),
                           _DetailInfoNFT(
                               nftSolana: magicEdenNft as MagicEdenNftDetail),
@@ -89,9 +88,7 @@ class _BodyState extends State<Body> {
                                     nftSolana:
                                         magicEdenNft as MagicEdenNftDetail),
                                 const SizedBox(height: 20),
-                                _CurrentPrice(
-                                    nftSolana:
-                                        magicEdenNft as MagicEdenNftDetail),
+                                _CurrentPrice(nftSolana: widget.nftSolana),
                                 const SizedBox(height: 20),
                                 _DetailInfoNFT(
                                     nftSolana:
@@ -130,20 +127,22 @@ class _DetailInfoNFT extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: [
-              const Icon(
-                Icons.description,
-                size: 24,
+            children: const [
+              Icon(
+                Icons.description_outlined,
+                size: 22,
                 color: AppColors.dPrimaryColor,
               ),
-              const SizedBox(
+              SizedBox(
                 width: 10,
               ),
               Text(
                 'Details',
                 textAlign: TextAlign.start,
-                style: PrimaryFont.light(22)
-                    .copyWith(color: AppColors.dGreyLightColor),
+                style: TextStyle(
+                    color: AppColors.dGreyLightColor,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16),
               ),
             ],
           ),
@@ -175,7 +174,10 @@ class _DetailInfoNFT extends StatelessWidget {
         Text(
           name,
           textAlign: TextAlign.start,
-          style: PrimaryFont.light(18).copyWith(color: AppColors.dWhileColor),
+          style: const TextStyle(
+              color: AppColors.dWhileColor,
+              fontWeight: FontWeight.w500,
+              fontSize: 18),
         ),
         Row(
           children: [
@@ -187,8 +189,10 @@ class _DetailInfoNFT extends StatelessWidget {
             Text(
               info,
               textAlign: TextAlign.start,
-              style: PrimaryFont.light(18).copyWith(
+              style: const TextStyle(
                   color: AppColors.dGreyLightColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 17,
                   overflow: TextOverflow.ellipsis),
             ),
           ],
@@ -204,12 +208,12 @@ class _CurrentPrice extends StatelessWidget {
     required this.nftSolana,
   }) : super(key: key);
 
-  final MagicEdenNftDetail nftSolana;
+  final MagicEdenNft nftSolana;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
+      padding: EdgeInsets.all(getProportionateScreenWidth(15)),
       decoration: BoxDecoration(
         color: AppColors.bgrCardColor,
         borderRadius: BorderRadius.circular(8),
@@ -217,26 +221,29 @@ class _CurrentPrice extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Current Price',
-            style: PrimaryFont.light(22)
-                .copyWith(color: AppColors.dGreyLightColor),
+            style: TextStyle(
+                color: AppColors.dGreyLightColor,
+                fontWeight: FontWeight.w400,
+                fontSize: 16),
           ),
           const SizedBox(height: 10),
           Row(
             children: [
               const Icon(
-                Icons.local_offer,
+                Icons.local_offer_outlined,
                 color: AppColors.dPrimaryColor,
+                size: 26,
               ),
               const SizedBox(
                 width: 10,
               ),
-              Text(
-                '${nftSolana.sellerFeeBasisPoints} sol',
-                style: PrimaryFont.medium(26)
-                    .copyWith(color: AppColors.dWhileColor),
-              ),
+              Text('${nftSolana.price} sol',
+                  style: const TextStyle(
+                      color: AppColors.dWhileColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 24)),
             ],
           ),
         ],
@@ -296,20 +303,23 @@ class _NameNFT extends StatelessWidget {
           nftSolana.name!,
           textAlign: TextAlign.start,
           maxLines: 2,
-          style: PrimaryFont.medium(28.0).copyWith(
-            color: AppColors.dWhileColor,
-            overflow: TextOverflow.ellipsis,
-          ),
+          style: const TextStyle(
+              color: AppColors.dWhileColor,
+              fontWeight: FontWeight.w500,
+              fontSize: 26,
+              height: 1.2),
+          overflow: TextOverflow.ellipsis,
         ),
         const SizedBox(
           height: 10,
         ),
-        Text(
-          nftSolana.name!,
-          textAlign: TextAlign.start,
-          style:
-              PrimaryFont.light(22.0).copyWith(color: AppColors.dPrimaryColor),
-        ),
+        Text(nftSolana.name!,
+            textAlign: TextAlign.start,
+            style: const TextStyle(
+                color: AppColors.dPrimaryColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+                height: 0.9)),
       ],
     );
   }

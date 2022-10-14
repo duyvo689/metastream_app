@@ -2,7 +2,6 @@ import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/utils/utils.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'components/body.dart';
 

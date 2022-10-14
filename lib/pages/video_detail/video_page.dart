@@ -18,7 +18,6 @@ class VideoPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           elevation: 0.0,
         ),
-        // body: SafeArea(child: CommentContainer(video: video)),
         body: SafeArea(child: Body(video: video)));
   }
 }

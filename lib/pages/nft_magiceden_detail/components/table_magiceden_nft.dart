@@ -112,7 +112,7 @@ DataRow TableCell({required MagicEdenNftActivities solanaTx}) {
           ? '${solanaTx.buyer.toString().substring(0, 4)}...${solanaTx.buyer.toString().substring(solanaTx.buyer.toString().length - 4, solanaTx.buyer.toString().length)}'
           : '...')),
       DataCell(Text(
-          '${solanaTx.price != null ? solanaTx.price.toString() : 0} SOL')),
+          '${solanaTx.price != null ? solanaTx.price.toString() : '...'} SOL')),
       // DataCell(Text(
       //     '${DateTime.fromMillisecondsSinceEpoch(solanaTx.blockTime! * 1000)}')),
       DataCell(Text(
@@ -121,9 +121,8 @@ DataRow TableCell({required MagicEdenNftActivities solanaTx}) {
       )),
       DataCell(OutlinedButton.icon(
         style: OutlinedButton.styleFrom(
-          primary: AppColors.dPrimaryColor.withOpacity(0.6),
-          side: BorderSide(
-              color: AppColors.dPrimaryColor.withOpacity(0.6), width: 1),
+          primary: AppColors.dGreyLightColor,
+          side: BorderSide(color: AppColors.dGreyLightColor, width: 1),
           textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
         label: const Text(
