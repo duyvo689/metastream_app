@@ -5,6 +5,8 @@ import 'dart:convert';
 
 class ApiGameServices {
   Future<List<Game>> fetchGame() {
+    int now = DateTime.now().millisecondsSinceEpoch;
+    print(now);
     return http
         .get(Uri.parse('${URL().API_URL}/api/v1/game'))
         .then((http.Response response) {

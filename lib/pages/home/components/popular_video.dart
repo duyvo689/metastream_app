@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, avoid_unnecessary_containers, unnecessary_null_comparison
 
 import 'package:app_metastream/components/components.dart';
-import 'package:app_metastream/funtions/video_provider.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/providers/video_provider.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

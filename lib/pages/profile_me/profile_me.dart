@@ -1,4 +1,4 @@
-import 'package:app_metastream/funtions/funtions.dart';
+import 'package:app_metastream/providers/providers.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

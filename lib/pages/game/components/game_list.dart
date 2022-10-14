@@ -1,5 +1,5 @@
 import 'package:app_metastream/components/components.dart';
-import 'package:app_metastream/funtions/games_provider.dart';
+import 'package:app_metastream/providers/games_provider.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';

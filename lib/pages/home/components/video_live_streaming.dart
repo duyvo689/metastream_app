@@ -1,11 +1,11 @@
 // ignore_for_file: unnecessary_null_comparison
 
-import 'package:app_metastream/funtions/live_streaming_provider.dart';
 import 'package:app_metastream/models/live_streaming_model.dart';
+import 'package:app_metastream/providers/providers.dart';
+import 'package:app_metastream/utils/utils.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:material_dialogs/material_dialogs.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'section_title.dart';
@@ -91,23 +91,13 @@ class _VideoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _launchURLApp(String label, String slug) async {
-      var url =
-          'https://phantom.app/ul/browse/https://staging.metastream.network/${label}/${slug}';
-      if (await canLaunch(url)) {
-        await launch(url, forceSafariVC: false, forceWebView: false);
-      } else {
-        throw 'Could not launch $url';
-      }
-    }
-
     return GestureDetector(
       onTap: isUserLive
           ? () {
-              _launchURLApp('live', video.userId!.userName.toString());
+              phantomLaunchURLApp('live/${video.userId!.userName}');
             }
           : () {
-              _launchURLApp('game', video.gameStream!.slug.toString());
+              phantomLaunchURLApp('game/${video.gameStream!.slug}');
             },
       child: Column(
         children: [

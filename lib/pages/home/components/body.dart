@@ -1,20 +1,18 @@
-// ignore_for_file: sized_box_for_whitespace, prefer_is_empty, unnecessary_null_comparison
-
 import 'package:app_metastream/components/components.dart';
-import 'package:app_metastream/funtions/funtions.dart';
+import 'package:app_metastream/providers/providers.dart';
 import 'package:app_metastream/models/live_streaming_model.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/collection_page/collection_sol_page/list_collection_sol.dart';
 import 'package:app_metastream/pages/home/components/popular_video.dart';
 import 'package:app_metastream/pages/home/components/section_title.dart';
 import 'package:app_metastream/pages/pages.dart';
+import 'package:app_metastream/utils/utils.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletons/skeletons.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'popular_game.dart';
 import 'video_live_streaming.dart';
 
@@ -126,16 +124,6 @@ class _ListStreamer extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    _launchURLApp(String label, String slug) async {
-      var url =
-          'https://phantom.app/ul/browse/https://staging.metastream.network/${label}/${slug}';
-      if (await canLaunch(url)) {
-        await launch(url, forceSafariVC: false, forceWebView: false);
-      } else {
-        throw 'Could not launch $url';
-      }
-    }
-
     return Padding(
         padding:
             EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(0)),
@@ -167,17 +155,10 @@ class _ListStreamer extends StatelessWidget {
                               ? liveStreamsConsumer.liveStreamList![index]
                                           .streamWithProfileGame ==
                                       false
-                                  ? () => _launchURLApp(
-                                      'live',
-                                      liveStreamsConsumer.liveStreamList![index]
-                                          .userId!.userName
-                                          .toString())
-                                  : () => _launchURLApp(
-                                      'game',
-                                      liveStreamsConsumer.liveStreamList![index]
-                                          .gameStream!.slug
-                                          .toString()
-                                          .toString())
+                                  ? () => phantomLaunchURLApp(
+                                      'live/${liveStreamsConsumer.liveStreamList![index].userId!.userName.toString()}')
+                                  : () => phantomLaunchURLApp(
+                                      'game/${liveStreamsConsumer.liveStreamList![index].gameStream!.slug.toString()}')
                               : () => pushNewScreen(
                                     context,
                                     screen: ProfileStreamer(

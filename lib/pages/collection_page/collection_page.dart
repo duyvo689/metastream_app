@@ -1,7 +1,7 @@
 // ignore_for_file: sized_box_for_whitespace
 
 import 'package:app_metastream/components/components.dart';
-import 'package:app_metastream/funtions/funtions.dart';
+import 'package:app_metastream/providers/providers.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:app_metastream/components/components.dart';
-import 'package:app_metastream/funtions/funtions.dart';
+import 'package:app_metastream/providers/providers.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';

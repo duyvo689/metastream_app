@@ -1,4 +1,4 @@
-import 'package:app_metastream/funtions/funtions.dart';
+import 'package:app_metastream/providers/providers.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +14,7 @@ void main() => runApp(
           ChangeNotifierProvider(create: (_) => GameListProvider()),
           ChangeNotifierProvider(create: (_) => VideoListProvider()),
           ChangeNotifierProvider(create: (_) => CollectionProvider()),
+          ChangeNotifierProvider(create: (_) => ListActivitieProvider()),
           ChangeNotifierProvider(create: (_) => LiveStreamingProvider()),
         ],
         child:

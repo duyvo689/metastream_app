@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:app_metastream/funtions/funtions.dart';
+import 'package:app_metastream/providers/providers.dart';
 import 'package:app_metastream/pages/profile_me/form_info_user.dart';
 import 'package:app_metastream/pages/profile_me/profile_me.dart';
 import 'package:app_metastream/values/values.dart';

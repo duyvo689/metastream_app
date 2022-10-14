@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_is_empty, curly_braces_in_flow_control_structures
 
 import 'package:app_metastream/components/components.dart';
-import 'package:app_metastream/funtions/user_info_provider.dart';
+import 'package:app_metastream/providers/user_info_provider.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/services.dart';

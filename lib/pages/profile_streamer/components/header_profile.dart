@@ -1,7 +1,7 @@
 // ignore_for_file: unused_local_variable, unnecessary_null_comparison, avoid_unnecessary_containers, prefer_interpolation_to_compose_strings, use_build_context_synchronously
 
 import 'package:app_metastream/components/components.dart';
-import 'package:app_metastream/funtions/funtions.dart';
+import 'package:app_metastream/providers/providers.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
 import 'package:app_metastream/services/api_user_service.dart';

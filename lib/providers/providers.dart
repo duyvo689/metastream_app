@@ -6,3 +6,4 @@ export 'user_provider.dart';
 export 'banner_provider.dart';
 export 'collection_provider.dart';
 export 'video_provider.dart';
+export 'table_magiceden_provider.dart';
