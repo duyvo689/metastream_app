@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
@@ -84,9 +82,14 @@ class CustomDialog {
       bool isPositiveButtonDangerous) {
     return [
       if (showNegativeButton)
-        FlatButton(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              primary: Colors.transparent,
+              onPrimary: Colors.transparent,
+              textStyle:
+                  const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
           onPressed: () {
             if (onPressedNegative != null) {
               onPressedNegative();
@@ -101,9 +104,14 @@ class CustomDialog {
                 color: isPositiveButtonDangerous ? Colors.black : Colors.red),
           ),
         ),
-      FlatButton(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
+      ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            primary: Colors.transparent,
+            onPrimary: Colors.transparent,
+            textStyle:
+                const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
         onPressed: () {
           onPressedPositive();
         },

@@ -363,32 +363,38 @@ class FormAddInfoUserState extends State<FormAddInfoUser> {
                     ),
 
                     Container(
-                        padding: const EdgeInsets.only(left: 150.0, top: 40.0),
-                        child: RaisedButton(
-                          color: _loading
-                              ? AppColors.dGreyLightColor
-                              : AppColors.dPrimaryDarkColor,
-                          child: const Text('Submit'),
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              _formKey.currentState!.save();
-                              updateInfoUser(
-                                  context
-                                      .read<UserInfo>()
-                                      .userInfo!
-                                      .id
-                                      .toString(),
-                                  context.read<UserInfo>().userInfo!.avatar !=
-                                          null
-                                      ? context
-                                          .read<UserInfo>()
-                                          .userInfo!
-                                          .avatar
-                                          .toString()
-                                      : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png');
-                            }
-                          },
-                        )),
+                      padding: const EdgeInsets.only(left: 150.0, top: 40.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            backgroundColor: _loading
+                                ? AppColors.dGreyLightColor
+                                : AppColors.dPrimaryDarkColor,
+                            textStyle: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w600)),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            _formKey.currentState!.save();
+                            updateInfoUser(
+                                context
+                                    .read<UserInfo>()
+                                    .userInfo!
+                                    .id
+                                    .toString(),
+                                context.read<UserInfo>().userInfo!.avatar !=
+                                        null
+                                    ? context
+                                        .read<UserInfo>()
+                                        .userInfo!
+                                        .avatar
+                                        .toString()
+                                    : 'https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png');
+                          }
+                        },
+                        child: const Text('Submit'),
+                      ),
+                    ),
                   ],
                 ),
               ),

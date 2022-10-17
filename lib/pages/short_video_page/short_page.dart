@@ -61,24 +61,24 @@ class _Home extends State<ShortVideo> with SingleTickerProviderStateMixin {
         itemBuilder: (context, index) {
           return Stack(
             children: <Widget>[
-              FlatButton(
-                  padding: EdgeInsets.all(0),
-                  onPressed: () {
-                    setState(() {
-                      if (play) {
-                        _controller.pause();
-                        play = !play;
-                      } else {
-                        _controller.play();
-                        play = !play;
-                      }
-                    });
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: VideoPlayer(_controller),
-                  )),
+              // FlatButton(
+              //     padding: EdgeInsets.all(0),
+              //     onPressed: () {
+              //       setState(() {
+              //         if (play) {
+              //           _controller.pause();
+              //           play = !play;
+              //         } else {
+              //           _controller.play();
+              //           play = !play;
+              //         }
+              //       });
+              //     },
+              //     child: Container(
+              //       width: MediaQuery.of(context).size.width,
+              //       height: MediaQuery.of(context).size.height,
+              //       child: VideoPlayer(_controller),
+              //     )),
               Padding(
                 padding: const EdgeInsets.only(bottom: 30),
                 child: Align(
