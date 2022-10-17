@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+![Simulator Screen Shot - iPhone 13 Pro Max - 2022-10-17 at 12 42 29](https://user-images.githubusercontent.com/88277970/196098206-13d610fc-0d1f-4875-85e5-f9c2422ab78e.png)
+
 <img width="230" alt="Screen Shot 2022-10-17 at 11 56 11" src="https://user-images.githubusercontent.com/88277970/196094242-a60b72d1-c019-416d-93ae-a256accf8573.png"><img width="230" alt="Screen Shot 2022-10-17 at 11 58 04" src="https://user-images.githubusercontent.com/88277970/196094293-b24eb84b-69ac-420a-a838-e56308e31104.png"><img width="230" alt="Screen Shot 2022-10-17 at 12 00 52" src="https://user-images.githubusercontent.com/88277970/196094394-1c652dd4-d3de-4d9e-aa54-e977e41fa44d.png">
 
 <img width="230" alt="Screen Shot 2022-10-17 at 11 59 07" src="https://user-images.githubusercontent.com/88277970/196094900-d7f80b70-a05b-49c0-ac7f-d46adc0e1fd9.png"><img width="230" alt="Screen Shot 2022-10-17 at 11 58 45" src="https://user-images.githubusercontent.com/88277970/196094910-6c153edf-70a0-4b1b-b4b0-10d9a5769384.png"><img width="230" alt="Screen Shot 2022-10-17 at 11 59 25" src="https://user-images.githubusercontent.com/88277970/196094926-d3b260cd-a4e2-42d6-8e90-7e96e64962ad.png">
