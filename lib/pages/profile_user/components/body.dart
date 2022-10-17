@@ -29,8 +29,7 @@ class Body extends StatelessWidget {
                 ),
                 child: Column(
                   children: <Widget>[
-                    Categories(
-                        addressWallet: user.addressWallet!, userId: user.id!),
+                    Categories(user: user),
                   ],
                 ),
               ),

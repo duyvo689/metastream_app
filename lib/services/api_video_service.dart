@@ -54,7 +54,6 @@ class ApiVideoServices {
     final JsonDecoder _decoder = new JsonDecoder();
     final videoContainer = _decoder.convert(jsonBody);
     String status = videoContainer['status'];
-    print(status);
     if (status != 'Success') return null;
     final video = videoContainer['data'];
 

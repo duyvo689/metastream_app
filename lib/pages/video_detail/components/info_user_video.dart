@@ -143,14 +143,16 @@ class _InfoUserVideoState extends State<InfoUserVideo> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         InkWell(
-          onTap: () {
-            pushNewScreen(
-              context,
-              screen: Profile(user: user as User),
-              withNavBar: false,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
-          },
+          onTap: user != null
+              ? () {
+                  pushNewScreen(
+                    context,
+                    screen: Profile(user: user as User),
+                    withNavBar: false,
+                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                  );
+                }
+              : () {},
           child: Row(
             children: [
               CircleAvatar(

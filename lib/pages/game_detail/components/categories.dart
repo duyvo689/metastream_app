@@ -30,17 +30,22 @@ class _CategoriesState extends State<Categories> {
   }
 
   Future<void> fetchVideosOfGame(String gameId) async {
-    List<Video>? response = await ApiVideoServices().fetchVideosOfGame(gameId);
-    setState(() {
-      videos = response;
-    });
+    if (gameId != 'null' && gameId != null) {
+      List<Video>? response =
+          await ApiVideoServices().fetchVideosOfGame(gameId);
+      setState(() {
+        videos = response;
+      });
+    }
   }
 
   Future<void> fetchGameById(String gameId) async {
-    Game? response = await ApiGameServices().fetchGameById(gameId);
-    setState(() {
-      game = response;
-    });
+    if (gameId != 'null' && gameId != null) {
+      Game? response = await ApiGameServices().fetchGameById(gameId);
+      setState(() {
+        game = response;
+      });
+    }
   }
 
   Future<void> fetchNftsOfGame(String collection) async {

@@ -1,28 +1,21 @@
 import 'package:app_metastream/components/components.dart';
 import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/pages.dart';
-import 'package:app_metastream/services/services.dart';
 import 'package:flutter/material.dart';
 
 class NFTList extends StatelessWidget {
   const NFTList({
     Key? key,
-    required this.addressWallet,
+    required this.nftSolanas,
   }) : super(key: key);
-  final String addressWallet;
+  final List<NftSolana>? nftSolanas;
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 1,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: FutureBuilder<List<NftSolana>>(
-          future: ApiNftSolanaServices().fetchSellerByAddress(addressWallet),
-          builder: (context, snapshot) {
-            if ((snapshot.hasError) || (!snapshot.hasData))
-              return const Loading(scale: 6);
-            List<NftSolana>? nftSolanas = snapshot.data;
-            return nftSolanas != null && nftSolanas.isNotEmpty
+        flex: 1,
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: nftSolanas!.length > 0
                 ? GridView.builder(
                     shrinkWrap: true,
                     padding: const EdgeInsets.only(top: 10),
@@ -33,23 +26,19 @@ class NFTList extends StatelessWidget {
                       crossAxisCount: 2,
                       childAspectRatio: 0.63,
                     ),
-                    itemCount: nftSolanas.length,
+                    itemCount: nftSolanas!.length,
                     itemBuilder: (BuildContext context, int index) {
                       return NFTCard(
-                        nftSolana: nftSolanas[index],
+                        nftSolana: nftSolanas![index],
                         press: () => Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => NFTDetail(
-                                      nftSolana: nftSolanas[index],
+                                      nftSolana: nftSolanas![index],
                                     ))),
                       );
                     },
                   )
-                : const NoContentProfile(title: "User don't have nft!");
-          },
-        ),
-      ),
-    );
+                : const NoContentProfile(title: "User don't have nft!")));
   }
 }

@@ -51,16 +51,18 @@ class _HeaderGameDetailState extends State<HeaderGameDetail> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
-  Future<Game?> fetchGameById(String id) async {
-    Game response = await ApiGameServices().fetchGameById(widget.gameId);
-    if (context.read<UserInfo>().userInfo != null && response != null) {
-      userInfoMe = context.read<UserInfo>().userInfo;
-      checkFollower(userInfoMe!.followGame!.toList(), response.id.toString());
-    }
+  Future<Game?> fetchGameById(String gameId) async {
+    if (gameId != 'null' && gameId != null) {
+      Game response = await ApiGameServices().fetchGameById(widget.gameId);
+      if (context.read<UserInfo>().userInfo != null && response != null) {
+        userInfoMe = context.read<UserInfo>().userInfo;
+        checkFollower(userInfoMe!.followGame!.toList(), response.id.toString());
+      }
 
-    setState(() {
-      game = response;
-    });
+      setState(() {
+        game = response;
+      });
+    }
   }
 
   int checkFollower(List followGameMe, String idUser) {

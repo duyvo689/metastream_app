@@ -30,7 +30,7 @@ class Body extends StatelessWidget {
                   // const VideoStates(),
                   const SizedBox(height: 15),
                   InfoUserVideo(video: video),
-                  const SizedBox(height: 15),
+                  const SizedBox(height: 18),
                   const Text(
                     'Comment:',
                     style: TextStyle(
@@ -38,7 +38,7 @@ class Body extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w600),
                   ),
-                  const SizedBox(height: 5),
+                  const SizedBox(height: 8),
                 ],
               ),
             ),

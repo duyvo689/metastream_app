@@ -34,7 +34,6 @@ class _TableNFTMagicEdenState extends State<TableNFTMagicEden> {
 
   @override
   Widget build(BuildContext context) {
-    print(aboutTime);
     return DecoratedBox(
         decoration: BoxDecoration(
           color: AppColors.dGreyDarkColor,

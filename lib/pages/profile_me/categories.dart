@@ -1,3 +1,4 @@
+import 'package:app_metastream/models/models.dart';
 import 'package:app_metastream/pages/profile_me/about.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';

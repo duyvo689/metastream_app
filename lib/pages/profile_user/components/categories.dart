@@ -1,3 +1,6 @@
+import 'package:app_metastream/components/components.dart';
+import 'package:app_metastream/models/models.dart';
+import 'package:app_metastream/services/services.dart';
 import 'package:app_metastream/values/values.dart';
 import 'package:flutter/material.dart';
 
@@ -5,13 +8,9 @@ import 'about.dart';
 import 'nft_list.dart';
 import 'video_list.dart';
 
-// We need statefull widget because we are gonna change some state on our category
 class Categories extends StatefulWidget {
-  const Categories(
-      {Key? key, required this.addressWallet, required this.userId})
-      : super(key: key);
-  final String addressWallet;
-  final String userId;
+  const Categories({Key? key, required this.user}) : super(key: key);
+  final User user;
   @override
   _CategoriesState createState() => _CategoriesState();
 }
@@ -20,6 +19,32 @@ class _CategoriesState extends State<Categories> {
   // by default first item will be selected
   int selectedIndex = 0;
   List categories = ['Streams', 'NFTs', 'About'];
+
+  List<Video>? videos;
+  List<NftSolana>? nftSolanas;
+
+  @override
+  void initState() {
+    fetchVideosOfUser(widget.user.id!);
+    fetchNftsOfUser(widget.user.addressWallet!);
+    super.initState();
+  }
+
+  Future<void> fetchVideosOfUser(String id) async {
+    List<Video>? response = await ApiVideoServices().fetchVideosOfUser(id);
+    setState(() {
+      videos = response;
+    });
+  }
+
+  Future<void> fetchNftsOfUser(String addressWallet) async {
+    List<NftSolana>? response =
+        await ApiNftSolanaServices().fetchSellerByAddress(addressWallet);
+    setState(() {
+      nftSolanas = response;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -65,11 +90,19 @@ class _CategoriesState extends State<Categories> {
             ),
           ),
         ),
-        if (selectedIndex == 0) ...[VideoList(userId: widget.userId)],
-        if (selectedIndex == 1) ...[
-          NFTList(addressWallet: widget.addressWallet),
+        if (selectedIndex == 0) ...[
+          videos != null ? VideoList(videos: videos) : const Loading(scale: 7),
         ],
-        if (selectedIndex == 2) ...[AboutProfile(userId: widget.userId)],
+        if (selectedIndex == 1) ...[
+          nftSolanas != null
+              ? NFTList(nftSolanas: nftSolanas)
+              : const Loading(scale: 7),
+        ],
+        if (selectedIndex == 2) ...[
+          widget.user != null
+              ? AboutProfile(user: widget.user)
+              : const Loading(scale: 7)
+        ],
       ]),
     );
   }
