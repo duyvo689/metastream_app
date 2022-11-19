@@ -19,6 +19,7 @@ class ApiCollectionServices {
       final JsonDecoder _decoder = new JsonDecoder();
       final collectionListContainer = _decoder.convert(jsonBody);
       final List collections = collectionListContainer['data'];
+      print(collections);
       return collections
           .map((contactRaw) => new Collection.fromJson(contactRaw))
           .toList();

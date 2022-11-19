@@ -11,11 +11,10 @@ class CollectionProvider extends ChangeNotifier {
   Future GetCollectionsProvider() async {
     List<Collection>? collectionSols =
         await ApiCollectionServices().fetchListCollection('sol');
-    _collectionsSol = collectionSols;
-
-    // List<Collection>? collectionEths =
-    //     await ApiCollectionServices().fetchListCollection('eth');
-    // _collectionsEth = collectionEths;
+    List<Collection>? newList = collectionSols.length > 19
+        ? collectionSols.sublist(0, 18)
+        : collectionSols;
+    _collectionsSol = newList;
 
     notifyListeners();
   }

@@ -72,10 +72,6 @@ class _NftPageState extends State<NftPage> {
                     SectionTitleCenter(title: 'Solana Collections'),
                     SizedBox(height: 30),
                     ListCollectionSolana(direction: Axis.vertical, count: 2),
-                    // SizedBox(height: 40),
-                    // SectionTitleCenter(title: 'Ethereum Collections'),
-                    // SizedBox(height: 30),
-                    // ListCollectionEthereum(direction: Axis.vertical, count: 2),
                     SizedBox(height: 20)
                   ],
                 ),

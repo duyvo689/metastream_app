@@ -9,6 +9,7 @@ class CollectionNftCard extends StatelessWidget {
       : super(key: key);
   final Collection collection;
   final GestureTapCallback press;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -41,8 +42,8 @@ class CollectionNftCard extends StatelessWidget {
                         bottomRight: Radius.circular(8),
                       ),
                       image: DecorationImage(
-                        // image: NetworkImage(collection.image.toString()),
-                        // fit: BoxFit.cover,
+                        // image: NetworkImage(
+                        //     'https://ucarecdn.com/6fd9e11f-3198-4323-9738-d19984a52383/gif2video/-/format/webm/-/quality/best/'),
                         image: CachedNetworkImageProvider(
                             collection.image.toString()),
                         fit: BoxFit.cover,
