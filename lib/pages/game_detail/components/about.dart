@@ -8,12 +8,13 @@ class AboutProfile extends StatelessWidget {
   final Game? game;
   @override
   Widget build(BuildContext context) {
+    print(game);
     return Expanded(
         flex: 1,
         child: SingleChildScrollView(
             child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: game?.description != null
+                child: game?.description != null && game?.description != 'null'
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -27,7 +28,10 @@ class AboutProfile extends StatelessWidget {
                             const SizedBox(height: 10),
                             _aboutItemGame(
                               label: 'Network:',
-                              description: game!.chainId!.name.toString(),
+                              description: game?.chainId != null &&
+                                      game?.chainId?.name != null
+                                  ? game!.chainId!.name.toString()
+                                  : '...',
                             ),
                             const SizedBox(height: 20),
                             _aboutItemGame(
@@ -62,16 +66,18 @@ class _aboutItemGame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(label, style: AppStyles.about_profile_label_style),
-        const SizedBox(width: 10),
-        Text(
-          description,
-          style: AppStyles.about_profile_title_style,
-        ),
-      ],
-    );
+    return description != null
+        ? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(label, style: AppStyles.about_profile_label_style),
+              const SizedBox(width: 10),
+              Text(
+                description,
+                style: AppStyles.about_profile_title_style,
+              ),
+            ],
+          )
+        : Text('...');
   }
 }
